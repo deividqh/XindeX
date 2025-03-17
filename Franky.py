@@ -906,7 +906,7 @@ class Rango(Celda):
 
             elif isinstance(data_push, str):                
                 """ ■■■■■ METE data_push COMO UNA CADENA(O CHAR). """                    
-                data_push = str(data_push).strip()
+                data_push = str(data_push)
                 if b_lineal == False:           
                     # ■■■ ES STR ....Repetir o sólo Insertar?
                     if b_repetir == False:        # (byDef)
@@ -987,7 +987,10 @@ class Rango(Celda):
                 dimension = f'{len(matriz_resultado)}X{len(matriz_resultado[0])}'
 
                 # ■ CREO EL RANGO
-                rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_inicial = matriz_resultado )
+                rango = Rango( nombre_rango = "rango_aux" , 
+                                celda_inicio = celda_inicio.nombre_celda , 
+                                dimension = dimension , 
+                                valor_inicial = matriz_resultado )
                 
                 # ■ VALIDO LIMITES DEL RANGO
                 retorno = self.es_rango_in(rango=rango)
@@ -2990,10 +2993,10 @@ class F_r_a_n_k_y(Tablero):
 
         # BORRAR
         # print(f'FORMATO DE IMPRESION = {self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)} ')        
-        print(f'NOMBRE DEL ESTYLE DE IMPRESION = {self.get_imprimir_style(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)} ')
+        # print(f'NOMBRE DEL ESTYLE DE IMPRESION = {self.get_imprimir_style(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)} ')
         # INFO QUE VOY A USAR PARA HACER FRANKY PARA TODAS LAS IMPRESIONES
-        print(f'ULTIMA FILA USADA = {self.last_fila_used()}')               
-        print(f'ULTIMA COLUMNA USADA = {self.last_columna_used()}')
+        # print(f'ULTIMA FILA USADA = {self.last_fila_used()}')               
+        # print(f'ULTIMA COLUMNA USADA = {self.last_columna_used()}')
 
         # DESDE FILA
         if not isinstance(fila_from, int): return None
@@ -3012,7 +3015,7 @@ class F_r_a_n_k_y(Tablero):
                 print(f'{e}')
                 return None
         # IMPRIME RESULTADOS... BORRAR
-        print(f'FROM FILA {fila_from}, TO FILA {fila_to}\n')               
+        # print(f'FROM FILA {fila_from}, TO FILA {fila_to}\n')               
                 
         # ■■■ VALIDACION INICIAL
         str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
