@@ -69,10 +69,9 @@ def explicacion_parametros():
     """)
 
 def version_web():
-    global The_X_Men
-    lst_level , lst_mystyca_skin_result = The_X_Men.get_web_lsts_lens_linea(titulo='Menu1', b_exe=True, tipo_index=0, b_exec_all=True, b_loop=True, pad_x=30)
-    print(f'List Level: {lst_level}')
-    print(f'Mystica Skin Result: {lst_mystyca_skin_result}')
+    global The_X_Men    
+    print(f'Accion version Web WIP')
+
 def lanza_flask():
     print('L a n z a   F l a s k ')
     # from proyecto_final_v1 import funciones_tablas

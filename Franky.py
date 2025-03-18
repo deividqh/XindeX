@@ -1533,12 +1533,18 @@ class Rango(Celda):
         
         SI ES MATRIZ, SI B_LINEAL = TRUE, TB LOS CARGO SEGÚN VIENEN COMO EN LA TÉCNICA ANTERIOR.        
         SI B_LINEAL = FASE, ENCUADRO LA MATRIZ Y CREO EL RANGO. LUEGO LO CRUZO CON CROSS COMO TODAS LAS ANTERIORES.
+        
+        ■ Introduce la List en B:5 HORIZONTAL (si entra una lista siempre entra plana, uso 'eje' para definir la direccion)
+        >>> ejemplo: TABLERO.push([3,2,1], celda_inicio='B:5', eje='X') 
 
-        >>> ejemplo: TABLERO.push([3,2,1], celda_inicio='B:5', eje='X') ==> Introduce la List en B:5 HORIZONTAL (si entra una lista siempre entra plana, así que uso b_lineal para definir la direccion)
-        >>> ejemplo: TABLERO.push([3,2,1], celda_inicio='B:5', eje='Y')  ==> Introduce la List en B:5 VERTICAL (si entra una lista siempre entra plana, así que uso b_lineal para definir la direccion)
-
-        >>> ejemplo: TABLERO.push([[3,2,1],[4, 5,6]], celda_inicio='B:5', b_lineal=False)   ==> Introduce la matriz en B:5
-        >>> ejemplo: TABLERO.push('Tres tristes tigres', celda_inicio='B:5', b_lineal=False)   ==> Introduce el texto en B:5
+        ■ Introduce la List en B:5 VERTICAL 
+        >>> ejemplo: TABLERO.push([3,2,1], celda_inicio='B:5', eje='Y')  
+        
+        ■ Introduce la matriz en B:5
+        >>> ejemplo: TABLERO.push([[3,2,1],[4, 5,6]], celda_inicio='B:5', b_lineal=False)   
+        
+        ■ Introduce el texto en B:5
+        >>> ejemplo: TABLERO.push('Tres tristes tigres', celda_inicio='B:5', b_lineal=False)   
         """
 
         # ■■ CACHO LAS VARIABLES OPCIONALES
