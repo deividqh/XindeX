@@ -2,6 +2,7 @@ import os
 import re
 from Franky import F_r_a_n_k_y
 
+
 """ 
     VARIABLES GLOBALES Y CONSTANTES 
 """
@@ -10,7 +11,7 @@ class TYPEX(TYPE_XINDEX):
     NUMERIC = 0
     ALF_MAX = 10
     ALF_MIN = 20
-    MIXTO   = 30
+    MIXTO   = 15
 
 #Cte para cuando se pide la opcion al usuario.
 SALIR='<<<'
@@ -44,7 +45,7 @@ class MenuDvd():
             [titulo](str)
             [lst_items](list)  : Los Items(Elementos Visibles) del menu que el usuario tiene que seleccionar.
             [lst_funciones](list)  : Lista de Funciones asociadas a cada lst_items... pueden ser None si no tiene funcion asociada.
-            [fraseHead](str)  : la frase que aparecerá en el titulo del Menu            
+            [fraseHead](str)(list)(matriz)  : titulo del Menu            
         """
         # ■■ RECOGE TITULO
         self.titulo     = titulo      # El titulo e indice del menu. aparece por defecto en el HEAD es el id del menu.
@@ -70,30 +71,12 @@ class MenuDvd():
         #   ■ Es de donde tiene que coger ■■► Terminator ◄■■ la informacion para ejecutar al funcion.
         self.dicc_menu = dict(zip(self.lst_items, self.lst_funciones))
         
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        # PREPARA IMPRESION █████████████████████████████████████████████████████        
-        self.F_RANK_Y = None        
-        self.F_RANK_Y_DEF = None        
-        
+               
         # ■■ LA FRASE QUE SE PONE EN LA IMPRESION DEL MENU(POR DEFECTO, EL TITULO):
         self.fraseHead = fraseHead if fraseHead != '' else self.titulo
         
         # ■■ MENSAJE DE PEDIDA DE DATO AL USUARIO
-        self.introData = '\nIntro Opt (XindeX)..... '     
-        
-        
-        # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        # CARGA LAS LISTAS DE BEFORE-AFTER
-        self.lst__X_num=[]          # Lista de los caracteres que van antes del Numero del item.
-        self.lst__num_X=[]          # Lista de los caracteres que van depues del Numero del item.
-        self.lst__X_item=[]         # Lista de los caracteres que van antes del Item
-        self.lst__item_X=[]         # Lista de los caracteres que van Despues del Item        
-        
-        for i in range(len(lst_items)):
-            self.lst__X_num.append('')
-            self.lst__num_X.append('')
-            self.lst__X_item.append('')
-            self.lst__item_X.append('')
+        self.intradilla_data_user = '\nIntro Opt (XindeX)..... '     
     
     def __str__(self):                
         pass
@@ -136,35 +119,12 @@ class MenuDvd():
         pass
     
     # CAMBIA EL ESTILO(CARACTERES DE CABECERA, PIE, PRE-NUM , POST-NUM)
-    def style(self, introData='\nIntro Opt (XindeX)..... '):
+    def style(self, intradilla_data_user='\nIntro Opt (XindeX)..... '):
         pass
     
     # Retorna 4 espacios
     def get_TAB(self):
         return self.TAB
-    
-    
-    # DEVUELVE UNA FILA DEL MENU
-    def get_strRow_Body(self, row):
-        """ ■■ Def: Devuelve una fila del menu. la que le pases. En formato f'' para poder ser impreso o .format()
-        No incluye salir, Opt-0. La numeracion empieza en 1, pero la lista en 0 
-        Opt-1-  Casa    Def:Loren ipsum
-        """
-        fila_menu=f''
-        if 0 <= row < len(self.lst_items):
-            for i , item_menu in enumerate(self.lst_items):            
-                if i == row :
-                    fila_menu += f'{ self.lst__X_num[i]}'         # 'Opt-'                   
-                    fila_menu += f'{ self.lst_index_rltv[i] }'    # 1         
-                    fila_menu += f'{ str(self.lst__num_X[i])  }'  # '-'
-                    fila_menu += f'{ str(self.lst__X_item[i]) }'  # TAB('    ')
-                    
-                    fila_menu += f'{ item_menu }'                 # 'Casa'
-
-                    fila_menu += f'{ str(self.lst__item_X[i]) }'  # TAB + 'Def: Loren ipsum'
-                    
-                    return fila_menu
-            pass
     
     # El item de una fila
     def get_item_row_body(self, row):
@@ -183,29 +143,6 @@ class MenuDvd():
             for i , numRltv in enumerate(self.lst_index_rltv):            
                 if i == row :
                     return f'{ numRltv }'                    
-    
-    # ██ DEVUELVE UNA FILA self.lst_items... En formato lista(columnas).... llamada desde mystyca_skin
-    def get_lst_row_body(self, row):
-        """ ■■ Def: Devuelve una fila del menu. la que le pases. En formato f'' para poder ser impreso o .format()
-        No incluye salir, Opt-0. La numeracion empieza en 1, pero la lista en 0 
-        Opt-1-  Casa    Def:Loren ImprSkinpsum
-        """
-        fila_menu=[]
-        if 0 <= row < len(self.lst_items):
-            for i , item_menu in enumerate(self.lst_items):            
-                if i == row :
-                    fila_menu.append ( f'') 
-                    fila_menu.append ( f'') 
-                    fila_menu.append ( f'') 
-                    fila_menu.append ( f'') 
-                    fila_menu.append ( f'') 
-                    fila_menu.append ( f'') 
-                    fila_menu.append ( f'') 
-                    fila_menu.append ( f'') 
-
-                    return fila_menu
-            pass
-        pass
     
     # IGUALA LAS LISTAS
     def igualarListas(self, listaKeys, listaToReLong, valorRelleno='Loren'):
@@ -245,52 +182,87 @@ class XindeX(MenuDvd):
     
     NUMERO_COLUMNAS = 9     # NUMERO DE COLUMNAS DE XINDEX. ES CTE. 
 
-    def __init__(self, esLoop=True):
+    def __init__(self, tipo_index:str='a', b_mode_all:bool=True, b_loop:bool=True ):
         """ ■■ Crea un menu Principal y gestiona una lista de menus secundarios que dependen del principal.
-        [esLoop]: True=circular hasta Salida. | False=Sólo una ejecucion FALTA IMPLEMENTAR
+        [b_loop]: True=circular hasta Salida. | False=Sólo una ejecucion FALTA IMPLEMENTAR
+        [head_datapush](list, str, matriz) : datos de la cabecera, None si no quieres cabecera.
+        [pie_datapush](list, str, matriz): datos de pie, None si no quieres pie.
+
+        ■ [tipo_index]  █  '1' = Numerico(byDef) █  'a' = Alfabetico Min █ 'A' = Alfabetico May  █ 'A1', '1A', a1, 1a =  Mixto
+                           o bien: TIPEX.NUMERIC = 0 | TIPEX.ALF_MAX = 10 | TIPEX.ALF_MIN = 20 | TIPEX.MIXTO = 15
+        ■ [b_mode_all] (bool)   True  ::: Solo se ejecutan ( o solo es OPCION-VALIDA) los subMenus Finales (no padres) 
+                                False ::: Se ejecuta ( o solo es opcion valida) tanto padres como hijos.
+        ■ [b_loop] (bool)       True  ::: SALES DEL MENÚ INTRODUCIENDO '<<<' 
+                                False ::: SE PRESENTA EL MENU 1 VEZ Y SALE A MAIN.
+
+        ejemplo: xindex = XindeX(head_datapush = ['fila 1 head'] , pie_datapush = [['fila 1 pie'],['fila 2 pie']] , b_loop=True) 
+
         """        
-        
-        self.esLoop = esLoop    # ■■ Define si se sale por <<< o nos vale sólo para una ejecución...tb para definir mas adelante una última vuelta. 
-
-        self.pasos=0            # ■■ Para las funciones recursivas Mystyca. Define las veces que se llama a la recursividad.
-
-        self.lst_menuXX=[]      # ■■ Lista de objetos MenuDvd que mantiene un lst_items,  dicc_menu(num_n:[strMenu_n, func_n]) 
-        self.lst_titulosXX=[]   # ■■ Lista de titulos de menu introducidos. Me permite validar rapido 
-        self.lst_keys=[]        # ■■ Lista de items de menu introducidos. Me permite validar rapido 
-
+        # ■■■■■■■■■■■■■■■■■■■■■■■■ RELACIONADASA CON LA LA LOGICA DE LA APLICACION
+        self.tipo_index = tipo_index
+        self.b_mode_all = b_mode_all
+        self.b_loop = b_loop    # ■■ Define si se sale por <<< o nos vale sólo para una ejecución...tb para definir mas adelante una última vuelta. 
+        # ■■■■■■■■■■■■■■■■■■■■■■■■
+        self.pasos=0            # ■■ Para las funciones recursivas mystyca. Define las veces que se llama a la recursividad.
+        self.lst_menuXX=[]      # ■■ Lista de objetos MenuDvd que mantiene un lst_items,  dicc_menu(num_n:[strMenu_n, func_n])  ... se carga en addX
+        self.lst_titulosXX=[]   # ■■ Lista de titulos de menu introducidos. Me permite validar rapido                           ... se carga en addX
+        self.lst_keys=[]        # ■■ Lista de items de menu introducidos. Me permite validar rapido                             ... se carga en addX
         # INFORMACION GENETICA ■■■■■■■■■■■■■■■■■■■■■■■■
         self.lst__men_itm_lev_ape_name_padr_ipadr_func=[]    # ██ Lista de lista de str. Invocada desde Mystica. Funcion Recursiva
-        self.dicc_xgenx={}       # ■■ diccionario que mantiene la genealogía de los menus. titulo:[master, index_en_master]  
-        self.matriz_opciones_validas=[]   # ■■ Listado de Opciones Validas(a.1, b.2.3...). Se tiene que pasar a __get_dicc_xavier_into_user()
-
+        self.dicc_xgenx={}      # ■■ diccionario que mantiene la genealogía de los menus. ■ titulo:[master, index_en_master]  
+        self.matriz_opt_ok=[]   # ■■ Listado de Opciones Validas(a.1, b.2.3...). Se tiene que pasar a ■ get_dicc_xavier_into_user()
         # LA MATRIZ A IMPRIMIR ■■■■■■■■■■■■■■■■■■■■■■■
-        self.matriz_xindex=[]    # ■ ES LA MATRIZ A IMPRIMIR.  # lista de lista de str. llamada desde Mystica en self.Mystica_Skin(). Funcion Recursiva
-        
-        # TIPOS DE FORMATOS DE MENU 
-        #   se forman en self.crear_xindicex() 
-        self.lst_idx_NUMERIC=[]
-        self.lst_idx_ALF_MAX=[]
-        self.lst_idx_ALF_MIN=[]
-        self.lst_idx_MIXTO=[]
-
+        self.matriz_impresion_xindex=[]   # ■■ Lista de lista de str. llamada desde Mystica en ■ self.Mystica_Skin(). Funcion Recursiva        
+        # TIPOS DE FORMATOS DE MENU ... se forman en ■ self.crear_xindicex() 
+        self.lst_idx_NUMERIC=[]     # ■ numerico
+        self.lst_idx_ALF_MAX=[]     # ■ alfanumerico mayusculas
+        self.lst_idx_ALF_MIN=[]     # ■ alfanumerico minusculas
+        self.lst_idx_MIXTO=[]       # ■ mixto. mayusculas(A1, 1A); minusculas(a1, 1a)
+        # ESPACIOS DEL FORMATO DE LINEA
         self.sp1 = 1    # separa index de item
         self.sp2 = 1    # separa item de definicion.... mejor largo que corto.... tiene que cambiar en funcion del maximo.
         self.sp3 = 2    # separa definicion de funcion
-
-        self.lst_str_opciones_validas = None
-
-        self.pie_datapush  = f'(Salir).... <<<  ■  (Help).... ?  ■  (Repeat).... <  ■  (Begin).... *opcion'
-        self.head_datapush = " XINDEX - OVER-MAIN "
-
-        # RESPUESTAS DIRECTAS ... Se evalua cada uno: 
+        # LISTA DE LAS OPCIONES QUE PUEDE INTRODUCIR EL USUARIO
+        self.lst_opts_ok = None    
+        # CABECERA Y PIE: 
+        # self.head_datapush  = head_datapush
+        # self.pie_datapush   = pie_datapush
+        # self.pie_datapush   = f'(Salir).... <<<  ■  (Help).... ?  ■  (Repeat).... <  ■  (Begin).... *opcion'
+        self.pie_datapush   = f'(Salir).... <<<  ■  (Help).... ?  ■  (Repeat).... < '
+        # self.head_datapush  = " XINDEX - OVER-MAIN "
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # RESPUESTAS ■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■ DIRECTAS ... Se evalua cada uno: 
         self.lst_resp_ACCION = ['<','?','<<<']
-
-        # RESPUESTAS PREFIJO + RESPUESTA ... Se evalua cada uno: 
+        # ■ PREFIJO + RESPUESTA ... Se evalua cada uno: 
         self.lst_resp_BEGINERS = ['**', '=>']
-
-        # RESPUESTAS ENVUELTAS... Se evalua la lista como una unidad, (pre y pos)(envoltorio) : 
-        self.lst_resp_PACK_1 = ['<<','>>']
-
+        # ■ ENVUELTAS... Se evalua la lista como una unidad, (pre y pos)(envoltorio) : 
+        self.lst_resp_PACK_1 = ['<<','>>']        
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■ MENU PRINCIPAL(SE ESTABLECE EN MYSTYCA)
+        self.menu_dvd = None
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # PREPARA IMPRESION ██████████████████        
+        self.F_RANK_Y = None        
+        self.F_RANK_Y_DEF = None
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■ LONGITUD MAXIMA DEL MENU (INCLUYE XINDEX E ITEMS)
+        self.longitud_max_xindex=0
+    
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    def set_style(self, b_loop: bool = None, sp1: int = None, sp2: int = None, sp3: int = None, franky=None, franky_def=None):
+        if b_loop is not None:
+            setattr(self, "b_loop", b_loop)
+        if sp1 is not None:
+            setattr(self, "sp1", sp1)
+        if sp2 is not None:
+            setattr(self, "sp2", sp2)
+        if sp3 is not None:
+            setattr(self, "sp3", sp3)
+        if franky is not None:
+            setattr(self, "F_RANK_Y", franky)
+        if franky_def is not None:
+            setattr(self, "F_RANK_Y_DEF", franky_def)
 
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     # 1-AÑADE UN MENU AL GESTOR... en forma lst_items=[it1, it2, ...]  lst_funciones=[f1, f2, ....] (no usar) (Crea un MenuDvd)
@@ -361,8 +333,7 @@ class XindeX(MenuDvd):
         else:
             """ ■■ Error No posible, pero lo dejo por legible.....o no ;) """        
 
-
-    # █████████████████████████████████████████████████████████████████████████████████
+    # ███████████████████████████████████████████████████████████████████████████████
     # -AÑADE UN MENU AL GESTOR Y LO CONFIGURA.... ES ADD Y CONFIG EN LA MISMA FUNCION.
     # en forma (item_menu, funcion) (Crea un MenuDvd) (y si metes padre e ipadre se configura la genetica)
     def addX(self, titulo:str, lst_items:list=None, fraseHead:str='', padre:str=False, ipadre:str=None):             
@@ -383,7 +354,7 @@ class XindeX(MenuDvd):
         if titulo in self.lst_titulosXX: 
             return False
         try:
-            new_menu=MenuDvd(titulo=titulo, lst_items=lst_itemX, lst_funciones=lst_funcX, fraseHead=fraseHead)
+            new_menu = MenuDvd(titulo=titulo, lst_items=lst_itemX, lst_funciones=lst_funcX, fraseHead=fraseHead)
             """ ■■ Se crea un objeto MenuDvd """
             # print(new_menu)
         except Exception as e:
@@ -393,10 +364,7 @@ class XindeX(MenuDvd):
         # Añade a la lista de titulos y a la lista de menus de XindeX
         self.lst_titulosXX.append(titulo)
         self.lst_menuXX.append(new_menu)
-        # print(f'Load Menu {titulo} Ok ;)', end=' | ')
-
         
-        # ■■ Code de: [padre] e [i_padre] como OPCIONALES
         # .... Sirve para llamar a config desde la addX !!!!!! Todo en 1.
         if padre==False:
             """ No introduce padre, no hago nada, salgo por donde vine """
@@ -422,13 +390,19 @@ class XindeX(MenuDvd):
         return new_menu
 
     # RETORNA UN OBJ MENUDVD POR MEDIO DE SU TITULO             (obtiene el MenuDvd )
-    def get_menudvd(self, titulo:str):
-        """ ■■ Retorna un objeto MenuDvd x su str titulo. """
-        if titulo in self.lst_titulosXX:
-            for menu in self.lst_menuXX:
-                if str(menu.titulo) == str(titulo):
-                    return menu
-    # _________________
+    def get_menudvd(self, titulo:str=None):
+        """ ■■ Retorna un objeto MenuDvd x su str titulo. 
+        [titulo](str) => Titulo del menú a devolver.
+            None => devuelve todos los menus en lst_menuXX ( añadidos geneticamente con self.addX() )
+        """
+        if titulo is None:
+            return [menu for menu in self.lst_menuXX]      # LISTA CON TODOS LOS MENUS 
+        else:                    
+            if titulo in self.lst_titulosXX:
+                for menu in self.lst_menuXX:
+                    if str(menu.titulo) == str(titulo):
+                        return menu
+    
     # BUSCA INDEX FREE.                                         (Busca un indice libre)
     def __busca_index_free(self, titulo_key,  master_buscado ):
         """ ■■ Busca en el diccionario de configuracion << self.dicc_xgenx >> , un index libre(el siguiente). 
@@ -454,148 +428,146 @@ class XindeX(MenuDvd):
         else:
             return 1    #Todos los menus empiezan las opciones en 1 y el 0 es Salir.
     
-    # ███████████████████████████████████████████████████████████████████████████████
-    # MUESTRA UN XINDEX.  (Imprime el menu con subMenus - Toma Control - Ejecuta Funciones)
-    def Mystyca(self, titulo:str,  b_exe:bool=True, tipo_index:str='a', b_exec_all:bool=True, b_loop:bool=True, pad_x:int=30):
+    # ████████████████████████████████████████████████████████████████████████████████████████████████
+    # █████ MUESTRA UN XINDEX.  (Imprime el menu con subMenus - Toma Control - Ejecuta Funciones) ████
+    # def mystyca(self, titulo:str, tipo_index:str='a', b_mode_all:bool=True, b_loop:bool=True, pad_x:int=15):
+    def mystyca(self, titulo:str, head_datapush:list=None, pad_x:int=15):
         """ 
         ■ [titulo]      Id del Menu Añadido/Configurado/Mostrados sus Items.
-        ■ [b_exe]   True  ::: EJECUTA FUNCIONN .... en TERMINATOR  
-                    False ::: RETORNA RESPUESTA
-        ■ [tipo_index]  █  '1' = Numerico(byDef) █  'a' = Alfabetico Min █ 'A' = Alfabetico May  █ 'A1', '1A', a1, 1a =  Mixto
-                           o bien: TIPEX.NUMERIC = 0 | TIPEX.ALF_MAX = 10 | TIPEX.ALF_MIN = 20 | TIPEX.MIXTO = 30
-        ■ [b_exec_all] (bool)  True  ::: Solo se ejecutan ( o solo es OPCION-VALIDA) los subMenus Finales (no padres) 
-                            False ::: Se ejecuta ( o solo es opcion valida) todo lo que no sea None en func.
-                            ■ Si b_exe == False ::: No iterfiere pq b_exe se trata en TERMINATOR y b_exec_all se trata en Opcion_Valida(XAVIER)
-        ■ [b_loop] (bool)     True  ::: SALES DEL MENÚ INTRODUCIENDO '<<<' 
-                            False ::: SE PRESENTA EL MENU 1 VEZ Y SALE A MAIN.
+        
         ■ [pad_x] (int)      Distancia entre el punto final del str del menu y el marco final.
+        
         ■ Ejemplos:
-            1.  retorno = The_X_Men.Mystyca(titulo='Menu1', b_exec_all=False, b_loop=True)
-            2.  retorno = The_X_Men.Mystyca(titulo='Menu1', b_exe=True )
-            3.  retorno = The_X_Men.Mystyca(titulo='Menu1', b_exe=True, tipo_index='1', b_exec_all=False, b_loop=True)
+            1.  retorno = The_X_Men.mystyca(titulo='Menu1', b_mode_all=False, b_loop=True)
+            2.  retorno = The_X_Men.mystyca(titulo='Menu1' )
+            3.  retorno = The_X_Men.mystyca(titulo='Menu1', tipo_index='1', b_mode_all=False, b_loop=True)
         """    
+
         # ■■ VALIDA TITULO REPETIDO Y EXISTENCIA EN LA GENETICA(CONFIG)
         if titulo not in self.lst_titulosXX or titulo not in self.dicc_xgenx: 
             print(f'ERR-VAL:: {titulo} NO REGISTRADO EN XGENX')
             return None
+
+        self.head_datapush=head_datapush
+        self.pad_x = pad_x
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ███ CACHA EL MENU A IMPRIMIR...es la BASE GENETICA de trabajo
+        # ████████████████████████████████████████████████████████████████████
         
-        # ███ CACHA EL MENU A IMPRIMIR...es la base genetica sobre la que trabajamos1
         menu_dvd = self.get_menudvd(titulo = titulo)
         if not menu_dvd: return None
+        self.menu_dvd = menu_dvd
+        print(f'■ MENU: {self.menu_dvd.titulo}')
         
-        # ████████████████████████████████████████████████████████████████████████████████████████████████████████████
-        # ACTIONES GENETICAS █████████████████████████████████████████████████████████████████████████████████████████
-        # ████████████████████████████████████████████████████████████████████████████████████████████████████████████  
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ███ MODULO GENETICO 
+        # ████████████████████████████████████████████████████████████████████
 
-        # ■■ listado de los items que aparecen en el menu genetico. en orden de aparicion en el menu.... de arriba a abajo.
+        # ■■ LISTADO DE LOS ITEMS QUE APARECEN EN EL MENU GENETICO. en orden de aparicion en el menu.... de arriba a abajo.
         # ■■ GENERICA DE NUMERO DE FILAS           
-        self.lst_keys = self.Mystyca_Keys( menu_dvd = menu_dvd )
+        self.lst_keys = self.mystyca_keys( menu_dvd = self.menu_dvd )
         
-        # ████████████████████████████ CONFIGURACION DE LA GENETICA 
-        self.lst__men_itm_lev_ape_name_padr_ipadr_func = self.mystyca_scaner_genetico( menu_dvd = menu_dvd )            
+        # ■■■■■■■■■■■■■ CONFIGURACION DE LA GENETICA 
+        self.lst__men_itm_lev_ape_name_padr_ipadr_func = self.mystyca_scaner_genetico( menu_dvd = self.menu_dvd )            
 
-        # ███████████████████████ CREACION DE LOS INDICES GENETICOS POSIBLES
-        self.lst_idx_NUMERIC, self.lst_idx_ALF_MAX, self.lst_idx_ALF_MIN, self.lst_idx_MIXTO = self.crear_xindicex(lst__men_itm_lev_ape_name_padr_ipadr_func = self.lst__men_itm_lev_ape_name_padr_ipadr_func  )
+        # ■■■■■■■■■■■■■ CREACION DE LOS INDICES GENETICOS POSIBLES
+        self.lst_idx_NUMERIC, self.lst_idx_ALF_MAX, self.lst_idx_ALF_MIN, self.lst_idx_MIXTO = self.crear_xindicex(lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func  )
+        # ■■■■■■■■■■■■■ MATRIZ DE XINDEX VALIDOS X USER 
+        self.matriz_opt_ok = self.get_lst_xindex_ok(tipo_index = self.tipo_index)
+        if not self.matriz_opt_ok: return None
 
-        # █████████████████████████ MATRIZ DE XINDEX VALIDOS X USER 
-        self.matriz_opciones_validas = self.__set_xindex(tipo_index = tipo_index)
-        if not self.matriz_opciones_validas: 
-            return None
-
-        # ████████████████████████████████████████████████████████████████████████████████████████████████████████████
-        # ACTIONES IMPRESION █████████████████████████████████████████████████████████████████████████████████████████
-        # ████████████████████████████████████████████████████████████████████████████████████████████████████████████  
-        
         # ■■ LISTA de las OPCIONES VALIDAS ...necesaria para self.get_matriz_impresion_literal
-        self.lst_str_opciones_validas = [('.').join(fila) for fila in self.matriz_opciones_validas]
+        self.lst_opts_ok = [('.').join(fila) for fila in self.matriz_opt_ok]
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ███ MODULO IMPRESION 
+        # ████████████████████████████████████████████████████████████████████
         
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        # ■■ MATRIZ DE IMPRESION: █████████████████
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # TABLERO DE XINDEX 
+        
+        # ■■ MATRIZ DE IMPRESION: ■■■
         # ■■ b_definicion = False > sin incluir las columnas de definicion
-        self.matriz_xindex = self.get_matriz_impresion_literal(menu_dvd = menu_dvd , b_exec_all = b_exec_all , b_definicion = False)        
-        if not self.matriz_xindex: 
+        self.matriz_impresion_xindex = self.get_matriz_impresion_literal(menu_dvd = self.menu_dvd , 
+                                                                        lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func , 
+                                                                        lst_keys = self.lst_keys, 
+                                                                        lst_opts_ok = self.lst_opts_ok, 
+                                                                        b_definicion = False)        
+        if not self.matriz_impresion_xindex: 
             print('ERROR :::: EN MATRIZ IMPRESION')
             return None        
 
         # ■■ LISTA DE STRING PARA IMPRIMIR 
-        lst_mystyca_impresion = [''.join(mystyca_fila) for mystyca_fila in self.matriz_xindex]
-        
-        # ■■ LONGITUD MAXIMA DEL MENU
-        longitud_max_xindex = max(len(line) for line in lst_mystyca_impresion)
+        lst_mystyca_impresion = [''.join(mystyca_fila) for mystyca_fila in self.matriz_impresion_xindex]
+
+        # ■■ LONGITUD MAXIMA DEL MENU..... usado para calcular el ancho de la columna.
+        self.longitud_max_xindex = max(len(line) for line in lst_mystyca_impresion)
         
         # ■■ SACO LAS FILAS Y COLUMNAS DE ESTA GENETICA PARA PODER SACAR UNA DIMENSION PARA CREAR EL TABLERO DE IMPRESION FRANKY
-        filas = len(self.matriz_xindex)
-        columnas = len(self.matriz_xindex[0])
+        filas = len(self.matriz_impresion_xindex)
+        columnas = len(self.matriz_impresion_xindex[0])
 
-        # IMPRIMIR XINDEX ■■■■■■■■■■■■■■■■■■■■■■■■■
-        self.F_RANK_Y = F_r_a_n_k_y( dimension = f'{filas}X{columnas}', head_datapush = self.head_datapush , pie_datapush=self.pie_datapush , pad_x = 10 )
-        # self.F_RANK_Y.push(data_push=self.matriz_xindex, blineal=False)
+        self.F_RANK_Y = F_r_a_n_k_y( dimension = f'{filas}X{columnas}', head_datapush = self.head_datapush , pie_datapush=self.pie_datapush , pad_x = self.pad_x )
         self.F_RANK_Y.push(data_push=lst_mystyca_impresion, eje='Y')
         self.F_RANK_Y.imprimir(sp_between = 2, ancho_columna = None )
 
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        # TABLERO DE DEFINICION ██████████████████
-        matriz_xindex_definicion = self.get_matriz_impresion_literal(menu_dvd = menu_dvd , b_exec_all = b_exec_all , b_definicion = False)        
-        if not matriz_xindex_definicion:
-            print('ERROR :::: EN MATRIZ DEFINICION')
-            return None
-        # ■■ LISTA DE STRING PARA IMPRIMIR ----- 
-        lst_mystyca_impresion_definicion = [''.join(mystyca_fila) for mystyca_fila in matriz_xindex_definicion]
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        #  TABLERO DE INFORMACION ? 
+        #  ■ PREPARO OTRO TABLERO PARALELO(F_RANK_Y_DEF) CON LA INFORMACION DE DEFINICION
 
-        #  XINDEX DE INFORMACION ■■■■■■■■■■■■■■■■■■
-        #       ■ PREPARO OTRO TABLERO PARALELO(F_RANK_Y_DEF) CON LA INFORMACION DE DEFINICION
-        self.F_RANK_Y_DEF = F_r_a_n_k_y( dimension = f'{filas}X{columnas}', head_datapush = self.head_datapush , pie_datapush=self.pie_datapush , pad_x = 10 )
-        self.F_RANK_Y_DEF.push(data_push=lst_mystyca_impresion_definicion, eje='Y')
-        # ■■ 
-        lst_definicion_item  = self.get_lst_definiciones( menu_dvd = menu_dvd, lista_genetica_x_fila =self.lst__men_itm_lev_ape_name_padr_ipadr_func, b_exec_all = b_exec_all )
-        lst_funcion_item = self.get_lst_funciones( lista_genetica_x_fila = self.lst__men_itm_lev_ape_name_padr_ipadr_func )
-        # ■■■        
+        self.F_RANK_Y_DEF = F_r_a_n_k_y( dimension = f'{filas}X{columnas}', head_datapush = self.head_datapush , pie_datapush=self.pie_datapush , pad_x = self.pad_x )
+        self.F_RANK_Y_DEF.push(data_push=lst_mystyca_impresion, eje='Y')
+        
+        # ■■ LISTA DE DEFINICIONES DE MENU GENETICO
+        lst_definicion_item  = self.get_lst_definiciones( menu_dvd = self.menu_dvd, 
+                                                            lista_m_i_l_a_n_p_i_f =self.lst__men_itm_lev_ape_name_padr_ipadr_func, 
+                                                            b_mode_all = self.b_mode_all )
+        # ■■ LISTA DE FUNCIONES DE MENU GENETICO
+        lst_funcion_item = self.get_lst_funciones( lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func )
+        
+        # ■■■ CARGA EL TABLERO PERO NO LO IMPRIME, SOLO LO PREPARA.
         self.F_RANK_Y_DEF.push( data_push=lst_definicion_item, celda_inicio='D:0',  eje='Y' )
         self.F_RANK_Y_DEF.push( data_push=lst_funcion_item, celda_inicio='E:0',  eje='Y' )
 
         # ████████████████████████████████████████████████████████████████████████████████████████████████████████████
-        # ACTION RESPUESTA ███████████████████████████████████████████████████████████████████████████████████████████
+        # MODULO RESPUESTA ███████████████████████████████████████████████████████████████████████████████████████████
         # ████████████████████████████████████████████████████████████████████████████████████████████████████████████  
         
         # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         # ████ LOOP = FALSE, 1 SOLA RESPUESTA Y VUELVES ████
             # ■■ lo gestiona el main( .... cualquier llamada ) 
             # ■■ [respuesta] es el indice lineal en lst_keys o self.lst__men_itm_lev_ape_name_padr_ipadr_func
-        if b_loop == False:   
-
-            #  ■■■ XAVIER - OBTIENE RESPUESTA DE USUARIO 
-            dicc_xavier = self.__get_dicc_xavier_into_user(menu_dvd = menu_dvd , b_exec_all=b_exec_all )    
-            if dicc_xavier == None:         # SALIR... ha pulsado '<<<'. Esto anula el menu, pq se ejecuta una sola vez.
-                return None                 # Sale por Main(....por donde es llamada)
-            
-            # VALIDAR SI ES ? O < Y RETORNAR INDICE O VOLVER ?????????????????????????????????????????????????????
-            xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, b_exec_all = b_exec_all)
-            if  xindex != None:
-                dicc_xavier['xindex'] = xindex                    
-                return dicc_xavier['xindex']
-            else:
-                return None
-
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        # ████ LOOP = TRUE, SALES POR <<< ████
+        if self.b_loop == False:   
+            while(True):    # SI EL USUARIO INTRODUCE ? O < TIENE QUE REPETIRSE Y VUELVE CUANDO EL USUARIO RESPONDE SALIR U OPT-OK
+                #  ■■■ XAVIER - OBTIENE RESPUESTA DE USUARIO ■■■
+                dicc_xavier = self.get_dicc_xavier_into_user(menu_dvd = self.menu_dvd , lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func )    
+                if dicc_xavier == None:         # SALIR... ha pulsado '<<<'. Esto anula el menu, pq se ejecuta una sola vez.
+                    return None                 # Sale por Main(....por donde es llamada)
+                
+                # ■ OBTIENE EL INDICE EN M_I_L_A_N_P_I_F SI LO ENCUENTRA Y SI NO DEVUELVE NONE
+                xindex = self.__get_xindex(menu_dvd = self.menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func)
+                if  xindex != None:
+                    dicc_xavier['xindex'] = xindex                    
+                    return dicc_xavier['xindex']
+                
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ████ LOOP = TRUE, SOLO SALES POR <<< ████
         while(True):
-
-            # █████ XAVIER - OBTIENE RESPUESTA VALIDA DEL USUARIO, O SALIR █████
-            dicc_xavier = self.__get_dicc_xavier_into_user( menu_dvd = menu_dvd, b_exec_all = b_exec_all )   
+            # ■■■ XAVIER - OBTIENE RESPUESTA VALIDA DEL USUARIO, O SALIR ■■■
+            dicc_xavier = self.get_dicc_xavier_into_user( menu_dvd = self.menu_dvd , lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func)   
             
-            # ANALIZA LA RESPUESTA QUE VIENE DE XAVIER
-            if not dicc_xavier:       # ██ SALIR... ha pulsado '<<<'
-                return True           
-
-            if b_exe == False:         
-                return dicc_xavier['xindex']
-            # █████ TERMINATOR - EJECUTA █████        
-            self.Terminator(dicc_respuesta = dicc_xavier, titulo_menu=titulo, b_exec_all=b_exec_all)
+            # ■■■ SALIR... ha pulsado '<<<' ■■■
+            if not dicc_xavier:       
+                return True                       
+            
+            # ■■■ TERMINATOR - EJECUTA LA RESPUESTA DEL USUARIO ■■■
+            self.Terminator(dicc_respuesta = dicc_xavier, titulo_menu = self.menu_dvd.titulo)
             continue
 
     # █████████████████████████████████████████████████████████████
     # RCRSV: LISTA con Todos los items en orden de impresion.██████
-    def Mystyca_Keys(self, menu_dvd, level=None, retorno=None):
+    def mystyca_keys(self, menu_dvd, level=None, retorno=None):
         """  """
         if level==None and retorno==None:     # 1ª ENTRADA
             level=-1 ; retorno=[] ; self.pasos=0 
@@ -607,7 +579,7 @@ class XindeX(MenuDvd):
                 retorno.append(menu_dvd.get_item_row_body(i))                
                 for hijo in lst_hijos:
                     if hijo['ind_en_padre'] == i:                        
-                        self.Mystyca_Keys(menu_dvd=hijo['menuDvd'] , level=level, retorno=retorno)
+                        self.mystyca_keys(menu_dvd=hijo['menuDvd'] , level=level, retorno=retorno)
                         break    
         elif not lst_hijos:    
            for i, item in enumerate(menu_dvd.lst_items):                    
@@ -616,8 +588,8 @@ class XindeX(MenuDvd):
         # ___________________________________
         return retorno
 
-    # █████████████████████████████████████████████████████████████████████
-    # RCRSV: IDENTIFICA PADRES DE HIJOS ███████████████████████████████████
+    # █████████████████████████████████████████████████████████████
+    # RCRSV: IDENTIFICA PADRES DE HIJOS 
     def get_list_padres_mystyca(self, menu_dvd, level=None, retorno=None ):
         if level==None and retorno==None:     # 1ª ENTRADA
             level=-1   ; retorno=[] ; self.pasos=0 
@@ -637,9 +609,8 @@ class XindeX(MenuDvd):
                 pass 
         return retorno
 
-        
-    # █████████████████████████████████████████████████████████████████████████████████████
-    # RCRSV:  DATOS POR FILA DE IMPRESION  ████████████████████████████████████████████████
+    # █████████████████████████████████████████████████████████████
+    # ████████████ RCRSV:  DATOS POR FILA DE IMPRESION  ███████████
     def mystyca_scaner_genetico(self, menu_dvd, level=None,  retorno=None, apellido=None):
         """ 
         [menu_dvd], 
@@ -659,14 +630,14 @@ class XindeX(MenuDvd):
             for i in range(len(menu_dvd.lst_items)):
                 item = menu_dvd.get_item_row_body(i)
 
-                funcion_name = self.__get_funcion_name(menu_dvd=menu_dvd, item=item)
+                funcion_name = self.get_funcion_name(menu_dvd = menu_dvd, item=item)
                 retorno.append(( menu_dvd.titulo ,                                  
                                 item , 
                                 level , 
                                 apellido , 
                                 menu_dvd.get_numRltv_row_body(i) ,
                                 self.get_padre(titulo_menu=menu_dvd.titulo) , 
-                                self.get_ind_en_padre(titulo_menu=menu_dvd.titulo) , 
+                                self.get_ind_en_padre(titulo_menu = menu_dvd.titulo) , 
                                 # funcion_name 
                                 menu_dvd.dicc_menu.get(item, None)
                                 ))
@@ -674,29 +645,30 @@ class XindeX(MenuDvd):
                 for hijo in lst_dict_hijosX:
                     if hijo['ind_en_padre'] == i:                        
                         # ■■■■■■■■■■■■■■■■■■■■■■■■
-                        self.mystyca_scaner_genetico(menu_dvd=hijo['menuDvd'] , level=level,  retorno=retorno, apellido=apellido)
+                        self.mystyca_scaner_genetico(menu_dvd=hijo['menuDvd'] , level = level,  retorno = retorno, apellido = apellido)
                     pass
         elif not lst_dict_hijosX:
             apellido += str(level) + '.'
             aux = apellido
             for i, item in enumerate(menu_dvd.lst_items):
                 
-                funcion_name = self.__get_funcion_name(menu_dvd=menu_dvd, item=item)
+                funcion_name = self.get_funcion_name(menu_dvd=menu_dvd, item=item)
 
                 retorno.append(( menu_dvd.titulo ,                                  
                                 item , 
                                 level , 
                                 apellido , 
                                 menu_dvd.get_numRltv_row_body(i) ,
-                                self.get_padre(titulo_menu=menu_dvd.titulo) , 
-                                self.get_ind_en_padre(titulo_menu=menu_dvd.titulo)  , 
+                                self.get_padre(titulo_menu = menu_dvd.titulo) , 
+                                self.get_ind_en_padre(titulo_menu = menu_dvd.titulo)  , 
                                 # funcion_name
                                 menu_dvd.dicc_menu.get(item, None)
                                 ))
                 apellido = aux
         return retorno    
     
-    def __get_funcion_name(self, menu_dvd, item):
+    # OBTIENE EL NOMBRE DE LA FUNCION DE UN ITEM DE UN MENU
+    def get_funcion_name(self, menu_dvd, item):
         if not isinstance(menu_dvd, MenuDvd): return None
         funcion = menu_dvd.dicc_menu.get(item, None)
         if funcion:
@@ -709,50 +681,35 @@ class XindeX(MenuDvd):
         # RETORNO
         return funcion_name
     
-    # ██████████ CUANDO PULSA '?' , IMPRIME EL MENU CON INFORMACION SOBRE LA CONFIGURACION ████████
-    def get_mystyca_informacion(self, titulo_menu, b_exec_all):
+    # ■■■ CUANDO PULSA   '?' 
+    def get_mystyca_informacion(self, titulo_menu, b_mode_all):
         """ CUANDO SE PULSA '?' , IMPRIME EL MENU CON INFORMACION SOBRE LA CONFIGURACION 
         [titulo_menu], 
-        [b_exec_all], 
+        [b_mode_all], 
         RETORNO:
-
         """
-        frase_head_aux = self.get_menudvd(titulo = titulo_menu).fraseHead
-        menu_dvd = self.get_menudvd(titulo = titulo_menu)
-        
+        if self.F_RANK_Y_DEF.head:
+            if b_mode_all == True: 
+                # self.F_RANK_Y_DEF.head.push(data_push = ['  '] , celda_inicio='D:0')
+                self.F_RANK_Y_DEF.head.push(data_push =['  '*2, " ■  MODE ::: Exec All"], celda_inicio='E:0', b_lineal=True)
+            else:
+                self.F_RANK_Y_DEF.head.push(data_push =['  '*2, " ■  MODE ::: Exec (X)"], celda_inicio='E:0', b_lineal=True)
 
-        # ██ MATRIZ DE IMPRESION
-        matriz_xindex = self.get_matriz_impresion_literal(menu_dvd = menu_dvd, b_exec_all=b_exec_all, b_definicion=False)
-
-        # CREA una Lista de Strings con cada linea completa A IMPRIMIR....es la Transformacion
-        lst_mystyca_impresion = [''.join(mystyca_fila) for mystyca_fila in matriz_xindex]          
-        
-        # Calculo las longitudes al mm para que cuadre con las mismas diemnsiones que el menu-Ppal
-        if b_exec_all == True: 
-            self.F_RANK_Y_DEF.head.push(data_push = '  ', celda_inicio='D:0')
-            self.F_RANK_Y_DEF.head.push(data_push =['  ', " ■  MODE ::: Exec All"], celda_inicio='E:0', b_lineal=True)
-        else:
-            self.F_RANK_Y_DEF.head.push(data_push =['  ', " ■  MODE ::: Exec (X)"], celda_inicio='E:0', b_lineal=True)
-        
-        # ■■ LONGITUD MAXIMA DEL MENU
-        longitud_max_xindex = max(len(line) for line in lst_mystyca_impresion)
-
-        # self.F_RANK_Y_DEF.push(data_push=lst_mystyca_impresion, eje='Y')
-        # self.F_RANK_Y_DEF.imprimir(sp_between = 2, ancho_columna = None )
-        self.F_RANK_Y_DEF.imprimir(lista=[longitud_max_xindex], sp_between = 3 , ancho_columna = None )
+        # ■■ IMPRIMIR EL TABLERO DE DEFINICION.
+        self.F_RANK_Y_DEF.imprimir(lista=[self.longitud_max_xindex], sp_between = 3 , ancho_columna = None )
     
     # ■■■ OBTIENE LA LISTA DE DEFINICIONES (B_EXEC_ALL)    
-    def get_lst_definiciones( self, menu_dvd, lista_genetica_x_fila:list, b_exec_all:bool ):
+    def get_lst_definiciones( self, menu_dvd, lista_m_i_l_a_n_p_i_f:list, b_mode_all:bool ):
         """ ■■ Devuelve LA Lista de Definicion (padre or hijo)(directorio or punta)
-        [lista_genetica_x_fila](list) , self.lst__men_itm_lev_ape_name_padr_ipadr_func
-        [b_exec_all](bool), self.b_exec_all
+        [lista_m_i_l_a_n_p_i_f](list) , self.lst__men_itm_lev_ape_name_padr_ipadr_func
+        [b_mode_all](bool), self.b_mode_all
         """
         # OBTENEMOS LA LISTA DE PADRES GENETICOS
         lst_padres  = self.get_list_padres_mystyca(menu_dvd = menu_dvd)
         lst_definicion_item=[]
-        for i, fila_genetica in enumerate(lista_genetica_x_fila):
+        for i, fila_genetica in enumerate(lista_m_i_l_a_n_p_i_f):
             # ■ DEFINICION
-            if b_exec_all == True: 
+            if b_mode_all == True: 
                 lst_definicion_item.append (f'(D)' if fila_genetica[1] in lst_padres else f'(X)')
             else:
                 lst_definicion_item.append (f'(-)' if fila_genetica[1] in lst_padres else f'(X)')
@@ -761,9 +718,9 @@ class XindeX(MenuDvd):
         return lst_definicion_item if lst_definicion_item else None
     
     # ■■■ OBTIENE LA LISTA DE LAS FUNCIONES SEGÚN EL ORDEN GENETICO
-    def get_lst_funciones( self, lista_genetica_x_fila:list ):
+    def get_lst_funciones( self, lista_m_i_l_a_n_p_i_f:list ):
         lst_funcion_item=[]
-        for i, fila_genetica in enumerate(lista_genetica_x_fila):
+        for i, fila_genetica in enumerate(lista_m_i_l_a_n_p_i_f):
             # ■ FUNCIONES EXE
             menu_dvd = self.get_menudvd(titulo = fila_genetica[0])
             funcion = menu_dvd.dicc_menu.get(fila_genetica[1])
@@ -776,7 +733,7 @@ class XindeX(MenuDvd):
         # RETORNO
         return lst_funcion_item if lst_funcion_item else None
        
-    # ████ FROM nombre-titulo-Menu TO nombre-padre     
+    # ■■■ FROM nombre-titulo-Menu TO nombre-padre     
     def get_padre(self, titulo_menu):
         PADRE=0
         INDEX=1
@@ -788,7 +745,7 @@ class XindeX(MenuDvd):
                     else:
                         return None
 
-    # ████ FROM nombre-titulo TO indice en el padre
+    # ■■■ FROM nombre-titulo TO indice en el padre
     def get_ind_en_padre(self, titulo_menu):
         PADRE=0
         INDEX=1
@@ -800,29 +757,25 @@ class XindeX(MenuDvd):
                     else:
                         return None
 
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    # XAVIER  pide datos al Usuario y le saca un Dato por Teclado ██████████
-    def __get_dicc_xavier_into_user(self, menu_dvd,  b_exec_all=True):
-        """ ■■ Def: Pide Un dato al Usuario y valida que da una respuesta valida con respecto a la geneticaX
+    # ███████████████████████████████████████████████████████████████████████████████████
+    # ████████████ XAVIER  pide datos al Usuario y le saca un Dato por Teclado ██████████
+    def get_dicc_xavier_into_user(self, menu_dvd, lista_m_i_l_a_n_p_i_f:list=None):
+        """ ■■ Def: Pide Un dato al Usuario y valida (self.__get_xindex ) que da una respuesta valida('b2' pejemp) con respecto a la geneticaX
         [menu_dvd] : el objeto MenuDvd (principal) sobre el que se trabaja. el punto de partida del analisis... Menu1
-        [b_exec_all] : (bool) True = en todos los items intento ejecutar la funcion. False=Los directorios no se ejecutan.
+        [b_mode_all] : (bool) True = en todos los items intento ejecutar la funcion. False=Los directorios no se ejecutan.
 
-        Retorno: None, <<< salir | indice en lst_keys() y casi todos los lst_ de la clase.
+        Retorno: None, <<< salir | 
+                diccionario respuesta.keys = ('pre','respuesta','pos','xindex') de los elementos en lst_keys()
+
         """
-        # LISTA DE STRING PARA IMPRIMIR 
-        lst_mystyca_impresion = [''.join(mystyca_fila) for mystyca_fila in self.matriz_xindex]
-
-        
         MONO_FROM   = 0
         MONO_TO     = 1
-        
         # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         # BUCLE HASTA OPCION VALIDA or SALIR +  DESEMPAQUETA LAS  RESUPUESTAS
         respuesta=None
         dicc_xavier = {}
 
         while(True):
-
             dicc_xavier['pre'] = None
             dicc_xavier['respuesta'] = None
             dicc_xavier['pos'] = None
@@ -830,7 +783,7 @@ class XindeX(MenuDvd):
             
             # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■
             # ██ PIDE RESPUESTA AL USER ██
-            respuesta = input(f"{menu_dvd.introData}").strip()
+            respuesta = input(f"{menu_dvd.intradilla_data_user}").strip()
 
             # ACCION DIRECTA
             if respuesta in self.lst_resp_ACCION:
@@ -861,12 +814,12 @@ class XindeX(MenuDvd):
                 dicc_xavier['pos']       = None
 
                 # ■ OBTIENE EL INDICE EN self.lst__men_itm_lev_ape_name_padr_ipadr_func
-                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, b_exec_all=b_exec_all)
+                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
                 if  xindex != None:
                     dicc_xavier['xindex'] = xindex
                     return dicc_xavier
 
-                continue    # SI NO ENCUENTRA UN INDICE VALIDO VUELVO A PREGUNTAR... USUARIO CONFUSO ;)
+                continue    # ■ SI NO ENCUENTRA UN INDICE VALIDO VUELVO A PREGUNTAR... USUARIO CONFUSO ;)
             
             elif respuesta.startswith(self.lst_resp_PACK_1[MONO_FROM]) and respuesta.endswith(self.lst_resp_PACK_1[MONO_TO]):       
                 # ■■ LOS PACKS HAY QUE TRATARLOS INDIVIDUALMENTE, PERO CON ESTE PATRON SE PUEDE HACER COPY-PASTE
@@ -876,7 +829,7 @@ class XindeX(MenuDvd):
                 
                 # ■ OBTIENE EL INDICE EN self.lst__men_itm_lev_ape_name_padr_ipadr_func
                 # ■ SI NO ENCUENTRA EL INDICE VUELVE A PREGUNTAR
-                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, b_exec_all=b_exec_all)
+                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
                 if  xindex is not None:
                     dicc_xavier['xindex'] = xindex
                     return dicc_xavier
@@ -886,7 +839,7 @@ class XindeX(MenuDvd):
                 dicc_xavier['pre']       = None
                 dicc_xavier['respuesta'] = respuesta
                 dicc_xavier['pos']       = None
-                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, b_exec_all=b_exec_all)
+                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
                 if  xindex is None:
                     continue
                 else:
@@ -896,11 +849,11 @@ class XindeX(MenuDvd):
         # RETORNO ██████ evaluo si hay una respuesta o varias y las devuelvo.
         return dicc_xavier if dicc_xavier else None
 
-    def __get_xindex(self, menu_dvd , dicc_respuesta:dict, b_exec_all:bool):
-        """ DEVUELVE TRUE O FALSE SI LA RESPUESTA ESTA EN EL XINDEX y COORDINA CON b_exec_all.
-        [dicc_respuesta]:(dict), diccionario dicc_xavier que se carga en self.__get_dicc_xavier_into_user()
+    def __get_xindex(self, menu_dvd , dicc_respuesta:dict, lista_m_i_l_a_n_p_i_f:list):
+        """ DEVUELVE EL INDICE DEL ITEM EN LA LISTA GENETICA O NONE  SI LA RESPUESTA ESTA EN EL XINDEX y COORDINA CON b_mode_all.
+        [dicc_respuesta]:(dict), diccionario dicc_xavier que se carga en self.get_dicc_xavier_into_user()
             ■ contiene las keys: 'pre' , 'respuesta', 'pos' =► dicc_respuesta.['respuesta'] OR dicc_respuesta.get('respuesta', '')
-        [b_exec_all]:(bool),True  =► Se ejecutan tanto los PADRES, como los HIJOS.
+        [b_mode_all]:(bool),True  =► Se ejecutan tanto los PADRES, como los HIJOS.
                             False =► Sólo se ejecutan los HIJOS
         """
         # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -910,12 +863,12 @@ class XindeX(MenuDvd):
 
         # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         # RESPUESTAS DE LISTAS DE OPCIONES - VALIDAS : b2, b:2, b-2 , b 2 , b.2. , b.2
-        lst_valid_free = [ ('').join(fila) for fila in self.matriz_opciones_validas   ]   # FREE ( 'a1' )
-        lst_valid_punto = [ ('.').join(fila) for fila in self.matriz_opciones_validas  ]   # PTO ( 'a.1' )
-        lst_valid_punto_remat = [ cadena+'.' for cadena in lst_valid_punto   ]                      # REMATE PTO ( 'a.1.' )
-        lst_valid_sp = [ (' ').join(fila) for fila in self.matriz_opciones_validas  ]   # ESPACIO ( 'a 1' ) 
-        lst_valid_guion = [ ('-').join(fila) for fila in self.matriz_opciones_validas  ]   # GUION ( 'a-1' )
-        lst_valid_dos_puntos = [ (':').join(fila) for fila in self.matriz_opciones_validas  ]   # DOS PTOS ( 'a:1' )
+        lst_valid_free          = [ ('').join(fila) for fila in self.matriz_opt_ok   ]   # FREE ( 'a1' )
+        lst_valid_punto         = [ ('.').join(fila) for fila in self.matriz_opt_ok  ]   # PTO ( 'a.1' )
+        lst_valid_punto_remat   = [ cadena+'.' for cadena in lst_valid_punto   ]                   # REMATE PTO ( 'a.1.' )
+        lst_valid_sp            = [ (' ').join(fila) for fila in self.matriz_opt_ok  ]   # ESPACIO ( 'a 1' ) 
+        lst_valid_guion         = [ ('-').join(fila) for fila in self.matriz_opt_ok  ]   # GUION ( 'a-1' )
+        lst_valid_dos_puntos    = [ (':').join(fila) for fila in self.matriz_opt_ok  ]   # DOS PTOS ( 'a:1' )
 
         try:
             listas_validas = [ lst_valid_free, lst_valid_punto, lst_valid_punto_remat, lst_valid_sp, lst_valid_guion, lst_valid_dos_puntos ]
@@ -927,21 +880,21 @@ class XindeX(MenuDvd):
                     for i, xindex in enumerate(lista):
                         if dicc_respuesta['respuesta'] == xindex:                                                 # ■■ MATCH DE FILA
                             # ■ CON LA FILA , CACHO EL ITEM DEL MENU ■ para saber si es hijo o padre
-                            item_menu = self.lst__men_itm_lev_ape_name_padr_ipadr_func[i][1]
+                            item_menu = lista_m_i_l_a_n_p_i_f[i][1]
+                            # item_menu = , lista_m_i_l_a_n_p_i_f:list[i][1]
                                 
                             # ■■■■■■■■■■■■■■■■■■■■■■■■■
-                            # ■■ MODO DE OPCION VALIDA ( b_exec_all = True, ejecuta todo. ■ b_exec_all = False, ejecuta solo hijos.
-                            if isinstance(b_exec_all, bool):
-                                if b_exec_all == True:     
-                                    # ■■ Todo son opciones validas(HIJOS Y PADRES).... responsabilidad del usuario meter funciones en directorios.
-                                    return i      # ■■ ENCUENTRA Y RETORNA EL INDICE EN LST_KEYS!!!!!!!!!   :) 
-                                else:             
-                                    # ■■ Solo los Hijos son validos. Los Directorios No se pueden Ejecutar en b_exec_all==False
-                                    if item_menu in lst_padres:                                            
-                                        print(f'{item_menu} ■ (Directorio)')
-                                        return None
-                                    else:
-                                        return i
+                            # ■■ MODO DE OPCION VALIDA ( b_mode_all = True, ejecuta todo. ■ b_mode_all = False, ejecuta solo hijos.                            
+                            if self.b_mode_all == True:     
+                                # ■■ Todo son opciones validas(HIJOS Y PADRES).... responsabilidad del usuario meter funciones en directorios.
+                                return i      # ■■ ENCUENTRA Y RETORNA EL INDICE EN LST_KEYS!!!!!!!!!   :) 
+                            else:             
+                                # ■■ Solo los Hijos son validos. Los Directorios No se pueden Ejecutar en b_mode_all==False
+                                if item_menu in lst_padres:                                            
+                                    print(f'{item_menu} ■ (Directorio)')
+                                    return None
+                                else:
+                                    return i
             
         except Exception as e:      # SI ERROR, INFO Y SEGUIMOS ::::
             print(f'ERROR EVALUACION ::: {e}')
@@ -949,9 +902,9 @@ class XindeX(MenuDvd):
             # continue
         pass
 
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    # INDICEXXXX █████████████████████████████████████████████████████
-    def crear_xindicex(self, lst__men_itm_lev_ape_name_padr_ipadr_func ): 
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    # CREAR INDICEXXXX ████████████████████████
+    def crear_xindicex(self, lista_m_i_l_a_n_p_i_f ): 
         """ 
         ALGORITMO INFERNAL PARA SACAR LOS INDICES CORRECTOS EN LA FORMA [1, 0, 1, 2] (camino de levels)
         ■ Este retorno Se Corresponde con el level sacado de en la funcion recursiva. 
@@ -959,7 +912,7 @@ class XindeX(MenuDvd):
         ■ Se basa en la creación de la lista del indice numerico y a partir de él crea los otros índices.
         ......una pesadilla que me ha llevado días :()
 
-        ■ [lst__men_itm_lev_ape_name_padr_ipadr_func]: lst de datos que se saca de self.mystica_ScannerX()
+        ■ [lista_m_i_l_a_n_p_i_f]: lst de de datos geneticos que se saca de self.mystica_ScannerX()
         
         ■ Retorno:  None. Alimenta y llena los las listas de listas(que son la numeracion y posicion en el menu.):
                     lst_idx_NUMERIC    |  lst_idx_ALF_MAX | lst_idx_ALF_MIN | lst_idx_MIXTO
@@ -986,11 +939,11 @@ class XindeX(MenuDvd):
         dicc_min =  {idx:letra for idx, letra in enumerate(string.ascii_lowercase)} 
         dicc_may =  {idx:letra for idx, letra in enumerate(string.ascii_uppercase)}        
         
-        lst_name = [ ( int(lst_a[NAME]) + 1 ) for lst_a in self.lst__men_itm_lev_ape_name_padr_ipadr_func ]
+        lst_name = [ ( int(lst_a[NAME]) + 1 ) for lst_a in lista_m_i_l_a_n_p_i_f ]
         """ ■■ Lista de los nombres relativos de cada Item + 1 """
         
         # ■■ LISTA DE APELLIDOS (INDEXACION ANTERIOR A LA SUYA.)
-        lst_split_apellido = [ str(lst_a[APELL]).split(sep='.')  for lst_a in self.lst__men_itm_lev_ape_name_padr_ipadr_func ]        
+        lst_split_apellido = [ str(lst_a[APELL]).split(sep='.')  for lst_a in lista_m_i_l_a_n_p_i_f ]        
 
         # ..... del split sale con una dimensión de más(la del '.') y así lo ajusto a su dimension:
         for lst_apellido in lst_split_apellido:
@@ -1013,8 +966,8 @@ class XindeX(MenuDvd):
                 ind_Master += 1  
                 ind_Sub     = 1          # Aumento el Master  y Re-inicio para los subMenus                                             
             else:
-                actual = self.lst__men_itm_lev_ape_name_padr_ipadr_func[i]
-                anterior = self.lst__men_itm_lev_ape_name_padr_ipadr_func[i-1]            
+                actual = lista_m_i_l_a_n_p_i_f[i]
+                anterior = lista_m_i_l_a_n_p_i_f[i-1]            
                 if len(lst_apellido) == 1:                  # solo Masters ... actual[PADRE]=='-'
                     lst_idx_NUMERIC.append([ind_Master])
                     ind_Master += 1  ;    ind_Sub     = 1 
@@ -1081,9 +1034,14 @@ class XindeX(MenuDvd):
             return path, texto
         return None, None
     
-    def __set_xindex(self, tipo_index=TYPEX.NUMERIC):
-        """ 
-        [tipo_index]: '1' , 'A', 'a' , '1a' 'a1' + Enum TYPEX
+    # SEGUN EL TIPO DE INDICE, DEVUELVE LAS OPCIONES CORRECTAS
+    def get_lst_xindex_ok(self, tipo_index=TYPEX.NUMERIC):
+        """ De todas las listas de indices creadas (lst_idx_NUMERIC, lst_idx_ALF_MAX, lst_idx_ALF_MIN, lst_idx_MIXTO ), 
+        tipo_index indica cual es con la que nos quedamos.
+
+        [tipo_index]:(str, int) ■ str => '1' , 'A', 'a' , '1a' 'a1'  ■ int => Enum TYPEX
+        [lista_tipos_created]:(listr) => lista de los tipos creados usados que van a ser devueltos. esto hace que pueda personalizar los indices y crear sub-menus dentro de mystyca.
+                                         ■ ES FUNDAMENTAL PASARLOS EN EL ORDEN DE DICC_OK
         """
         if isinstance(tipo_index, str):
             if tipo_index == 'A':
@@ -1092,36 +1050,30 @@ class XindeX(MenuDvd):
                 return self.lst_idx_ALF_MIN
             elif tipo_index == '1':
                 return self.lst_idx_NUMERIC
-            elif tipo_index == 'a1':
+            elif str(tipo_index).upper() == '1A':
                 return self.lst_idx_MIXTO
-            elif tipo_index == '1a':
-                return self.lst_idx_MIXTO
-            elif tipo_index == '1A':
-                return self.lst_idx_MIXTO
-            elif tipo_index == 'A1':
+            elif str(tipo_index).upper() == 'A1':
                 return self.lst_idx_MIXTO
             else:
                 return self.lst_idx_NUMERIC           
             pass
-        
-        # PERMITE NUMERICO
-        elif tipo_index == TYPEX.NUMERIC:
-            return self.lst_idx_NUMERIC
-        elif tipo_index == TYPEX.ALF_MAX:
-            return self.lst_idx_ALF_MAX
-        elif tipo_index == TYPEX.ALF_MIN:
-            return self.lst_idx_ALF_MIN
-        elif tipo_index == TYPEX.MIXTO:
-            return self.lst_idx_MIXTO
-        else:               # EN CASO DE QUE NINGUNO VALGA...(byDef)
-            return self.lst_idx_NUMERIC
+        else:                                       # PERMITE NUMERICO (Clase Enum TYPEX)
+            if tipo_index == TYPEX.NUMERIC:
+                return self.lst_idx_NUMERIC
+            elif tipo_index == TYPEX.ALF_MAX:
+                return self.lst_idx_ALF_MAX
+            elif tipo_index == TYPEX.ALF_MIN:
+                return self.lst_idx_ALF_MIN
+            elif tipo_index == TYPEX.MIXTO:
+                return self.lst_idx_MIXTO
+            else:               # EN CASO DE QUE NINGUNO VALGA...(byDef)
+                return self.lst_idx_NUMERIC
 
-    # ███████████████████████████████████████████████
-    # EJECUTADOR en funcion de b_exe ████████████████
-    def Terminator(self, dicc_respuesta:dict, titulo_menu:str, b_exec_all:bool):
+    # ███████████████████████████████████████
+    # ████████████ EJECUTADOR  ██████████████
+    def Terminator(self, dicc_respuesta:dict, titulo_menu:str):
         """ Def: Tenemos la mision de crear una lista de [item , funcion, respuesta antigua, respuesta nueva]
-        [respuesta]:(dict): diccionario respuesta que se evalua en self.__get_dicc_xavier_into_user(U)
-        [b_exe]: (bool): True = ejecuta funcion | False = Devuelve respuesta
+        [respuesta]:(dict): diccionario respuesta que se evalua en self.get_dicc_xavier_into_user(U)
         """        
         # VALIDACION
         if not isinstance(dicc_respuesta, dict): return None
@@ -1130,14 +1082,14 @@ class XindeX(MenuDvd):
         mono_to = dicc_respuesta.get('pos', None)
         xindex = dicc_respuesta.get('xindex', None)
 
-        lista_GEN = self.lst__men_itm_lev_ape_name_padr_ipadr_func
+        lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func
         COLUMNA_FUNCION = 7        
 
         # EMPIEZA LA EVALUACION DE LA RESPUESTA
         if not mono_from and not mono_to and respuesta and not xindex:      # ■■■ ACCION DIRECCTA ? , < , <<< ■■■ 
             if respuesta == '?':                                            # ■ INFO
                 os.system('cls')              
-                self.get_mystyca_informacion(titulo_menu=titulo_menu, b_exec_all=b_exec_all)
+                self.get_mystyca_informacion(titulo_menu=titulo_menu, b_mode_all=self.b_mode_all)
             
             elif respuesta == '<':                                          # ■ REPETIR MENU
                 os.system('cls')              
@@ -1147,29 +1099,12 @@ class XindeX(MenuDvd):
 
         elif not mono_from and not mono_to and respuesta and xindex:        # ■■■ XINDEX ■■■ 
             # ██ EJECUTA LA FUNCIONN            
-            lista_GEN[xindex][COLUMNA_FUNCION]() if lista_GEN[xindex][COLUMNA_FUNCION] else None
+            lista_m_i_l_a_n_p_i_f[xindex][COLUMNA_FUNCION]() if lista_m_i_l_a_n_p_i_f[xindex][COLUMNA_FUNCION] else None
         
-        elif  mono_from and not mono_to and xindex:         # ■■■ BEGINNER ■■■ 
-            if mono_from == '**':                           # ■ BEGIN
-                print('EXEC BEGI_N **')         
-            
-            elif mono_from == '=>':                         # ■ DEMONIO - LANZA OVER-MAIN
-                print('EXEC DEMONIO >>')                
-            
-            else:                                           # PRE- NOT FOUND
-                print(f'EXEC PRE- NOT FOUND')                     
-
-        elif  mono_from and mono_to and xindex:             # ■■■ PACK ■■■ 
-            if mono_from == '<<' and mono_to == '>>':       # ■ DEPENDIENTE - PACK 1 - LANZA OVER-MAIN
-                print('EXEC DEPENDIENTE')
-            
-            else:                                           # PACK NOT FOUND
-                print('EXEC PACK NOT FOUND')                
         else:                                               # ■■■ NOT FOUND ■■■
             print('EXEC NOT FOUND')                
             return
 
-    
     # DEVUELVE UN LIST DE HIJOS COMPROBANDO dicc_xgenx
     def __get_lst_dict_hijosX(self, titulo):
         """ ■■ LISTA CON MIS HIJOS DE PRIMERA GENERACION. Recorre el dicc_xgenx y recoge 
@@ -1197,14 +1132,13 @@ class XindeX(MenuDvd):
         else: 
             return None        
     
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    # DEVUELVE LAS LISTAS XA WEB ■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    def get_web_lsts_lens_linea(self, titulo, b_exe=True, tipo_index=0, b_exec_all=True, b_loop=True, pad_x=30):
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    # DEVUELVE LAS LISTAS XA WEB ■■■■■■■■■■■■■
+    def get_web_lsts_lens_linea(self, titulo,  tipo_index=0, b_mode_all=True, b_loop=True, pad_x=15):
         """ Devuelve lo que necesita la web para representarse 
         [titulo](str): El titulo del menu. (obligatorio                   )
-        [b_exe](bool): True, Se ejecutan las funciones. False, devuelve la resupuesta al usuario
         [tipo_index](0, 'a', 'A', 'A0')
-        [b_exec_all](bool)
+        [b_mode_all](bool)
         [b_loop](bool)
         [pad_x](int)
         """
@@ -1213,41 +1147,43 @@ class XindeX(MenuDvd):
             print(f'ERR-VAL:: {titulo} NO REGISTRADO EN XGENX')
             return None        
         
-        # ■■■■ CACHA EL MENU ■■■■
-        menu_dvd = self.get_menudvd( titulo = titulo )
+        # ■■■■ MODULO CONFIG    
+        # ■■■■ MODULO GENETICO     ■ lista_m_i_l_a_n_p_i_f  ■ lst_keys  ■ lst_opciones_ok  ■ crear_xindicex
+        # ■■■■ MODULO IMPRESION    ■ get_matriz_impresion_literal   
+        # ■■■■ MODULO RESPUESTA
+        pass
         
     # DEVUELVE UNA MATRIZ DEL BODY DEL MENU. RECONFIGURACION PARA IMPRIMIR
-    # def get_matriz_impresion_literal(self, menu_dvd, b_exec_all:bool, lst_str_opciones_validas:list, b_definicion:bool=False):
-    def get_matriz_impresion_literal(self, menu_dvd, b_exec_all:bool, b_definicion:bool=False):
+    def get_matriz_impresion_literal(self, menu_dvd, lista_m_i_l_a_n_p_i_f:list, lst_keys:list, lst_opts_ok:list,b_definicion:bool=False ):
         """ DEVUELVE LA MATRIZ DE IMPRESION GENETICA RELLENA.
         [menu_dvd]:(MenuDvd), 
-        [b_exec_all]:(bool), 
-        [matriz_opciones_validas](list), 
+        [b_mode_all]:(bool), 
+        [matriz_opt_ok](list), 
         [b_definicion]:(bool)=False
         """
+        # VALIDACION
+        # if not lst_keys: return None
+        
         # ■■ CADA LISTA REPRESENTA UNA COLUMNA. LUEGO SE MONTA
         # ■■ La impresion trabaja linea a linea, al trabajar con lista de lista de str, puedo trabajar como matriz y alterar las columnas antes de ser impreso todo como lineas.
-        lst_col_0_lvl        = [f'{ int(row[2]) * self.TAB }' for row in self.lst__men_itm_lev_ape_name_padr_ipadr_func]        
-        lst_col_1_xindex     = [f'{ xindex }'  for xindex in self.lst_str_opciones_validas]
-        lst_col_2_pto        = [f'{ '.' }'     for i in range(len(self.lst_keys))]            
-        lst_col_3_sp1        = [f'{ ' ' * self.sp1}' for i in range(len(self.lst_keys))]            
-        lst_col_4_item       = [f'{ row[1] }'  for row in self.lst__men_itm_lev_ape_name_padr_ipadr_func]
-        lst_col_5_sp2        = [f'{' ' * self.sp2}' for i in range(len(self.lst_keys))]            
+        lst_col_0_lvl        = [f'{ int(row[2]) * self.TAB }' for row in lista_m_i_l_a_n_p_i_f]        
+        lst_col_1_xindex     = [f'{ xindex }'  for xindex in lst_opts_ok]
+        lst_col_2_pto        = [f'{ '.' }'     for i in range(len(lst_keys))]            
+        lst_col_3_sp1        = [f'{ ' ' * self.sp1}' for i in range(len(lst_keys))]            
+        lst_col_4_item       = [f'{ row[1] }'  for row in lista_m_i_l_a_n_p_i_f]
+        lst_col_5_sp2        = [f'{' ' * self.sp2}' for i in range(len(lst_keys))]            
         lst_col_6_definicion = self.get_lst_definiciones(   menu_dvd = menu_dvd, 
-                                                            lista_genetica_x_fila =self.lst__men_itm_lev_ape_name_padr_ipadr_func, 
-                                                            b_exec_all = b_exec_all)            
-        lst_col_7_sp3        = [f'{' ' * self.sp3}' for i in range(len(self.lst_keys))]                    
-        lst_col_8_funcion    = [f'{ self.__get_funcion_name(menu_dvd=self.get_menudvd(titulo=row[0]), item = row[1]) }' 
-                                        for row in self.lst__men_itm_lev_ape_name_padr_ipadr_func]
-        
-        # VALIDACION
-        if not self.lst_keys: return None
+                                                            lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f, 
+                                                            b_mode_all = self.b_mode_all)            
+        lst_col_7_sp3        = [f'{' ' * self.sp3}' for i in range(len(lst_keys))]                    
+        lst_col_8_funcion    = [f'{ self.get_funcion_name(menu_dvd=self.get_menudvd(titulo=row[0]), item = row[1]) }' 
+                                        for row in lista_m_i_l_a_n_p_i_f]
 
         # ■ GENERO UNA MATRIZ VACIA ... que va a ser el molde sobre el que construir self.matriz_index
-        matriz_vacia = [[0] * self.NUMERO_COLUMNAS for _ in range(len(self.lst_keys))]
+        matriz_vacia = [[0] * self.NUMERO_COLUMNAS for _ in range(len(lst_keys))]
         
         # ■ GENERA LA MATRIZ DE IMPRESION ASIGNANDO LOS DATOS DE LAS COLUMNAS
-        matriz_xindex = []
+        matriz_impresion_xindex = []
         for i, lst_fila in enumerate(matriz_vacia):
             fila = []
             for j in range(len(lst_fila)):
@@ -1255,107 +1191,208 @@ class XindeX(MenuDvd):
                 elif j == 1:    fila.append( lst_col_1_xindex[i] )
                 elif j == 2:    fila.append( lst_col_2_pto[i] )
                 elif j == 3:    fila.append( lst_col_3_sp1[i] )
-                elif j == 4:    fila.append( lst_col_4_item[i] )
-                elif j == 5:    fila.append( lst_col_5_sp2[i] )
-                
+                elif j == 4:    fila.append( lst_col_4_item[i])
+                elif j == 5:    fila.append( lst_col_5_sp2[i] )                
                 # B_DEFINICION
                 if j == 6 and b_definicion == True:    
                     fila.append( lst_col_6_definicion[i] )
                 elif j == 6 and b_definicion == False:
-                    fila.append( '' )
-                   
+                    fila.append( '' )                   
                 if j == 7 and b_definicion == True:    
                     fila.append( lst_col_7_sp3[i] )
                 elif j == 7 and b_definicion == False:
                     fila.append( '' )
-
                 if j == 8 and b_definicion == True:
                     fila.append( lst_col_8_funcion[i] )                
                 elif j == 8 and b_definicion == False:
                     fila.append( '' )
-
-            matriz_xindex.append(fila) if fila else None
+                
+            matriz_impresion_xindex.append(fila) if fila else None
         
         # ■ RETORNO:
-        return matriz_xindex if matriz_xindex else None
+        return matriz_impresion_xindex if matriz_impresion_xindex else None
     
-# ============================================================================================
-# ============================================================================================
-# ============================================================================================
+
+    # █████████████████████████████████████████████████████████
+    # ███ REALIZA TODAS LAS ACCIONES DE GENERACION GENETICA ███
+    def load_modulo_gentico_x(self, titulo:str):
+        # ■■ VALIDA TITULO REPETIDO Y EXISTENCIA EN LA GENETICA(CONFIG)
+        if titulo not in self.lst_titulosXX or titulo not in self.dicc_xgenx: 
+            print(f'ERR-VAL:: {titulo} NO REGISTRADO EN XGENX')
+            return None
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ███ CACHA EL MENU A IMPRIMIR...es la BASE GENETICA de trabajo
+        menu_dvd = self.get_menudvd(titulo = titulo)
+        if not menu_dvd: return None
+        self.menu_dvd = menu_dvd
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ███ MODULO GENETICO 
+        # ■■ LISTADO DE LOS ITEMS QUE APARECEN EN EL MENU GENETICO. en orden de aparicion en el menu.... de arriba a abajo.
+        self.lst_keys = self.mystyca_keys( menu_dvd = self.menu_dvd )
+        # ■■■■■■■■■■■■■ CONFIGURACION DE LA GENETICA 
+        self.lst__men_itm_lev_ape_name_padr_ipadr_func = self.mystyca_scaner_genetico( menu_dvd = self.menu_dvd )            
+        # ■■■■■■■■■■■■■ CREACION DE LOS INDICES GENETICOS POSIBLES
+        self.lst_idx_NUMERIC, self.lst_idx_ALF_MAX, self.lst_idx_ALF_MIN, self.lst_idx_MIXTO = self.crear_xindicex( lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func  )
+        # ■■■■■■■■■■■■■ MATRIZ DE XINDEX VALIDOS X USER 
+        self.matriz_opt_ok = self.get_lst_xindex_ok(tipo_index = self.tipo_index)
+        if not self.matriz_opt_ok: return None
+        # ■■ LISTA de las OPCIONES VALIDAS ...necesaria para self.get_matriz_impresion_literal
+        self.lst_opts_ok = [('.').join(fila) for fila in self.matriz_opt_ok]
+        pass
+    
+    # ████████████████████████████████████████████████████████
+    # ███ REALIZA TODAS LAS ACCIONES DE IMPRESION GENETICA ███
+    def load_modulo_impresion_x(self, menu_dvd, lista_m_i_l_a_n_p_i_f:list, lst_keys:list,lst_opts_ok:list):
+                
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  TABLERO DE XINDEX 
+        # ■■ MATRIZ DE IMPRESION: ■■■
+        # ■■ b_definicion = False > sin incluir las columnas de definicion
+        self.matriz_impresion_xindex = self.get_matriz_impresion_literal(menu_dvd = menu_dvd , 
+                                                                        lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f , 
+                                                                        lst_keys = lst_keys, 
+                                                                        lst_opts_ok = lst_opts_ok,
+                                                                        b_definicion = False
+                                                                        )        
+        if not self.matriz_impresion_xindex: 
+            print('ERROR :::: EN MATRIZ IMPRESION PPAL')
+            return None        
+        # ■■ LISTA DE STRING PARA IMPRIMIR 
+        lst_mystyca_impresion = [''.join(mystyca_fila) for mystyca_fila in self.matriz_impresion_xindex]
+        # ■■ LONGITUD MAXIMA DEL MENU..... usado para calcular el ancho de la columna.
+        self.longitud_max_xindex = max(len(line) for line in lst_mystyca_impresion)
+        # ■■ SACO LAS FILAS Y COLUMNAS DE ESTA GENETICA PARA PODER SACAR UNA DIMENSION PARA CREAR EL TABLERO DE IMPRESION FRANKY
+        filas = len(self.matriz_impresion_xindex)
+        columnas = len(self.matriz_impresion_xindex[0])
+        self.F_RANK_Y = F_r_a_n_k_y( dimension = f'{filas}X{columnas}', head_datapush = self.head_datapush , pie_datapush=self.pie_datapush , pad_x = self.pad_x )
+        self.F_RANK_Y.push(data_push=lst_mystyca_impresion, eje='Y')
+        self.F_RANK_Y.imprimir(sp_between = 2, ancho_columna = None )
+        
+        # ■ TABLERO DE INFORMACION ? ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+        # ■ PREPARO OTRO TABLERO PARALELO(F_RANK_Y_DEF) CON LA INFORMACION DE DEFINICION
+        self.F_RANK_Y_DEF = F_r_a_n_k_y( dimension = f'{filas}X{columnas}', head_datapush = self.head_datapush , pie_datapush=self.pie_datapush , pad_x = self.pad_x )
+        self.F_RANK_Y_DEF.push(data_push=lst_mystyca_impresion, eje='Y')
+        # ■■ LISTA DE DEFINICIONES DE MENU GENETICO
+        lst_definicion_item  = self.get_lst_definiciones( menu_dvd = menu_dvd, 
+                                                        lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f, 
+                                                        b_mode_all = self.b_mode_all )
+        # ■■ LISTA DE FUNCIONES DE MENU GENETICO
+        lst_funcion_item = self.get_lst_funciones( lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f )
+        # ■■■ CARGA EL TABLERO PERO NO LO IMPRIME, SOLO LO PREPARA.
+        self.F_RANK_Y_DEF.push( data_push=lst_definicion_item, celda_inicio='D:0',  eje='Y' )
+        self.F_RANK_Y_DEF.push( data_push=lst_funcion_item, celda_inicio='E:0',  eje='Y' )
+        pass
+    
+    # ████████████████████████████████████████████████████████
+    # ███ REALIZA TODAS LAS ACCIONES DE RESPUESTA GENETICA ███
+    def load_modulo_respuesta_x(self, menu_dvd, lista_m_i_l_a_n_p_i_f:list):
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■ LOOP = FALSE, 1 SOLA RESPUESTA Y VUELVES ■■■
+            # ■■ lo gestiona el main( .... cualquier llamada ) 
+            # ■■ [respuesta] es el indice lineal en lst_keys o self.lst__men_itm_lev_ape_name_padr_ipadr_func
+        if self.b_loop == False:   
+            while(True):    # SI EL USUARIO INTRODUCE ? O < TIENE QUE REPETIRSE Y VUELVE CUANDO EL USUARIO RESPONDE SALIR U OPT-OK
+                #  ■■■ XAVIER - OBTIENE RESPUESTA DE USUARIO ■■■
+                dicc_xavier = self.get_dicc_xavier_into_user(menu_dvd = menu_dvd , lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f )    
+                if dicc_xavier == None:         # SALIR... ha pulsado '<<<'. Esto anula el menu, pq se ejecuta una sola vez.
+                    return None                 # Sale por Main(....por donde es llamada)
+                
+                # ■ OBTIENE EL INDICE EN M_I_L_A_N_P_I_F SI LO ENCUENTRA Y SI NO DEVUELVE NONE
+                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
+                if  xindex != None:
+                    dicc_xavier['xindex'] = xindex                    
+                    return dicc_xavier['xindex']
+                
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■ LOOP = TRUE, SOLO SALES POR <<< ■■■■
+        while(True):
+            # ■■■ XAVIER - OBTIENE RESPUESTA VALIDA DEL USUARIO, O SALIR ■■■
+            dicc_xavier = self.get_dicc_xavier_into_user( menu_dvd = menu_dvd , lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)   
+            
+            # ■■■ SALIR... ha pulsado '<<<' ■■■
+            if not dicc_xavier:       
+                return True                       
+            
+            # ■■■ TERMINATOR - EJECUTA LA RESPUESTA DEL USUARIO ■■■
+            self.Terminator(dicc_respuesta = dicc_xavier, titulo_menu = menu_dvd.titulo)
+            continue
+        pass
+
+
+# █████████████████████████████████████████████████████████████████████████████████████████████████████████████
+# ██████████████████████████████████████ OVER MAIN ████████████████████████████████████████████████████████████
+# █████████████████████████████████████████████████████████████████████████████████████████████████████████████
 import threading        
 import time         
 from functools import partial    
 # ============================================================================================
 class Over_Main(XindeX):
-    """ AMPLIA XindeX Añadiendo la ejecución en hilos separados.... ■■ interactivo(tkinter) , 
-                                                                    >> segundo plano demonio(flask) """
-    def __init__(self):        
-        super().__init__()
+    """ AMPLIA XindeX Añadiendo la ejecución en hilos separados .... 
+        ■■ Interactivo ( tkinter ) , 
+        ■■ Segundo plano demonio( flask ) 
+    """
+    def __init__(self, tipo_index:str='a', b_mode_all:bool=False, b_loop=True ):        
+        
+        
+        super().__init__(tipo_index='a', b_mode_all=False, b_loop = True )
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        
+        # DICCIONARIO PARA EL CONTROL DE HILOS CON LAS EJECUCIONES =>b2 (INDEPENDIENTE)(DEMONIO) Y <<b2>> (DEPENDIETE)
         self.hilos={}
+        
+        # LISTADO DE TODOS LOS SUB-MENUS QUE DEPENDEN DE menu_dvd
+        self.lista_sub_menus = None
+        
+        # OPCIONES VALIDAS DE CADA LISTA: matriz_submenus_ok_off
+        self.matriz_submenus_ok_off=[]
+        
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         pass
+        
+    # DEVUELVE XINDEX VALIDO SEGUN tipo_index. 
+    # SE PUEDE ELEGIR LA LISTA DE OPCIONES VALIDAS.
+    def get_lista_index_ok_off(self, tipo_index, lista_lst_indices_created:list):
+        """ devuelve el indice indicado valido de entre los que se pasan como argumento.        
+        [lista_lst_indices_created]:(list de list) => ■ LO MAS IMPORTANTE ES QUE SE PASEN TODOS LOS INDICES (NUMERICO, MIN, MAX , MIXTO) 
+        ■ Y EN ESE ORDEN
+        """
+        if not lista_lst_indices_created: return None
+        if len(lista_lst_indices_created) != 4: return None
 
-    def Terminator(self, titulo_menu, item, respuesta, b_exe, pre_respuesta=None, post_respuesta=None):
-        if pre_respuesta == None:
-            super().Terminator(titulo_menu=titulo_menu, item=item, respuesta=respuesta, b_exe=b_exe)
-        else:
-            if pre_respuesta=='<<':
-                self.ejecutar_background(titulo_menu=titulo_menu, item=item, respuesta=respuesta, b_exe=b_exe)
+        if lista_lst_indices_created is not None:
+            DICC_OK={ 1 : lista_lst_indices_created[0], 
+                    'a' : lista_lst_indices_created[1], 
+                    'A' : lista_lst_indices_created[2], 
+                    'a1': lista_lst_indices_created[3], 
+                    '1a': lista_lst_indices_created[3], 
+                    'A1': lista_lst_indices_created[3], 
+                    '1A': lista_lst_indices_created[3]
+                    }
+            # ■ RETORNA LA LISTA OK SEGUN tipo_index
+            return DICC_OK.get(tipo_index, None)
 
-            elif pre_respuesta == '>>':
-                self.ejecutar_interactivo(titulo_menu=titulo_menu, item=item, respuesta=respuesta, b_exe=b_exe)
-
-            else:   
-                try:
-                    super().Terminator(titulo_menu=titulo_menu, item=item, respuesta=respuesta, b_exe=b_exe)
-                except Exception as e:
-                    print(f"Error en Terminator Over_Main: titulo_menu: {titulo_menu} -item: {item} -respuesta: {respuesta} -b_exe: {b_exe}, -pre_respuesta: {pre_respuesta} \n{e}")
-            
-    # ______________________________________
-    """ ■■ """
-    def ejecutar_interactivo(self, titulo_menu, item, respuesta, b_exe):
+    def ejecutar_interactivo(self, titulo_menu, item, respuesta):
         """ ■■ Logica Interactiva: Tkinter por ejemplo (demon=False)  """
+        """ CONFIGURO EL HILO LO GUARDO Y LO LANZO """
         print(f"Interacción activa con {respuesta}...")
-        """ 
-        CONFIGURO EL HILO LO GUARDO Y LO LANZO """
-        hilo = threading.Thread(target=partial(super().Terminator, titulo_menu, item, respuesta, b_exe, None)
-                                , daemon=False
-                                )
+        hilo = threading.Thread(target=partial(super().Terminator, titulo_menu, item, respuesta, None)
+                                , daemon=False )
         self.hilos[respuesta] = hilo
         hilo.start()
 
-    # ______________________________________
-    """ >> """
-    def ejecutar_background(self, titulo_menu, item, respuesta, b_exe):
-        """ ■■ servidor Flask por ejemplo (demon=True) 
-        """
+    def ejecutar_background(self, titulo_menu, item, respuesta):
+        """ >> """
+        """ ■■ servidor Flask por ejemplo (demon=True) """
         
+
+        """ CONFIGURO EL HILO LO GUARDO Y LO LANZO """
+        hilo = threading.Thread(target=self.ejecutar, 
+                                kwargs={'titulo_menu': titulo_menu, 'item': item, 'respuesta':respuesta} , 
+                                daemon=True
+                                )
+        self.hilos[respuesta] = hilo
+        hilo.start()
         print(f"Tarea en segundo plano: item: {item} - index: '{respuesta}' ...... ejecutada.")
 
-        """ 
-        CONFIGURO EL HILO LO GUARDO Y LO LANZO """
-        hilo = threading.Thread(target=self.ejecutar, kwargs={'titulo_menu': titulo_menu, 'item': item, 'respuesta':respuesta, 'b_exe':b_exe}
-                                , daemon=True
-                                )
-        self.hilos[respuesta] = hilo
-        hilo.start()
-
-    # ______________________________________
-    def ejecutar(self, titulo_menu, item, respuesta, b_exe):
-        pass
-        super().Terminator(titulo_menu=titulo_menu, item=item, respuesta=respuesta, b_exe=b_exe, pre_respuesta=None)
-    
-    # ______________________________________
-    def detener_hilo(self, respuesta):
-        if respuesta in self.hilos and self.hilos[respuesta].is_alive():
-
-            # ?????????? cambiar por msgbox
-            print(f"Deteniendo hilo '{respuesta}'...")
-            # Aquí podrías implementar una señal de parada segura si es necesario
-            del self.hilos[respuesta]
-        else:
-            print(f"Hilo '{respuesta}' no está en ejecución.")
-
-    # ______________________________________
     def listar_hilos(self):
         print("Hilos en ejecución:")
         for opcion, hilo in self.hilos.items():
@@ -1363,5 +1400,109 @@ class Over_Main(XindeX):
             print(f"  - {opcion}: {estado}")
             aux = input(f'\nPulsa Cualquier tecla para continuar.... ')
 
+    # ███████████████████████████████████████
+    # ████████████ EJECUTADOR  ██████████████
+    def Terminator(self, dicc_respuesta:dict, titulo_menu:str):
+        """ Def: EJECUTA LA RESPUESTA - SOBRE ESCRIBE TERMINATOR PARA AMPLIAR LAS OPCIONES.
+        [respuesta]:(dict): diccionario respuesta que se evalua en self.get_dicc_xavier_into_user(U)
+        """        
+        # VALIDACION
+        if not isinstance(dicc_respuesta, dict): return None
+        mono_from = dicc_respuesta.get('pre', None)
+        respuesta = dicc_respuesta.get('respuesta', None)
+        mono_to = dicc_respuesta.get('pos', None)
+        xindex = dicc_respuesta.get('xindex', None)
+
+        lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func
+        COLUMNA_FUNCION = 7        
+
+        # EMPIEZA LA EVALUACION DE LA RESPUESTA
+        if not mono_from and not mono_to and respuesta and not xindex:      # ■■■ ACCION DIRECCTA ? , < , <<< ■■■ 
+            if respuesta == '?':                                            # ■ INFO
+                os.system('cls')              
+                self.get_mystyca_informacion(titulo_menu=titulo_menu, b_mode_all=self.b_mode_all)
+            
+            elif respuesta == '<':                                          # ■ REPETIR MENU
+                os.system('cls')              
+                self.F_RANK_Y.imprimir(sp_between = 2, ancho_columna = None )
+            else:                                                           # MONO NOT FOUND
+                return False
+
+        elif not mono_from and not mono_to and respuesta and xindex:        # ■■■ XINDEX ■■■ 
+            
+            # ██ EJECUTA LA FUNCIONN █████████████████████████████████████████
+            lista_m_i_l_a_n_p_i_f[xindex][COLUMNA_FUNCION]() if lista_m_i_l_a_n_p_i_f[xindex][COLUMNA_FUNCION] else None
+        
+        elif  mono_from and not mono_to and xindex:         # ■■■ BEGINNER'S ■■■ 
+            if mono_from == '**':                           # ■ BEGIN
+                print(f'EXEC BEGI_N **')                
+                # VEO DONDE ESTOY DESPUES
+                titulo_select   = lista_m_i_l_a_n_p_i_f[xindex][0]
+                item_select     = lista_m_i_l_a_n_p_i_f[xindex][1]
+                print(f'Menú Select: {titulo_menu} sobre Item Select: {item_select}')
+                # ■ LLAMO A LA FUNCION BEGIN ASTERISCOS CON EL MENU_DVD SELECCIONADO EN LA RESUPUESTA
+                self.begin_asterisco(titulo_menu=titulo_select)
+                # VEO DONDE ESTOY DESPUES
+                titulo_select   = lista_m_i_l_a_n_p_i_f[xindex][0]
+                item_select     = lista_m_i_l_a_n_p_i_f[xindex][1]
+                print(f'Menú Select: {titulo_menu} sobre Item Select: {item_select}')
+            
+            elif mono_from == '=>':                         # ■ DEMONIO - LANZA OVER-MAIN
+                print('EXEC DEMONIO >>')                
+            
+            else:                                           # PRE- NOT FOUND
+                print(f'EXEC PRE- NOT FOUND')                     
+
+        elif  mono_from and mono_to and xindex:             # ■■■ PACK ■■■ 
+            if mono_from == '<<' and mono_to == '>>':       # ■ DEPENDIENTE - PACK 1 - LANZA OVER-MAIN
+                print('EXEC DEPENDIENTE')
+            
+            else:                                           # PACK NOT FOUND
+                print('EXEC PACK NOT FOUND')                
+        else:                                               # ■■■ NOT FOUND ■■■
+            print('EXEC NOT FOUND')                
+            return
+
+    def begin_asterisco(self, titulo_menu:str):
+        if not self.menu_dvd: return None
+        # ■ ME GUARDO EL MENU PPAL
+        menu_dvd_aux = self.menu_dvd
+        head_datapush_aux = self.head_datapush
+        # ■ BUSCO EL TITULO DEL MENU QUE EL USUARIO HA SELECCIONADO
+        
+        # ■ LLAMO A LA GENERACION DEL NUEVO MENU
+        self.mystyca(titulo=titulo_menu, head_datapush=titulo_menu)
+        
+        # ■ HA SALIDO POR <<< Y DEJO LAS COSAS COMO ESTABAN ANTES DEL **
+        self.menu_dvd = menu_dvd_aux
+        # CARGA GENETICA
+        self.load_modulo_gentico_x(titulo = self.menu_dvd.titulo)
+        if not self.lst__men_itm_lev_ape_name_padr_ipadr_func or not self.lst_keys or not self.lst_opts_ok: 
+            return None
+        # IMPRIME GENETICA
+        self.F_RANK_Y.head.push(data_push=head_datapush_aux)
+        self.load_modulo_impresion_x(menu_dvd = self.menu_dvd , 
+                                    lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func , 
+                                    lst_keys = self.lst_keys ,
+                                    lst_opts_ok = self.lst_opts_ok)
+        
+        
+        # NOTA: NO CAGO EL MODULO RESPUESTAA PQ CUANDO SALGA DE ESTA FUNCION TERMINATOR ME ENVIARÁ AL MODULO RESPUESTA.
+        pass
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    def obtener_texto_azul(self, texto):
+        """Devuelve el texto coloreado en azul."""
+        return f"{Fore.BLUE}{texto}{Style.RESET_ALL}"
+
+    def obtener_longitud(self, texto):
+        """Devuelve la longitud del texto con los caracteres de color incluidos."""
+        texto_coloreado = self.obtener_texto_azul(texto=texto)
+        return len(texto_coloreado)
+
+    def obtener_longitud_real(self, texto):
+        """Devuelve la longitud del texto sin los caracteres de color."""
+        texto_coloreado = self.obtener_texto_azul(texto=texto)
+        texto_limpio = re.sub(r'\x1B\[[0-9;]+m', '', texto_coloreado)  # Quita secuencias ANSI
+        return len(texto_limpio)
 
 
