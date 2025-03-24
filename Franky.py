@@ -2677,6 +2677,9 @@ class F_r_a_n_k_y(Tablero):
     >>> DATA:          Datos del cuerpo del menu. Puede ser un str o una lista de str o matriz de str
     >>> DATA_SALIDA:   Datos de salida(PIE) del menu. Puede ser un str o una lista de str o matriz de str
     """
+    # Expresión regular para eliminar códigos ANSI
+    # ANSI_ESCAPE = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+
     FRANKY_STYLE = {'char_head' : '▄',        # Char de arriba del HEAD ■ 
                     'char_up_body'  : '▄' ,   # Char bajo el HEAD / sobre el BODY
                     'char_down_body': '▀' ,   # Char de arriba el PIE / bajo el BODY
@@ -3964,34 +3967,92 @@ class F_r_a_n_k_y(Tablero):
         [maximo_franky](int):   El valor maximo horizontal de la linea mas larga teniendo en cuenta su configuracion(ancho, sp_between, lista)
                                 Sirve para poner el caracter self.char_head 
         """
-        # ■ LISTA DEL LEN DE CADA FILA 
-        lst_len_filas_head = self.head.get_lst_longitud_valores_x_fila()  if self.head else None     
-        # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA 
-        lst_resto_to_add_head = [ maximo_franky - len_fila for len_fila in lst_len_filas_head ]  if lst_len_filas_head else None    
-        # ■■■■■
+        if not self.head: return
+
         try:
-            if self.head:
-                print(f'{self.ESPACIO * self.margen}{self.char_head * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
-                self.__imprimir_tablero_literal(tablero = self.head ,  lst_resto_to_add = lst_resto_to_add_head) 
+            # ■ LISTA DEL LEN DE CADA FILA 
+            # lst_len_filas_head = self.head.get_lst_longitud_valores_x_fila()  if self.head else None                 
+            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+            # ■ LISTA DE LONGITUDES VISIBLES (sin códigos ANSI)
+            # lst_len_filas_head_ANSI2 = [self.longitud_visible(celda.valor) for fila in self.head.matriz for celda in fila]  
+        
+            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+            lst_len_filas_head_ANSI = []
+            for fila in self.head.matriz:
+                longitud_total_fila=0
+                for celda in fila:
+                    longitud_total_fila += self.longitud_visible(celda.valor)
+                pass            
+                lst_len_filas_head_ANSI.append(longitud_total_fila)    
+
+            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+            # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA 
+            # lst_resto_to_add_head = [ maximo_franky - len_fila for len_fila in lst_len_filas_head ]
+            lst_resto_to_add_head = [ maximo_franky - len_fila for len_fila in lst_len_filas_head_ANSI ]
+            # ■■■■■
+            print(f'{self.ESPACIO * self.margen}{self.char_head * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
+
+            self.__imprimir_tablero_literal(tablero = self.head ,  lst_resto_to_add = lst_resto_to_add_head) 
         except Exception as e:
             print(f'{e}')
             return None
 
+    # def __imprimir_head(self, maximo_franky: int):        
+    #     """ Imprime HEAD en formato literal """
+    #     if not self.head:
+    #         return
+
+    #     # ■ LISTA DEL LEN DE CADA FILA 
+    #     lst_len_filas_head_VAL = self.head.get_lst_longitud_valores_x_fila()  if self.head else None                 
+    #     try:
+    #         # Aplicar longitud_visible a cada fila para eliminar los códigos ANSI
+    #         lst_len_filas_head = [
+    #             self.longitud_visible(str(fila)) for fila in lst_len_filas_head_VAL
+    #         ]
+
+    #         # Calcular los espacios adicionales que necesita cada fila
+    #         lst_resto_to_add_head = [maximo_franky - len_fila for len_fila in lst_len_filas_head]
+
+    #         # Imprimir el borde superior
+    #         ancho_total = maximo_franky + len(self.char_marco) * 2 + self.x_pad + self.pad_x
+    #         print(f'{self.ESPACIO * self.margen}{self.char_head * ancho_total}')  
+
+    #         # Imprimir el tablero ajustado
+    #         self.__imprimir_tablero_literal(tablero=self.head, lst_resto_to_add=lst_resto_to_add_head)
+
+    #     except Exception as e:
+    #         print(f'Error en __imprimir_head: {e}')
+    #         return None
+
+
     # IMPRIME EL TABLERO PIE EN FORMATO LITERAL
     def __imprimir_pie(self, maximo_franky):
         """ ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■ """        
+        if not self.pie: return
+
         # ■ LISTA DEL LEN DE CADA FILA - get_lst_longitud_valores_x_fila 
-        lst_len_filas_pie = self.pie.get_lst_longitud_valores_x_fila() if self.pie else None
+        # lst_len_filas_pie = self.pie.get_lst_longitud_valores_x_fila() if self.pie else None
+        
+        # ■ LISTA DE LONGITUDES VISIBLES (sin códigos ANSI)
+        lst_len_filas_pie_ANSI = [self.longitud_visible(celda.valor) for fila in self.pie.matriz for celda in fila]  
+        
         # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA 
-        lst_resto_to_add_pie = [ maximo_franky - len_fila for len_fila in lst_len_filas_pie ] if lst_len_filas_pie else None
+        lst_resto_to_add_pie = [ maximo_franky - len_fila for len_fila in lst_len_filas_pie_ANSI ] if lst_len_filas_pie_ANSI else None
         # ■■■■       
         try:
-            if self.pie:                
+            if lst_resto_to_add_pie:                
                 self.__imprimir_tablero_literal(tablero = self.pie  , lst_resto_to_add = lst_resto_to_add_pie) 
                 print(f'{self.ESPACIO * self.margen}{self.char_pie * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
         except Exception as e:
             print(f'{e}')
             return None
+    
+    
+    def longitud_visible(self, texto: str) -> int:
+        """ Calcula la longitud real del texto sin códigos ANSI """
+        ANSI_ESCAPE = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+        return len(ANSI_ESCAPE.sub('', texto))
 
     # PONE UN FORMAT BASICO SOBRE LA ULTIMA COLUMNA USADA. SOLO SP_BETWEEN. LITERAL. ANCHO = 0, 
     def __get_lst_formato_mosaico(self, str_formato:str, b_between:bool = True):

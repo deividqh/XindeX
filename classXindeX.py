@@ -814,11 +814,12 @@ class XindeX(MenuDvd):
                 dicc_xavier['pos']       = None
 
                 # ■ OBTIENE EL INDICE EN self.lst__men_itm_lev_ape_name_padr_ipadr_func
-                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
+                xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier , lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
                 if  xindex != None:
                     dicc_xavier['xindex'] = xindex
                     return dicc_xavier
 
+                print(f'{dicc_xavier['respuesta']} NOT FOUND :(')
                 continue    # ■ SI NO ENCUENTRA UN INDICE VALIDO VUELVO A PREGUNTAR... USUARIO CONFUSO ;)
             
             elif respuesta.startswith(self.lst_resp_PACK_1[MONO_FROM]) and respuesta.endswith(self.lst_resp_PACK_1[MONO_TO]):       
@@ -833,6 +834,8 @@ class XindeX(MenuDvd):
                 if  xindex is not None:
                     dicc_xavier['xindex'] = xindex
                     return dicc_xavier
+                
+                print(f'{dicc_xavier['respuesta']} NOT FOUND :(')
                 continue
             else:
                 # ██ XINDEX: OPCION BUENA
@@ -841,6 +844,7 @@ class XindeX(MenuDvd):
                 dicc_xavier['pos']       = None
                 xindex = self.__get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
                 if  xindex is None:
+                    print(f'{dicc_xavier['respuesta']} NOT FOUND :(')
                     continue
                 else:
                     dicc_xavier['xindex'] = xindex
@@ -1256,6 +1260,10 @@ class XindeX(MenuDvd):
         if not self.matriz_impresion_xindex: 
             print('ERROR :::: EN MATRIZ IMPRESION PPAL')
             return None        
+        
+        # ■■ TEXTO AZUL
+        self.head_datapush = self.obtener_texto_azul(self.head_datapush)
+
         # ■■ LISTA DE STRING PARA IMPRIMIR 
         lst_mystyca_impresion = [''.join(mystyca_fila) for mystyca_fila in self.matriz_impresion_xindex]
         # ■■ LONGITUD MAXIMA DEL MENU..... usado para calcular el ancho de la columna.
@@ -1321,9 +1329,8 @@ class XindeX(MenuDvd):
 # █████████████████████████████████████████████████████████████████████████████████████████████████████████████
 # ██████████████████████████████████████ OVER MAIN ████████████████████████████████████████████████████████████
 # █████████████████████████████████████████████████████████████████████████████████████████████████████████████
-import threading        
-import time         
-from functools import partial    
+import multiprocessing
+import time
 # ============================================================================================
 class Over_Main(XindeX):
     """ AMPLIA XindeX Añadiendo la ejecución en hilos separados .... 
@@ -1337,71 +1344,49 @@ class Over_Main(XindeX):
         # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         
         # DICCIONARIO PARA EL CONTROL DE HILOS CON LAS EJECUCIONES =>b2 (INDEPENDIENTE)(DEMONIO) Y <<b2>> (DEPENDIETE)
-        self.hilos={}
+        self.procesos = {}
+        
         
         # LISTADO DE TODOS LOS SUB-MENUS QUE DEPENDEN DE menu_dvd
-        self.lista_sub_menus = None
-        
+        self.lista_sub_menus = None        
         # OPCIONES VALIDAS DE CADA LISTA: matriz_submenus_ok_off
         self.matriz_submenus_ok_off=[]
+
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    def lanzar_proceso(self, nombre, objetivo, *args, demonio=False):
+        if nombre in self.procesos:
+            print(f"El proceso '{nombre}' ya está en ejecución.")
+            return
         
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        pass
+        proceso = multiprocessing.Process(target=objetivo, args=args, daemon=demonio)
+        proceso.start()
+        self.procesos[nombre] = proceso
+        print(f"Proceso '{nombre}' iniciado.")
+
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    def listar_procesos(self):
+        return {nombre: p.is_alive() for nombre, p in self.procesos.items()}
         
-    # DEVUELVE XINDEX VALIDO SEGUN tipo_index. 
-    # SE PUEDE ELEGIR LA LISTA DE OPCIONES VALIDAS.
-    def get_lista_index_ok_off(self, tipo_index, lista_lst_indices_created:list):
-        """ devuelve el indice indicado valido de entre los que se pasan como argumento.        
-        [lista_lst_indices_created]:(list de list) => ■ LO MAS IMPORTANTE ES QUE SE PASEN TODOS LOS INDICES (NUMERICO, MIN, MAX , MIXTO) 
-        ■ Y EN ESE ORDEN
-        """
-        if not lista_lst_indices_created: return None
-        if len(lista_lst_indices_created) != 4: return None
+        aux = input(f'\nPulsa Cualquier tecla para continuar.... ')
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    def iniciar_proceso(self, nombre, funcion, *args):
+        """ Inicia un proceso y lo almacena en el diccionario."""
+        proceso = multiprocessing.Process(target=funcion, args=args, daemon=True)
+        proceso.start()
+        self.procesos[nombre] = proceso
+        print(f"Proceso '{nombre}' iniciado con PID {proceso.pid}.")
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    def detener_proceso(self, nombre):
+        if nombre in self.procesos and self.procesos[nombre].is_alive():
+            self.procesos[nombre].terminate()
+            self.procesos[nombre].join()
+            del self.procesos[nombre]
+            print(f"Proceso '{nombre}' detenido.")
+        else:
+            print(f"No se encontró el proceso '{nombre}' o ya estaba detenido.")
 
-        if lista_lst_indices_created is not None:
-            DICC_OK={ 1 : lista_lst_indices_created[0], 
-                    'a' : lista_lst_indices_created[1], 
-                    'A' : lista_lst_indices_created[2], 
-                    'a1': lista_lst_indices_created[3], 
-                    '1a': lista_lst_indices_created[3], 
-                    'A1': lista_lst_indices_created[3], 
-                    '1A': lista_lst_indices_created[3]
-                    }
-            # ■ RETORNA LA LISTA OK SEGUN tipo_index
-            return DICC_OK.get(tipo_index, None)
-
-    def ejecutar_interactivo(self, titulo_menu, item, respuesta):
-        """ ■■ Logica Interactiva: Tkinter por ejemplo (demon=False)  """
-        """ CONFIGURO EL HILO LO GUARDO Y LO LANZO """
-        print(f"Interacción activa con {respuesta}...")
-        hilo = threading.Thread(target=partial(super().Terminator, titulo_menu, item, respuesta, None)
-                                , daemon=False )
-        self.hilos[respuesta] = hilo
-        hilo.start()
-
-    def ejecutar_background(self, titulo_menu, item, respuesta):
-        """ >> """
-        """ ■■ servidor Flask por ejemplo (demon=True) """
-        
-
-        """ CONFIGURO EL HILO LO GUARDO Y LO LANZO """
-        hilo = threading.Thread(target=self.ejecutar, 
-                                kwargs={'titulo_menu': titulo_menu, 'item': item, 'respuesta':respuesta} , 
-                                daemon=True
-                                )
-        self.hilos[respuesta] = hilo
-        hilo.start()
-        print(f"Tarea en segundo plano: item: {item} - index: '{respuesta}' ...... ejecutada.")
-
-    def listar_hilos(self):
-        print("Hilos en ejecución:")
-        for opcion, hilo in self.hilos.items():
-            estado = "activo" if hilo.is_alive() else "detenido"
-            print(f"  - {opcion}: {estado}")
-            aux = input(f'\nPulsa Cualquier tecla para continuar.... ')
-
-    # ███████████████████████████████████████
-    # ████████████ EJECUTADOR  ██████████████
+    # ███████████████████████████████████████████████████████████████████
+    # ████████████ SOBRE-ESCRIBE  TERMINATOR - EJECUTADOR  ██████████████
     def Terminator(self, dicc_respuesta:dict, titulo_menu:str):
         """ Def: EJECUTA LA RESPUESTA - SOBRE ESCRIBE TERMINATOR PARA AMPLIAR LAS OPCIONES.
         [respuesta]:(dict): diccionario respuesta que se evalua en self.get_dicc_xavier_into_user(U)
@@ -1435,17 +1420,18 @@ class Over_Main(XindeX):
         
         elif  mono_from and not mono_to and xindex:         # ■■■ BEGINNER'S ■■■ 
             if mono_from == '**':                           # ■ BEGIN
+                
                 print(f'EXEC BEGI_N **')                
                 # VEO DONDE ESTOY DESPUES
                 titulo_select   = lista_m_i_l_a_n_p_i_f[xindex][0]
                 item_select     = lista_m_i_l_a_n_p_i_f[xindex][1]
-                print(f'Menú Select: {titulo_menu} sobre Item Select: {item_select}')
+                print(f'ANTES ::: Menú Select: {titulo_menu} sobre Item Select: {item_select}')
                 # ■ LLAMO A LA FUNCION BEGIN ASTERISCOS CON EL MENU_DVD SELECCIONADO EN LA RESUPUESTA
                 self.begin_asterisco(titulo_menu=titulo_select)
                 # VEO DONDE ESTOY DESPUES
                 titulo_select   = lista_m_i_l_a_n_p_i_f[xindex][0]
                 item_select     = lista_m_i_l_a_n_p_i_f[xindex][1]
-                print(f'Menú Select: {titulo_menu} sobre Item Select: {item_select}')
+                print(f'DESPUES::: Menú Select: {titulo_menu} sobre Item Select: {item_select}')
             
             elif mono_from == '=>':                         # ■ DEMONIO - LANZA OVER-MAIN
                 print('EXEC DEMONIO >>')                
@@ -1464,33 +1450,66 @@ class Over_Main(XindeX):
             return
 
     def begin_asterisco(self, titulo_menu:str):
+        """ FUNCION QUE SE EJECUTA CUANDO SE HACE '**b' por ejemplo. ESTO HACE QUE SE EJECUTE EL DIRECTORIO b DEL XINDEX ACTUAL 
+        SOLO PUEDE FUNCIONAR EN MODO b_mode_all == False. Y SE PUEDE EJECUTAR SOBRE LOS DIRECTORIOS(Padres con Hijos) SOLAMENTE.
+        [titulo_menu](str): titulo del menu Sobre el que se va a establecer el nuevo menu genetico.
+
+        """
         if not self.menu_dvd: return None
         # ■ ME GUARDO EL MENU PPAL
         menu_dvd_aux = self.menu_dvd
-        head_datapush_aux = self.head_datapush
+        head_datapush_aux = self.head_datapush 
         # ■ BUSCO EL TITULO DEL MENU QUE EL USUARIO HA SELECCIONADO
         
-        # ■ LLAMO A LA GENERACION DEL NUEVO MENU
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■ LLAMO A LA GENERACION DEL NUEVO MENU ■ ES RECURSIVA.
         self.mystyca(titulo=titulo_menu, head_datapush=titulo_menu)
         
         # ■ HA SALIDO POR <<< Y DEJO LAS COSAS COMO ESTABAN ANTES DEL **
         self.menu_dvd = menu_dvd_aux
+        
         # CARGA GENETICA
         self.load_modulo_gentico_x(titulo = self.menu_dvd.titulo)
         if not self.lst__men_itm_lev_ape_name_padr_ipadr_func or not self.lst_keys or not self.lst_opts_ok: 
             return None
+        
         # IMPRIME GENETICA
-        self.F_RANK_Y.head.push(data_push=head_datapush_aux)
+        self.F_RANK_Y.head.push(data_push = head_datapush_aux)
         self.load_modulo_impresion_x(menu_dvd = self.menu_dvd , 
                                     lista_m_i_l_a_n_p_i_f = self.lst__men_itm_lev_ape_name_padr_ipadr_func , 
                                     lst_keys = self.lst_keys ,
                                     lst_opts_ok = self.lst_opts_ok)
         
-        
-        # NOTA: NO CAGO EL MODULO RESPUESTAA PQ CUANDO SALGA DE ESTA FUNCION TERMINATOR ME ENVIARÁ AL MODULO RESPUESTA.
+        # NOTA: NO CARGO EL MODULO RESPUESTAA PQ CUANDO SALGA DE ESTA FUNCION TERMINATOR ME ENVIARÁ AL MODULO RESPUESTA.
         pass
+
+    # DEVUELVE XINDEX VALIDO SEGUN tipo_index. 
+    # SE PUEDE ELEGIR LA LISTA DE OPCIONES VALIDAS.
+    def get_lista_index_ok_off(self, tipo_index, lista_lst_indices_created:list):
+        """ devuelve el indice indicado valido de entre los que se pasan como argumento.        
+        [lista_lst_indices_created]:(list de list) => ■ LO MAS IMPORTANTE ES QUE SE PASEN TODOS LOS INDICES (NUMERICO, MIN, MAX , MIXTO) 
+        ■ Y EN ESE ORDEN
+        """
+        if not lista_lst_indices_created: return None
+        if len(lista_lst_indices_created) != 4: return None
+
+        if lista_lst_indices_created is not None:
+            DICC_OK={ 1 : lista_lst_indices_created[0], 
+                    'a' : lista_lst_indices_created[1], 
+                    'A' : lista_lst_indices_created[2], 
+                    'a1': lista_lst_indices_created[3], 
+                    '1a': lista_lst_indices_created[3], 
+                    'A1': lista_lst_indices_created[3], 
+                    '1A': lista_lst_indices_created[3]
+                    }
+            # ■ RETORNA LA LISTA OK SEGUN tipo_index
+            return DICC_OK.get(tipo_index, None)
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     def obtener_texto_azul(self, texto):
+        from colorama import Fore, Style, init
+
+        # Inicializa colorama (necesario para Windows)
+        init()
         """Devuelve el texto coloreado en azul."""
         return f"{Fore.BLUE}{texto}{Style.RESET_ALL}"
 

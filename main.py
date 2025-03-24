@@ -13,13 +13,13 @@ from classXindeX import Over_Main
 
 # 1- INSTANCIO EL OBJETO ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 # The_X_Men = XindeX(head_datapush  = " XINDEX - OVER-MAIN ")
-The_X_Men = Over_Main(tipo_index='a', b_mode_all=False, b_loop=True )
+The_X_Men = Over_Main(tipo_index='a', b_mode_all=True, b_loop=True )
 
 def main():
     global The_X_Men
 
     # 2- CREO LOS MENUS Y SUS FUNCIONES ASOCIADAS ▄▄▄▄▄▄▄▄▄▄▄▄
-    Menu1 = The_X_Men.addX(titulo='Menu1', lst_items = [ ("Info XindeX" , None), ("Estilos" , None),("Flask" , None), ("BBDD" , None) ],  fraseHead = " - M A I N M E N U - ")
+    Menu1 = The_X_Men.addX(titulo='Menu1', lst_items = [ ("Info XindeX" , None), ("Estilos" , None),("Procesos" , None), ("Flask" , None) ],  fraseHead = " - M A I N M E N U - ")
     
     # 3- COFIGURO LA GENETICA DEL INDICE ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
     The_X_Men.config(titulo='Menu1'  , suPadre=None , indexInPadre = None )
@@ -31,12 +31,13 @@ def main():
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     
     # ■ 2-3 ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION ..... (Uso Recomendado por claridad)
-    The_X_Men.addX( titulo='subXindex' , padre='Menu1' , ipadre="Info XindeX" , lst_items = [ ("Info Inicial" , None) ,  ("Configuracion XindeX", None ), ("Explicacion Parametros", explicacion_parametros ), ("Ejemplos Uso" , None ) ] )    
-    The_X_Men.addX( titulo='subEstilos', padre='Menu1' , ipadre = 'Estilos' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
+    The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1' , ipadre="Info XindeX" , lst_items = [ ("Info Inicial" , None) ,  ("Procesos", None ), ("Explicacion Parametros", explicacion_parametros ), ("Ejemplos Uso" , None ) ] )    
+    The_X_Men.addX( titulo='sub-Estilos', padre='Menu1' , ipadre = 'Estilos' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
+    The_X_Men.addX( titulo='sub-Procesos', padre='Menu1' , ipadre = 'Procesos' , lst_items = [ ("Listar Proceso", None) , ("Lanzar Proceso" , None), ("Detener Proceso" , None) ] )    
 
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     # ■ 4- LLAMO A MYSTYCA PARA VISUALIZAR EL MENU ■■■■■■■■■■■                               
-    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=20 )
+    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=5 )
     # retorno = The_X_Men.mystyca( titulo='Menu1',  pad_x=50 )
 
     # 5- RETORNO DE MYSTYCA ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
