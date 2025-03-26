@@ -1,9 +1,12 @@
-import os           
-from enum import Enum
-import tkinter as tk
-import threading
-from classXindeX import XindeX 
-from classXindeX import Over_Main 
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# from classXindeX import XindeX          # ■ XINDEX A PELO
+from classXindeX import Over_Main       # ■ PADRE DE XINDEX CON ■ COLOR EN HEAD Y PIE  ■ BEGIN ** ■ LANZAR DEMONIO << >> ■ LANZA BACKGROUND => 
+from Sdata import Sdata                 # ■ AYUDA PARA EL OVER-MAIN PARA PEDIR DATOS SEGUROS AL USUARIO
+
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+import os               # SISTEMA OPERATIVO(PARA LIMPIAR LA TERMINAL)
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+import tkinter as tk    # SOLO EN CASO DE NECESITARLO
 
 # ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 # DEF: CREA UN INDICE MULTINIVEL CON GENETICA QUE EJECUTA LAS FUNCIONES ASOCIADAS A CADA MENU
@@ -11,34 +14,37 @@ from classXindeX import Over_Main
 # ████████████████████████████████████████████ XINDEX ███████████████████████████████████████████████
 # ████████████████████████████████████████████ XINDEX ███████████████████████████████████████████████
 
-# 1- INSTANCIO EL OBJETO ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 # The_X_Men = XindeX(head_datapush  = " XINDEX - OVER-MAIN ")
-The_X_Men = Over_Main(tipo_index='a', b_mode_all=True, b_loop=True )
+
+# 1- INSTANCIO EL OBJETO ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+#   ■ [tipo_index='a']  , TIPO DE INDICE a.1. , b.2.1 etc. OTROS TIPOS: ■ 1 or '1' ■ 'A' ■ 'A1' or '1A' or 'a1' or '1a'
+#   ■ [b_mode_all=False], SOLO SE EJECUTAN LOS HIJOS Y LOS PADRES PUEDEN SER BEGGINER **
+#   ■ [b_loop=True]     , SE SALE POR <<< 
+The_X_Men = Over_Main(tipo_index='a', b_mode_all=False, b_loop=True )
 
 def main():
     global The_X_Men
 
     # 2- CREO LOS MENUS Y SUS FUNCIONES ASOCIADAS ▄▄▄▄▄▄▄▄▄▄▄▄
-    Menu1 = The_X_Men.addX(titulo='Menu1', lst_items = [ ("Info XindeX" , None), ("Estilos" , None),("Procesos" , None), ("Flask" , None) ],  fraseHead = " - M A I N M E N U - ")
-    
+    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, lst_items = [ ("Info XindeX" , None), ("Estilos" , None),("Procesos" , None), ("Flask" , None) ])
     # 3- COFIGURO LA GENETICA DEL INDICE ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-    The_X_Men.config(titulo='Menu1'  , suPadre=None , indexInPadre = None )
+    # The_X_Men.config(titulo='Menu1'  , suPadre=None , indexInPadre = None )
+    
+    # ■ 2-3 ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION ..... (Uso Recomendado por claridad)
+    The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1' , ipadre="Info XindeX" , lst_items = [ ("Sobre XindeX" , sobre_xindex) , ("Parametros Mystyca", parametros ), ("Ejemplos Uso" , None ) ] )    
+    The_X_Men.addX( titulo='sub-Estilos', padre='Menu1' , ipadre = 'Estilos' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
+    The_X_Men.addX( titulo='sub-Procesos', padre='Menu1' , ipadre = 'Procesos' , lst_items = [ ("Listar Proceso", listar_procesos) , ("Lanzar Proceso" , None), ("Detener Proceso" , None) ] )    
     
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ FORMA LARGA Y MAS ANTIGUA.
     # ■ AÑADE Y CONFIGURA - es el camino largo... o por partes.
-    # The_X_Men.addX(titulo='subXindex', lst_items=[ ("Info Inicial" , None) ,  ("Configuracion XindeX", None ), ("Explicacion Parametros", explicacion_parametros ), ("Ejemplos Uso" , None ) ])
+    # The_X_Men.addX(titulo='subXindex', lst_items=[ ("Info Inicial" , None) ,  ("Configuracion XindeX", None ), ("Explicacion Parametros", parametros ), ("Ejemplos Uso" , None ) ])
     # The_X_Men.config(titulo='subXindex' , suPadre='Menu1' , indexInPadre='Info XindeX' )    
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    
-    # ■ 2-3 ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION ..... (Uso Recomendado por claridad)
-    The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1' , ipadre="Info XindeX" , lst_items = [ ("Info Inicial" , None) ,  ("Procesos", None ), ("Explicacion Parametros", explicacion_parametros ), ("Ejemplos Uso" , None ) ] )    
-    The_X_Men.addX( titulo='sub-Estilos', padre='Menu1' , ipadre = 'Estilos' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
-    The_X_Men.addX( titulo='sub-Procesos', padre='Menu1' , ipadre = 'Procesos' , lst_items = [ ("Listar Proceso", None) , ("Lanzar Proceso" , None), ("Detener Proceso" , None) ] )    
 
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     # ■ 4- LLAMO A MYSTYCA PARA VISUALIZAR EL MENU ■■■■■■■■■■■                               
-    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=5 )
-    # retorno = The_X_Men.mystyca( titulo='Menu1',  pad_x=50 )
+    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=25 )
+    # retorno = The_X_Men.mystyca( titulo='Menu1',  pad_x=30 )
 
     # 5- RETORNO DE MYSTYCA ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
     print(f"::: T H E   E N D  en MAIN() ::: {retorno if retorno else 'no retorno'} ")
@@ -47,15 +53,15 @@ def main():
 # ████████████████████████████████████████████ FUNCIONES DEFINIDAS EN XINDEX ███████████████████████████████████████████████
 # ████████████████████████████████████████████ FUNCIONES DEFINIDAS EN XINDEX ███████████████████████████████████████████████
 
-def explicacion_parametros():
+def parametros():
     print('\n ■■■■■■■■■■■■■ EXPLICACION DE LOS PARAMETROS PASADOS A MYSTICA ■■■■■■■■■■■■■■')
     print(""" retorno = The_X_Men.mystyca(  
-                            titulo      = Menu1, 
+                            titulo          = Menu1, 
                             b_terminator    = True, 
-                            tipo_index = a, 
-                            b_mode_all     = False, 
-                            b_loop        = True , 
-                            pad_x        = 50) 
+                            tipo_index      = 'a', 
+                            b_mode_all      = False, 
+                            b_loop          = True , 
+                            pad_x           = 50) 
     """)
 
     print("""     
@@ -75,17 +81,47 @@ def explicacion_parametros():
     ■ [pad_x](int)           Espacio entre el final del caracter mas a la derecha y el marco derecho del XindeX
     """)
 
+def listar_procesos():
+    global The_X_Men    
+    print(f'{The_X_Men.listar_procesos()}')
+
 def version_web():
     global The_X_Men    
     print(f'Accion version Web WIP')
-    The_X_Men.get_web_lsts_lens_linea(titulo='Menu1',  tipo_index='a', b_mode_all=False, b_loop=True, pad_x=30)
+    The_X_Men.get_web_lsts_lens_linea(titulo='Menu1',  tipo_index='a', b_mode_all=False, b_loop=True, pad_x=15)
 
 def lanza_flask():
-    print('L a n z a   F l a s k ')
+    print('LANZA FLASK')
     # from proyecto_final_v1 import funciones_tablas
     # from proyecto_final_v1.main import app as servidor_flask
     # servidor_flask.run()
 
+def sobre_xindex():
+    print(""" from classXindeX import XindeX          # ■ XINDEX A PELO
+from classXindeX import Over_Main       # ■ PADRE DE XINDEX CON ■ COLOR EN HEAD Y PIE  ■ BEGIN ** ■ LANZAR DEMONIO << >> ■ LANZA BACKGROUND => 
+from Sdata import Sdata                 # ■ AYUDA PARA EL OVER-MAIN PARA PEDIR DATOS SEGUROS AL USUARIO
+
+def main():
+    # ■■■■■■ INSTANCIO EL OBJETO ■■■■■■
+
+    The_X_Men = Over_Main(tipo_index='a', b_mode_all=False, b_loop=True )
+    
+    
+    # ■■■■■■ ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION GENETICA(padre, ipadre) ■■■■■■
+    
+    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, lst_items = [ ('Info XindeX' , None),('Procesos' , None))
+    
+    The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1' , ipadre='Info XindeX' , lst_items = [ ('Sobre XindeX' , None) , ('Parametros Mystyca', parametros ) ] )    
+    
+    The_X_Men.addX( titulo='sub-Estilos', padre='sub-Xindex' , ipadre = 'Sobre XindeX' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
+    
+    The_X_Men.addX( titulo='sub-Procesos', padre='Menu1' , ipadre = 'Procesos' , lst_items = [ ("Listar Proceso", listar_procesos) , ("Lanzar Proceso" , None) ])    
+
+    
+    # ■■■■■■ LLAMO A MYSTYCA PARA VISUALIZAR EL MENU ■■■■■■■■■■■                               
+    
+    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = 'XINDEX - OVER-MAIN' , pad_x=5 )
+""")
 
 # ████████████████████████████████████████████ INICIO ███████████████████████████████████████████████
 # ████████████████████████████████████████████ INICIO ███████████████████████████████████████████████

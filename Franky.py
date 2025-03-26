@@ -2121,7 +2121,8 @@ class Rango(Celda):
         longitudes=[]
         for lst_columna in matriz_columnas:
             for celda in lst_columna:
-                longitudes.append(len(str(celda.valor)))
+                # longitudes.append(len(str(celda.valor)))
+                longitudes.append( self.len_without_ANSI(str(celda.valor)) )
                 
         return max(longitudes) if longitudes else 0
 
@@ -2149,7 +2150,8 @@ class Rango(Celda):
         for fila in self.matriz:
             longitud_fila=0
             for celda in fila:
-                longitud_fila += len(str(celda.valor))
+                # longitud_fila += len(str(celda.valor))
+                longitud_fila += self.len_without_ANSI(str(celda.valor))
             pass
             longitud_fila -= resta
             lst_fila.append(longitud_fila)    
@@ -2158,27 +2160,20 @@ class Rango(Celda):
     
     # LISTA CON EL SUMATORIO DE LONGITUD DE CADA FILA
     def get_lst_longitud_valores_x_fila(self):
-        """ LISTA CON LA LONGITUD DE CADA FILA        
+        """ LISTA CON LA LONGITUD DE CADA FILA QUITANDO LOS CARACTERES ANSI(para poder imprimir en color y no descolocar los margenes)       
         """
         lst_max_filas = []
         for fila in self.matriz:
             longitud_total_fila=0
             for celda in fila:
-                longitud_total_fila += len(str(celda.valor)) 
+                # longitud_total_fila += len(str(celda.valor)) 
+                longitud_total_fila += self.len_without_ANSI(str(celda.valor))
             pass            
             lst_max_filas.append(longitud_total_fila)    
         pass                
         return lst_max_filas if lst_max_filas else None
 
-    # DEVUELVE LA LONGITUD DE TODOS LOS VALORES DE LAS CELDAS DE UNA FILA.
-    def get_len_fila(self, fila:int ):
-        lst_max_filas = self.get_list_max_filas()
-        if not lst_max_filas: return None
-        for i, max_fila in enumerate(lst_max_filas):
-            if fila == i:
-                return max_fila
-        return None
-    
+       
     
     # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
     #  MISCELANEA
@@ -2635,6 +2630,11 @@ class Tablero(Rango):
             typo = Type_Rng(RECTG)
         return typo
 
+    def len_without_ANSI(self, texto: str) -> int:
+        """ Calcula la longitud real del texto sin códigos ANSI """
+        ANSI_ESCAPE = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+        return len(ANSI_ESCAPE.sub('', texto))
+
 # ████████████████████████████████████████████████████████████████████████████████████████████████████████████
 # ████████████████████████████████████████████████████████████████████████████████████████████████████████████
 """  
@@ -2648,9 +2648,9 @@ class Tablero(Rango):
 
 # •••••••••••••••••••••••••••••••••
 # VARIABLES GLOBALES Y CONSTANTES 
-import pyfiglet                       # Letras compuestas de diferentes tamaños
+import pyfiglet                              # Letras compuestas de diferentes tamaños
 from colorama import init , Fore, Style      # Colores
-init(autoreset=True)
+init(autoreset=True)                         # Colores Para windows
 
 # ■■■■■■■■■■■■■■■■■■■■■■■■
 # ■■■■■■■■■■■■■■■■■■■■■■■■
@@ -3140,37 +3140,29 @@ class F_r_a_n_k_y(Tablero):
         lst_resto_to_add_pie = [ maximo_franky - len_fila for len_fila in lst_len_filas_pie ] if lst_len_filas_pie else None        
 
         print()        
-        """ 
-        ■■■■■■■■■■■■■ HEAD ■■■■■■■■■■■■■ """
+        
+        # ■■■■■■■■■■■■■ HEAD ■■■■■■■■■■■■■
         try:
             if self.head:
-                # print(f'{self.char_head * (  maximo_franky  + self.pad_x + len(self.char_marco) + self.margen + len(self.char_marco) + self.x_pad + sp_between*self.head.total_columnas + ancho_columna*self.head.total_columnas )}')             
                 print(f'{self.ESPACIO * self.margen}{self.char_head * (  maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between*self.head.total_columnas + ancho_columna*self.head.total_columnas )}')             
-                # print(f'{self.ESPACIO * self.margen}{self.char_head * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
                 self.__imprimir_tablero_literal(tablero = self.head ,  lst_resto_to_add = lst_resto_to_add_head) 
         except Exception as e:
             print(f'{e}')
             return None
-        """
-        ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■ """
-        try:
-            # print(f'{self.char_up_body * (  maximo_franky  + self.pad_x + len(self.char_marco) + self.margen + len(self.char_marco) + self.x_pad + sp_between * self.total_columnas + ancho_columna * self.total_columnas  )}')                 
-            print(f'{self.ESPACIO * self.margen}{self.char_up_body * (  maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between * self.total_columnas + ancho_columna * self.total_columnas  )}')                 
-            
-            self.__imprimir_tablero_literal(tablero = self ,  lst_resto_to_add = lst_resto_to_add, fila_from = fila_from, fila_to = fila_to) 
-
-            # print(f'{self.char_down_body * ( maximo_franky  + self.pad_x + len(self.char_marco) + self.margen + len(self.char_marco) + self.x_pad + sp_between*self.total_columnas + ancho_columna*self.total_columnas  )}')       
-            print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between*self.total_columnas + ancho_columna*self.total_columnas  )}')       
         
+        # ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■
+        try:
+            print(f'{self.ESPACIO * self.margen}{self.char_up_body * (  maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between * self.total_columnas + ancho_columna * self.total_columnas  )}')                 
+            self.__imprimir_tablero_literal(tablero = self ,  lst_resto_to_add = lst_resto_to_add, fila_from = fila_from, fila_to = fila_to) 
+            print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between*self.total_columnas + ancho_columna*self.total_columnas  )}')       
         except Exception as e:
             print(f'{e}')
             return None
-        """ 
-        ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■ """        
+        
+        # ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■        
         try:
             if self.pie:                
                 self.__imprimir_tablero_literal(tablero = self.pie  , lst_resto_to_add = lst_resto_to_add_pie) 
-                # print(f'{self.char_pie * ( maximo_franky  + self.pad_x + len(self.char_marco) + self.margen + len(self.char_marco) + self.x_pad + sp_between*self.pie.total_columnas + ancho_columna*self.pie.total_columnas   )}')             
                 print(f'{self.ESPACIO * self.margen}{self.char_pie * ( maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between*self.pie.total_columnas + ancho_columna*self.pie.total_columnas   )}')             
         except Exception as e:
             print(f'{e}')
@@ -3218,7 +3210,6 @@ class F_r_a_n_k_y(Tablero):
         
         # BODY ■■■■■■■■■■■■■
         try:
-            # print(f'{self.char_up_body * (  maximo_franky  + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')          
             print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
             """ ■■■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD """
             lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
@@ -3265,7 +3256,6 @@ class F_r_a_n_k_y(Tablero):
                     print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
             
             # ■■■■
-            # print(f'{self.char_down_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')       
             print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
         except Exception as e:
             print(f'{e}')
@@ -3312,7 +3302,6 @@ class F_r_a_n_k_y(Tablero):
 
         # ■■■■■■ IMPRIME BODY ■■■■■■        
         try:
-            # print(f'{self.char_up_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')            
             print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
             """ ■■■■ CREAR LISTA DE STR_FORMATO.... CON LOS CHARS A AÑADIR AL FORMATO(MARGEN, PAD_X, X_PAD, CHAR_MARCO Y RESTO) """
             lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
@@ -3378,7 +3367,6 @@ class F_r_a_n_k_y(Tablero):
             print(f'{e}')
             return None
 
-        # print(f'{self.char_down_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')               
         print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
         # ■■■■■■ IMPRIME PIE ■■■■■■        
         self.__imprimir_pie(maximo_franky = maximo_franky )
@@ -3425,7 +3413,6 @@ class F_r_a_n_k_y(Tablero):
         ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■ 
         """
         try:
-            # print(f'{self.char_up_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')            
             print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
             """ ■■■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD """
             lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
@@ -3485,7 +3472,6 @@ class F_r_a_n_k_y(Tablero):
             print(f'{e}')
             return None
 
-        # print(f'{self.char_down_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')
         print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')    
                 
         """ 
@@ -3535,7 +3521,6 @@ class F_r_a_n_k_y(Tablero):
         
         # ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■ 
         try:
-            # print(f'{self.char_up_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')            
             print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')    
             # ■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD
             lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
@@ -3599,7 +3584,6 @@ class F_r_a_n_k_y(Tablero):
             print(f'{e}')
             return None
 
-        # print(f'{self.char_down_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')
         print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')    
         # ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■        
         self.__imprimir_pie(maximo_franky = maximo_franky )
@@ -3651,7 +3635,6 @@ class F_r_a_n_k_y(Tablero):
         
         # ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■ 
         try:
-            # print(f'{self.char_up_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')            
             print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')    
             # ■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD
             lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
@@ -3717,7 +3700,6 @@ class F_r_a_n_k_y(Tablero):
             print(f'{e}')
             return None
 
-        # print(f'{self.char_down_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')
         print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
         # ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■        
         self.__imprimir_pie(maximo_franky = maximo_franky )
@@ -3829,7 +3811,6 @@ class F_r_a_n_k_y(Tablero):
         
         # BODY ■■■■■■■■■■■■■■■■■■■■■■■■■■
         try:
-            # print(f'{self.char_up_body * (  maximo_franky  + self.margen + len(self.char_marco) + self.x_pad  + self.pad_x + len(self.char_marco) )}')          
             print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
             """ ■■■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD """
             lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
@@ -3884,7 +3865,6 @@ class F_r_a_n_k_y(Tablero):
                     # ■■■■■■ IMPRIME LOS VALORES DE LA FILA  ■■■■■■
                     print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
             # ■■■■
-            # print(f'{self.char_down_body * ( maximo_franky + self.margen + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')       
             print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
         except Exception as e:
             print(f'{e}')
@@ -3974,14 +3954,14 @@ class F_r_a_n_k_y(Tablero):
             # lst_len_filas_head = self.head.get_lst_longitud_valores_x_fila()  if self.head else None                 
             # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
             # ■ LISTA DE LONGITUDES VISIBLES (sin códigos ANSI)
-            # lst_len_filas_head_ANSI2 = [self.longitud_visible(celda.valor) for fila in self.head.matriz for celda in fila]  
+            # lst_len_filas_head_ANSI2 = [self.len_without_ANSI(celda.valor) for fila in self.head.matriz for celda in fila]  
         
             # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
             lst_len_filas_head_ANSI = []
             for fila in self.head.matriz:
                 longitud_total_fila=0
                 for celda in fila:
-                    longitud_total_fila += self.longitud_visible(celda.valor)
+                    longitud_total_fila += self.len_without_ANSI(str(celda.valor))
                 pass            
                 lst_len_filas_head_ANSI.append(longitud_total_fila)    
 
@@ -4006,9 +3986,9 @@ class F_r_a_n_k_y(Tablero):
     #     # ■ LISTA DEL LEN DE CADA FILA 
     #     lst_len_filas_head_VAL = self.head.get_lst_longitud_valores_x_fila()  if self.head else None                 
     #     try:
-    #         # Aplicar longitud_visible a cada fila para eliminar los códigos ANSI
+    #         # Aplicar len_without_ANSI a cada fila para eliminar los códigos ANSI
     #         lst_len_filas_head = [
-    #             self.longitud_visible(str(fila)) for fila in lst_len_filas_head_VAL
+    #             self.len_without_ANSI(str(fila)) for fila in lst_len_filas_head_VAL
     #         ]
 
     #         # Calcular los espacios adicionales que necesita cada fila
@@ -4035,7 +4015,7 @@ class F_r_a_n_k_y(Tablero):
         # lst_len_filas_pie = self.pie.get_lst_longitud_valores_x_fila() if self.pie else None
         
         # ■ LISTA DE LONGITUDES VISIBLES (sin códigos ANSI)
-        lst_len_filas_pie_ANSI = [self.longitud_visible(celda.valor) for fila in self.pie.matriz for celda in fila]  
+        lst_len_filas_pie_ANSI = [self.len_without_ANSI(str(celda.valor)) for fila in self.pie.matriz for celda in fila]  
         
         # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA 
         lst_resto_to_add_pie = [ maximo_franky - len_fila for len_fila in lst_len_filas_pie_ANSI ] if lst_len_filas_pie_ANSI else None
@@ -4047,12 +4027,6 @@ class F_r_a_n_k_y(Tablero):
         except Exception as e:
             print(f'{e}')
             return None
-    
-    
-    def longitud_visible(self, texto: str) -> int:
-        """ Calcula la longitud real del texto sin códigos ANSI """
-        ANSI_ESCAPE = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
-        return len(ANSI_ESCAPE.sub('', texto))
 
     # PONE UN FORMAT BASICO SOBRE LA ULTIMA COLUMNA USADA. SOLO SP_BETWEEN. LITERAL. ANCHO = 0, 
     def __get_lst_formato_mosaico(self, str_formato:str, b_between:bool = True):
