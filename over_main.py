@@ -25,15 +25,14 @@ The_X_Men = Over_Main(tipo_index='a', b_mode_all=False, b_loop=True )
 def main():
     global The_X_Men
 
-    # 2- CREO LOS MENUS Y SUS FUNCIONES ASOCIADAS ▄▄▄▄▄▄▄▄▄▄▄▄
-    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, lst_items = [ ("Info XindeX" , None), ("Estilos" , None),("Procesos" , None), ("Flask" , None) ])
-    # 3- COFIGURO LA GENETICA DEL INDICE ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-    # The_X_Men.config(titulo='Menu1'  , suPadre=None , indexInPadre = None )
-    
-    # ■ 2-3 ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION ..... (Uso Recomendado por claridad)
+    # ■- CREO LOS MENUS Y SUS FUNCIONES ASOCIADAS ▄▄▄▄▄▄▄▄▄▄▄▄
+    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, lst_items = [ ("Info XindeX" , None), ("Estilos" , None),("Procesos" , None), ("From-To" , from_to) ])
+    # ■- ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION ..... (Uso Recomendado por claridad)
     The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1' , ipadre="Info XindeX" , lst_items = [ ("Sobre XindeX" , sobre_xindex) , ("Parametros Mystyca", parametros ), ("Ejemplos Uso" , None ) ] )    
     The_X_Men.addX( titulo='sub-Estilos', padre='Menu1' , ipadre = 'Estilos' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
     The_X_Men.addX( titulo='sub-Procesos', padre='Menu1' , ipadre = 'Procesos' , lst_items = [ ("Listar Proceso", listar_procesos) , ("Lanzar Proceso" , None), ("Detener Proceso" , None) ] )    
+    
+    The_X_Men.addX( titulo='sub-Aux', padre='sub-Estilos' , ipadre = 'Ver Estilos' , lst_items = [ ("aux 1", None) , ("aux 2" , None), ("aux 3" , None) ] )    
     
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ FORMA LARGA Y MAS ANTIGUA.
     # ■ AÑADE Y CONFIGURA - es el camino largo... o por partes.
@@ -43,7 +42,7 @@ def main():
 
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     # ■ 4- LLAMO A MYSTYCA PARA VISUALIZAR EL MENU ■■■■■■■■■■■                               
-    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=25 )
+    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=5 )
     # retorno = The_X_Men.mystyca( titulo='Menu1',  pad_x=30 )
 
     # 5- RETORNO DE MYSTYCA ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -122,6 +121,14 @@ def main():
     
     retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = 'XINDEX - OVER-MAIN' , pad_x=5 )
 """)
+
+def from_to():
+    global The_X_Men    
+    sdata = Sdata.get_data(key_dict='FD', tipo=int, msg_entrada='INTRO FILA-DESDE: ', permite_nulo=False)
+    sdata = Sdata.get_data(key_dict='FH', dicc=sdata, tipo=int, msg_entrada='INTRO FILA-HASTA: ', permite_nulo=False)
+    print(f'FROM {sdata["FD"]} TO {sdata["FH"]}')
+        
+    The_X_Men.F_RANK_Y.imprimir(sp_between = 2, ancho_columna = None, fila_from=sdata['FD'], fila_to=sdata['FH'] )
 
 # ████████████████████████████████████████████ INICIO ███████████████████████████████████████████████
 # ████████████████████████████████████████████ INICIO ███████████████████████████████████████████████
