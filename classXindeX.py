@@ -1357,7 +1357,7 @@ class Over_Main(XindeX):
         self.procesos = {}
 
         # ■ PREFIJO + RESPUESTA ... Se evalua cada uno: 
-        self.lst_resp_BEGINERS = ['**', '=>', '*']
+        self.lst_resp_BEGINERS = ['**', '=>', '=']
         # ■ ENVUELTAS... Se evalua la lista como una unidad, (pre y pos)(envoltorio) : 
         self.lst_resp_PACK_1 = ['<<','>>']        
 
@@ -1597,9 +1597,8 @@ class Over_Main(XindeX):
                 if funcion is None: return
                 self.lanzar_proceso(nombre = funcion.__name__, proceso=funcion,  demonio=False)
             
-            # ■■■ MODO LIKE ■■■ 
-            elif mono_from == '*':  
-                # for fila in lista_m_i_l_a_n_p_i_f:
+            # ██████  LIKE  ██████
+            elif mono_from == '=':  
 
                 if not self.matriz_impresion_xindex: return None      
                 # ■■ LISTA DE STRING PARA IMPRIMIR 
@@ -1614,11 +1613,13 @@ class Over_Main(XindeX):
                 desde = min(lst_numero_fila)
                 hasta = max(lst_numero_fila)
                 pass
-                self.F_RANK_Y.imprimir(sp_between = 2, ancho_columna = None , fila_from=desde, fila_to=hasta)                       
+                self.F_RANK_Y_DEF.imprimir(sp_between = 2, ancho_columna = None , fila_from=desde, fila_to=hasta)                       
+
             # ■■■ NOT FOUND ■■■ 
             else:                                        
                 print(f'{mono_from}- NOT FOUND :(')                     
 
+        # ██████ FROM - TO ██████
         elif (  mono_from   is not None and
                 mono_to     is not None and               
                 respuesta   == Over_Main.FROM_TO and 

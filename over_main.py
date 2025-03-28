@@ -20,13 +20,13 @@ import tkinter as tk    # SOLO EN CASO DE NECESITARLO
 #   ■ [tipo_index='a']  , TIPO DE INDICE a.1. , b.2.1 etc. OTROS TIPOS: ■ 1 or '1' ■ 'A' ■ 'A1' or '1A' or 'a1' or '1a'
 #   ■ [b_mode_all=False], SOLO SE EJECUTAN LOS HIJOS Y LOS PADRES PUEDEN SER BEGGINER **
 #   ■ [b_loop=True]     , SE SALE POR <<< 
-The_X_Men = Over_Main(tipo_index='a', b_mode_all=False, b_loop=True )
+The_X_Men = Over_Main(tipo_index='a', b_mode_all=True, b_loop=True )
 
 def main():
     global The_X_Men
 
     # ■- CREO LOS MENUS Y SUS FUNCIONES ASOCIADAS ▄▄▄▄▄▄▄▄▄▄▄▄
-    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, lst_items = [ ("Info XindeX" , None), ("Estilos" , None),("Procesos" , None), ("From-To" , from_to) ])
+    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, lst_items = [ ("Info XindeX" , info_index), ("Estilos" , None),("Procesos" , None), ("From-To" , from_to) ])
     # ■- ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION ..... (Uso Recomendado por claridad)
     The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1' , ipadre="Info XindeX" , lst_items = [ ("Sobre XindeX" , sobre_xindex) , ("Parametros Mystyca", parametros ), ("Ejemplos Uso" , None ) ] )    
     The_X_Men.addX( titulo='sub-Estilos', padre='Menu1' , ipadre = 'Estilos' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
@@ -94,6 +94,33 @@ def lanza_flask():
     # from proyecto_final_v1 import funciones_tablas
     # from proyecto_final_v1.main import app as servidor_flask
     # servidor_flask.run()
+
+def info_index():
+    print("""
+    ■ <<<           SALIR
+    
+    ■ ?             MUESTRA EL MENU DE DEFINICION 
+                    Muestra la Funcion que se Ejecuta en cada Item del Menu y el Modo de Ejecucion(Exec All or Exec Directory) en el Head
+
+    ■ <             REPITE EL MENU
+    
+    ■ =a.1          LIKE , MUESTRA TODO LO QUE EMPIEZA POR a.1
+                    Es sóo visual. Muestra el menu filtrado pero admite cualquier entrada al menu. 
+        ■ =a1       ERROR :::: NO muestra nada  pq hay que Ponerlo en la forma con PTO (a.1)
+    
+    ■ **b           MODO SUB-MENU. MUESTRA EL MENU SI b ES PADRE (DIRECTORY)
+        ■ **b.1     MUESTRA EL SUB-MENU b.1  ■ Se ejecuta SI b.1 es PADRE (DIRECTORY)
+        ■ **a.1     ERROR :::: No está permitido SI  a.1 es HIJO. 
+    
+    ■ =>a.1         LANZA Un PROCESO En Modo INDEPENDIENTE del Proceso PPAL. Si el P
+        ■ =>a       ERROR :::: No Se ejecuta pq 'a' es PADRE (DIRECTORY) si b_mode_all=False
+                    Sin embargo si b_mode_all=True, y tiene asignada una funcion, se ejecuta como Background.
+    
+    ■ <<a1>>        LANZA Un PROCESO En Modo DEPENDIENTE (DEMONIO) DEL PROGRAMA PPAL. Cuando el PPal Acaba, el demonio acaba abruptamente tb.
+        ■ <<a>>     ERROR :::: No Se ejecuta pq 'a' es PADRE (DIRECTORY) SI b_mode_all=False. 
+                    Sin embargo si b_mode_all=True, y tiene asignada una funcion, se ejecuta como Demonio.
+    """)
+
 
 def sobre_xindex():
     print(""" from classXindeX import XindeX          # ■ XINDEX A PELO
