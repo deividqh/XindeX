@@ -1,12 +1,16 @@
 # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-# from classXindeX import XindeX          # ■ XINDEX A PELO
+# from classXindeX import XindeX        # ■ XINDEX A PELO
 from classXindeX import Over_Main       # ■ PADRE DE XINDEX CON ■ COLOR EN HEAD Y PIE  ■ BEGIN ** ■ LANZAR DEMONIO << >> ■ LANZA BACKGROUND => 
 from Sdata import Sdata                 # ■ AYUDA PARA EL OVER-MAIN PARA PEDIR DATOS SEGUROS AL USUARIO
+
+from colorama import Fore, Style, init  # ■ COLORAMA PARA COLORES EN TERMINAL....por si se quiere usar colores para 'ayudas'
 
 # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import os               # SISTEMA OPERATIVO(PARA LIMPIAR LA TERMINAL)
 # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import tkinter as tk    # SOLO EN CASO DE NECESITARLO
+
+import multiprocessing
 
 # ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 # DEF: CREA UN INDICE MULTINIVEL CON GENETICA QUE EJECUTA LAS FUNCIONES ASOCIADAS A CADA MENU
@@ -17,22 +21,26 @@ import tkinter as tk    # SOLO EN CASO DE NECESITARLO
 # The_X_Men = XindeX(head_datapush  = " XINDEX - OVER-MAIN ")
 
 # 1- INSTANCIO EL OBJETO ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-#   ■ [tipo_index='a']  , TIPO DE INDICE a.1. , b.2.1 etc. OTROS TIPOS: ■ 1 or '1' ■ 'A' ■ 'A1' or '1A' or 'a1' or '1a'
-#   ■ [b_mode_all=False], SOLO SE EJECUTAN LOS HIJOS Y LOS PADRES PUEDEN SER BEGGINER **
-#   ■ [b_loop=True]     , SE SALE POR <<< 
 The_X_Men = Over_Main(tipo_index='a', b_mode_all=True, b_loop=True )
 
 def main():
     global The_X_Men
 
     # ■- CREO LOS MENUS Y SUS FUNCIONES ASOCIADAS ▄▄▄▄▄▄▄▄▄▄▄▄
-    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, lst_items = [ ("Info XindeX" , info_index), ("Estilos" , None),("Procesos" , None), ("From-To" , from_to) ])
-    # ■- ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION ..... (Uso Recomendado por claridad)
-    The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1' , ipadre="Info XindeX" , lst_items = [ ("Sobre XindeX" , sobre_xindex) , ("Parametros Mystyca", parametros ), ("Ejemplos Uso" , None ) ] )    
-    The_X_Men.addX( titulo='sub-Estilos', padre='Menu1' , ipadre = 'Estilos' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
-    The_X_Men.addX( titulo='sub-Procesos', padre='Menu1' , ipadre = 'Procesos' , lst_items = [ ("Listar Proceso", listar_procesos) , ("Lanzar Proceso" , None), ("Detener Proceso" , None) ] )    
+    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, 
+                    lst_items = [ ("Info XindeX" , None), ("Estilos" , None),("Procesos" , None), ("From-To" , from_to) ] )
     
-    The_X_Men.addX( titulo='sub-Aux', padre='sub-Estilos' , ipadre = 'Ver Estilos' , lst_items = [ ("aux 1", None) , ("aux 2" , None), ("aux 3" , None) ] )    
+    The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1'   , ipadre="Info XindeX", 
+                    lst_items = [ ("Sobre XindeX" , None) , ("Parametros Mystyca", None ), ("Ejemplos Uso" , None ) ] )    
+    
+    The_X_Men.addX( titulo='sub-Estilos', padre='Menu1'   , ipadre='Estilos'    , 
+                    lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
+    
+    The_X_Men.addX( titulo='sub-Procesos', padre='Menu1'  , ipadre='Procesos'   , 
+                    lst_items = [ ("Listar Proceso", listar_procesos) , ("Lanzar Proceso" , lanzar_proceso), ("Detener Proceso" , None) , ('OS procesos', subprocess_os)] )    
+    
+    The_X_Men.addX( titulo='sub-Aux', padre='sub-Estilos' , ipadre='Ver Estilos', 
+                    lst_items = [ ("Switch b_mode_all", set_style) , ("Cambiar Estilo Marco" , cambiar_estilo_marco), ("aux 3" , None) ] )    
     
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ FORMA LARGA Y MAS ANTIGUA.
     # ■ AÑADE Y CONFIGURA - es el camino largo... o por partes.
@@ -42,6 +50,7 @@ def main():
 
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     # ■ 4- LLAMO A MYSTYCA PARA VISUALIZAR EL MENU ■■■■■■■■■■■                               
+    # retorno = The_X_Men.mystyca( titulo='sub-Xindex', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=5 )
     retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=5 )
     # retorno = The_X_Men.mystyca( titulo='Menu1',  pad_x=30 )
 
@@ -52,42 +61,11 @@ def main():
 # ████████████████████████████████████████████ FUNCIONES DEFINIDAS EN XINDEX ███████████████████████████████████████████████
 # ████████████████████████████████████████████ FUNCIONES DEFINIDAS EN XINDEX ███████████████████████████████████████████████
 
-def parametros():
-    print('\n ■■■■■■■■■■■■■ EXPLICACION DE LOS PARAMETROS PASADOS A MYSTICA ■■■■■■■■■■■■■■')
-    print(""" retorno = The_X_Men.mystyca(  
-                            titulo          = Menu1, 
-                            b_terminator    = True, 
-                            tipo_index      = 'a', 
-                            b_mode_all      = False, 
-                            b_loop          = True , 
-                            pad_x           = 50) 
-    """)
 
-    print("""     
-    ■ [titulo](str)         ◄► Id del Menu Añadido y Configurado 
-        
-    ■ [b_terminator](bool)      True  ◄► Cuando sale de aquí ya se ha ejecutado la funcion del menu.....lleve donde lleve, pero tiene que estar  
-                            False ◄► Se retorna a main la respuesta y se gestiona por el usuario.
-    
-    ■ [b_mode_all](bool)       True ◄► Solo se ejecutan ( o solo es opcion valida) los subMenus Finales (no padres) 
-                            False ◄► Se ejecuta (solo los que son opcion valida) todo lo que no sea None en func.
-
-    ■ [tipo_index](str)  '1'  ◄► Numerico(byDef)   █ 'a' ::: Alfabetico Min █ 'A' ::: Alfabetico May  █ 'A1', '1A', a1, 1a ::: Mixto
-    
-    ■ [b_loop](bool)          True ◄►  Ejecuta Items del XindeX y solo sale por '<<<'  (byDef)
-                            False ◄► Si sólo ejecutamos una vez y retorna respuesta 
-    
-    ■ [pad_x](int)           Espacio entre el final del caracter mas a la derecha y el marco derecho del XindeX
-    """)
-
-def listar_procesos():
-    global The_X_Men    
-    print(f'{The_X_Men.listar_procesos()}')
-
-def version_web():
+def  version_web():
     global The_X_Men    
     print(f'Accion version Web WIP')
-    The_X_Men.get_web_lsts_lens_linea(titulo='Menu1',  tipo_index='a', b_mode_all=False, b_loop=True, pad_x=15)
+    The_X_Men.get_web_lsts_lens_linea( titulo='Menu1',  tipo_index=0, b_mode_all=True, b_loop=True, pad_x=15)
 
 def lanza_flask():
     print('LANZA FLASK')
@@ -95,59 +73,15 @@ def lanza_flask():
     # from proyecto_final_v1.main import app as servidor_flask
     # servidor_flask.run()
 
-def info_index():
-    print("""
-    ■ <<<           SALIR
+def set_style():
+    global The_X_Men
+    if The_X_Men.get_b_mode_all() == True:
+        b_mode_all = False
+    else:
+        b_mode_all = True
+    The_X_Men.set_style(b_mode_all = b_mode_all)
+    print(f'::: MODO {f'Directorio Switch  To ► Exec-All' if b_mode_all == True else f'Exec-All  Switch To ► Directorio'}  ::: ')
     
-    ■ ?             MUESTRA EL MENU DE DEFINICION 
-                    Muestra la Funcion que se Ejecuta en cada Item del Menu y el Modo de Ejecucion(Exec All or Exec Directory) en el Head
-
-    ■ <             REPITE EL MENU
-    
-    ■ =a.1          LIKE , MUESTRA TODO LO QUE EMPIEZA POR a.1
-                    Es sóo visual. Muestra el menu filtrado pero admite cualquier entrada al menu. 
-        ■ =a1       ERROR :::: NO muestra nada  pq hay que Ponerlo en la forma con PTO (a.1)
-    
-    ■ **b           MODO SUB-MENU. MUESTRA EL MENU SI b ES PADRE (DIRECTORY)
-        ■ **b.1     MUESTRA EL SUB-MENU b.1  ■ Se ejecuta SI b.1 es PADRE (DIRECTORY)
-        ■ **a.1     ERROR :::: No está permitido SI  a.1 es HIJO. 
-    
-    ■ =>a.1         LANZA Un PROCESO En Modo INDEPENDIENTE del Proceso PPAL. Si el P
-        ■ =>a       ERROR :::: No Se ejecuta pq 'a' es PADRE (DIRECTORY) si b_mode_all=False
-                    Sin embargo si b_mode_all=True, y tiene asignada una funcion, se ejecuta como Background.
-    
-    ■ <<a1>>        LANZA Un PROCESO En Modo DEPENDIENTE (DEMONIO) DEL PROGRAMA PPAL. Cuando el PPal Acaba, el demonio acaba abruptamente tb.
-        ■ <<a>>     ERROR :::: No Se ejecuta pq 'a' es PADRE (DIRECTORY) SI b_mode_all=False. 
-                    Sin embargo si b_mode_all=True, y tiene asignada una funcion, se ejecuta como Demonio.
-    """)
-
-
-def sobre_xindex():
-    print(""" from classXindeX import XindeX          # ■ XINDEX A PELO
-from classXindeX import Over_Main       # ■ PADRE DE XINDEX CON ■ COLOR EN HEAD Y PIE  ■ BEGIN ** ■ LANZAR DEMONIO << >> ■ LANZA BACKGROUND => 
-from Sdata import Sdata                 # ■ AYUDA PARA EL OVER-MAIN PARA PEDIR DATOS SEGUROS AL USUARIO
-
-def main():
-    # ■■■■■■ INSTANCIO EL OBJETO ■■■■■■
-
-    The_X_Men = Over_Main(tipo_index='a', b_mode_all=False, b_loop=True )
-    
-    
-    # ■■■■■■ ADD UN MENU CON ITEMS Y FUNCIONES Y LE ASIGNA CONFIGURACION GENETICA(padre, ipadre) ■■■■■■
-    
-    Menu1 = The_X_Men.addX(titulo='Menu1', padre=None , ipadre=None, lst_items = [ ('Info XindeX' , None),('Procesos' , None))
-    
-    The_X_Men.addX( titulo='sub-Xindex' , padre='Menu1' , ipadre='Info XindeX' , lst_items = [ ('Sobre XindeX' , None) , ('Parametros Mystyca', parametros ) ] )    
-    
-    The_X_Men.addX( titulo='sub-Estilos', padre='sub-Xindex' , ipadre = 'Sobre XindeX' , lst_items = [ ("Ver Estilos", None) , ("Version Web" , version_web) ] )    
-    
-    The_X_Men.addX( titulo='sub-Procesos', padre='Menu1' , ipadre = 'Procesos' , lst_items = [ ("Listar Proceso", listar_procesos) , ("Lanzar Proceso" , None) ])    
-
-    
-    # ■■■■■■ LLAMO A MYSTYCA PARA VISUALIZAR EL MENU ■■■■■■■■■■■                               
-    
-    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = 'XINDEX - OVER-MAIN' , pad_x=5 )
-""")
 
 def from_to():
     global The_X_Men    
@@ -157,10 +91,62 @@ def from_to():
         
     The_X_Men.F_RANK_Y.imprimir(sp_between = 2, ancho_columna = None, fila_from=sdata['FD'], fila_to=sdata['FH'] )
 
+def listar_procesos():
+    global The_X_Men    
+    print(f'{The_X_Men.listar_procesos()}')
+
+def subprocess_os():
+    import subprocess
+    
+    # sdata = Sdata.get_data(key_dict='P', tipo=str, msg_entrada='Intro Filtro: ', permite_nulo=True)
+    # resultado = subprocess.run(f'tasklist | findstr {sdata['P']}', shell=True, capture_output=True, text=True)
+    resultado = subprocess.run(f'tasklist | findstr "python"', shell=True, capture_output=True, text=True)
+    print(resultado.stdout)
+
+# PROCESO LARGO DE EJEMPLO... PRUEBAS PAR BACKGROUND Y DEMONIO
+import time
+def proceso_largo(**kwargs):
+    minutos = kwargs.get('minutos') if kwargs else None
+    if minutos is not None:
+        tiempo_hasta = minutos * 60
+    else:
+        tiempo_hasta = 60
+
+    print(f"⏳ Proceso iniciado (duración: {tiempo_hasta} segundos)")
+    inicio = time.time()
+
+    while True:
+        elapsed = time.time() - inicio
+        # print(f"⌛ {int(elapsed)}s transcurridos...", end="\r")
+        time.sleep(1)
+
+        if elapsed >= tiempo_hasta:
+            break
+
+    print("\n✅ Proceso finalizado.")
+
+def lanzar_proceso():
+    global The_X_Men    
+    sdata = Sdata.get_data(key_dict='B', tipo='BETWEEN', msg_entrada='Elige Entre (D)emonio o (B)ackground', permite_nulo=False, valores_between=['D','B'])
+    sdata = Sdata.get_data(key_dict='M', tipo=int, msg_entrada='Intro Minutos', permite_nulo=False, dicc=sdata)
+    if sdata['B'] == 'D':
+        The_X_Men.lanzar_proceso(nombre = proceso_largo.__name__ , proceso=proceso_largo, minutos=sdata['M'],  demonio=True)        
+    elif sdata['B'] == 'B':
+        The_X_Men.lanzar_proceso(nombre = proceso_largo.__name__ , proceso=proceso_largo, minutos=sdata['M'],  demonio=False)        
+    
+def cambiar_estilo_marco():
+    global The_X_Men    
+    sdata = Sdata.get_data(key_dict='S', tipo=str, msg_entrada='Nombre Estilo(franky/default/unicode/doble/vacio/moderno/elegante)', permite_nulo=False)
+    The_X_Men.F_RANK_Y.style(estilo=sdata['S'])
+    The_X_Men.F_RANK_Y_DEF.style(estilo=sdata['S'])
+    print(f'::: Estilo Marco cambiado a {sdata["S"]} ::: ')
+
 # ████████████████████████████████████████████ INICIO ███████████████████████████████████████████████
 # ████████████████████████████████████████████ INICIO ███████████████████████████████████████████████
 
 if __name__ == "__main__":
+    
+    multiprocessing.freeze_support()
     # ---- Limpio la terminal 
     os.system('cls')    
     # ---- Empezamos!!

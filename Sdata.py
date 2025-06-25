@@ -1,6 +1,11 @@
-import re
-from datetime import date, datetime
-from datetime import time 
+
+import re       # patrones
+from datetime import date, datetime     # fecha
+from datetime import time               # hora
+import shutil   # para obtener el tamaño de la terminal
+import pyfiglet                               # ■ LETRAS GRANDES.
+from colorama import Fore, Back, Style, init  # ■ COLORAMA PARA COLORES EN TERMINAL....por si se quiere usar colores para 'ayudas'
+
 
 class Sdata():
     """ >>> CLASE ESTÁTICA ENTRA UNA KEY STR Y DEVUELVE UN DICCIONARIO CON VALUE LA ENTRADA X TECLADO 
@@ -18,9 +23,13 @@ class Sdata():
     
     """
     
-    # ■■■ Ejemplo de uso:   dato_tipado = Sdata.TIPOS_VALIDOS[tipo](entrada)
+    # ■■■ Es un diccionario cuyo valor es una función lambda(func de una linea) que llama a una funciónn de la clase estática StringTo.
+    #   ■ ■ Ejemplo de uso:   
+    #       1• dato_tipado = Sdata.TIPOS_VALIDOS[<class int>](5)    ► Devuelve el int 5
+    #       2• dato_tipado = Sdata.TIPOS_VALIDOS[<class int>]('A')  ► Devuelve None 
+    #       3• dato_tipado = Sdata.TIPOS_VALIDOS[<class int>]('')   ► Devuelve None 
+
     TIPOS_VALIDOS = {
-        # int: lambda v: StringTo.esInt(v) if StringTo.esInt(v) != False else None,
         int: lambda v: StringTo.esInt(v) if StringTo.esInt(v) is not False else None,
         float: lambda v: StringTo.esFloat(v) if StringTo.esFloat(v) != False else None,
         str: lambda v: v  ,
@@ -35,10 +44,6 @@ class Sdata():
         "IP": lambda v: v if StringTo.esIPValida(v) else None,
         "BETWEEN": lambda v: v  # SOLO DEVUELVE VALOR, VALIDACION FUERA
     }
-
-    TIPOS_VALIDACION_EXTERNA = [bool, list, set, tuple, 'BETWEEN']
-
-
     VALORES_POR_DEFECTO = {
         int: 0,
         float: 0.0,
@@ -54,43 +59,42 @@ class Sdata():
         "IP": "0.0.0.0",
         "BETWEEN": None 
     }
-
-    VALORES_NULOS = {
-        int: None,
-        float: None,
-        str: None,
-        bool: False,
-        list: [],
-        set: set(),
-        tuple: (),
-        date: None  ,
-        time: None,
-        'DNI'   : None,
-        'Email' : None,
-        'IP'    : None,
-        "BETWEEN" : None 
-    }
-
+    LISTA_VERDADEROS = ['v', 'verdad' , 'verdadero', 't' , 'true','y', 'yes', 'si', 's' ]
+    LISTA_FALSOS = ['f' , 'false', 'no' , 'n' , 'falso']
 
     def __init__(self):
-        self.lst_tipos = []
+        pass
 
     def __str__(self):
         pass
    
     @staticmethod
     def get_valor_bydef(tipo):
-        """ Devuelve el valor por defecto de un tipo."""
+        """ ■ Devuelve el valor por defecto de un tipo.
+        ■ EJEMPLO:  Sdata.get_valor_bydef(tipo=int)
+        ■ SALIDA:   el valor asignado al tipo del diccionario VALORES_POR_DEFECTO o None si no encuentra el tipo.
+        """
         return Sdata.VALORES_POR_DEFECTO.get(tipo, None)
 
     @staticmethod
     def set_valor_bydef(tipo, valor):
-        """ Modifica o agrega un nuevo tipo a los valores por defecto."""
-        Sdata.VALORES_POR_DEFECTO[tipo] = valor
+        """ ■ Modifica o agrega un nuevo tipo al diccionario VALORES_POR_DEFECTO
+        ■ EJEMPLO:  Sdata.set_valor_bydef(tipo=int, valor=None)
+        ■ SALIDA:   None si Error y True si OK.
+        """
+        try:
+            Sdata.VALORES_POR_DEFECTO[tipo] = valor
+        except Exception as e:
+            print(e)
+            return None
+        finally:
+            return True
 
     @staticmethod
     def reset_valores_bydef():
-        """ Restaura los valores por defecto a sus valores iniciales."""
+        """ ■ Restaura los valores por defecto a sus valores iniciales.
+        ■ EJEMPLO:  Sdata.reset_valores_bydef()
+        """
         Sdata.VALORES_POR_DEFECTO = {
             int: 0,
             float: 0.0,
@@ -107,37 +111,36 @@ class Sdata():
             "BETWEEN": None
         }
 
-    
     # *******************************************
     # OBLIGA A INTRODUCIR EL DATO CORRECTO.
     # CON ( permite_nulo = True ) SI INTRODUCE ''(INTRO) SE BUSCA EL VALOR POR DEFECTO.
     # Funcion Que hace Tipado del diccionario JUSTO DESPUÉS DE INTRODUCIR LOS DATOS.
-
     # *******************************************
     @staticmethod
     def get_data(key_dict:str, dicc:dict = None, tipo = str, msg_entrada:str='Intro... ', permite_nulo:bool=False , valores_between:list=None ):
-        """ >>> Convierte una key de entrada en un diccionario (key): Intro by Teclado
-        [key_dict](str): la clave el dict resultante.
+        """ 
+        ■ Convierte una key de entrada en un diccionario (key): Intro by Teclado
+
+            ■ ■ ■ entrada == ENTRADA_NULL and permite_nulo == True:   => obtiene el valor por defecto.
+            ■ ■ ■ entrada == ENTRADA_NULL and permite_nulo == False:  => Repite entrada
+            ■ ■ ■ entrada != ENTRADA_NULL                             => si valor valido => entrada
+                                                                          => si valor no valido => Repite entrada
+        
+        [key_dict](str): la clave el dict resultante. INTRODUCIDA POR EL USUARIO
         [dicc](dict): si se introduce, y es un diccionario que existe, se añade la key a las keys del diccionario.
         [tipo](type, iterators,  'IP', 'MAIL', 'DNI', 'BETWEEN'): HACE TIPADO DE LA ENTRADA y VALIDACION.
-        [permite_nulo](bool): True, puedes meter un valor nulo con lo que se devuelve el valor por defecto.
-                              False, Obliga: Tienes que meter un valor valido.
+        [permite_nulo](bool):   ► True, puedes meter un valor nulo con lo que se devuelve el valor por defecto.
+                                ► False, Obliga: Tienes que meter un valor valido.
         [msg_entrada](str, list):   str: Son los mensajes que se muestran para cada pedida de datos al usuario.
                                     list: Son las opciones cuando el tipo es 'BETWEEN'... aunque tambien podría ser str separado por comas.
 
-        Ejemplo:       
-        >>> lista = Sdata.get_data( key_dict='l', tipo=list , msg_entrada='INTRODUCE LISTA SEPARANDO POR COMAS (1,2,3,...)', permite_nulo=True)
-        >>> lista = Sdata.get_data( dicc=lista , key_dict='pos', tipo='BETWEEN' , msg_entrada=['VERTICAL', 'HORIZONTAL'], permite_nulo=False)    
-        >>> lista = Sdata.get_data( dicc=lista , key_dict='dat', tipo = date , msg_entrada='INTRODUCE FECHA (dd/mm/yyyy)')    
-        >>> print(f'lista: {lista['l']} - fecha: {lista['dat']} - hora: {lista['pos']} ')
-
-        entrada == ENTRADA_NULL and permite_nulo == True:   => obtiene el valor por defecto.
-        entrada == ENTRADA_NULL and permite_nulo == False:  => Repite entrada
-        entrada != ENTRADA_NULL                             => si valor valido => entrada
-                                                            => si valor no valido => Repite entrada
-
-         
-
+        ■ EJEMPLO:       
+            1•  lista = Sdata.get_data( key_dict='l', tipo=list , msg_entrada='INTRODUCE LISTA SEPARANDO POR COMAS (1,2,3,...)', permite_nulo=True)
+                lista = Sdata.get_data( dicc=lista , key_dict='pos', tipo='BETWEEN' , msg_entrada=['VERTICAL', 'HORIZONTAL'], permite_nulo=False)    
+                lista = Sdata.get_data( dicc=lista , key_dict='dat', tipo = date , msg_entrada='INTRODUCE FECHA (dd/mm/yyyy)')    
+                print(f'lista: {lista['l']} - fecha: {lista['dat']} - hora: {lista['pos']} ')
+        ■ SALIDA:
+               {'A': 9, 'B': 2} ► Salida de un diccionario creado con las key 'A' y 'B' y valores respectivos 9(tipo int) y 2(tipo int)
         """        
         # VALIDA QUE EL TIPO ESTÉ REGISTRADO
         if not tipo in Sdata.TIPOS_VALIDOS: 
@@ -163,16 +166,30 @@ class Sdata():
             return dictRetorno if dictRetorno else None
 
     # ********************
-    # From lista1 de str To Dict(k)valorLista1 (v)Intro Teclado. Permite elegir Nulo/noNulo y crecer
     # ********************
     @staticmethod
     def __introByTcld(key_dict, tipo, options=None, valores_between:list=None):
-        """ Llamada desde get_data(): 
-        [tipo](list) pasa siempre tipo =>[(int, False), (int, False)] lista de tuplas tipo, b_Permite_Nulo
-        [options](dict)= { 'msg_entrada':msg_entrada , 'permite_nulo': permite_nulo , 'capital':esCapital } las opciones que se pasan 
-        Return: 
-        ejemplo:        
+        """ 
+        ■ From lista de str To Dict(k)valorLista1 (v)Intro Teclado. Permite elegir Nulo/noNulo y crecer
+        K[ F ] - INTRODUCE FILA FROM   - ( INT - NULL )..... 1 ►  •key 'F' •tipo (int) •Permite Nulo(NULL) 
         
+        [key_dict](str): key del dicc creado por el USER     ► 'C'
+        [tipo](list)                                         ► <class 'str'>
+        [options](dict) ► {'msg_entrada': 'INTRODUCE CELDA ( pejem: M:8 ) Xa Posicionar la MATRIZ', 'permite_nulo': True}
+        [valores_between](list)
+
+        ► CALLED: self.get_data(): 
+        ■ EJEMPLO:
+            dictRetorno = { key_dict:Sdata.__introByTcld(key_dict = key_dict, tipo = tipo , options = options, valores_between = valores_between ) }
+
+        ■ SALIDA:   Depende de las condiciones(permite Nulo) tiene una salida u otra. Ejemplos de salidas...
+                    Lo que Hace esta funcion 
+            1• 'B:4' ►(str)  
+            2• 9 ►(int)  
+            3• True ►(bool)  
+            4• None ►(byDef)  
+            5• 7.44 ►(float)
+            •••• 
         """
         ENTRADA_NULL = ''
         # EL DICT OPTIONS SE TIENE QUE DEFINIR ASÍ: Si tiene datos, se asignan , si no tiene datos se asigna diccionario vacio {}
@@ -214,7 +231,7 @@ class Sdata():
         # ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
         # PIDO DATOS POR TECLADO
         while True:
-            entrada = input(f'\nK[ {key_dict} ] - {str_entrada}  - ( {str_tipo} - {msg_nulo} )..... ')
+            entrada = input(f'K[ {key_dict} ] - {str_entrada}  - ( {str_tipo} - {msg_nulo} )..... ')
 
             entrada = entrada.strip()
             try:
@@ -323,34 +340,75 @@ class Sdata():
                 return None
         return entrada
 
-
+    @staticmethod
     def __tratarBoolano(entrada_bool:str):
         """ 
-        >>> ADMITE TODAS ESTAS FORMAS DE BOOLEANO
+        ■ ADMITE Varias FORMAS DE BOOLEANO.('v', 'verdad', 'falso', 'f' ... )
+        ► CALLED: self.__introByTcld()
+
+        ■ EJEMPLO:  entrada = Sdata.__tratarBoolano(entrada)
+        ■ SALIDA: 1• True ► si el usuario introduce un forma-verdadero , 2• False ► si el usuario introduce un forma-falso , 3• None ► No es una forma-bool.
         """
         entrada_bool=str(entrada_bool).strip().lower()
-        if (entrada_bool=='v' or 
-            entrada_bool=='verdad' or 
-            entrada_bool=='verdadero' or 
-            entrada_bool=='t' or 
-            entrada_bool=='true' or 
-            entrada_bool=='y' or 
-            entrada_bool=='yes' or 
-            entrada_bool=='si' or 
-            entrada_bool=='s' 
-            ):
+        if entrada_bool in Sdata.LISTA_VERDADEROS:
             return True
-        elif (entrada_bool=='f' or 
-            entrada_bool=='false' or 
-            entrada_bool=='no' or 
-            entrada_bool=='n' or 
-            entrada_bool=='falso' 
-            ):
+        elif entrada_bool in Sdata.LISTA_FALSOS:
             return False
         else:
             return None
+
+    @staticmethod
+    def big_text(texto: str, color: str = Fore.WHITE):
+        """ 
+        ■ Pone un texto en letra grande pyfiglet con un color. siempre con la fuente small... de momento 
+        ■ EJEMPLO:
+            print(big_text(texto='Hola', color=Fore.YELLOW))
+        """
+        try:            
+            ancho_terminal = Sdata.__obtener_ancho_ajustado()
+            big = pyfiglet.figlet_format(f'{texto}', font="small", width=ancho_terminal)  # Ajusta el font y width aquí.
+            big_color = f'{color}{big}{Fore.RESET}' if color else big
+        except Exception as e:
+            return ''
+        finally:
+            return big_color
+
+    @staticmethod
+    def obtener_tamaño_terminal():
+        """ ■ IA. 
+        A traves de la librería shutil obtenemos las filas y columnas del terminal.
+        """ 
+        columnas, filas = shutil.get_terminal_size()
+        return columnas, filas
     
-   
+    @staticmethod
+    def __obtener_ancho_ajustado(margen=10):
+        """Obtiene el ancho de la terminal con un margen de seguridad."""
+        columnas, _ = shutil.get_terminal_size()
+        return max(20, columnas - margen)  # Evita valores muy pequeños
+
+    # NO USADA
+    @staticmethod
+    def imprimir_con_pausa(texto, lineas_por_pausa=None):
+        """
+        Imprime texto en la terminal y pausa si el contenido es más grande que la terminal.... IA
+        [texto] (str): Texto a imprimir.
+        [lineas_por_pausa] (int, opcional): Número de líneas a imprimir antes de pausar. Si es None, se usa el tamaño de la terminal.
+        EJEMPLO:
+            OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+        """
+        _ , filas_terminal = shutil.get_terminal_size()
+        lineas = texto.split('\n')  # Divide el texto en líneas
+        
+        if lineas_por_pausa is None:
+            lineas_por_pausa = filas_terminal - 1  # Deja espacio para el mensaje "Presiona una tecla..."
+
+        for i, linea in enumerate(lineas, 1):
+            print(linea)
+            
+            # Pausa si se alcanza el límite de líneas o si el texto es más grande que la terminal
+            if i % lineas_por_pausa == 0 or len(lineas) > filas_terminal:
+                input("\n--- Presiona Enter para continuar ---\n")
 
 class StringTo():
     """ 
@@ -467,7 +525,6 @@ class StringTo():
         Returns:
             str | None: La fecha en el formato deseado si es válida, o None si no es válida. 
         """   
-        from datetime import datetime
         try:
             fecha = datetime.strptime(cadena, formato_entrada)
             return fecha.strftime(formato_salida)
@@ -577,7 +634,6 @@ class StringTo():
         num = re.match(patron, cadena)
         return float(cadena) if num else False
     
-    
     # Entra una cadena separada por un caracter (coma) y devuelve una l i s t a   c o n   c a d a   i t e m 
     @staticmethod
     def cadena_to_lista(cadena:str, char:str=','):  
@@ -602,4 +658,6 @@ class StringTo():
             return lst_retorno
         except Exception as e:
             return None
-    
+
+   
+

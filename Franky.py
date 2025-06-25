@@ -1,3 +1,45 @@
+# •••••••••  By David Quesada Heredia davidquesadaheredia@gmail.com ••••••••••
+
+# ███████████████████████████████████████████████████████████████████████████████████████████████████████████████
+                                # ■ DEFINICION DE LAS CLASES ■
+# ███████████████████████████████████████████████████████████████████████████████████████████████████████████████
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# STTS:     Def las funciones estaticas que se pueden usar en Celda , Rango, Tablero y Brackets
+
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# CELDA:    Define el cruce entre una fila y una columna. guarda el valor y la letra de la columna.
+    # ►A:0  ►B:3  ►M:10. etc...
+
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# RANGO:    Def un Objeto virtual que se define por todas las celdas que existen en entre una celda de inicio y una celda Fin
+    # A:0 -> A:10
+    # A:0 -> B:10
+    # A:0 -> M:10
+
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# TABLERO:  Define Un Rango que puede contener otros rangos. Y Sirve de 'Tablero' de Impresion
+    #   Loren Ipsum que estas en los cielos                                                       
+    #                                                                                            
+    #                                        False  None  3333              Hidalgo Caballero     
+    #                                        4      5.5   6     Ey You                            
+    #                                        True   1     A0                Globus Palidus        
+
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# FRANKY :   CREA 3 TABLEROS: CABECERA / CUERPO / PIE ....y les pone un MARCO. Sobreescribe imprimir()
+    # ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+    # █  Mensaje Head: Opcional: str, list, matriz                                                 █
+    # ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+    # █  Loren Ipsum que estas en los cielos                                                       █
+    # █                                                                                            █
+    # █                                       False  None  3333              Hidalgo Caballero     █
+    # █                                       4      5.5   6     Ey You                            █
+    # █                                       True   1     A0                Globus Palidus        █
+    # █                                                                                            █
+    # ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+    # █  Mensaje Pie: Salir <<<  ■ Help-Exec ?  ■ Repeat < ■ (Info)  ??                            █
+    # ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+# 
+
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████████████
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████████████
 """  
@@ -5,20 +47,6 @@
 """
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████████████
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████████████
-
-# •••••••••  By David Quesada Heredia davidquesadaheredia@gmail.com ••••••••••
-
-# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-# STTS:     Def las funciones estaticas que se pueden usar en Celda , Rango, Tablero y Brackets
-# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-# CELDA:    Define el cruce entre una fila y una columna. guarda el valor y la letra de la columna.
-# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-# RANGO:    Def un Objeto virtual que se define por todas las celdas que existen en entre una celda de inicio y una celda Fin
-# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-# TABLERO:  Define Un Rango que puede contener otros rangos. Y Sirve de 'Tablero' de Impresion
-# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-# FRANKY :   CREA 3 TABLEROS: CABECERA / CUERPO / PIE ....y les pone un MARCO. Sobreescribe imprimir()
-# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 """ 
 Para el alfabeto lowerstrig, upperstring. """
@@ -35,8 +63,8 @@ class SttS():
     _may_nl = None      # mayusculas numero - letra
 
     @staticmethod
-    def _inicializa_diccs_letra_numero():
-        """ >>> Inicializa los diccionarios estáticos si aún no están inicializados. """
+    def inicializa_diccs_letra_numero():
+        """ ■ Inicializa los diccionarios estáticos si aún no están inicializados. """
         if SttS._min_ln is None or SttS._min_nl is None: 
             SttS.set_dicc_columnas_min()
 
@@ -107,7 +135,7 @@ class SttS():
             lst_f_c = cadena.split( sep = char, maxsplit = -1 )
             if not lst_f_c: 
                 return None, None
-            if len(lst_f_c)!=2: return None, None
+            if len(lst_f_c) != 2: return None, None
         except Exception as e:
             return None, None
         finally:
@@ -141,7 +169,7 @@ class SttS():
         """
         # __________________________________________
         # Si no existen los diccionarios, los crea.
-        SttS._inicializa_diccs_letra_numero()
+        SttS.inicializa_diccs_letra_numero()
 
         """ Viene como [Letra] y esta entre las combinacioes posibles('az' maximo, 'bn' sería falso) """
         if columna in SttS._may_ln or columna in SttS._min_ln:            
@@ -172,7 +200,7 @@ class SttS():
         """
         # __________________________________________
         # Si no existen los diccionarios, los crea.
-        SttS._inicializa_diccs_letra_numero()       
+        SttS.inicializa_diccs_letra_numero()       
         
         # Paso la letra a   m i n u s c u l a  para poder buscar solamente en un diccionario y no tener que buscar en los 2 
         letra = str(letra).strip().upper()
@@ -188,7 +216,7 @@ class SttS():
         # resultado = None
         try:
             letra = str(letra).strip().upper()
-            SttS._inicializa_diccs_letra_numero()                       
+            SttS.inicializa_diccs_letra_numero()                       
 
             numero_letra = SttS.letra_to_numcol(letra=letra)
             if 0 <= numero_letra < len(SttS._may_ln.keys()):
@@ -213,15 +241,12 @@ class SttS():
         >>> listTOdict_byTcld_ToString.igualar_listas(lista_keys=lista_keys, lista_to_relong=listaTipos)        
         lista_keys y listaTipos son inmutables, se pasan por referencia y no hay que retornar valor. Aun así se retorna
         """
-        if len(lista_keys)==len(lista_to_relong):
+        if len(lista_keys) == len(lista_to_relong):
             return lista_to_relong
-        elif len(lista_keys)>len(lista_to_relong):
-            # print("long dicc > longTipo.....tipos hasta longTipo y luego Tipo=str y PERMITENULL=False")
+        elif len(lista_keys) > len(lista_to_relong):
             listaNewTipos=[valor_relleno for i, (k) in enumerate(lista_keys) if i >= len(lista_to_relong)]
             lista_to_relong = lista_to_relong + listaNewTipos
-            # print(lista_to_relong)
         else:
-            # print("long dicc < longTipo.....vale hasta la long del dicc- hay que reducir la dimension del la lista_to_relong")
             longListaTipos = len(lista_to_relong)
             longListaKeys  = len(lista_keys)
             for i in range(longListaKeys , longListaTipos ):
@@ -229,10 +254,9 @@ class SttS():
 
         return lista_to_relong
         pass
-     # mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm (ia)         wip
 
     @staticmethod
-    def es_lista_de_listas(matriz):
+    def es_matriz(matriz):
         """ >>> VALIDA QUE ES UNA LISTA DE LISTAS
         True: Es una lista de listas tipo: [[1,2],[3,4],[5,6]]
         False: No es una lista de listas o error
@@ -324,8 +348,8 @@ class SttS():
     # Convierte una dimension del tipo 20x15 en filas=20, columnas=15
     @staticmethod
     def filas_columnas_from_dimension(dimension:str):
-        dimension = dimension.upper()
         try:
+            dimension = dimension.upper()
             filas , columnas = SttS.desata_binomio(cadena=dimension, char='X')
             if filas and columnas:
                 filas    = int(filas)
@@ -423,7 +447,7 @@ class SttS():
         matriz_plana = SttS.aplanar_matriz(matriz=matriz)
         if not matriz_plana: return None 
 
-        b_valid = SttS.es_lista_de_listas( matriz = matriz )
+        b_valid = SttS.es_matriz( matriz = matriz )
         if not b_valid: return None
         """ 
         >>> Calculo la longitud de la dimension de la matriz maxima(por si no es simetrica.) """
@@ -460,7 +484,7 @@ class SttS():
         """
         try:
             if isinstance(dato, list):
-                if SttS.es_lista_de_listas(matriz=dato):
+                if SttS.es_matriz(matriz=dato):
                     """ ES MATRIZ """
                     matriz_cuadrada = SttS.encuadrar_matriz(matriz=dato)
                     filas = len(matriz_cuadrada)
@@ -481,14 +505,11 @@ class SttS():
         except Exception as e:
             return False
 
-
-    
-
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████
-""" 
-                                        -   C E L D A   -  
-"""
+
+                                        # -   C E L D A   -  
+
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████
 
@@ -512,7 +533,7 @@ class Celda():
         
         """     
         # ▄▄▄▄▄▄▄▄▄▄  Establece los dicc validos para columna: letra:numero y numero:letra
-        SttS._inicializa_diccs_letra_numero()
+        SttS.inicializa_diccs_letra_numero()
 
         # ▄▄▄▄▄▄▄▄▄▄  RECOGE LOS VALORES DE FILA , COLUMNA  O CELDA.
         self.fila = kwargs.get('fila', None)
@@ -630,8 +651,11 @@ class Celda():
         """
         try:
             new_columna = self.columna + columnas
-            if new_columna < 0: new_columna = 0                                         # limite por abajo
-            if new_columna >= len(SttS._may_ln): new_columna = len(SttS._may_ln) - 1    # limite por arriba
+            if new_columna < 0: 
+                new_columna = 0                                         # limite por abajo
+            if new_columna >= len(SttS._may_ln): 
+                new_columna = len(SttS._may_ln) - 1    # limite por arriba
+
             new_celda = f"{SttS._may_nl[new_columna]}:{self.fila}"
             if b_copy_value == True:
                 return Celda(celda=new_celda , valor=self.valor)
@@ -695,7 +719,7 @@ class Type_Rng(TypeRng):
     RECTG = 4    
 
 from enum import Enum as TYPEIMPR
-class TYPE_IMPR(TYPEIMPR):
+class TYPE_PRINT(TYPEIMPR):
     LITERAL = 0
     MOSAICO = 10
     MAX_SSP = 20
@@ -706,8 +730,8 @@ class TYPE_IMPR(TYPEIMPR):
     LIST_MOSAICO = 70
     LIST_FIXED_SSP = 80
     LIST_FIXED_CSP = 90
-    LIST_AMBG_SSP = 100    
-    LIST_AMBG_CSP = 110
+    LIST_MAX_SSP = 100    
+    LIST_MAX_CSP = 110
 
 
 # ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -719,7 +743,7 @@ class Rango(Celda):
     Contiene como variables fundamentales la variable data, dicc, matriz, 
     b_ghost==True cambia el funcionamiento del rango y pasa de tener reflejo inmediato a ser un objeto virtual.    
     """
-    def __init__(self, nombre_rango, celda_inicio:str = 'A:0', dimension:str = "1x1" ,  b_oculto = False, valor_inicial='', b_ghost=False):
+    def __init__(self, nombre_rango, celda_inicio:str = 'A:0', dimension:str = "1x1", valor_default='' ,  b_oculto = False, b_ghost=False):
         """
         Inicializa un rango con información sobre celdas de inicio y fin, dimensiones y más.
             nombre_rango (str): Nombre del rango.
@@ -735,7 +759,7 @@ class Rango(Celda):
 
             
             
-            >>> rango = Rango(nombre_rango='x',celda_inicio='A:0',dimension=None, valor_inicial='[[1,2][3,4][5,6]]'
+            >>> rango = Rango(nombre_rango='x',celda_inicio='A:0',dimension=None, valor_default='[[1,2][3,4][5,6]]'
         """  
 
         # VALIDACION INICIAL
@@ -793,13 +817,13 @@ class Rango(Celda):
         if not self.matriz: return None
         
         # VALOR INICIO ... puede ser una lista, una matriz, un str, int, bool...
-        self.valor_inicial = None
-        if isinstance(valor_inicial , list) or isinstance(valor_inicial, tuple) or isinstance(valor_inicial, set):
-            self.__push_plana(data_push = valor_inicial, relleno = valor_inicial)
-            self.valor_inicial = Celda.VALOR_INICIAL
+        self.valor_default = None
+        if isinstance(valor_default , list) or isinstance(valor_default, tuple) or isinstance(valor_default, set):
+            self.__push_plana(data_push = valor_default, relleno = valor_default)
+            self.valor_default = Celda.VALOR_INICIAL
         else:
-            self.iniciar(valor=valor_inicial)        
-            self.valor_inicial = valor_inicial
+            self.iniciar(valor=valor_default)        
+            self.valor_default = valor_default
 
         pass
 
@@ -810,7 +834,7 @@ class Rango(Celda):
         """
         titulos = ["Rango", "Inicio", "Fin", "Total Celdas", "Filas", "Columnas", "Es Oculto", "Ghost"]
         
-        # TAMAÑOS DE LAS COLUMNAS
+        # TAMAÑOS DE LAS COLUMNAS: cte. Sirve para dar la info por terminal.
         tamanos_columnas = [25, 10, 10, 15, 8, 10, 10, 10]
         
         # VALORES DE LAS COLUMNAS
@@ -881,14 +905,14 @@ class Rango(Celda):
         • CREO UN OBJETO ■ Rango  CON ■ data_push CON ■ celda_inicio  COMO PRIMERA CELDA DEL RANGO.
         • EN EL RANGO SIEMPRE SE METEN LOS DATOS DE FORMA PLANA.
         ENTONCES LO QUE HAGO ES JUGAR CON LAS ■ DIMENSIONES  PARA CONTROLAR COMO ENTRAN LOS DATOS EN EL RANGO. 
-        • PARA MATRICES, A VECES, HAY QUE HACER RELLENOS, QUE SE HACEN CON self.valor_inicial
+        • PARA MATRICES, A VECES, HAY QUE HACER RELLENOS, QUE SE HACEN CON self.valor_default
         • HAY 10 TIPOS DE OBJETOS RANGOS DISTINTOS QUE SE PUEDEN FORMAR:
          █ 1-MATRIZ_LINEAL  █ 2-MATRIZ_CUADRADA     █ 3-RANGO-RANGO             █ 4-LISTA_VERTICAL      █ 5-LISTA_HORIZONTAL 
          █ 6-STR_CELDA      █ 7-STR_REPETIDO_FILA   █ 8-STR_REPETIDO_COLUMNA    █ 9-STR_TO_LISTAWORDS   █ 10-X_TO_CELDA (int, float, bool,...)
         """
         
         # ■■ PRIMERO BUSCAMOS SI ES UNA MATRIZ U OTRO TIPO DE DATO.
-        es_matriz = SttS.es_lista_de_listas( matriz = data_push )
+        es_matriz = SttS.es_matriz( matriz = data_push )
         
         # ■■ EVALUAMOS EL TIPO        
         if not es_matriz: 
@@ -902,7 +926,7 @@ class Rango(Celda):
                     """ ■■■■ PREPARA LA DIMENSION PARA LA ■ LISTA VERTICAL   """                    
                     dimension = f'{len(data_push)}X1'
                 # SE CREA UN RANGO CON LA LISTA COMO VALOR INICIAL
-                rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_inicial = data_push )                
+                rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_default = data_push )                
 
             elif isinstance(data_push, str):                
                 """ ■■■■■ METE data_push COMO UNA CADENA(O CHAR). """                    
@@ -912,7 +936,7 @@ class Rango(Celda):
                     if b_repetir == False:        # (byDef)
 
                         # ███ (By Def) CADENA TO CELDA_INICIO
-                        rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = f'1X1' , valor_inicial = data_push )                
+                        rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = f'1X1' , valor_default = data_push )                
 
                     elif b_repetir == True:       # ■■ repetir el str. preguntar por eje = ['X','Y'] para saber si Horizontal(Fila) o Vertical(Columna)                        
                         if eje != None:                            
@@ -923,11 +947,11 @@ class Rango(Celda):
                                 # ■ Repetir en el eje VERTICAL
                                 dimension = f'{self.total_filas - celda_inicio.fila}X1'        # PREPARA LA DIMENSION PARA b_repetir DESDE CELDA_INICIO EN VERTICAL.
                             pass
-                            rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_inicial = data_push )                
+                            rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_default = data_push )                
                         else:   
                             """ ■■ SIN eje ==> Al no meter eje pero si Repetir toma el eje X por defecto """
                             dimension = f'1x{self.total_columnas - celda_ini.columna}'  # PREPARA LA DIMENSION PARA b_repetir DESDE CELDA_INICIO EN HORIZONTAL.
-                            rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_inicial = data_push )                
+                            rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_default = data_push )                
                 
                 elif b_lineal == True:   
                     """  ■■■■ METE LA CADENA COMO SI FUERA UNA LISTA A PARTIR DE LA CELDA DE INICIO CHAR A CHAR. """                    
@@ -939,19 +963,19 @@ class Rango(Celda):
                     if eje == 'Y':
                         dimension = f'{len(lst_chars)}X1'    # Y SI LO TENGO QUE CAMBIAR A VERTICAL PUES LO CAMBIO.                        
 
-                    rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_inicial = lst_chars )                
+                    rango = Rango( nombre_rango = "rango_aux" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_default = lst_chars )                
             
             elif isinstance(data_push, Rango):
                 """ ■■■■ ENTRA UN RANGO!! """                
                 dimension       = data_push.get_dimension()
-                valor_inicial   = data_push.get_valores()
+                valor_default   = data_push.get_valores()
 
-                rango = Rango( nombre_rango = "aux_rango" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_inicial = valor_inicial )
+                rango = Rango( nombre_rango = "aux_rango" , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_default = valor_default )
             else:
                 """ ■■■■ EL RESTO: int, float, bool, objetos, date, time, .... """
                 # ■■ SI HAY ALGUNA CELDA EN LA LISTA DE CELDAS QUE COINCIDA CON LA CELDA DE ENTRADA
                 if any(celda_inicio.nombre_celda in celda_lst.nombre_celda for celda_lst in self.lst_celdas):
-                    rango = Rango( nombre_rango = "aux_other" , celda_inicio = celda_inicio.nombre_celda , dimension = '1x1' , valor_inicial = data_push )                                    
+                    rango = Rango( nombre_rango = "aux_other" , celda_inicio = celda_inicio.nombre_celda , dimension = '1x1' , valor_default = data_push )                                    
         else:
             """ ■■■■ ES MATRIZ ■■■■
                 ■■■■ Si datapush == MATRIZ::: NI ■ b_repetir NI ■ eje TIENEN EFECTO, solo ■ b_lineal  """
@@ -971,8 +995,8 @@ class Rango(Celda):
                 # ■ SACO LOS DATOS QUE NECESITO DE LA MATRIZ RE-CREADA PARA CREAR UN RANGO CUADRADO
                 matriz_resultado = []  # Matriz vacía
                 for seq, data_plana in enumerate(lst_plana):
-                    fila = seq // columnas  # Calcular la fila
-                    columna = seq % columnas  # Calcular la columna
+                    fila = seq // columnas      # Calcular la fila
+                    columna = seq % columnas    # Calcular la columna
                     # Si la fila no existe aún, la creamos
                     if fila >= len(matriz_resultado):
                         matriz_resultado.append([])
@@ -990,7 +1014,7 @@ class Rango(Celda):
                 rango = Rango( nombre_rango = "rango_aux" , 
                                 celda_inicio = celda_inicio.nombre_celda , 
                                 dimension = dimension , 
-                                valor_inicial = matriz_resultado )
+                                valor_default = matriz_resultado )
                 
                 # ■ VALIDO LIMITES DEL RANGO
                 retorno = self.es_rango_in(rango=rango)
@@ -1007,7 +1031,7 @@ class Rango(Celda):
                 dimension = f'{filas}X{columnas}'
                 try:
                     # ■ CREO EL RANGO CUADRADO
-                    rango = Rango( nombre_rango = 'rango_aux' , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_inicial = matriz_cuadrada )            
+                    rango = Rango( nombre_rango = 'rango_aux' , celda_inicio = celda_inicio.nombre_celda , dimension = dimension , valor_default = matriz_cuadrada )            
                     if not rango: 
                         return None
 
@@ -1031,7 +1055,7 @@ class Rango(Celda):
         # INICIALIZO EL RETORNO
         dimension:str = None        
         # ■■ PRIMERO BUSCAMOS SI ES UNA MATRIZ U OTRO TIPO DE DATO.
-        es_matriz = SttS.es_lista_de_listas( matriz = data_push )        
+        es_matriz = SttS.es_matriz( matriz = data_push )        
         # ■■ EVALUAMOS EL TIPO        
         if not es_matriz:                                   # NO ES MATRIZ...SEGUIMOS BUSCANDO            
             if (isinstance(data_push, list) or              
@@ -1072,10 +1096,9 @@ class Rango(Celda):
                 if not lst_plana: return None
                                 
                 # SACO LOS DATOS QUE NECESITO DE LA MATRIZ RE-CREADA PARA CREAR UN RANGO CUADRADO
-                # filas = len(matriz_cuadrada)
                 columnas = len(matriz_cuadrada[0])
 
-                matriz_resultado = []  # Matriz vacía
+                matriz_resultado = []       # Matriz vacía
                 for seq, data_plana in enumerate(lst_plana):
                     fila = seq // columnas  # Calcular la fila
                     columna = seq % columnas  # Calcular la columna
@@ -1101,7 +1124,6 @@ class Rango(Celda):
         # ■■ RETORNO ■■ 
         return dimension if dimension else None
 
-    
     # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
     #                                       GETTING
     # •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
@@ -1241,9 +1263,19 @@ class Rango(Celda):
 
     # ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
     # OBTIENE LAS COLUMNAS FROM - TO DE self.matriz.
-    def get_columnas(self, columna_from:int, columna_to:int, b_valor:bool=False):    
-        """ DEVUELVE UNA MATRIZ DESDE LA COLUMNA HASTA LA COLUMNA """    
+    def get_columnas(self, columna_from:int=None, columna_to:int=None, b_valor:bool=False):    
+        """ DEVUELVE UNA MATRIZ DESDE LA COLUMNA 'columna_from' HASTA LA COLUMNA 'columna_to'
+        [columna_from](int):Columna 'Desde'
+        [columna_to](int):  Columna 'Hasta'
+        [b_valor](bool): ■ True ► Devuleve el valor de la celda. ■ False ► Devuelve la celda.
+        Retorno: matriz(lista de listas) de los datos pedidos(celdas o valores)
+        """   
+        if columna_from == None: columna_from = 0
+        if columna_to   == None: columna_to = self.total_columnas
         try:
+            columna_from    = abs(int(columna_from))
+            columna_to      = abs(int(columna_to))
+            
             matriz_valores = []
             for fila in self.matriz:
                 lst_valores_columna = []
@@ -1494,7 +1526,7 @@ class Rango(Celda):
             
             # EVALUO SI TENGO QUE RELLENAR EL RESTO DEL RANGO CON DATOS DE INICIO O LO DEJO COMO ESTÁ
             if relleno == '':
-                lista_plana = SttS.igualar_listas( lista_keys = self.lst_celdas , lista_to_relong = lista_plana , valor_relleno = self.valor_inicial )        
+                lista_plana = SttS.igualar_listas( lista_keys = self.lst_celdas , lista_to_relong = lista_plana , valor_relleno = self.valor_default )        
                 """ >>> lst len(self.lst_celdas) == len(lista_plana). lista_plana se rellena con Celda.VALOR_INICIAL ( '' ) 
                 """
             else:
@@ -1675,7 +1707,7 @@ class Rango(Celda):
                 else:
                     """ ■■ ELIMINA VALOR RANGO """
                     rango = self.buscar_rango(nombre_rango=rango)
-                    rango.iniciar(valor=self.valor_inicial)
+                    rango.iniciar(valor=self.valor_default)
                 pass
             elif isinstance(rango, Rango):
                 if del_rango == True:
@@ -1686,7 +1718,7 @@ class Rango(Celda):
                 else:
                     """ ■■ ELIMINA VALOR RANGO """
                     rango = self.buscar_rango(nombre_rango=rango)
-                    rango.iniciar(valor=self.valor_inicial)
+                    rango.iniciar(valor=self.valor_default)
                 pass
             else:
                 return False
@@ -1702,7 +1734,7 @@ class Rango(Celda):
             else:
                 return False
 
-            obj_celda.valor = self.valor_inicial
+            obj_celda.valor = self.valor_default
 
         elif fila != None and columna != None:
             """ ■ 3º FILAS Y COLUMNAS. Configuran una Celda. Pasa por aquí cuando ni hay rango, ni celda.  """
@@ -1720,7 +1752,7 @@ class Rango(Celda):
             obj_celda = self.getting(fila=fila, columna= columna)
             if not obj_celda: return False
 
-            obj_celda.valor = self.valor_inicial  
+            obj_celda.valor = self.valor_default  
             
         elif fila != None and columna == None:
             """ ■ 4º FILAS . Configuracion fija de la celda_inicio.  """
@@ -1729,7 +1761,7 @@ class Rango(Celda):
             except Exception as e:
                 return False
             
-            self.push(data_push=self.valor_inicial, celda_inicio=f'{self.celda_inicio.letra}:{fila}', b_lineal=False, repetir=True, eje='X')
+            self.push(data_push=self.valor_default, celda_inicio=f'{self.celda_inicio.letra}:{fila}', b_lineal=False, repetir=True, eje='X')
 
         elif fila == None and columna != None:
             """ ■ 5º COLUMNAS  """
@@ -1741,7 +1773,7 @@ class Rango(Celda):
             celda = Celda(fila=fila, columna=columna)
             if not celda: return False
 
-            self.push(data_push=self.valor_inicial, celda_inicio=f'{celda.letra}:0', b_lineal=False, repetir=True, eje='Y')
+            self.push(data_push=self.valor_default, celda_inicio=f'{celda.letra}:0', b_lineal=False, repetir=True, eje='Y')
 
         elif fila == None and columna == None:
             return False    # NO SE PUEDE DAR, PERO LO DEJO POR DEJAR TODAS LAS OPCIONES A LA VISTA
@@ -1758,7 +1790,6 @@ class Rango(Celda):
     # •••••••••••••••••••••••••••••••••••••••••••••••••••••
     
     # ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-    # def imprimir(self, sp_between:int = 0, **kwargs ):    
     def imprimir(self, sp_between:int = 0, ancho_columna:int = None, lista:list = None ):    
         """ 
         Imprime el Rango con configuracion. Es la base de impresion sobre todo. 
@@ -1779,9 +1810,9 @@ class Rango(Celda):
         # lista = kwargs.get('lista', None)  # Si no existe, usa 0
         
         # ANALIZA Y CREA LA CADENA DE FORMATO.
-        str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista )        
+        str_formato = self.get_baseline_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista )        
         if not str_formato:
-            print("Error Imprimir::: Error al formar str_formato:::get_str_format() ")
+            print("Error Imprimir::: Error al formar str_formato:::get_baseline_format() ")
             return None
         """ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
              I M P R I M E   V A L O R E S
@@ -1797,17 +1828,17 @@ class Rango(Celda):
                 lst_values_fila = [celda.valor for fila in matriz_fila for celda in fila ]
 
                 # INTERCALA EL CARACTER CHAR ENTRE LOS VALORES DE LA LISTA: [1,2,3,4] => [1,'',2,'',3,'',4,''] => PARA CONTEMPLAR  sp_between.
-                lst_valores_formato_print_x_fila = Rango.between_listas( lista = lst_values_fila, char = self.valor_inicial)
+                lst_valores_formato_print_x_fila = Rango.between_listas( lista = lst_values_fila, char = self.valor_default)
                                 
-                print(str_formato.format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
+                print(str_formato.format(*lst_valores_formato_print_x_fila)) 
 
         except Exception as e:
             print(f'{e}')
             return None
     
     # DEVUELVE LA CADENA DE FORMATO PARA IMPRIMIR. LOS PARAMETROS SON LOS MISMOS QUE self.imprimir()
-    def get_imprimir_style(self, sp_between, ancho_columna , lista ):
-        """ DEVUELVE EL ENUM TYPE_IMPR SEGUN LOS ARGUMENTOS DE IMPRESION PASADOS.
+    def get_family_impresion(self, sp_between, ancho_columna , lista ):
+        """ DEVUELVE EL ENUM TYPE_PRINT SEGUN LOS ARGUMENTOS DE IMPRESION PASADOS.
         SIRVE PARA CALCULAR EL ESPACIO ESCRITO EN EL RANGO.
         
         [sp_between] (int): el espacio entre columnas
@@ -1816,53 +1847,86 @@ class Rango(Celda):
 
         if ancho_columna == None and lista == None and sp_between == 0:
             """ ■ MAX-COLUMNA SSP (PURO) """
-            return TYPE_IMPR.MAX_SSP
+            name_impresion = TYPE_PRINT.MAX_SSP
+        
         elif ancho_columna == None and lista == None and sp_between != 0:
             """ ■ MAX-COLUMNA CSP"""
-            return TYPE_IMPR.MAX_CSP
+            name_impresion = TYPE_PRINT.MAX_CSP
+        
         elif ancho_columna != None and lista == None and sp_between == 0:
             if ancho_columna == 0:
                 """ ■ LITERAL SSP (PURO) """
-                return TYPE_IMPR.LITERAL
+                name_impresion = TYPE_PRINT.LITERAL
             else:
                 """ ■ FIXED SSP"""
-                return TYPE_IMPR.FIXED_SSP
+                name_impresion = TYPE_PRINT.FIXED_SSP
+        
         elif ancho_columna != None and lista == None and sp_between != 0:
             if ancho_columna == 0:
                 """ ■ LITERAL + CSP + ANCHO-ZERO """
-                return TYPE_IMPR.MOSAICO
+                name_impresion = TYPE_PRINT.MOSAICO
             else:
                 """ ■ FIXED CSP"""
-                return TYPE_IMPR.FIXED_CSP
+                name_impresion = TYPE_PRINT.FIXED_CSP
+        
         elif ancho_columna == None and lista != None and sp_between == 0:
             """ ■ LISTA PERSONAL + SSP + ANCHO-MAX(RESTO) """
-            return TYPE_IMPR.LIST_AMBG_SSP
+            name_impresion = TYPE_PRINT.LIST_MAX_SSP
 
         elif ancho_columna == None and lista != None and sp_between != 0:
             """ ■ LISTA PERSONAL + CSP + ANCHO-MAX(RESTO) """
-            return TYPE_IMPR.LIST_AMBG_CSP
+            name_impresion = TYPE_PRINT.LIST_MAX_CSP
 
         elif ancho_columna != None and lista != None and sp_between == 0:
             if ancho_columna == 0:
                 """ ■ LISTA + SSP + ANCHO-ZERO"""
-                return TYPE_IMPR.LIST_LITERAL
+                name_impresion = TYPE_PRINT.LIST_LITERAL
             else:
                 """ ■ LISTA + ANCHO FIXED + SSP """
-                return TYPE_IMPR.LIST_FIXED_SSP
+                name_impresion = TYPE_PRINT.LIST_FIXED_SSP
+        
         elif ancho_columna != None and lista != None and sp_between != 0:
             if ancho_columna == 0:
                 """ ■ LISTA + CSP + ANCHO-ZERO"""
-                return TYPE_IMPR.LIST_MOSAICO
+                name_impresion = TYPE_PRINT.LIST_MOSAICO
             else:
                 """ ■ LISTA + ANCHO + CSP """
-                return TYPE_IMPR.LIST_FIXED_CSP
+                name_impresion = TYPE_PRINT.LIST_FIXED_CSP
+        else:
+            # print(f'Error::: No se ha podido determinar el tipo de impresion.')
+            return None
+        # Una vez que sabemos el tipo por-menorizado de la impresión, Retornamos su Familia.
+        if (name_impresion == TYPE_PRINT.LITERAL      or name_impresion == TYPE_PRINT.MOSAICO or 
+            name_impresion == TYPE_PRINT.LIST_LITERAL or name_impresion == TYPE_PRINT.LIST_MOSAICO ):
+            return 'MOSAICO'
+        elif (name_impresion == TYPE_PRINT.FIXED_SSP      or name_impresion == TYPE_PRINT.FIXED_CSP or 
+              name_impresion == TYPE_PRINT.LIST_FIXED_SSP or name_impresion == TYPE_PRINT.LIST_FIXED_CSP):
+            return 'FIX'
+        elif (name_impresion == TYPE_PRINT.MAX_SSP      or name_impresion == TYPE_PRINT.MAX_CSP or 
+              name_impresion == TYPE_PRINT.LIST_MAX_SSP or name_impresion == TYPE_PRINT.LIST_MAX_CSP):                 
+            return 'MAX'
+        else:
+            # print(f'Error::: No se ha podido determinar el tipo de impresion.')
+            return None
     
     # RECOGE TODAS LAS OPCIONES DE IMPRESION CON: ANCHO_COLUMNA Y/O LISTA + ESPACIO_ENTRE_COLUMNAS
-    def get_str_format(self, sp_between:int = 0, ancho_columna:int = 0, lista:list = None):
+    def get_baseline_format(self, sp_between:int = 0, ancho_columna:int = 0, lista:list = None):
         """ CACHA TODAS LAS OPCIONES DE IMPRESION:
         [sp_between]:int: ESPACIO ENTRE LAS COLUMNAS DE CONTENIDO.
         [ancho_columna](int): ANCHO DE LA COLUMNA
         [lista](list)(INT): LISTA DE INT, QUE DEFINE LOS ANCHOS DE LAS COLUMNAS.
+        Retorno:
+            None: Si ocurre un error durante la creación del formato.
+            str: Devuelve la cadena de formato para imprimir el rango.
+            
+            ■ LITERAL {:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}
+            ■ MOSAICO {:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}
+            
+            ■ FIXED   {:<5}{:<3}{:<5}{:<3}{:<5}{:<3}{:<5}{:<3}{:<5}{:<3}{:<5}{:<3}{:<5}{:<3}{:<5}{:<3}{:<5}{:<3}{:<5}{:<3}            
+            ■ FIXED   {:<5}{:<0}{:<5}{:<0}{:<5}{:<0}{:<5}{:<0}{:<5}{:<0}{:<5}{:<0}{:<5}{:<0}{:<5}{:<0}{:<5}{:<0}{:<5}{:<0}
+            
+            ■ MAX-COL {:<11}{:<0}{:<4}{:<0}{:<5}{:<0}{:<4}{:<0}{:<1}{:<0}{:<0}{:<0}{:<0}{:<0}{:<17}{:<0}{:<0}{:<0}{:<0}{:<0}
+            ■ MAX-COL {:<11}{:<3}{:<4}{:<3}{:<5}{:<3}{:<4}{:<3}{:<1}{:<3}{:<0}{:<3}{:<0}{:<3}{:<17}{:<3}{:<0}{:<3}{:<0}{:<3}
 
         """
         str_formato:str = ''
@@ -1982,7 +2046,6 @@ class Rango(Celda):
                 """ ■ LISTA + ANCHO FIXED + SSP """
                 try:
                     lst_lens = [int(item) for item in lista]
-                    # str_formato = self.__formato_imprimir_list(lista = new_lista , sp_between = 0 , ancho_columna = ancho_columna )
                     str_formato = self.__formato_imprimir_list(lista = lst_lens , sp_between = 0 , ancho_columna = ancho_columna )
                 except Exception as e:
                     print(f'{e}')                    
@@ -2039,10 +2102,21 @@ class Rango(Celda):
             print(f'Error __formato_max_columnas ::: {e}')
 
         for i in range (self.total_columnas): 
-            maximo = self.get_len_max_columna( columna = i )
+            maximo = self.max_len_columna( columna = i )
             strformato += "{:<" + str(maximo) + "}" + "{:<" + str(sp_between) + '}'
         # RETORNO EL FORMATO DE DE IMPRESION UNA FILA 
         return strformato
+    
+    def get_lst_max_columnas(self):
+        """ DEVUELVE UNA LISTA CON LA LONGITUD MAXIMA DE CADA COLUMNA 
+        """
+        # lst_max_columna = []
+        # for i in range(self.total_columnas):
+        #     maximo = self.max_len_columna(columna = i)
+        #     lst_max_columna.append(maximo)
+        # return lst_max_columna
+        lst_max_columna = [self.max_len_columna(columna = i) for i in range(self.total_columnas)]
+        return lst_max_columna
     
     # FORMATO IMPR _____________________________
     def __formato_imprimir_fixed(self,  len_columnas = 0, sp_between=0):        
@@ -2083,14 +2157,14 @@ class Rango(Celda):
         if diferencia_filas != 0:
             # ASEGURA QUE SE GESTIONA diferencia_filas POSITIVO.
             if diferencia_filas < 0:        # ENTRA UNA LISTA MAYOR QUE LA MATRIZ.
-                lista = SttS.igualar_listas( lista_keys = lista_fila , lista_to_relong = lista)
+                lista = SttS.igualar_listas( lista_keys = lista_fila , lista_to_relong = lista )
             else:
                 # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
                 # ■■■ EMPIEZA EL ANALISIS Y PROCESO ■■■
                 if ancho_columna == None:
                     """ ■ RESTO MAX """
                     for i in range(diferencia_filas):
-                        lista = lista + [self.get_len_max_columna(columna = len_lista + i )]                    
+                        lista = lista + [ self.max_len_columna(columna = len_lista + i ) ]                    
                 elif ancho_columna == 0:
                     if ancho_columna == 0:                
                         """ ■ RESTO ZERO """
@@ -2109,71 +2183,87 @@ class Rango(Celda):
             strformato += "{:<" + str(item) + "}" + "{:<" + str(sp_between) + "}"
         return strformato
 
-    # LONGITUD MAXIMA DEL CONTENIDO DE UNA COLUMNA DEL RANGO.
-    def get_len_max_columna(self, columna):
+    # ◘◘◘◘◘◘◘ LONGITUD MAXIMA DEL CONTENIDO DE UNA COLUMNA DEL RANGO.
+    def max_len_columna(self, columna , b_limpio:bool = True):
         """ ■ OBTIENE LA MATRIZ DE LAS LONGITUDES DE UNA COLUMNA.
         [columna](int)(str): puede ser el número o la letra de la columna.
+        [b_limpio](bool): ■ True ► Devuelve el valor sin caracteres ANSI de colorama. ■ False ► Devuelve el valor tal cual.
         """
-
         matriz_columnas = self.get_columnas(columna_from = columna , columna_to= columna)
         if not matriz_columnas: return None
 
-        longitudes=[]
+        lst_longitudes=[]
         for lst_columna in matriz_columnas:
             for celda in lst_columna:
-                # longitudes.append(len(str(celda.valor)))
-                longitudes.append( self.len_without_ANSI(str(celda.valor)) )
+                if b_limpio == True:
+                    lst_longitudes.append( Rango.len_limpio(texto = str(celda.valor)) )
+                else:
+                    lst_longitudes.append(len(str(celda.valor)))
                 
-        return max(longitudes) if longitudes else 0
+        return max(lst_longitudes) if lst_longitudes else 0
+    
+    # LISTA CON LAS LONGITUDES MAXIMAS DE TODAS LAS COLUMNAS
+    def get_list_maxlen_columna(self, b_limpio:bool = True):
+        """ DEVUELVE UNA LISTA CON LA LONGITUD MAXIMA DE CADA COLUMNA """
+        lst_max_columna = []
+        for i in range(self.total_columnas):
+            maximo = self.max_len_columna(columna = i, b_limpio = True)
+            lst_max_columna.append(maximo)
+        return lst_max_columna
 
     # DEVUELVE UNA LIST CON LA ULTIMA COLUMNA USADA EN CADA FILA
-    def get_lst_last_columna_used_x_fila(self):        
-        lst_last_columna_used_x_fila = []
+    def get_lst_last_columna_used_xfila(self):
+        """Def: Lista con la última columna usada en cada fila de la matriz.        
+        """ 
+        lst_last_columna_used = []
         for fila in self.matriz:
             last_columna_used = 0                # Valor por defecto si no se encuentro otra columna
             for celda in reversed(fila):
-                if celda.valor != self.valor_inicial:                    
+                if celda.valor != self.valor_default:                    
                     last_columna_used = celda.columna
                     break
-            lst_last_columna_used_x_fila.append(last_columna_used)
+            lst_last_columna_used.append(last_columna_used)
         
         # RETORNO
-        return lst_last_columna_used_x_fila
+        return lst_last_columna_used if lst_last_columna_used else None
 
     # LONGITUD MAXIMA DE TODAS LAS FILAS    
-    def get_max_filas(self, resta:int=0):
+    def max_len_filas(self, b_limpio:bool = True):
         """ >>> Devuelve el valor maximo de todas las filas 
-        [resta_fija](int): opcional. Sirve para no contar con los caracteres fijos del marco y pad. 
-                           Si lo introduces es pq hay caracteres que no quieres contar(bordes y marcos en impresion Literal). 
+        [b_limpio](bool): si es True cuenta los caracteres ANSI.
+        [resta_fija](int): opcional. Sirve para no contar con caracteres... Si lo introduces es pq hay caracteres que no quieres contar(bordes y marcos en impresion Literal). 
         """
         lst_fila    = []
         for fila in self.matriz:
             longitud_fila=0
             for celda in fila:
-                # longitud_fila += len(str(celda.valor))
-                longitud_fila += self.len_without_ANSI(str(celda.valor))
+                if b_limpio == True:
+                    longitud_fila += Rango.len_limpio(texto = str(celda.valor))
+                else:
+                    longitud_fila += len(str(celda.valor))
             pass
-            longitud_fila -= resta
             lst_fila.append(longitud_fila)    
         pass 
         return max(lst_fila) if lst_fila else 0
     
     # LISTA CON EL SUMATORIO DE LONGITUD DE CADA FILA
-    def get_lst_longitud_valores_x_fila(self):
-        """ LISTA CON LA LONGITUD DE CADA FILA QUITANDO LOS CARACTERES ANSI(para poder imprimir en color y no descolocar los margenes)       
+    def get_lstlen_valores_xfila(self, b_limpio:bool = True):
+        """ LISTA CON LA LONGITUD DE CADA FILA
+        [b_limpio](bool): si es True cuenta los caracteres ANSI.
         """
-        lst_max_filas = []
+        lst_len_x_row = []
         for fila in self.matriz:
             longitud_total_fila=0
             for celda in fila:
-                # longitud_total_fila += len(str(celda.valor)) 
-                longitud_total_fila += self.len_without_ANSI(str(celda.valor))
+                if b_limpio == True:
+                    longitud_total_fila += Rango.len_limpio(texto = str(celda.valor))
+                else:
+                    longitud_total_fila += len(str(celda.valor)) 
             pass            
-            lst_max_filas.append(longitud_total_fila)    
+            lst_len_x_row.append(longitud_total_fila)    
         pass                
-        return lst_max_filas if lst_max_filas else None
+        return lst_len_x_row if lst_len_x_row else None
 
-       
     
     # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
     #  MISCELANEA
@@ -2181,28 +2271,37 @@ class Rango(Celda):
     
     # ULTIMA FILA CON USO DE UN TABLERO
     def last_fila_used(self):
-        """ ■■ DEVUELVE EL INDICE DE LA ÚLTIMA FILA USADA ....que contiene algún valor distinto de 'valor_inicial'. """    
+        """ ■■ DEVUELVE EL INDICE DE LA ÚLTIMA FILA USADA ....que contiene algún valor distinto de 'valor_default'. """    
         if not self.matriz:
             return None    
 
         for i, fila in enumerate(reversed(self.matriz)):
-            if any(celda.valor != self.valor_inicial for celda in fila):  
+            if any(celda.valor != self.valor_default for celda in fila):  
                 return len(self.matriz) - 1 - i  # Convertir índice de reversed al original
 
         return None
 
-    def last_columna_used(self):
+    # def get_last_columna_used(self, tablero = None):
+    def get_last_columna_used( self ):
         """ ■■ DEVUELVE EL ÍNDICE DE LA ÚLTIMA COLUMNA USADA EN LA MATRIZ DE CELDAS.  """
+        # if tablero is None: 
+        #     tablero = self
+
         if not self.matriz:
             return None    
         
         # OBTENGO UNA MATRIZ CON LAS COLUMNAS DESDE LA PRIMERA A LA ÚLTIMA(MATRIZ TRANSPUESTA)
-
-        matriz_columnas = self.get_columnas( columna_from=self.celda_inicio.columna , columna_to=self.celda_fin.columna )
-        # RECORRO LA MATRIZ TRANSPUESTA EMPEZANDO POR LA ÚLTIMA COLUMNA Y PREGUNTO SI HAY ALGÚN VALOR DISTINTO DEL VALOR_INCIIAL ('')
-        for i, columna in enumerate(reversed(matriz_columnas)):
-            if any(celda.valor != self.valor_inicial  for celda in columna):
-                return len(matriz_columnas) - i - 1
+        try:
+            matriz_columnas = self.get_columnas( columna_from = self.celda_inicio.columna , columna_to = self.celda_fin.columna )
+            # RECORRO LA MATRIZ TRANSPUESTA EMPEZANDO POR LA ÚLTIMA COLUMNA Y PREGUNTO SI HAY ALGÚN VALOR DISTINTO DEL VALOR_INCIIAL ('')
+            for i, columna in enumerate(reversed(matriz_columnas)):
+                if any(celda.valor != self.valor_default  for celda in columna):
+                    return len(matriz_columnas) - i - 1
+            pass
+            return -1  # Si no se encuentra ninguna columna usada
+        except Exception as e:
+            print(f'Error en get_last_columna_used: {e}')
+            return None
 
     @staticmethod
     def between_listas(lista:list , char:str=Celda.VALOR_INICIAL):
@@ -2214,6 +2313,12 @@ class Rango(Celda):
         """
         
         return [elem for item in lista for elem in (item, char)]
+    
+    @staticmethod
+    def len_limpio(texto: str) -> int:
+        """ Calcula la longitud real del texto sin códigos ANSI """
+        ANSI_ESCAPE = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+        return len(ANSI_ESCAPE.sub('', texto))
 
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████████
 # ███████████████████████████████████████████████████████████████████████████████████████████████████████████
@@ -2239,16 +2344,16 @@ class Tablero(Rango):
     BASE_RANGO_COLUMNA = 'rango_columna_'
 
     pass
-    def __init__(self, total_columnas_tablero:int, total_filas_tablero:int = 10 , valor_inicial = Celda.VALOR_INICIAL):       
+    def __init__(self, total_columnas_tablero:int, total_filas_tablero:int = 10 , valor_default = Celda.VALOR_INICIAL):       
         """ >>> Crea un Tablero(Rango), que empieza en A:0 y tiene la dimension establecida por total_filas_tablero y total_columnas_tablero 
         Se puede poner un valor inicial '-' distinto del que tiene Celda.VALOR_INICIAL = ''.
         Se tienen que crear y almacenar los rangos característicos del tablero como son: rango_filas y rango_columnas.
         Hay que incluir las características oculto, ghost, numerico, 
         crear_rango() |  rango_to_tablero() | tablero_to_rango() | buscar_rango() | ver_rangos() 
 
-        >>> pej: tablero = Tablero(total_filas_tablero = 30 y total_columnas_tablero = 20 , valor_inicial='')
+        >>> pej: tablero = Tablero(total_filas_tablero = 30 y total_columnas_tablero = 20 , valor_default='')
         """
-        self.valor_inicial = valor_inicial
+        self.valor_default = valor_default
         try:
             total_columnas_tablero  = abs(int(total_columnas_tablero))
             total_filas_tablero     = abs(int(total_filas_tablero))
@@ -2264,20 +2369,20 @@ class Tablero(Rango):
         super().__init__(nombre_rango = 'main_tablero' , 
                         celda_inicio = 'A:0' , 
                         dimension = self.dimension ,
-                        valor_inicial = self.valor_inicial , 
+                        valor_default = self.valor_default , 
                         b_oculto = False , 
                         b_ghost = False)
         
         # •••••••••••••••••••••••••••••••••
         # MONTO LA ESTRUCTURA DE COLUMNAS..... (sobre la que voy a trabajar)       
-        SttS._inicializa_diccs_letra_numero()
+        SttS.inicializa_diccs_letra_numero()
 
         # ••••••••••••••••••••••••••••••••••••••••••••
         # VALIDACION INICIAL DE LOS DATOS DE ENTRADA
         if total_columnas_tablero >= len( SttS._may_ln ):                   
             total_columnas_tablero = len( SttS._may_ln.keys() )-1
         pass        
-        self.iniciar(valor=self.valor_inicial)
+        self.iniciar(valor=self.valor_default)
         pass
         # ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
         # LISTA DE RANGOS DEL TABLERO
@@ -2291,7 +2396,7 @@ class Tablero(Rango):
                 nombre_new_fila = self.__new_nombre_secuencial(cadena=Tablero.BASE_RANGO_FILA)
                 # CREA UN RANGO DE NOMBRE SECUENCIAL.
                 celda_inicio = self.sumar_filas( i + self.celda_inicio.fila , b_copy_value = True)
-                rango = self.crear_rango(nombre=nombre_new_fila, celda_inicio=celda_inicio.nombre_celda, dimension=f'1X{self.total_columnas}', valor_inicial = fila)
+                rango = self.crear_rango(nombre=nombre_new_fila, celda_inicio=celda_inicio.nombre_celda, dimension=f'1X{self.total_columnas}', valor_default = fila)
                 if rango:
                     # INTRODUCE EL RANGO EN self.lst_rangos
                     rango.flag = 'ROW_SYS'
@@ -2306,7 +2411,7 @@ class Tablero(Rango):
                 nombre_secuencial = self.__new_nombre_secuencial(cadena=self.BASE_RANGO_COLUMNA)
                 # CELDA DE INICIO
                 celda_inicio = self.celda_inicio.sumar_columnas(columnas=j, b_copy_value = True)
-                rango = self.crear_rango(nombre = nombre_secuencial , celda_inicio=celda_inicio.nombre_celda, dimension=f'{self.total_filas}X1', valor_inicial = columna)
+                rango = self.crear_rango(nombre = nombre_secuencial , celda_inicio=celda_inicio.nombre_celda, dimension=f'{self.total_filas}X1', valor_default = columna)
                 if rango:
                     # INTRODUCE EL RANGO EN self.lst_rangos
                     rango.flag = 'COL_SYS'
@@ -2349,10 +2454,10 @@ class Tablero(Rango):
         pass
     
     def get_valor_inicial(self):
-        return self.valor_inicial
+        return self.valor_default
     
     def set_valor_inicial(self, valor:str):
-        self.valor_inicial = valor
+        self.valor_default = valor
 
     def get_lst_rangos(self):
         return self.lst_rangos if self.lst_rangos else None
@@ -2446,7 +2551,7 @@ class Tablero(Rango):
                     celda_inicio:str    = 'A:0', 
                     dimension:str       = '1x1', 
                     b_ghost:bool        = False, 
-                    valor_inicial       = Celda.VALOR_INICIAL, 
+                    valor_default       = Celda.VALOR_INICIAL, 
                     go_to_lst_rangos:bool = True ):
         """
         Crea un nuevo rango si no existe un rango con el mismo nombre o propiedades.
@@ -2467,12 +2572,12 @@ class Tablero(Rango):
 
         if not self.matriz: return None     
         # EN CASO DE QUE NO META VALOR INICIAL Y SI EL VALOR INICIAL ES DISTINTO AL DE LA CELDA, PONGO EL ESTABLECIDO POR EL USUARIO
-        if self.valor_inicial != Celda.VALOR_INICIAL and valor_inicial == Celda.VALOR_INICIAL:
-            valor_inicial = self.valor_inicial
+        if self.valor_default != Celda.VALOR_INICIAL and valor_default == Celda.VALOR_INICIAL:
+            valor_default = self.valor_default
 
         rango = None
         try:
-            rango = Rango(nombre_rango = nombre, celda_inicio = celda_inicio, dimension = dimension, valor_inicial=valor_inicial, b_ghost=b_ghost)
+            rango = Rango(nombre_rango = nombre, celda_inicio = celda_inicio, dimension = dimension, valor_default=valor_default, b_ghost=b_ghost)
             """ ■■■ VALIDACIONES ■■■ """
             if rango:
                 # NO ADMITO RANGOS OUT TABLERO.
@@ -2491,7 +2596,7 @@ class Tablero(Rango):
 
                 # LOS FANTASMAS NO SE CARGAN DE TABLERO. SE CARGAN DE VALOR_INICIAL
                 if rango.b_ghost == True:
-                    rango.init_values(valor=self.valor_inicial)
+                    rango.init_values(valor=self.valor_default)
                 else:
                     self.cross(rango, to_rango=True)
                 
@@ -2630,37 +2735,31 @@ class Tablero(Rango):
             typo = Type_Rng(RECTG)
         return typo
 
-    def len_without_ANSI(self, texto: str) -> int:
-        """ Calcula la longitud real del texto sin códigos ANSI """
-        ANSI_ESCAPE = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
-        return len(ANSI_ESCAPE.sub('', texto))
+# ████████████████████████████████████████████████████████████████████████████████████████████████████████████
+# ████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ 
+#                                           -   F R A N K Y   -  
 
 # ████████████████████████████████████████████████████████████████████████████████████████████████████████████
 # ████████████████████████████████████████████████████████████████████████████████████████████████████████████
-"""  
-                                        -   F R A N K Y   -  
-"""
-# ████████████████████████████████████████████████████████████████████████████████████████████████████████████
-# ████████████████████████████████████████████████████████████████████████████████████████████████████████████
 
-            # Usa la clase Tablero para Crear un Menu con 3 tableros distintos: Head, Body(self), Pie 
-            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Usa la clase Tablero para Crear un Menu con 3 tableros distintos: Head, Body(self), Pie 
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 # •••••••••••••••••••••••••••••••••
 # VARIABLES GLOBALES Y CONSTANTES 
-import pyfiglet                              # Letras compuestas de diferentes tamaños
-from colorama import init , Fore, Style      # Colores
-init(autoreset=True)                         # Colores Para windows
+import pyfiglet                                     # Letras compuestas de diferentes tamaños
+from colorama import init , Fore, Back, Style       # Colores
+init(autoreset=True)                                # Colores Para windows
 
 # ■■■■■■■■■■■■■■■■■■■■■■■■
 # ■■■■■■■■■■■■■■■■■■■■■■■■
 # ■■■■■■■■■■■■■■■■■■■■■■■■
 # ■■■■■■■■■■■■■■■■■■■■■■■■
 class F_r_a_n_k_y(Tablero):
-    """ ■■■■  Def: Define las partes esenciales de un Menu Creando y manteniendo una lista de Tableros =>  Head  + Cuerpo + Pie + 
-    DEFINE LAS PARTES ESENCIALES DE UN MENU CREANDO Y MANTENIEDO UNA LISTA DE TABLEROS ( Head + Cuerpo + Pie )
+    """ ■■■■  DEFINE LAS PARTES ESENCIALES DE UN MENU CREANDO Y MANTENIEDO UNA LISTA DE TABLEROS ( Head + Cuerpo + Pie )
     
-    >>> Linaje ::: Celda -> Rango -> Tablero -> Brackets   
+    >>> Linaje ::: Celda ► Rango ► Tablero ► F_r_a_n_k_y   
 
     Definicion de Franky(por linea): 
     char_head  => margen + char_marco * total
@@ -2677,10 +2776,9 @@ class F_r_a_n_k_y(Tablero):
     >>> DATA:          Datos del cuerpo del menu. Puede ser un str o una lista de str o matriz de str
     >>> DATA_SALIDA:   Datos de salida(PIE) del menu. Puede ser un str o una lista de str o matriz de str
     """
-    # Expresión regular para eliminar códigos ANSI
-    # ANSI_ESCAPE = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
-
-    FRANKY_STYLE = {'char_head' : '▄',        # Char de arriba del HEAD ■ 
+    RESET_ALL = f'{Style.RESET_ALL}'            # ► cte colorama para quitar todos los formatos ANSI establecidos.
+    lista_family = ['MOSAICO', 'FIX', 'MAX']    
+    FRANKY_STYLE = {'char_head' : '▄',        # ► Char de arriba del HEAD ■ 
                     'char_up_body'  : '▄' ,   # Char bajo el HEAD / sobre el BODY
                     'char_down_body': '▀' ,   # Char de arriba el PIE / bajo el BODY
                     'char_pie'   : '▀'  ,     # Char del abajo del PIE.
@@ -2700,7 +2798,7 @@ class F_r_a_n_k_y(Tablero):
             'pad_x' :       5   ,
             'margen':       0
         },
-        "unicode": {                    # algo mas moderno que el clasic
+        "unicode": {                # algo mas moderno que el clasic
             "char_head":    "═" ,
             "up_body":      "─" ,
             "down_body":    "─" ,
@@ -2710,7 +2808,7 @@ class F_r_a_n_k_y(Tablero):
             'pad_x' :       5   ,
             'margen':       0
         },
-        "doble": {              # doble
+        "doble": {                  # doble
             "char_head":    "═" ,
             "up_body":      "═" ,
             "down_body":    "═" ,
@@ -2720,7 +2818,7 @@ class F_r_a_n_k_y(Tablero):
             'pad_x' :       7   ,
             'margen':       0
         },
-        "vacio": {               # sin nada, compacto
+        "vacio": {                  # sin nada, compacto
             "char_head":    '' ,
             "up_body":      '' ,
             "down_body":    '' ,
@@ -2730,12 +2828,12 @@ class F_r_a_n_k_y(Tablero):
             'pad_x' :       3  ,
             'margen':       0
         },         
-        "moderno": {               # sin nada, compacto
-            "char_head":    '•' ,
-            "up_body":      '•' , 
-            "down_body":    '─' ,
-            "char_pie":     '─' ,
-            'char_marco' :  '█' ,
+        "moderno": {               # compacto y con color
+            "char_head":    f'{Fore.CYAN}•{Style.RESET_ALL}' ,
+            "up_body":      f'{Fore.CYAN}•{Style.RESET_ALL}' , 
+            "down_body":    f'{Fore.CYAN}─{Style.RESET_ALL}' ,
+            "char_pie":     f'{Fore.CYAN}─{Style.RESET_ALL}' ,
+            'char_marco':   f'{Fore.CYAN}█{Style.RESET_ALL}' ,
             'x_pad' :       1  ,
             'pad_x' :       3  ,
             'margen':       10          # flotante
@@ -2748,7 +2846,7 @@ class F_r_a_n_k_y(Tablero):
             'char_marco':   '▓' ,       # char marco de los laterales.
             'x_pad' :      3    ,       # pad izquierdo.
             'pad_x' :      10   ,       # pad derecho.
-            'margen':      5            # flotante.
+            'margen':      0            # flotante.
         },
         "franky": {                 # (byDef)
             "char_head":    "▄" ,       
@@ -2761,7 +2859,51 @@ class F_r_a_n_k_y(Tablero):
             'margen':       0
         }
     }
-    def __init__( self, dimension:str= "20x30" , head_datapush = None , pie_datapush = None , margen:int = 0 ,  pad_x:int = 20 , x_pad:int = 2 ):        
+    COLOR_MAP = {
+        # Colores básicos
+        'black': Fore.BLACK,
+        'red': Fore.RED,
+        'green': Fore.GREEN,
+        'yellow': Fore.YELLOW,
+        'blue': Fore.BLUE,
+        'magenta': Fore.MAGENTA,
+        'purple': Fore.MAGENTA,        # púrpura ≈ magenta en terminales
+        'cyan': Fore.CYAN,
+        'white': Fore.WHITE,
+        
+        # Colores claros (light)
+        'lblack': Fore.LIGHTBLACK_EX,   # gris
+        'lred': Fore.LIGHTRED_EX,
+        'lgreen': Fore.LIGHTGREEN_EX,
+        'lyellow': Fore.LIGHTYELLOW_EX,
+        'lblue': Fore.LIGHTBLUE_EX,
+        'lmagenta': Fore.LIGHTMAGENTA_EX,
+        'lcyan': Fore.LIGHTCYAN_EX,
+        'lwhite': Fore.LIGHTWHITE_EX,  # blanco brillante
+        
+        # Alias y variantes
+        'grey': Fore.LIGHTBLACK_EX,    # alias para lblack
+        'gray': Fore.LIGHTBLACK_EX,    # ortografía alternativa
+        'lgrey': Fore.LIGHTWHITE_EX,
+        'dgrey': Fore.LIGHTBLACK_EX,
+        
+        # Especiales
+        'default': Fore.RESET,
+        'reset': Fore.RESET,
+        'none': Fore.RESET,
+        
+        # Puedes añadir más combinaciones si lo deseas
+        'pink': Fore.LIGHTMAGENTA_EX,  # alias para lmagenta
+        'lime': Fore.LIGHTGREEN_EX,    # alias para lgreen
+        'aqua': Fore.LIGHTCYAN_EX,     # alias para lcyan
+    }
+
+    def __init__( self, dimension:str= "20x30" , 
+                        head_datapush = None , 
+                        pie_datapush = None , 
+                        margen:int = 0 ,  
+                        pad_x:int = 20 , 
+                        x_pad:int = 2 ):        
         """ ■■■■ Inicializa el Menu con los valores de la cabecera y el pie.
         [dimension](str): Dimension del Menu
         [head_datapush](str)(list): Frase del Head
@@ -2773,7 +2915,10 @@ class F_r_a_n_k_y(Tablero):
         
         self.NUM_CHAR = 40                        
         self.ESPACIO  = ' ' 
-        
+        if not isinstance(dimension, str):
+            print(f'ERROR::: {dimension} :(')
+            return None
+
         # ■■■■■ CACHA LAS FILAS Y LAS COLUMNAS POR LA DIMENSION .... Lo necesito para llamar a super()
         num_filas, num_columnas = SttS.filas_columnas_from_dimension(dimension=dimension)
         if not num_filas   or  not num_columnas: return None
@@ -2782,15 +2927,20 @@ class F_r_a_n_k_y(Tablero):
         # ■■■■■ CREA EL TABLERO BODY ■■■■■ SOY EL RANGO CUERPO PRINCIPAL ■■■■■■■■■■
         super().__init__(total_columnas_tablero = num_columnas, 
                         total_filas_tablero = num_filas , 
-                        valor_inicial = '' )
+                        valor_default = '' )
         
         if not self.lst_rangos or not self.matriz: 
             print('\n\nNO SE HA PODIDO CREAR EL TABLERO.!!!!!!\n\n')
             return None
+        
+        # ■■■■■■ Diccionario de tipos de impresion byDef de Head Body y Pie. 
+        self.dicc_print = {'head': {'lista': None, 'ancho_columna': None, 'sp_between': 1},    # ■ ■ ■ 'MAX'
+                            'body': {'lista': None, 'ancho_columna': None, 'sp_between': 1},    # ■ ■ ■ 'MAX'
+                            'pie':  {'lista': None, 'ancho_columna': None, 'sp_between': 1}     # ■ ■ ■ 'MAX'
+                        }
          
         # ■■■■■ DEFINICION DE LOS ESPACIOS HORIZONTALES
         self.margen:int = margen    # ESPACIO entre el inicio y el char_marco izq
-        # self.margen:int = 10    # ESPACIO entre el inicio y el char_marco izq
         self.x_pad:int  = x_pad     # ESPACIO entre el char_marco y la columna 'A' (inicio de contenido)
         self.pad_x:int  = pad_x     # ESPACIO entre el final del contenido y el char_marco derecho
 
@@ -2801,10 +2951,11 @@ class F_r_a_n_k_y(Tablero):
         self.char_up_body:str   = self.FRANKY_STYLE.get('char_up_body', '▄')        # down - caracter de la linea de cierre del Head
         self.char_down_body:str = self.FRANKY_STYLE.get('char_down_body', '▄')      # caracter de la linea de cierre               
         self.char_pie:str       = self.FRANKY_STYLE.get('char_pie', '■')            # down - caracter de la ultima linea de cierre del Pie
-        # ■■■■■ DATOS DE HEAD Y PIE
-        self.head_datapush = head_datapush      # La Frase Que se pone en el Head del Menu: (frase, rango, matriz, lista)                
-        self.pie_datapush = pie_datapush        # informacion del pie(Salida Help Repeat)
         
+        # ■■■■■ DATOS DE HEAD Y PIE
+        self.head_datapush = head_datapush      # Data Que se pone en el Head del Menu: (frase, rango, matriz, lista)                
+        self.pie_datapush = pie_datapush        # informacion del pie(Salida Help Repeat)
+
         # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■       
         # ■■■■■ CREAR TABLERO:  HEAD ■■■■■■     
         self.head = None          
@@ -2812,19 +2963,19 @@ class F_r_a_n_k_y(Tablero):
             if isinstance(self.head_datapush, str):
                 """ ■■■ CADENA  """
                 self.head  = Tablero( total_columnas_tablero = num_columnas, total_filas_tablero = 1 )
-                pass
             elif isinstance(self.head_datapush, list):
-                if SttS.es_lista_de_listas(matriz = self.head_datapush):
+                if SttS.es_matriz(matriz = self.head_datapush):
                     """ ■■■ MATRIZ """
                     filas = len(self.head_datapush)                                    
                     self.head  = Tablero( total_columnas_tablero = num_columnas, total_filas_tablero = filas )
                 else:
                     """ ■■■ LISTA """
                     self.head  = Tablero( total_columnas_tablero = num_columnas, total_filas_tablero = 1 )
-                    pass
-
+                pass
+            # Empuja los datos al Tablero recien creado
             self.head.push( data_push = self.head_datapush , celda_inicio = 'A:0' )
         
+
         # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         #  ■■■■■ CREAR TABLERO:  PIE ■■■■■
         self.pie = None
@@ -2835,7 +2986,7 @@ class F_r_a_n_k_y(Tablero):
                 self.pie  = Tablero( total_columnas_tablero = num_columnas, total_filas_tablero = 1 )
 
             elif isinstance(self.pie_datapush, list):
-                if SttS.es_lista_de_listas(matriz = self.pie_datapush):
+                if SttS.es_matriz(matriz = self.pie_datapush):
                     """ ■■■ MATRIZ """
                     filas = len(self.pie_datapush)
                     self.pie  = Tablero( total_columnas_tablero = num_columnas, total_filas_tablero = filas ) 
@@ -2848,8 +2999,35 @@ class F_r_a_n_k_y(Tablero):
             self.pie.push( data_push=self.pie_datapush, celda_inicio = 'A:0' )
 
         # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        # ■■■■ ESTILO ■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■ ESTILO 
         self.estilo = "franky"      # pongo el estilo por defecto. self.style() tiene que recogerlo ahora y asignarlo.
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■ IMPRESION ■■■■■■■■■■■■■■■■■■
+        
+        self.sp_between: int = 0            # Espacio entre celdas
+        self.ancho_columna: int = None      # Ancho de las columnas del tablero. Si es None, se calcula el len del valor mas largo de la columna
+        self.lista: list = None             # Lista de datos a imprimir en el tablero.  [ 7,7,8,5 ] pej.
+        self.matriz_V_bruto:  list = None     # matriz de valores de celdas a imprimir en bruto(con codigos de color colorama).
+        self.matriz_L_limpio: list = None     # matriz de valores de celdas a imprimir sin codigos de color colorama.
+
+        self.matriz_F: list = None          # matriz de Formato de celdas a imprimir 
+        self.matriz_V: list = None          # matriz de Valores de celdas a imprimir
+
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■■ CREAR TABLERO:  HEAD EXCEL ■■■■■■               A B C D E F ......
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■               #   ► IF b_excel == True   ►  Es un ayudante ► Tablero Excel (filas numericas y columnas Letras)        
+        
+        self.head_excel = None                  # Tablero Excel (filas numericas y columnas Letras). Es fijo y se define por el número de columnas. 
+        self.b_excel:bool = False               # Imprime las Columnas en la cabecera y los numeros en las filas..... ayuda para colocar datos.
+        self.color_excel = f'{Fore.MAGENTA}'    # color alterno de head_excel. para filas y para columnas.
+        
+        self.head_excel  = Tablero( total_columnas_tablero = num_columnas, total_filas_tablero = 1 )    # ■ Creo el Tablero head_excel
+        # Creo una lista de datos que es lo que vamos a insertar en el Tablero head_excel. El Color va en las posiciones pares.
+        data_head_excel = [f'{Style.RESET_ALL}{self.color_excel}{SttS._may_nl[j]}' if j % 2 == 0 else f'{Style.RESET_ALL}{SttS._may_nl[j]}' for j in range(num_columnas) ]
+        ret_push = self.head_excel.push( data_push = data_head_excel , celda_inicio = 'A:0', eje='X' )  # ■ Introduce los datos del head_excel en su tablero. Siempre en A:0 y como lista horizontal(eje='X')
+
 
         """ 
         •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
@@ -2861,7 +3039,7 @@ class F_r_a_n_k_y(Tablero):
     """ ■254  █219  ▄220  ▀223  ••••• LE PONEMOS LOS BRACKETS A FRANKY •••••• """
     # IMPRIMIR LA CLASE POR NOMBRE: IMPRIMIR FRANKY ENTERO
     def __str__(self):                
-        return f'Sin Asignacion .... WIP'
+        return f('Tablero Franky:\n■ Dimension head: {self.head.dimension if self.head else "SIN HEAD"} \n■ Dimension Body: {self.dimension} \n■ Dimension Pie:  {self.head.dimension if self.pie else "SIN PIE"}')
     
     # GETTER HEAD:  
     def get_head(self):
@@ -2872,7 +3050,8 @@ class F_r_a_n_k_y(Tablero):
     def set_head(self, data_push ):
         """ ■■■ ESTABLECE EL HEAD A Través de su Valor ....Hay Que Tener En Cuenta Que Head Puede Existir or Not.
         [data_push](str, list, matriz): Dato que se quiere poner en el Head. Es un Tablero, así que se usa push para poner datos.
-        Pone a None el Head anterior y crea uno nuevo, no añade al head anterior ...Si quiero añadir al head anterior tengo self.head.push()
+        Pone a None el Head anterior y crea uno nuevo, no añade al head anterior ...Si quiero añadir al head anterior Tienes self.head.push()
+        ► CALLED: None
         """
         # ANALIZO EL DATO DATA_PUSH: b_lineal = False, meto los datos de forma matricial, eje = 'X', siempre sobre el eje X, estamos en head!! b_repetir = False, en head no se repite nada. solo info.
         dimension_data_push = self.get_dimension_data_push(data_push=data_push, b_lineal=False, eje='X', b_repetir=False)
@@ -2882,6 +3061,7 @@ class F_r_a_n_k_y(Tablero):
         if not filas or not columnas: 
             print(f"Error::: de dimension{dimension_data_push}")
             return None
+
         # ███ Creo el tablero Head::: No varío las columnas del Head, sólo las filas.
         self.head  = Tablero( total_columnas_tablero = self.total_columnas, total_filas_tablero = filas )
         if not self.head: 
@@ -2891,17 +3071,40 @@ class F_r_a_n_k_y(Tablero):
         # METO LOS DATOS EN EL TABLERO CREADO
         self.head.push( data_push = data_push , celda_inicio = 'A:0' )        
         
+        self.head_datapush = data_push                                  # Actualizo el head_datapush con el nuevo valor de data_push
+        
         # RETORNO EL HEAD 
         return self.head
+
+    # ■■■■■■■■ SET STYLE PRINT TABLERO: Establece el estilo de impresión para HeadOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    def set_family_head(self, lista:list=None, ancho_columna:int=None, sp_between:int=0):
+        """ ■■ Establece el estilo de impresión para el Tablero Head.
+        [lista] (list, opcional): Lista de datos a imprimir en el tablero.
+        [ancho] (int, opcional): Ancho del tablero.
+        [sp_between] (int, opcional): Espacio entre los elementos impresos.
+        ► CALLED: None
+        ■ EJEMPLO: VER set_family_pie()
+        """        
+        lista, ancho, sp_between, fila_from , fila_to = self.__ok_data(tablero = self.head, lista = lista , ancho_columna = ancho_columna , sp_between = sp_between )
+        if sp_between == None and fila_from == None and fila_to == None: 
+            print(f'Error de Entrada de datos, se mantienen los valores anteriores validos para Head: ■ lista: {lista} ■ ancho: {ancho_columna} ■ sp_between: {sp_between}')
+            return None
+
+        self.dicc_print['head']['lista'] = lista
+        self.dicc_print['head']['ancho_columna'] = ancho
+        self.dicc_print['head']['sp_between'] = sp_between
+        return True
     
-    # GETTER PIE:  Devuelve el Tablero Pie .... Puede servir para validar en caso de que devuelva None
     def get_pie(self):
+        """ ■ getter del Tablero self.pie:  Devuelve el Tablero Pie .... Puede servir para validar en caso de que devuelva None 
+        """
         return self.pie if self.pie else None
     
     # SETTER PIE: CREA UN NUEVO PIE Y DESTRUYE EL ANTERIOR... SI QUIERO MODIFICAR EL PIE EXISTENTE: self.pie.push()
     def set_pie(self, data_push):
         """ ■■■ ESTABLECE EL PIE or EL VALOR EN EL PIE ....Hay Que Tener En Cuenta Que PIE Puede Existir or Not.
         [data_push](str, list, matriz): Dato que se quiere poner en el Head. Es un Tablero, así que se usa push para poner datos.
+        ► CALLED: None
         """
         # ANALIZO EL DATO DATA_PUSH: b_lineal = False, meto los datos de forma matricial, eje = 'X', siempre sobre el eje X, estamos en head!! b_repetir = False, en head no se repite nada. solo info.
         dimension_data_push = self.get_dimension_data_push(data_push=data_push, b_lineal=False, eje='X', b_repetir=False)
@@ -2923,6 +3126,69 @@ class F_r_a_n_k_y(Tablero):
         # RETORNO EL HEAD 
         return self.pie
 
+    # ■■■■■■■■ SET STYLE PRINT TABLERO: Establece el estilo de impresión para Headooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+    def set_family_pie(self, lista:list=None, ancho_columna:int=None, sp_between:int=0):
+        """ ■■ Permite Establecer el estilo de impresión  para el Tablero Pie.
+        [lista] (list, opcional): Lista de datos a imprimir en el tablero.
+        [ancho] (int, opcional): Ancho del tablero.
+        [sp_between] (int, opcional): Espacio entre los elementos impresos.
+        ► CALLED: None
+        ■ EJEMPLO:
+            set_family_pie(lista=None, ancho_columna=0, sp_between=0)           ► LITERAL    
+            set_family_pie(lista=None, ancho_columna=0, sp_between=2)           ► MOSAICO
+            set_family_pie(lista=None, ancho_columna=None, sp_between=0)        ► MAX
+            set_family_pie(lista=None, ancho_columna=None, sp_between = 2)      ► MAX
+            set_family_pie(lista=None, ancho_columna = 5, sp_between = 2)       ► FIX
+            set_family_pie(lista=[7,7], ancho_columna = 5, sp_between = 2)      ► LISTA-FIX
+            set_family_pie(lista=[7,7], ancho_columna = None, sp_between = 2)   ► LISTA-MAX
+            set_family_pie(lista=[7,7], ancho_columna = 0, sp_between = 2)      ► LISTA-MOSAICO
+        """        
+        lista, ancho, sp_between, fila_from , fila_to = self.__ok_data(tablero = self.pie, lista = lista , ancho_columna = ancho_columna , sp_between = sp_between )
+        if sp_between == None and fila_from == None and fila_to == None: 
+            print(f'Error de Entrada de datos, se mantienen los valores anteriores validos para el Pie: ■ lista: {self.dicc_print['pie']['lista']} ■ ancho: {self.dicc_print['pie']['ancho_columna']} ■ sp_between: {self.dicc_print['pie']['sp_between']}')
+            return None
+
+        self.dicc_print['pie']['lista'] = lista
+        self.dicc_print['pie']['ancho_columna'] = ancho
+        self.dicc_print['pie']['sp_between'] = sp_between
+        return True
+
+    def set_excel(self, b_excel:bool = False):
+        """ ■■ Establece el modo Excel para el Tablero Franky. Sustituye el head por el nombre de las columnas (A, B, C....) y el número de filas(1, 2, 3, ... )
+        [b_excel](bool): Si es True, se activa el modo Excel, que imprime las columnas en la cabecera y los números en las filas.
+        ► CALLED: None
+        """
+        self.b_excel = b_excel
+        return self.b_excel
+    
+    def set_color_excel(self, color:str=Fore.MAGENTA):
+        """ ■ Pone un color en las letras Excel de Cabecera(Tablero self.head_excel) ► A, B, C, D....AZ y los números de fila (1, 2, 3.. n)
+        Realmente, cambia el color y cambia la cabecera.
+        ► CALLED: None
+        ■ EJEMPLOs:
+            ■ self.set_color_excel(color=Fore.YELLOW)     ► 'YELLOW'
+            ■ self.set_color_excel()                      ► 'MAGENTA'
+        """
+        
+        colores_validos = [
+            Fore.BLACK, Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN, Fore.WHITE, Fore.RESET,
+            Back.BLACK, Back.RED, Back.GREEN, Back.YELLOW, Back.BLUE, Back.MAGENTA, Back.CYAN, Back.WHITE, Back.RESET
+        ]
+        
+        if color not in colores_validos:
+            self.color_excel = f'{Fore.MAGENTA}'
+        else:
+            self.color_excel = color
+        
+        # Y CAMBIO LA CABECERA PARA QUE CACHE EL NUEVO COLOR        
+        data_head_excel = [f'{Style.RESET_ALL}{self.color_excel}{SttS._may_nl[j]}' if j % 2 == 0 else f'{Style.RESET_ALL}{SttS._may_nl[j]}' for j in range(self.total_columnas) ]
+        # INTRODUCE LOS DATOS DE HEAD-EXCEL EN SU TABLERO
+        ret_push = self.head_excel.push( data_push = data_head_excel , celda_inicio = 'A:0', eje='X' )
+        if ret_push == None: 
+            return False
+        return True
+        
+
     # ████████████████████████████████████████████████████████████████████
     # CAMBIA EL ESTILO(CARACTERES DE CABECERA, PIE, PRE-NUM , POST-NUM )
     """ ■254  ▄220  ▀223  █219  ••••• LE PONEMOS LOS BRACKETS A FRANKY •••••• """    
@@ -2942,11 +3208,12 @@ class F_r_a_n_k_y(Tablero):
             ■ [char_pie](str): Caracter de la parte inferior.
             ■ [pad_x](int): Espacio entre el último caracter y el borde derecho.
             ■ [x_pad](int): Espacio entre el borde izquierdo y el inicio del contenido.
-        Ejemplos:
-            ■ obj.style(estilo="ascii") ■► Carga el estilo "ascii" y lo aplica a self
-            ■ obj.style(estilo="doble", char_pie="*", pad_x=15) ■► Carga "doble" y cambia char_pie a "*" y pad_x a 15
-            ■ obj.style(char_head="@", char_pie="#") ■► Solo se aplican los valores de kwargs, sin cargar un estilo.
-            ■ obj.style() ■► Carga el estilo "franky" automáticamente.
+        ► CALLED: None
+        ■ EJEMPLOS:
+            ■ obj.style(estilo="ascii")                         ► Carga el estilo "ascii" y lo aplica a self
+            ■ obj.style(estilo="doble", char_pie="*", pad_x=15) ► Carga "doble" y cambia char_pie a "*" y pad_x a 15
+            ■ obj.style(char_head="@", char_pie="#")            ► Solo se aplican los valores de kwargs, sin cargar un estilo.
+            ■ obj.style()                                       ► Carga el estilo "franky" automáticamente.
         """
         if estilo != None:
             if estilo in self.ESTILOS_FRANKY.keys():            # entra estilo AND está en keys.... se asigna
@@ -2957,8 +3224,9 @@ class F_r_a_n_k_y(Tablero):
                 self.char_marco     = self.ESTILOS_FRANKY[estilo]["char_marco"]
                 self.x_pad          = int(self.ESTILOS_FRANKY[estilo]["x_pad"])
                 self.pad_x          = int(self.ESTILOS_FRANKY[estilo]["pad_x"])       
-                self.margen          = int(self.ESTILOS_FRANKY[estilo]["margen"])       
-        elif estilo == None and len(kwargs) == 0:
+                self.margen          = int(self.ESTILOS_FRANKY[estilo]["margen"])   
+
+        elif estilo is None and len(kwargs) == 0:       # llamada sin parametros: style()
                 self.char_head      = self.ESTILOS_FRANKY['franky']["char_head"]
                 self.char_up_body   = self.ESTILOS_FRANKY['franky']["up_body"]
                 self.char_down_body = self.ESTILOS_FRANKY['franky']["down_body"]
@@ -2966,10 +3234,11 @@ class F_r_a_n_k_y(Tablero):
                 self.char_marco     = self.ESTILOS_FRANKY['franky']["char_marco"]
                 self.x_pad          = self.ESTILOS_FRANKY['franky']["x_pad"]
                 self.pad_x          = self.ESTILOS_FRANKY['franky']["pad_x"]
-                self.margen          = int(self.ESTILOS_FRANKY['franky']["margen"])       
+                self.margen          = int(self.ESTILOS_FRANKY['franky']["margen"])      
+                # RETORNA PQ YA ESTÁ TODO EL PESCADO VENDIDO :) 
                 return True
-        # elif estilo == None and len(kwargs) != 0:           # Aplicar valores de kwargs si fueron proporcionados        ç                        
         
+        # # Aplicar valores de kwargs si fueron proporcionados, si no, pone el mismo caracter que tenía.
         self.char_head      = kwargs.get("char_head", self.char_head)
         self.char_up_body   = kwargs.get("up_body", self.char_up_body)
         self.char_down_body = kwargs.get("down_body", self.char_down_body)
@@ -2979,15 +3248,408 @@ class F_r_a_n_k_y(Tablero):
         self.pad_x          = int(kwargs.get("pad_x", self.pad_x))
         self.margen         = int(kwargs.get("margen", self.margen))
 
+    # ◘◘◘◘◘◘◘ Pone un Formato Cuadrado sobre la última columna usada. entre sp_between y ancho_columna
+    def __get_lst_formato_cuadrado(self, baseline_format:str, sp_between:int = 0, tablero = None):
+        """ ■■■ GENERA LA LISTA DE FORMATOS DE LA MAXIMA LONGITUD X COLUMNA.
+        ■ [baseline_format](str): linea Base del formato.
+             ► '{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}'
+        ■ [sp_between](int)=0: espacio entre columnas.
+        ■ [tablero](Tablero): Instancia de un Objeto Tablero.
+        ■ CALLED::: ► __get_matrices_formato() ► __ruta_natural() ► __ruta_cuadrado()
+        ■ EJEMPLO:
+            matriz_LIST_F_cuadrado = self.__get_lst_formato_cuadrado(baseline_format = baseline_format, sp_between = 2 , tablero = self/None/self.head/self.pie/self.head_excel )
+        ■ SALIDA:
+           ['{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+           '{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+           '{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+           '{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}']
+        """
+        if tablero is None:
+            tablero = self
 
-    # ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-    # IMPRIMIR █████████████████████████████████████████████████████████████████████████████████████████████████████████████
+        if  not tablero.matriz:
+            print('Error::: __get_lst_formato_cuadrado() ::: No hay matriz')
+            return None
+        numero_de_filas = len(tablero.matriz)
+        
+        # ████ Re-convierte el baseline_format a una Matriz X su Numero de Filas.
+        lst_cad_formato_body = [ baseline_format for i in range (numero_de_filas) ]
+        
+        # ULTIMA COLUMNA USADA
+        last_columna_used = tablero.get_last_columna_used()  # ■■ Devuelve la última columna usada en el tablero.
+        if last_columna_used is None:
+            last_columna_used = 0
+
+        ANCHO = 0   # cte del ancho del formato del binomio.
+        BETWEEN = 1 # cte del sp_between del formato del binomio.
+        new_lst_formato = []
+        for i, cadena_formato_fila in enumerate(lst_cad_formato_body):
+            lst_binomios = re.findall(r'({:[<>^]\d+})({:[<>^]\d+})', cadena_formato_fila)
+            if not lst_binomios: 
+                return None
+            
+            new_lst_formato_fila = []
+            for b , binomio in enumerate(lst_binomios):
+                if b < last_columna_used:                                        
+                    new_lst_formato_fila.append(binomio[ANCHO])
+                    new_lst_formato_fila.append(binomio[BETWEEN])
+                elif b == last_columna_used:    # ■ En La Ultima Columna Used No Incluyo El Sp_Between en el formato...lo pongo a {:<0} (Zero)
+                        new_lst_formato_fila.append(binomio[ANCHO])
+                        new_lst_formato_fila.append('{:<0}')
+                else:                           # ■ A partir de La Ultima Columna Used todo el formato a Zero.
+                    new_lst_formato_fila.append('{:<0}')
+                    new_lst_formato_fila.append('{:<0}')
+            pass
+            # new_lst_formato.append(new_lst_formato_fila))
+            new_lst_formato.append(''.join(new_lst_formato_fila))
+        pass
+        return new_lst_formato
+    
+    # ◘◘◘◘◘◘◘ 
+    def __get_lst_formato_natural(self, baseline_format: str, sp_between:int = 0, tablero = None):
+        """ ■■■■■ Genera una lista de formatos ajustados a la última columna utilizada en cada fila y ajustando todas las filas 
+        a la última columna utilizada en la fila más larga.
+        ■ [baseline_format](str) ► '{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}'
+        ■ [b_between] (bool): Indica si se usa lst_formato_between (True) o lst_formato_ancho_columna (False).
+        ■ [tablero](Tablero): Instancia de un objeto Tablero. (self, self.head, self.pie, self.head_excel)
+        ► CALLED:   ► self.__get_matrices_formato() ► self.__ruta_natural()
+        ■ EJEMPLO:
+            matriz_LIST_F_natural  = self.__get_lst_formato_natural( baseline_format = baseline_format, sp_between = sp_between , tablero = tablero)
+        ■ SALIDA:   
+            ['{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+            '{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+            '{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+            '{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}']
+        """
+        if tablero is None:
+            tablero = self
+        # ■■ Lista De Int Con La Ultima Columna Usada Por Fila. Zero No Implica Que No Haya Datos En La Columna 0(A:0, B:0, ...)
+        lst_last_columna_used:list = tablero.get_lst_last_columna_used_xfila()         
+        last_columna_matriz:int = max(lst_last_columna_used)        # ■■ INT , ULTIMA COLUMNA USADA DE TODAS LAS FILAS
+        lst_len_organico_xfila = self.__get_lst_len_natural(sp_between = sp_between, tablero = tablero)  # ■■ LISTA DE LONGITUDES ■ ORGANICA ■ 
+
+        """ ■■■■ Divido el baseline_format en dos partes: ancho_columna y between """
+        lst_formato_ancho_columna   = F_r_a_n_k_y.__desempaqueta_str_formato(str_formato = baseline_format, b_between=False)
+        lst_formato_between         = F_r_a_n_k_y.__desempaqueta_str_formato(str_formato = baseline_format, b_between=True)
+
+        """ ■■■■ Creo la Lista/matriz del Formato del Body a partir de las dos partes anteriores y 
+        la lista de la ultima columna usada por fila. """
+        lista_formato_final = []    
+        for i, last_columna_used in enumerate(lst_last_columna_used):            
+            # ■■ Creo el Formato Ajustado A la Ultima COLUMNA usada para el ancho_columna Y Pen-ultima para sp_between 
+            lst_ancho_new_xfila   = [ formato_ancho if (j <= last_columna_used) and (lst_len_organico_xfila[i] != 0) 
+                                                    else '{:<0}' 
+                                                    for j , formato_ancho  in enumerate(lst_formato_ancho_columna) ]
+
+            lst_between_new_xfila = [ formato_between   if (j < last_columna_used ) and (lst_len_organico_xfila[i] != 0 ) 
+                                                        else '{:<0}' 
+                                                        for j , formato_between in enumerate(lst_formato_between) ]            
+            # ■■ Generar la cadena de formato intercalando ancho y between
+            formato_final_xfila = ''.join(a + b for a, b in zip(lst_ancho_new_xfila, lst_between_new_xfila))            
+            
+            # ■■ Agrega la cadena anterior a la lista de formatos y vamos a por la siguiente fila...
+            lista_formato_final.append(formato_final_xfila)
+        pass
+        # ■■ RETORNO
+        return lista_formato_final if lista_formato_final else None
+
+    # LISTA CON LA LONGITUD ORGANNICA DE LOS VALORES DE CADA FILA ► [ 7,0,5,3,0,0,0,0,0 ] pej.
+    def __get_lst_len_natural(self, tablero = None , sp_between:int = 0 ):        
+        """ Obtiene una Lista con las longitudes de los valores de cada fila + los espacios between hasta la última columna usada - 1
+        En caso de que haya valores en la fila, en caso contrario pone 0 en la fila(no cuenta los espacios between).
+        [sp_between] (int): Espacio entre columnas. 0 byDef
+        [tablero] (Tablero): Tablero del que se quiere obtener la lista de longitudes. Por defecto es el mismo objeto. Body
+        ► CALLED: __get_lst_formato_natural()
+        ■ EJEMPLO: 
+            lst_len_organico_xfila = self.__get_lst_len_natural(sp_between = 2, tablero = self)  
+        ► SALIDA:  [57, 12, 15, 0, 5, 0] con una dimension 4x6 porejemplo.
+        """
+        if tablero is None:
+            tablero = self
+        # ██ LISTA-INT CON LA LONGITUD DE LOS 'VALORES' Sin contar con el color
+        lst_longitud_filas = tablero.get_lstlen_valores_xfila(b_limpio=True)                            
+
+        # ■■■■■ LISTA-INT CON LA ULTIMA COLUMNA USADA DE CADA FILA ■ ... para calcular los sp_between
+        lst_last_columna_used = tablero.get_lst_last_columna_used_xfila()     
+
+        # ██ LISTA DE ESPACIOS USADOS HASTA LA PENULTIMA COLUMNA USADA [last_columna_used - 1] 
+        # pero hay que sumar 1 pq la columna 'A' empieza en 0 y si no se suma se perdería con lo que queda last_columna_used
+        lst_sp_between_x_fila = [ (last_columna_used * sp_between)  if (last_columna_used > 0 and lst_longitud_filas[i] > 0)
+                                                                    else 0 if ( last_columna_used == 0 and lst_longitud_filas[i] > 0 )
+                                                                    else 0 if ( last_columna_used == 0 and lst_longitud_filas[i] == 0 )
+                                                                    else 0
+                                                                    for i, last_columna_used in enumerate(lst_last_columna_used) ]
+        # ■■■■■■■■■ SUMA LAS 2 LONGITUDES X FILA ::: VALORES + ESPACIOS BETWEEN
+        lst_lentotal_x_fila = [ len_fila + sp_between_x_fila 
+                                    for len_fila , sp_between_x_fila in zip(lst_longitud_filas, lst_sp_between_x_fila) ]
+        # RETORNO
+        return lst_lentotal_x_fila
+        
+    # Separa LA CADENA DE FORMATO EN POSICIONES PARES(ANCHO_COLUMNAS) O IMPARES(SP_BETWEEN)... trabaja con __get_parte_entera_monomio_formato para transformar una linea de formato en una lista.
+    @staticmethod
+    def __desempaqueta_str_formato( str_formato:str, b_between:bool=False):
+        """ ■ DEVUELVE UNA LISTA CON EL MONOMIO( {:<x} ) DE LA CADENA DE FORMATO COMPLETO, LAS POSICIONES PARES O IMPARES.
+        [str_formato](str): baseline_format, ► '{:<55}{:<1}{:<0}{:<1}{:<0}{:<1}{:<0}{:<1}{:<0}{:<1}{:<0}{:<1}{:<0}{:<1}{:<0}{:<1}{:<0}{:<1}'
+            Cadena de formato.{:<ANCHO}{:<BETWEEN}     ► Hay dos monomios que forman un binomio, que representa donde se situará una celda en la tabla. 
+        [b_between](bool): ► True, si quieres los pares( sp_between )  ► False, 
+        ■ EJEMPLO: 
+            lst_formato_ancho_columna = F_r_a_n_k_y.__desempaqueta_str_formato( str_formato = formato, b_between=False ) ► ['{:<55}','{:<0}', '{:<0}', '{:<0}', '{:<0}', '{:<0}', '{:<0}', '{:<0}', '{:<0}']
+            lst_formato_between       = F_r_a_n_k_y.__desempaqueta_str_formato( str_formato = formato, b_between=True )  ► ['{:<1}', '{:<1}', '{:<1}', '{:<1}', '{:<1}', '{:<1}', '{:<1}', '{:<1}', '{:<1}']
+        """
+        # Expresión regular para capturar toda la estructura {:<X}, {:<X}, {:^X}
+        patrones = re.findall(r'{:[<>^]\d+}', str_formato)        
+        
+        if b_between == True:
+            return patrones[1::2]   # ► Elementos en posiciones impares - sp_between
+        else:
+            return patrones[::2]    # ► Elementos en posiciones pares  - ancho columna
+
+    # DE UN MONOMIO DE FORMATO OBTIENE SU NUMERO    {:<4} ► 4 
+    @staticmethod
+    def __get_parte_entera_monomio_formato(monomio_formato: str):       
+        """ Devuelve la parte entera(ancho) de una cadena de formato. 
+        [monomio_formato](str): cadena de formato.... '{:<x}'
+        ■ EJEMPO: 
+            self.__get_parte_entera_monomio_formato(monomio_formato = '{:<7}')  ►  7
+        ■ RETORNO: (int) Ancho del monomio.
+        """
+        match = re.search(r'{:[<>^](\d+)}', monomio_formato)
+        
+        # RETORNO ... devuelve el grupo 1 de la expresión regular(el primer parentesis de la expresión regular)        
+        return int(match.group(1)) if match else 0  # Devuelve 0 si no hay coincidencias
+
+    def __linea_horizontal( self, char:str, maximo_franky:int, color:str=None ):
+        """ ■ Imprime una línea horizontal con el caracter y color especificados CON LA longitud especificada en maximo_franky.
+        [char] (str): Caracter a usar para la línea.
+        [color] (str): Color a usar para la línea.
+
+        Sustitye
+        # print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( largo_total_marco )}')   
+        # print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len_marco_limpio + self.x_pad + self.pad_x + len_marco_limpio )}')        
+
+        ■ EJEMPLO:
+            ► print(self.__linea_horizontal(char=self.char_head, maximo_franky = 95))
+        """
+        # TAMAÑO DEL CHAR MARCO(SE PUEDEN ELEGIR MAS DE UN CARACTER PARA EL MARCO) 
+        len_marco_limpio = Rango.len_limpio(texto = self.char_marco) if self.char_marco else 0
+        
+        # CALCULA LA LONGITUD TOTAL DE LA LINEA
+        longitud_linea = maximo_franky + len_marco_limpio + self.x_pad + self.pad_x + len_marco_limpio
+        
+        if color is None:
+            # devuelve la línea horizontal con el caracter especificado y sin color(o arrastrando el color que tenga el marco)
+            return f'{self.ESPACIO * self.margen}{char * longitud_linea}'
+        else:
+            # devuelve la línea horizontal con el color y el caracter especificados
+            return f'{self.ESPACIO * self.margen}{color}{char * longitud_linea}{Style.RESET_ALL}'
+    
+    @staticmethod
+    def __from_formato_to_matriz( lst_formato:list, b_ancho_columna:bool=True, b_sp_between:bool=False ):
+        """ ■ Def: Convierte una lista de formatos en una matriz de enteros.
+        [lst_formato] (list): Lista de formatos a convertir.
+        [b_ancho_columna] (bool): Si True, devuelve la lista de anchos de columna.
+        [b_sp_between] (bool): Si True, devuelve la lista de espacios entre columnas.
+        ■ Retorno: Una lista de enteros con los valores del formato.
+        ■ Ejemplo ■
+            {:<4}{:<2} {:<0}{:<2} {:<0}{:<2}       4 - 2 - 0 - 2 - 0 - 2
+            {:<0}{:<2} {:<0}{:<2} {:<0}{:<2}   ►   0 - 2 - 0 - 2 - 0 - 2
+            {:<0}{:<2} {:<0}{:<2} {:<0}{:<2}       0 - 2 - 0 - 2 - 0 - 2
+        """        
+        lst_matriz_formato = []
+        # ■■ LISTA DE ENTEROS DE LOS VALORES DEL FORMATO
+        lst_int_ancho_columna = []
+        lst_int_sp_between = []
+        for formato in lst_formato:                    
+
+            lst_formato_ancho_columna = F_r_a_n_k_y.__desempaqueta_str_formato( str_formato = formato, b_between=False )
+            lst_formato_between       = F_r_a_n_k_y.__desempaqueta_str_formato( str_formato = formato, b_between=True )
+
+            # LISTA DE ENTEROS DE LOS VALORES DEL FORMATO
+            lst_int_ancho_columna.append([F_r_a_n_k_y.__get_parte_entera_monomio_formato(monomio_formato) for monomio_formato in lst_formato_ancho_columna])
+            lst_int_sp_between.append(   [F_r_a_n_k_y.__get_parte_entera_monomio_formato(monomio_formato) for monomio_formato in lst_formato_between])                        
+        pass
+        lst_matriz_formato = [ [a + b for a, b in zip(sublista_ancho, sublista_between)] 
+                                      for sublista_ancho, sublista_between in zip(lst_int_ancho_columna, lst_int_sp_between)
+        ]
+
+        if b_ancho_columna == True and b_sp_between == False:
+            return lst_int_ancho_columna if lst_int_ancho_columna else None
+        if b_ancho_columna == False and b_sp_between == True:
+            return lst_int_sp_between if lst_int_sp_between else None
+        if b_ancho_columna == True and b_sp_between == True:
+            return lst_matriz_formato if lst_matriz_formato else None
+        if b_ancho_columna == False and b_sp_between == False:
+            return lst_matriz_formato if lst_matriz_formato else None
+
+    @staticmethod
+    def obtener_columna( matriz:list, indice_col: int ) ->list[int]:
+        """ ■ Extrae una columna de una matriz de enteros por su índice.
+        ■ [matriz] (list[list[int]]): Matriz representada como lista de listas.
+        ■ [indice_col] (int): Índice de la columna a extraer (base 0).
+        De momento sin uso, pero BASE para conseguir columnas del mismo color 
+        """
+        return [fila[indice_col] for fila in matriz]
+
+    # ████████████████████████████████████████████████████████████████████████████████████████████
+    # ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ METODOS PARA COLOR
+    # ████████████████████████████████████████████████████████████████████████████████████████████
+    
+    # ■ Función principal para cambiar el color del marco
+    def color_marco(self, color=Fore.WHITE):
+        """ ■ Cambia el color  del marco.        
+        [color] (str o código Colorama): Color a aplicar::: Fore.RED, Fore.YELLOW 
+        ► CALLED: None
+        ■ EJEMPLO: 
+            self.color_marco(color=Fore.CYAN)
+        """
+        color_procesado = self.from_nombre_to_color(color = color)
+        if color_procesado is None:
+            print(f"Color no válido: {color}... pongo Negro por defecto.")
+            color_procesado = Fore.BLACK
+        # Diccionario con los componentes del marco a colorear
+        componentes = {
+            'char_marco': self.char_marco,
+            'char_head': self.char_head,
+            'char_pie': self.char_pie,
+            'char_down_body': self.char_down_body,
+            'char_up_body': self.char_up_body
+        }
+        # ■ Aplicar nuevo color a cada componente
+        for nombre, valor in componentes.items():
+            caracter_visible = F_r_a_n_k_y.__texto_limpio(texto = valor)
+            setattr(self, nombre, f'{color_procesado}{caracter_visible}{Style.RESET_ALL}')
+
+        print(f'Color {color_procesado} cambiado correctamente {Style.RESET_ALL}')
+    
+    # Función para procesar el color (convertir string a código Colorama)
+    # @staticmethod
+    def from_nombre_to_color(self, color:str):
+        """ ■ Convierte un string de color a su código Colorama correspondiente.        
+        [color]  (str o código Colorama): Color a procesar     
+        ► CALLED: self.color_marco()       
+        RETURN: 1• Código Colorama  2• None si no es válido
+        """
+        if isinstance(color, str):
+            if color in self.COLOR_MAP.items():
+                return color
+            elif color.lower() in self.COLOR_MAP.keys():            
+                return self.COLOR_MAP.get(color.lower(), None)
+            else:                
+                return None
+        
+    # ◘◘◘◘ FORMA SEGURA DE RETORNAR UN TEXTO SIN EL COLOR DE COLORAMA
+    @staticmethod
+    def __texto_limpio( texto:str, b_get_txt:bool = True):
+        """ Convierte cualquier entrada en str SIN CODIGOS ANSI. y devuelve:
+            ► Lista de rangos visibles (inicio, fin)
+            ► O el texto visible reconstruido (si b_get_txt=True)
+        CALLED: ► self.__get_valor_diferencia()  ► __get_head_excel() ► __get_maximo_head()  ► __imprimir_matricial() ► __get_lista_L_SUM() ► __ruta_natural() ► __ruta_cuadrado()
+        EJEMPLO:
+            valor_limpio:str = F_r_a_n_k_y.__texto_limpio(texto='\x1b[32mLoren \x1b[0mIpsum ', b_get_txt = True)  ► 'Loren Ipsum'
+            valor_limpio:str = F_r_a_n_k_y.__texto_limpio(texto='\x1b[32mLoren \x1b[0mIpsum ', b_get_txt = False) ► [(4,8), (13,17)] ► SIN USO 
+        """
+        if not isinstance(texto, str):
+            try:
+                texto = str(texto)
+            except Exception:
+                texto = ''
+
+        # Patrón mejorado para capturar más secuencias ANSI
+        ansi_pattern = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
+        lst_cadena = []
+        pos_actual = 0
+
+        for match in ansi_pattern.finditer(texto):
+            start, end = match.span()
+            if pos_actual < start:
+                lst_cadena.append((pos_actual, start))
+            pos_actual = end
+
+        if pos_actual < len(texto):
+            lst_cadena.append((pos_actual, len(texto)))
+        
+        # ■ RETORNO
+        if b_get_txt:
+            texto_visible = ''.join(texto[inicio:fin] for inicio, fin in lst_cadena)
+            return texto_visible
+        else:
+            return lst_cadena
+    
+    # ◘◘◘◘ Devuelve siempre Un texto por un indice saltandose colorama.
+    @staticmethod
+    def __truncate_colored_string(valor:str, max_width:int) -> str:
+        """ ■ Trunca una cadena con códigos ANSI a un ancho máximo, manteniendo los códigos intactos.    
+        ■ USADO SOLO PARA MODO DE IMPRESION 'FIX' Y 'LISTA-FIX'      
+            ► 1- Extraer los códigos ANSI (Colorama) y separarlos del texto visible.
+            ► 2- Cortar el texto visible según el ancho especificado.
+            ► 3- Reconstruir la cadena con los códigos ANSI y el texto visible cortado
+        ► CALLED: ► self.__get_valor_diferencia() 
+        [valor] (str): Cadena con códigos ANSI.
+        [max_width] (int): Ancho máximo permitido.        
+        ■ EJEMPLO:
+            valor_to_append = F_r_a_n_k_y.__truncate_colored_string(valor='\x1b[32mLoren \x1b[0mIpsum ', max_width = 8 ) ► '\x1b[32mLoren \x1b[0mIp'
+            valor_to_append = F_r_a_n_k_y.__truncate_colored_string(valor='\x1b[32mLoren \x1b[0mIpsum ', max_width = 5 ) ► '\x1b[32mLoren'
+        """
+        # ■■■■■■■■■■■■Expresión regular para encontrar códigos ANSI (Colorama)
+        # ansi_escape = re.compile(r'(\033\[[0-9;]*m)')
+        # ansi_escape = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
+        ansi_escape = re.compile(r'(\x1b\[[0-9;]*m)')
+        
+        len_valor_limpio = Rango.len_limpio(texto = valor)
+        len_valor_bruto = len(valor)
+        
+        # ■■■■■■■■■■■■ Si no hay color Asignado, recorto al max_width
+        if len_valor_limpio == len_valor_bruto:  
+            return valor[:max_width] if len_valor_bruto > max_width else valor             
+
+        # Dividir la cadena en partes: códigos ANSI y texto normal
+        parts = []
+        current_pos = 0
+        for match in ansi_escape.finditer(valor):
+            start, end = match.span()
+            if current_pos < start:
+                parts.append(('text', valor[current_pos:start]))
+            parts.append(('ansi', match.group()))
+            current_pos = end
+        if current_pos < len(valor):
+            parts.append(('text', valor[current_pos:]))
+        
+        # Reconstruir el texto visible y los códigos ANSI
+        visible_length = 0
+        truncated_parts = []
+        for part_type, part_content in parts:
+            if part_type == 'text':
+                allowed_length = max(0, max_width - visible_length)
+                truncated_text = part_content[:allowed_length]
+                truncated_parts.append(truncated_text)
+                visible_length += len(truncated_text)
+                if visible_length >= max_width:
+                    break
+            else:
+                truncated_parts.append(part_content)
+        
+        return ''.join(truncated_parts)
+
+    @staticmethod
+    def __eliminar_ansi_final(texto):
+        """ ■ Elimina solo los códigos ANSI al FINAL del texto, preservando los internos.
+        En base a esta diferenciacion (valor en bruto - valor sin ansi final) se calculan las longitudes para el marco derecho.
+        ► CALLED: F_r_a_n_k_y.__get_valor_diferencia()
+        ■ EJEMPLO:
+            valor_reset:str  = F_r_a_n_k_y.__eliminar_ansi_final(texto='\x1b[32mLoren Ipsum \x1b[0m')   ► '\x1b[32mLoren Ipsum'   
+            valor_reset:str  = F_r_a_n_k_y.__eliminar_ansi_final(texto='\x1b[32mLoren \x1b[0mIpsum')    ► '\x1b[32mLoren \x1b[0mIpsum'   
+        """
+        return re.sub(r'(\x1b\[[0-9;]*m)+$', '', texto)
+
+    # ████████████████████████████████████████████████████████████████████████████████████████████
+    # ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ METODOS PARA IMPRIMIR
+    # ████████████████████████████████████████████████████████████████████████████████████████████
+
+    # ◘◘◘◘◘◘◘
     def imprimir(self, sp_between:int = 0, ancho_columna:int = None, lista:list = None , fila_from:int=0, fila_to:int=None):    
         """ ■■■ SOBRE-ESCRIBE EL METODO IMPRIMIR DE TABLERO:
         ■ IMPRIME UN OBJETO F_R_A_N_K_Y EN LA TERMINAL SEGUN LA CONFIGURACION ESTABLECIDA.
-        ■ SE QUIERE QUE AL IMPRIMIR GENERE 4 COLUMNAS EXTRA AL BODY(DOS A LA IZQUIERDA Y DOS A LA DERECHA):
-            COL 1:  margen █ COL 2: (char_marco, x_pad) █  FILA BODY █ COL 3: (diferencia con maximo) █ COL 4: (pad_x, char_marco) 
-        
+        ► CALLED: None
         ■ [sp_between] (int): el espacio entre columnas.... 0 byDef
                                     Un sp_between = 0, significa que NO va a haber espacio entre columnas.
                                     Un sp_between = valor entero positivo, significa que va a haber un espacio entre columnas.
@@ -2998,1346 +3660,1641 @@ class F_r_a_n_k_y(Tablero):
         ■ [lista](list) = lista de anchos para cada columna.  Puede tener cualquier longitud.... None byDef
                                     Si lista == None, No se tiene en cuenta la lista y se trabaja con sp_between y ancho_columna.
                                     Si lista != None, se trabaja con la lista como ancho FIXED y el resto(si falta alguna) se tiene en cuenta sp_between y ancho_columna como en los casos anteriores.
+        ■ [fila_from](int): fila desde la que se empieza a imprimir. 0 byDef
+        ■ [fila_to](int): fila hasta la que se imprime. None byDef, imprime hasta el final del tablero.
+        ■ RETORNO:  None, imprime los tableros franky (head, body , pie)
+        ■ EJEMPLOS:
+            ► F_RANK_Y.imprimir(  lista = None , sp_between = 2,  ancho_columna = None , fila_from=2, fila_to=10 )   ►   'MAX'
+            ► F_RANK_Y.imprimir(  lista = None , sp_between = 2,  ancho_columna = 9 , fila_from=2, fila_to=10 )      ►   'FIX'
+            ► F_RANK_Y.imprimir(  lista = None , sp_between = 2,  ancho_columna = 0 , fila_from=2, fila_to=10 )      ►   'MOSAICO'
+            ► F_RANK_Y.imprimir(  lista = None , sp_between = 0,  ancho_columna = 0 , fila_from=2, fila_to=10 )      ►   'MOSAICO-LITERAL' 
+            ► F_RANK_Y.imprimir(  lista = [7,7] , sp_between = 0, ancho_columna = 0 , fila_from=2, fila_to=10 )      ►   'LISTA-MOSAICO-LITERAL' 
+            ► F_RANK_Y.imprimir(  lista = [7,7] , sp_between = 2, ancho_columna = 0 , fila_from=2, fila_to=10 )      ►   'LISTA-MOSAICO' 
+            ► F_RANK_Y.imprimir(  lista = [7,7] , sp_between = 2, ancho_columna = None , fila_from=2, fila_to=10 )   ►   'LISTA-MAX' 
+            ► F_RANK_Y.imprimir(  lista = [7,7] , sp_between = 2, ancho_columna = 9 , fila_from=2, fila_to=10 )      ►   'LISTA-FIX' 
         """        
+        # ■ Valida la entrada
+        lista, ancho_columna, sp_between, fila_from, fila_to = self.__ok_data(tablero = self, 
+                                                                            lista = lista , ancho_columna = ancho_columna , sp_between = sp_between , 
+                                                                            fila_from = fila_from , fila_to = fila_to )        
+        if sp_between == None and fila_from == None and fila_to == None:
+            print(f'Error::: Imprimir Franky ::: No se han pasado los parametros necesarios para imprimir el tablero')
+            return None
+        
+        # ■ Cacha los datos para el body 
+        self.dicc_print['body']['lista']         = lista
+        self.dicc_print['body']['ancho_columna'] = ancho_columna
+        self.dicc_print['body']['sp_between']    = sp_between
 
-        # BORRAR
-        # print(f'FORMATO DE IMPRESION = {self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)} ')        
-        # print(f'NOMBRE DEL ESTYLE DE IMPRESION = {self.get_imprimir_style(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)} ')
-        # INFO QUE VOY A USAR PARA HACER FRANKY PARA TODAS LAS IMPRESIONES
-        # print(f'ULTIMA FILA USADA = {self.last_fila_used()}')               
-        # print(f'ULTIMA COLUMNA USADA = {self.last_columna_used()}')
+        family_impresion = self.get_family_impresion(lista = lista, ancho_columna = ancho_columna , sp_between = sp_between  )
+        if family_impresion is None or str(family_impresion).upper() not in self.lista_family : return None
 
-        # DESDE FILA
-        if not isinstance(fila_from, int): return None
-        fila_from = abs(fila_from)
-        # HASTA FILA
-        if fila_to == None:
-            fila_to = self.celda_fin.fila        
+        # ■ Cacha el maximo_franky para imprimir el tablero.
+        maximo_franky = self.__get_maximo_franky()
+        if maximo_franky is None:
+            print(f'Error::: Imprimir Franky ::: No se ha podido calcular el maximo_franky')
+            return None        
+
+        # ■ HEAD
+        if self.b_excel == True:
+            head_excel_F , head_excel_V = self.__get_head_excel( family_impresion = family_impresion, maximo_franky=maximo_franky )          # ■■ HEAD-Excel
+            
+            print(self.__linea_horizontal(char=self.char_head, maximo_franky=maximo_franky))
+            print( head_excel_F.format(*head_excel_V) )
+
         else:
-            try:
-                fila_to=abs(int(fila_to))
-                # VALIDA LOS LIMITES DE LAS FILAS PASADAS
-                if not self.celda_inicio.fila <= fila_from <= fila_to <= self.celda_fin.fila:
-                    print('filas fuera de rango')
-                    return None                
-            except Exception as e:
-                print(f'{e}')
-                return None
-        # IMPRIME RESULTADOS... BORRAR
-        # print(f'FROM FILA {fila_from}, TO FILA {fila_to}\n')               
-                
-        # ■■■ VALIDACION INICIAL
-        str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
-        if not str_formato: return None        
-        
-        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        ■■■■ ANALIZA Y DIRECCIONA  LA CADENA DE FORMATO. ■■■■ 
-        """
-        imprimir_style = self.get_imprimir_style(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
-        
-        if imprimir_style == TYPE_IMPR.MAX_SSP:                 # SUMATORIO DE LONG COLUMNAS + ZERO COLUMNAS = ESTRUCTURAL PURO
-            self.imprimir_max_columna( sp_between = 0 , 
-                                        fila_from=fila_from, 
-                                        fila_to=fila_to)
-        
-        elif imprimir_style == TYPE_IMPR.MAX_CSP:               # SUMATORIO DE LONG COLUMNAS + ESPACIOS = ESTRUCTURAL PURO
-            self.imprimir_max_columna( sp_between = sp_between , 
-                                        fila_from=fila_from, 
-                                        fila_to=fila_to)
-        
-        elif imprimir_style == TYPE_IMPR.LITERAL:               # SUMATORIO DE LONG FILAS + ZERO COLUMNAS = ORGANICO PURO
-            self.imprimir_literal( fila_from=fila_from, 
-                                    fila_to=fila_to)
-
-        elif imprimir_style == TYPE_IMPR.MOSAICO:               # SUMATORIO DE LONG FILAS + ESPACIOS = ORGANICO
-            self.imprimir_mosaico( ancho_columna = ancho_columna, 
-                                    sp_between = sp_between,  
-                                    lista = None , 
-                                    fila_from=fila_from, 
-                                    fila_to=fila_to)
-        
-        elif imprimir_style == TYPE_IMPR.FIXED_SSP:             # SUMATORIO DE COLUMNAS + SIN ESPACIOS ==> HASTA LA ULTIMA COLUMNA
-            self.imprimir_fixed( ancho_columna = ancho_columna, 
-                                sp_between = sp_between,  
-                                lista = None , 
-                                fila_from=fila_from, 
-                                fila_to=fila_to)            
-        
-        elif imprimir_style == TYPE_IMPR.FIXED_CSP:             # SUMATORIO DE COLUMNAS Y ESPACIOS ==> HASTA LA ÚLTIMA COLUMNA USED
-            self.imprimir_fixed( ancho_columna = ancho_columna, 
-                                sp_between = sp_between,  
-                                lista = None , 
-                                fila_from=fila_from, 
-                                fila_to=fila_to)
-        
-        elif imprimir_style == TYPE_IMPR.LIST_AMBG_SSP:         # LISTA. SUMAR LISTA + MAXIMO COLUMNA + SIN ESPACIOS
-            self.imprimir_lista_max_columna( ancho_columna = ancho_columna, 
-                                            sp_between = sp_between,  
-                                            lista = lista , 
-                                            fila_from=fila_from, 
-                                            fila_to=fila_to)
-        
-        elif imprimir_style == TYPE_IMPR.LIST_AMBG_CSP:         # LISTA. SUMAR LISTA + MAXIMO COLUMNA + SUMAR ESPACIOS
-            self.imprimir_lista_max_columna( ancho_columna = ancho_columna, 
-                                                sp_between = sp_between,  
-                                                lista = lista, 
-                                                fila_from=fila_from, 
-                                                fila_to=fila_to )
-        
-        elif imprimir_style == TYPE_IMPR.LIST_LITERAL:          # LISTA. SUMAR LISTA + ZERO COLUMNAS + SIN ESPACIOS
-            self.imprimir_lista_mosaico(ancho_columna = ancho_columna, 
-                                        sp_between = sp_between,  
-                                        lista = lista , 
-                                        fila_from=fila_from, 
-                                        fila_to=fila_to)
-
-        elif imprimir_style == TYPE_IMPR.LIST_MOSAICO:          # LISTA. SUMAR LISTA + ZERO COLUMNAS + CON ESPACIOS
-            self.imprimir_lista_mosaico(ancho_columna = ancho_columna, 
-                                        sp_between = sp_between,  
-                                        lista = lista , 
-                                        fila_from=fila_from, 
-                                        fila_to=fila_to)
-
-        elif imprimir_style == TYPE_IMPR.LIST_FIXED_SSP:        # LISTA. SUMAR LISTA + SUMATORIO DE COLUMNAS + SIN ESPACIOS ==> HASTA LA ULTIMA COLUMA USED
-            self.imprimir_lista_fixed(ancho_columna = ancho_columna, 
-                                        sp_between = sp_between,  
-                                        lista = lista , 
-                                        fila_from=fila_from, 
-                                        fila_to=fila_to)
-        
-        elif imprimir_style == TYPE_IMPR.LIST_FIXED_CSP:        # LISTA. SUMAR LISTA + SUMATORIO DE COLUMNAS + CON ESPACIOS
-            self.imprimir_lista_fixed(ancho_columna = ancho_columna, 
-                                        sp_between = sp_between,  
-                                        lista = lista , 
-                                        fila_from=fila_from, 
-                                        fila_to=fila_to)    
-    
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ancho = 0
-    # LITERAL  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ sp_between = 0
-    def imprimir_literal(self, fila_from:int=0, fila_to:int=None):
-        
-        sp_between=0
-        ancho_columna = 0
-        
-        # ■ EL TAMAÑO DE LA FILA MAS LARGA:
-        maximo_head:int = self.head.get_max_filas() if self.head else 0                     
-        maximo_self:int = self.get_max_filas()          
-        maximo_pie:int = self.pie.get_max_filas() if self.pie else 0        
-        # LONGITUD MAXIMA DE HEAD/BODY/PIE
-        maximo_franky = max(maximo_head, maximo_self, maximo_pie)
-
-        # HEAD        
-        lst_len_filas_head:list = self.head.get_lst_longitud_valores_x_fila()  if self.head else None     # ■ LISTA DEL LEN DE CADA FILA - get_lst_longitud_valores_x_fila 
-        lst_resto_to_add_head = [ maximo_franky - len_fila for len_fila in lst_len_filas_head ]  if lst_len_filas_head else None    # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA .... PARA B3 - LITERAL
-        
-        # BODY        
-        lst_longitud_filas:list = self.get_lst_longitud_valores_x_fila()   # ■ LISTA DEL LEN DE CADA FILA - get_lst_longitud_valores_x_fila 
-        lst_resto_to_add = [ maximo_franky - len_fila for len_fila in lst_longitud_filas ]   # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA .... PARA B3 - LITERAL
-        if not lst_longitud_filas: return None
-        
-        # PIE
-        lst_len_filas_pie:list = self.pie.get_lst_longitud_valores_x_fila() if self.pie else None
-        lst_resto_to_add_pie = [ maximo_franky - len_fila for len_fila in lst_len_filas_pie ] if lst_len_filas_pie else None        
-
-        print()        
-        
-        # ■■■■■■■■■■■■■ HEAD ■■■■■■■■■■■■■
-        try:
             if self.head:
-                print(f'{self.ESPACIO * self.margen}{self.char_head * (  maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between*self.head.total_columnas + ancho_columna*self.head.total_columnas )}')             
-                self.__imprimir_tablero_literal(tablero = self.head ,  lst_resto_to_add = lst_resto_to_add_head) 
-        except Exception as e:
-            print(f'{e}')
-            return None
+                self.__imprimir_franky(tablero=self.head, maximo_franky=maximo_franky , up_line = True , down_line = False)                             # ■■ HEAD
+        pass
+        # ■ BODY        
+        self.__imprimir_franky(tablero=self, maximo_franky=maximo_franky , up_line = True , down_line = True , fila_from=fila_from, fila_to=fila_to)    # ■■ BODY
+        pass
+        # ■ PIE
+        if self.pie:
+            self.__imprimir_franky(tablero=self.pie, maximo_franky=maximo_franky , up_line = False, down_line = True )                                  # ■■ PIE
         
-        # ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■
-        try:
-            print(f'{self.ESPACIO * self.margen}{self.char_up_body * (  maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between * self.total_columnas + ancho_columna * self.total_columnas  )}')                 
-            self.__imprimir_tablero_literal(tablero = self ,  lst_resto_to_add = lst_resto_to_add, fila_from = fila_from, fila_to = fila_to) 
-            print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between*self.total_columnas + ancho_columna*self.total_columnas  )}')       
-        except Exception as e:
-            print(f'{e}')
-            return None
         
-        # ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■        
-        try:
-            if self.pie:                
-                self.__imprimir_tablero_literal(tablero = self.pie  , lst_resto_to_add = lst_resto_to_add_pie) 
-                print(f'{self.ESPACIO * self.margen}{self.char_pie * ( maximo_franky  + self.pad_x + len(self.char_marco) + len(self.char_marco) + self.x_pad + sp_between*self.pie.total_columnas + ancho_columna*self.pie.total_columnas   )}')             
-        except Exception as e:
-            print(f'{e}')
-            return None
-    
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ancho = 0
-    # MOSAICO ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ sp_between = y        
-    def imprimir_mosaico(self, sp_between:int=0, ancho_columna:int = 0, lista:list = None, fila_from:int=0, fila_to:int=None):
-        """ CALCULOS PARA SACAR EL RESTO TENIENDO EN CUENTA QUE HAY SP_BETWEEN:
-        """        
-        # PARA SER MOSAICO TIENE QUE SER ancho_columna == 0
-        # ancho_columna = 0
-        # lista = None
+        # ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ imprime en una sóla funcion. SinUSO, pero es la BASE.
+        # self.__imprimir_matricial(tablero = self, sp_between = sp_between , ancho_columna = ancho_columna , lista = lista , fila_from = fila_from, fila_to = fila_to )
+        # ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ 
+        pass    
 
-        # ██████ CREA LA CADENA DE FORMATO.
-        str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
-        if not str_formato:
-            print("Error Imprimir::: Error al formar str_formato ::: __imprimir_tablero_mosaico() ")
-            return None
-
-        # ██████ RECONVIERTE EL STR_FORMATO A UNA LISTA PERSONALIZADA CON LOS ESPACIOS DE SP_BETWEEN. 
-        # lst_str_formato_basic = self.__get_lst_formato_mosaico(str_formato = str_formato)
-        lst_formato_ultima_columna_organico = self.__get_lst_formato_ultima_columna_organico(str_formato = str_formato, sp_between = sp_between)
-        """ >>> HACE MODO LITERAL A PARTIR DE LA ULTIMA COLUMNA USADA """
-
-        # ■■ LISTA DE LONGITUDES ORGANICA
-        lst_len_organico_xfila = self.__get_lst_len_organico_xfila(sp_between = sp_between)
-
-        """ ███████ MAXIMO_FRANKY ( MAXIMO ENTRE HEAD/BODY/PIE ) """
-        maximo_head:int = self.head.get_max_filas() if self.head else 0                     
-        maximo_pie:int = self.pie.get_max_filas() if self.pie else 0
-        maximo_body = max(lst_len_organico_xfila)
-        
-        # ■■■■■ EL MAXIMO LEN ENTRE HEAD / BODY / PIE
-        maximo_franky = max(maximo_head, maximo_pie, maximo_body)
-
-
-        # ███████ LISTA CON LO QUE HAY QUE AÑADIR A CADA FILA PARA IGUALAR EL MARCO.
-        lst_resto_to_add = [ maximo_franky - len_fila for len_fila in lst_len_organico_xfila ]   # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA .... PARA B3 - LITERAL
-
-        """ ███████ IMPRIME  """
-        
-        # HEAD ■■■■■■■■■■■■■
-        self.__imprimir_head(maximo_franky = maximo_franky )
-        
-        # BODY ■■■■■■■■■■■■■
-        try:
-            print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
-            """ ■■■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD """
-            lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
-                                "{:>" + str(len(self.char_marco)) + "}" +
-                                "{:<" + str(self.x_pad)+"}"             + 
-                                formato_organico                        + 
-                                "{:>" + str( lst_resto_to_add[i] )+"}"  +
-                                "{:>" + str(self.pad_x)+"}"             +
-                                "{:>" + str(len(self.char_marco))+"}"
-
-                            for i, formato_organico in enumerate(lst_formato_ultima_columna_organico)
-                            ]
-
-            """ ■■■■ TRABAJAMOS SOBRE LOS VALORES x FILA E IMPRIMIMOS FILA A FILA """
-            for i, fila in enumerate(self.matriz):
-                if fila_from <= i <=fila_to:
-                    lst_valores_formato_print_x_fila=[]
-
-                    # DESEMPAQUETA CADA FORMATO_BETWEEN DE CADA FILA. lst_formato_between[i] CORRESPONDE CON EL SP_BETWEEN DE LA FILA i.
-                    lst_formato_between = self.__desempaqueta_str_formato(str_formato=lst_formato_ultima_columna_organico[i], b_between=True)
-                    
-                    # ■■■■■■ PREPARA LOS VALORES CREANDO LA LISTA X FILA ■■■■■■
-                    
-                    # PREPARA: MARGEN | MARCO IZQUIERDO | X_PAD
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.margen)
-                    lst_valores_formato_print_x_fila.append(self.char_marco)                
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.x_pad)                
-                    
-                    # PREPARA: VALORES | SP_BETWEEN
-                    for j, celda in enumerate(fila):
-                        lst_valores_formato_print_x_fila.append(celda.valor)
-
-                        if lst_formato_between[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            lst_valores_formato_print_x_fila.append(self.ESPACIO * sp_between )                
-                    
-                    # PREPARA: RESTO HASTA EL FINAL | PAD_X | MARCO DERECHO
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * lst_resto_to_add[i] )  # AÑADE EL RESTO EN ESPACIOS
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
-                    lst_valores_formato_print_x_fila.append( self.char_marco )                     # AÑADE EL MARCO HORIZONTAL █
-
-                    # ■■■■■■ IMPRIME LOS VALORES DE LA FILA  ■■■■■■
-                    print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-            
-            # ■■■■
-            print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
-        except Exception as e:
-            print(f'{e}')
-            return None
-        
-        # PIE ■■■■■■■■■■■■■        
-        self.__imprimir_pie(maximo_franky = maximo_franky )
-    
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ancho = x
-    # FIXED ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ sp_between = 0/y        
-    def imprimir_fixed(self, sp_between:int, ancho_columna:int, lista:list = None, fila_from:int=0, fila_to:int=None):
-        """ IMPRIME COn UN ANCHO DE COLUMNA FIJO y SP_BETWEEN = 0 ó n (INT):
-            Tiene que ser calculado el ancho de columna y su sp_betw hasta la ultima columna usada... A partir de ahí, Literal==> '{:>0}{:>0} en celda.valor y sp_between'.
-            Corta el contenido en la celda al ancho establecido... es responsabilidad del usuario.
-        [sp_between](int): el espacio entre columnas
-        [ancho_columna](int): el ancho de la columna
-        """                
-        str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
-        if not str_formato:
-            print("Error Imprimir::: Error al formar str_formato ::: __imprimir_tablero_mosaico() ")
-            return None
-
-        # ████ RECONVIERTE EL STR_FORMATO A UNA LISTA CUADRADA AL MAYOR ANCHO DE COLUMNA. El resto a {:>0}
-        # lst_str_formato_fixed = self.__get_lst_str_formato_fixed(str_formato = str_formato, sp_between = sp_between)
-        lst_str_formato_fixed = self.__get_lst_formato_max_columna(str_formato = str_formato, sp_between = sp_between)
-
-        # LONGITUD TOTAL X FILA (LO QUE SUMAN TODOS LOS ANCHOS DE COLUMNA Y BETWEEN DE UNA FILA)        
-        sumatorio_x_fila = self.__sumar_numeros_de_formato(cadena=lst_str_formato_fixed[0])
-
-        # ████ MAXIMO_FRANKY ( MAXIMO ENTRE HEAD/BODY/PIE )
-        maximo_head:int = self.head.get_max_filas() if self.head else 0                     
-        maximo_pie:int = self.pie.get_max_filas() if self.pie else 0
-
-        maximo_franky = max(maximo_head, sumatorio_x_fila, maximo_pie)
-
-        # LISTA DE LONGITUD TOTAL X FILA
-        lst_longitud_total_x_fila = [sumatorio_x_fila for i in range (len(self.matriz)) ]
-
-        # ████ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA .... PARA B3 - LITERAL
-        lst_resto_to_add = [ maximo_franky - len_fila for len_fila in lst_longitud_total_x_fila ] 
-
-        # ■■■■■■■■■■■■■■■■■■ IMPRIME HEAD ■■■■■■        
-        self.__imprimir_head(maximo_franky = maximo_franky )
-
-        # ■■■■■■ IMPRIME BODY ■■■■■■        
-        try:
-            print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
-            """ ■■■■ CREAR LISTA DE STR_FORMATO.... CON LOS CHARS A AÑADIR AL FORMATO(MARGEN, PAD_X, X_PAD, CHAR_MARCO Y RESTO) """
-            lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
-                                "{:>" + str(len(self.char_marco)) + "}" +
-                                "{:<" + str(self.x_pad)+"}"             + 
-                                formato_basic                           + 
-                                "{:>" + str( lst_resto_to_add[i] )+"}"  +
-                                "{:>" + str(self.pad_x)+"}"             +
-                                "{:>" + str(len(self.char_marco))+"}"
-
-                            for i, formato_basic in enumerate(lst_str_formato_fixed)
-                            ]
-        except Exception as e:
-            print(f'{e}')
-            return None
-        """ 
-        ■■■■ TRABAJO SOBRE LOS VALORES Y ESPACIOS BETWEEN x FILA, E IMPRIMO FILA A FILA """
-        try:
-            for i, fila in enumerate(self.matriz):
-                if fila_from <= i <=fila_to:
-                    lst_valores_formato_print_x_fila=[]
-
-                    # DESEMPAQUETA CADA FORMATO_BETWEEN DE CADA FILA. lst_formato_between[i] CORRESPONDE CON EL SP_BETWEEN DE LA FILA i.
-                    lst_formato_between         = self.__desempaqueta_str_formato(str_formato=lst_str_formato_fixed[i], b_between=True)
-                    lst_formato_ancho_columna   = self.__desempaqueta_str_formato(str_formato=lst_str_formato_fixed[i], b_between=False)
-
-                    # █████ PREPARA LOS VALORES CREANDO LA LISTA X FILA ■■■■■■
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.margen)
-                    lst_valores_formato_print_x_fila.append(self.char_marco)                
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.x_pad)                
-                    
-                    # RECORRE CADA CELDA DE LA FILA COMPARANDO ESTRUCTURA CON CONTENIDO Y CORTA AL ANCHO FIJO.
-                    # LO PROXIMO QUE QUIERO HACER Y ES AQUÍ, ES DARLE COLOR AL ULTIMO CARACTER EN CASO DE SER CORTADO.
-                    for j, celda in enumerate(fila):
-                        """ 
-                        ■■■ PREPARA VALOR: ■■■ """
-                        # EN CASO DE QUE SEA MAYOR QUE EL ANCHO DE LA COLUMNA FIJA, ■CORTA■ EL VALOR HASTA EL ANCHO FIXED.
-                        if lst_formato_ancho_columna[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            if len(str(celda.valor)) > ancho_columna:                             
-                                valor_cortado_y_color = self.color_last_char(text=str(celda.valor)[:ancho_columna], color=Fore.RED)
-                                lst_valores_formato_print_x_fila.append( valor_cortado_y_color )
-                                # lst_valores_formato_print_x_fila.append( str(celda.valor)[:ancho_columna] )
-                            else:
-                                lst_valores_formato_print_x_fila.append( celda.valor )
-                        """ 
-                        ■■■ PREPARA: BETWEEN ■■■ """
-                        if lst_formato_between[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            lst_valores_formato_print_x_fila.append( self.ESPACIO * sp_between )
-
-                    # PREPARA: RESTO HASTA EL FINAL | PAD_X | MARCO DERECHO
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * lst_resto_to_add[i] )  # AÑADE EL RESTO EN ESPACIOS
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
-                    lst_valores_formato_print_x_fila.append( self.char_marco )                     # AÑADE EL MARCO HORIZONTAL █
-                    
-                    # ██████ IMPRIME LOS VALORES DE LA FILA  
-                    print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-                
-        except Exception as e:
-            print(f'{e}')
-            return None
-
-        print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
-        # ■■■■■■ IMPRIME PIE ■■■■■■        
-        self.__imprimir_pie(maximo_franky = maximo_franky )
-
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ancho = max
-    # MAX ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ sp_between = 0/y        
-    def imprimir_max_columna(self, sp_between:int=0, ancho_columna:int=0, lista:list=None, fila_from:int=0, fila_to:int=None):
-        """ EN MAX-COLUMNAS, ANCHO_COLUMNA Y LISTA NO HARÍAN FALTA. 
+    @staticmethod
+    def __get_valor_diferencia(valor_bruto, width_formato:int, family_impresion:str='MAX', b_lista:bool=False):
+        """ Por cada valor bruto que entra devuelve el nuevo texto y la diferencia con el original.
+        Necesareo para tener el valor final a imprimir dependiendo del tipo de impresion.
+        [valor_bruto]:str, valor en bruto, Con caracteres ANSII
+        [width_formato]:int, ancho que debe llevar el formato.
+        [family_impresion]:str, 'MOSAICO', 'FIX', 'MAX'
+        [b_lista]:bool, si hay lista en la configuración.
+        ► CALLED: self.__ruta_natural(), self.__ruta_cuadrado()
+        ■ EJEMPLO:
+            valor_OK , diferencia = F_r_a_n_k_y.__get_valor_diferencia(valor_bruto="Loren Ipsum", width_formato=8, family_impresion='FIX', b_lista=False)
+        ■ RETORNO:
+            el Texto impreso dependiendo de la configuracion y la diferencia de tamaño ► "Loren ip" , 15 xejemplo
         """
-        str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = None , lista = None)
-        if not str_formato:
-            print("Error Imprimir::: Error al formar str_formato ::: __imprimir_tablero_mosaico() ")
-            return None
-
-        # ████ RECONVIERTE EL STR_FORMATO A UNA LISTA CUADRADA AL MAYOR ANCHO DE COLUMNA
-        lst_str_formato_basic = [ str_formato for i in range (len(self.matriz)) ]
+        valor_limpio:str = F_r_a_n_k_y.__texto_limpio(texto = valor_bruto)
+        valor_reset:str  = F_r_a_n_k_y.__eliminar_ansi_final(texto=valor_bruto)
         
-        # # ULTIMA COLUMNA USADA
-        # ultima_columna_used = self.last_columna_used()
+        len_bruto:int = len(valor_bruto)
+        len_limpio:int = len(valor_limpio)
+        len_reset:int = len(valor_reset)
+        diferencia:int = 0              # 
         
-        lst_str_formato_basic = self.__get_lst_formato_max_columna(str_formato = str_formato, sp_between = sp_between)
-        
-        # LONGITUD TOTAL X FILA (LO QUE SUMAN TODAS LAS COLUMNAS DE UNA FILA CON BETWEEN)        
-        sumatorio_x_fila = self.__sumar_numeros_de_formato(cadena=lst_str_formato_basic[0])
-        
-        # LISTA DE LONGITUD TOTAL X FILA
-        lst_longitud_total_x_fila = [sumatorio_x_fila for i in range (len(self.matriz)) ]
+        # ■■■■■■■■ En caso de que sea lista OBLIGA a FIX
+        if b_lista == True:
+            family_impresion = 'FIX'
 
-        # ■■ CALCULO LA FILA MAS LARGA DE HEAD Y DE PIE
-        maximo_head:int = self.head.get_max_filas() if self.head else 0                     
-        maximo_pie:int = self.pie.get_max_filas() if self.pie else 0        
+        """ ■■ Analiza las longitudes del Valor.  """
+        # ■ texto ► Tal Cual
+        if (len_bruto == len_reset) and (len_reset == len_limpio):  
+            valor_to_append =  valor_bruto
+            if family_impresion == 'FIX' and len(valor_bruto) > width_formato:
+                valor_to_append = F_r_a_n_k_y.__truncate_colored_string(valor=valor_bruto, max_width=width_formato)
 
-        # ██ SACO EL MAXIMO TOTAL 
-        maximo_franky = max(maximo_head, maximo_pie, sumatorio_x_fila)        
-
-        # ██ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA .... PARA B3 - LITERAL
-        lst_resto_to_add = [ maximo_franky - len_fila for len_fila in lst_longitud_total_x_fila ] 
-
-        """ 
-        ■■■■■■■■■■■■■ HEAD ■■■■■■■■■■■■■ """
-        self.__imprimir_head(maximo_franky = maximo_franky )        
-
-        """ 
-        ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■ 
-        """
-        try:
-            print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')        
-            """ ■■■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD """
-            lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
-                                "{:>" + str(len(self.char_marco)) + "}" +
-                                "{:<" + str(self.x_pad)+"}"             + 
-                                formato_basic                           + 
-                                "{:>" + str( lst_resto_to_add[i] )+"}"  +
-                                "{:>" + str(self.pad_x)+"}"             +
-                                "{:>" + str(len(self.char_marco))+"}"
-
-                            for i, formato_basic in enumerate(lst_str_formato_basic)
-                            ]
-        except Exception as e:
-            print(f'{e}')
-            return None
-        """ 
-        ■■■■ TRABAJO SOBRE LOS VALORES x FILA E IMPRIMO FILA A FILA """
-        try:
-            for i, fila in enumerate(self.matriz):
-                if fila_from <= i <=fila_to:
-                    lst_valores_formato_print_x_fila=[]     # CADA ITEM REPRESENTA UN ELEMENTO DE LA FILA.
-
-                    # DESEMPAQUETA CADA FORMATO_BETWEEN DE CADA FILA. lst_formato_between[i] CORRESPONDE CON EL SP_BETWEEN DE LA FILA i.
-                    lst_formato_between         = self.__desempaqueta_str_formato(str_formato=lst_str_formato_basic[i], b_between=True)
-                    lst_formato_ancho_columna   = self.__desempaqueta_str_formato(str_formato=lst_str_formato_basic[i], b_between=False)
-
-                    # █████ PREPARA LOS VALORES CREANDO LA LISTA X FILA ■■■■■■
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.margen)
-                    lst_valores_formato_print_x_fila.append(self.char_marco)                                 
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.x_pad)                
-                    
-                    # RECORRE CADA CELDA DE LA FILA COMPARANDO ESTRUCTURA CON CONTENIDO Y CORTA AL ANCHO FIJO.
-                    # LO PROXIMO QUE QUIERO HACER Y ES AQUÍ, ES DARLE COLOR AL ULTIMO CARACTER EN CASO DE SER CORTADO.
-                    for j, celda in enumerate(fila):
-                        """ 
-                        ■■■ PREPARA VALOR: ■■■ """
-                        # EN CASO DE QUE SEA MAYOR QUE EL ANCHO DE LA COLUMNA FIJA, ■CORTA■ EL VALOR HASTA EL ANCHO FIXED.
-                        if lst_formato_ancho_columna[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            lst_valores_formato_print_x_fila.append( celda.valor )
-                        """ 
-                        ■■■ PREPARA: BETWEEN ■■■ """
-                        if lst_formato_between[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            lst_valores_formato_print_x_fila.append( self.ESPACIO * sp_between )
-
-                    # PREPARA: RESTO HASTA EL FINAL | PAD_X | MARCO DERECHO
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * lst_resto_to_add[i] )  # AÑADE EL RESTO EN ESPACIOS
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
-                    lst_valores_formato_print_x_fila.append( self.char_marco )                     # AÑADE EL MARCO HORIZONTAL █
-                    
-                    # ██████ IMPRIME LOS VALORES DE LA FILA  
-                    print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-        except Exception as e:
-            print(f'{e}')
-            return None
-
-        print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')    
-                
-        """ 
-        ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■ """        
-        self.__imprimir_pie(maximo_franky = maximo_franky )
-    
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ancho = x     + LIST
-    # LISTA + FIXED ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ sp_between = 0/y
-    def imprimir_lista_fixed(self, sp_between:int, ancho_columna:int, lista:list = None, fila_from:int=0, fila_to:int=None):
-        if lista == None or not isinstance (lista, list):
-            print("Error Imprimir::: Error en la lista ::: imprimir_list_max() ::: envío a MAX_COLUMNA")
-            self.imprimir_max_columna(sp_between=sp_between, ancho_columna=ancho_columna, lista=None)
-            return    
-        
-        # ████ CREA LA CADENA DE FORMATO.
-        str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
-        if not str_formato:
-            print("Error Imprimir::: Error al formar str_formato ::: __imprimir_tablero_mosaico() ")
-            return None
-
-        # ■ CREA UNA LISTA CON LAS CADENAS DE FORMATO DE CADA FILA  .... para el corte de los valores en lst_valores_formato_print_x_fila
-        #   A PARTIR DE LA ULTIMA COLUMNA USADA PONE EL RESTO A {:>0} (TODAS LAS COLUMNAS IGUALES)
-        lst_str_formato_adaptado = self.__get_lst_formato_max_columna(str_formato = str_formato, sp_between = sp_between)
-        
-        # ■■ LISTA DE LONGITUDES X COLUMNA .... para el corte de los valores en lst_valores_formato_print_x_fila
-        lst_formato_ancho_columna   = self.__desempaqueta_str_formato(str_formato=lst_str_formato_adaptado[0], b_between=False)
-        lst_ancho_columna = [self.__get_int_from_item_formato(monomio_formato = monomio_ancho) for monomio_ancho in lst_formato_ancho_columna]
-
-        # LONGITUD TOTAL X FILA (LO QUE SUMAN TODAS LAS COLUMNAS DE UNA FILA CON BETWEEN) ....para sacar lst_resto_to_add       
-        sumatorio_x_fila = self.__sumar_numeros_de_formato(cadena = lst_str_formato_adaptado[0])
-        
-        # LISTA DE LONGITUD TOTAL X FILA....para sacar lst_resto_to_add 
-        lst_longitud_total_x_fila = [sumatorio_x_fila for i in range (len(self.matriz)) ]
-
-        # ■■ CALCULO LA FILA MAS LARGA DE HEAD Y DE PIE ....para sacar lst_resto_to_add 
-        maximo_head:int = self.head.get_max_filas() if self.head else 0                     
-        maximo_pie:int = self.pie.get_max_filas() if self.pie else 0        
-
-        # ██ SACO EL MAXIMO TOTAL ....para sacar lst_resto_to_add 
-        maximo_franky = max(maximo_head, maximo_pie, sumatorio_x_fila)        
-
-        # ██ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA .... PARA B3 - LITERAL
-        lst_resto_to_add = [ maximo_franky - len_fila for len_fila in lst_longitud_total_x_fila ] 
-        
-        # ■■■■■■■■■■■■■ HEAD ■■■■■■■■■■■■■
-        self.__imprimir_head(maximo_franky = maximo_franky )        
-        
-        # ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■ 
-        try:
-            print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')    
-            # ■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD
-            lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
-                                "{:>" + str(len(self.char_marco)) + "}" +
-                                "{:<" + str(self.x_pad)+"}"             + 
-                                formato_adaptado                           + 
-                                "{:>" + str( lst_resto_to_add[i] )+"}"  +
-                                "{:>" + str(self.pad_x)+"}"             +
-                                "{:>" + str(len(self.char_marco))+"}"
-
-                            for i, formato_adaptado in enumerate(lst_str_formato_adaptado)
-                            ]
-        
-            # ■■ TRABAJO SOBRE LOS VALORES x FILA E IMPRIMO FILA A FILA
-            for i, fila in enumerate(self.matriz):
-                if fila_from <= i <=fila_to:
-                    lst_valores_formato_print_x_fila=[]     # CADA ITEM REPRESENTA UN ELEMENTO DE LA FILA.
-                    
-                    # NOS ASEGURAMOS DE QUE TENGAN LA MISMA LONGITUD
-                    if len(lst_ancho_columna) != len(fila):
-                        lst_ancho_columna = SttS.igualar_listas(lista_keys=fila, lista_to_relong=lst_ancho_columna, valor_relleno=0)
-
-                    # ■■■■ DESEMPAQUETA CADA LOS ANCHOS_COLUMNA Y LOS ESPACIOS BETWEEN DE CADA FILA.
-                    lst_formato_between         = self.__desempaqueta_str_formato(str_formato=lst_str_formato_adaptado[i], b_between=True)
-                    lst_formato_ancho_columna   = self.__desempaqueta_str_formato(str_formato=lst_str_formato_adaptado[i], b_between=False)
-
-                    # ■■■■ PREPARA LOS VALORES CREANDO LA LISTA X FILA ■■■■■■
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.margen)
-                    lst_valores_formato_print_x_fila.append(self.char_marco)                
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.x_pad)                
-                    
-                    # ■■■■ RECORRE CADA CELDA DE LA FILA COMPARANDO ESTRUCTURA CON CONTENIDO Y CORTA AL ANCHO FIJO.
-                    # LO PROXIMO QUE QUIERO HACER Y ES AQUÍ, ES DARLE COLOR AL ULTIMO CARACTER EN CASO DE SER CORTADO.
-                    for j, celda in enumerate(fila):
-                        """ 
-                        ■■■ PREPARA VALOR: ■■■ """
-                        if lst_formato_ancho_columna[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            # EN CASO DE QUE SEA MAYOR QUE EL ANCHO DE LA COLUMNA FIJA, ■ CORTA EL VALOR HASTA EL ANCHO FIXED.
-                            if len(str(celda.valor)) > lst_ancho_columna[j]:                             
-                                valor_cortado_y_color = self.color_last_char(text=str(celda.valor)[:lst_ancho_columna[j]], color=Fore.RED)
-                                lst_valores_formato_print_x_fila.append( valor_cortado_y_color )                       
-                            else:
-                                lst_valores_formato_print_x_fila.append( celda.valor )
-                        """ 
-                        ■■■ PREPARA: BETWEEN ■■■ """
-                        if lst_formato_between[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            lst_valores_formato_print_x_fila.append( self.ESPACIO * sp_between )
-
-                    # PREPARA: RESTO HASTA EL FINAL | PAD_X | MARCO DERECHO
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * lst_resto_to_add[i] )  # AÑADE EL RESTO EN ESPACIOS
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
-                    lst_valores_formato_print_x_fila.append( self.char_marco )                     # AÑADE EL MARCO HORIZONTAL '█'
-                    
-                    # ██████ IMPRIME LOS VALORES DE LA FILA  
-                    print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-        except Exception as e:
-            print(f'{e}')
-            return None
-
-        print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')    
-        # ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■        
-        self.__imprimir_pie(maximo_franky = maximo_franky )
-        
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ancho = max   + LIST
-    # LISTA + MAX-COLUMNA ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ sp_between = 0/y
-    def imprimir_lista_max_columna(self, sp_between:int, ancho_columna:int, lista:list = None, fila_from:int=0, fila_to:int=None):
-        if lista == None or not isinstance (lista, list):
-            print("Error Imprimir::: Error en la lista ::: imprimir_list_max() ::: envío a MAX_COLUMNA")
-            self.imprimir_max_columna(sp_between=sp_between, ancho_columna=ancho_columna, lista=None)
-            return    
-        
-        """ EN MAX-COLUMNAS, ANCHO_COLUMNA Y LISTA NO HARÍAN FALTA. 
-        """
-        str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
-        if not str_formato:
-            print("Error Imprimir::: Error al formar str_formato ::: __imprimir_tablero_mosaico() ")
-            return None
-
-        # ████ RECONVIERTE EL STR_FORMATO A UNA LISTA CUADRADA AL MAYOR ANCHO DE COLUMNA
-        # lst_str_formato_basic = [ str_formato for i in range (len(self.matriz)) ]
-        
-        # CREA UNA LISTA CON LAS CADENAS DE FORMATO DE CADA FILA  ■ A PARTIR DE LA ULTIMA COLUMNA USADA PONE EL RESTO A {:>0} (TODAS LAS COLUMNAS IGUALES)
-        lst_str_formato_adaptado = self.__get_lst_formato_max_columna(str_formato = str_formato, sp_between = sp_between)
-        
-        # ■■ LISTA DE LONGITUDES X COLUMNA
-        lst_formato_ancho_columna   = self.__desempaqueta_str_formato(str_formato=lst_str_formato_adaptado[0], b_between=False)
-        lst_ancho_columna = [self.__get_int_from_item_formato(monomio_formato = ancho_columna) for ancho_columna in lst_formato_ancho_columna]
-
-        # LONGITUD TOTAL X FILA (LO QUE SUMAN TODAS LAS COLUMNAS DE UNA FILA CON BETWEEN) ....(para sacar lst_resto_to_add)       
-        sumatorio_x_fila = self.__sumar_numeros_de_formato(cadena=lst_str_formato_adaptado[0])
-        
-        # LISTA DE LONGITUD TOTAL X FILA....(para sacar lst_resto_to_add) 
-        lst_longitud_total_x_fila = [sumatorio_x_fila for i in range (len(self.matriz)) ]
-
-        # ■■ CALCULO LA FILA MAS LARGA DE HEAD Y DE PIE ....(para sacar lst_resto_to_add) 
-        maximo_head:int = self.head.get_max_filas() if self.head else 0                     
-        maximo_pie:int = self.pie.get_max_filas() if self.pie else 0        
-
-        # ██ SACO EL MAXIMO TOTAL ....(para sacar lst_resto_to_add y char_marco_vertical de body head y pie ) 
-        maximo_franky = max(maximo_head, maximo_pie, sumatorio_x_fila)        
-
-        # ██ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA .... PARA B3 - LITERAL
-        lst_resto_to_add = [ maximo_franky - len_fila for len_fila in lst_longitud_total_x_fila ] 
-
-        
-        # ■■■■■■■■■■■■■ HEAD ■■■■■■■■■■■■■
-        self.__imprimir_head(maximo_franky = maximo_franky )        
-        
-        # ■■■■■■■■■■■■■ BODY ■■■■■■■■■■■■■ 
-        try:
-            print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')    
-            # ■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD
-            lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
-                                "{:>" + str(len(self.char_marco)) + "}" +
-                                "{:<" + str(self.x_pad)+"}"             + 
-                                formato_adaptado                        + 
-                                "{:>" + str( lst_resto_to_add[i] )+"}"  +
-                                "{:>" + str(self.pad_x)+"}"             +
-                                "{:>" + str(len(self.char_marco))+"}"
-
-                            for i, formato_adaptado in enumerate(lst_str_formato_adaptado)
-                            ]
-        
-            # ■■ TRABAJO SOBRE LOS VALORES x FILA E IMPRIMO FILA A FILA
-            for i, fila in enumerate(self.matriz):
-                if fila_from <= i <=fila_to:
-                    lst_valores_formato_print_x_fila=[]     # CADA ITEM REPRESENTA UN ELEMENTO DE LA FILA.
-                    
-                    # NOS ASEGURAMOS DE QUE TENGAN LA MISMA LONGITUD
-                    if len(lst_ancho_columna) != len(fila):
-                        lst_ancho_columna = SttS.igualar_listas(lista_keys=fila, lista_to_relong=lst_ancho_columna, valor_relleno=0)
-
-                    # ■■■■ DESEMPAQUETA CADA LOS ANCHOS_COLUMNA Y LOS ESPACIOS BETWEEN DE CADA FILA.
-                    lst_formato_between         = self.__desempaqueta_str_formato(str_formato=lst_str_formato_adaptado[i], b_between=True)
-                    lst_formato_ancho_columna   = self.__desempaqueta_str_formato(str_formato=lst_str_formato_adaptado[i], b_between=False)
-
-                    # ■■■■ PREPARA LOS VALORES CREANDO LA LISTA X FILA ■■■■■■
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.margen)
-                    lst_valores_formato_print_x_fila.append(self.char_marco)                
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.x_pad)                
-                    
-                    # ■■■■ RECORRE CADA CELDA DE LA FILA COMPARANDO ESTRUCTURA CON CONTENIDO Y CORTA AL ANCHO FIJO.
-                    # LO PROXIMO QUE QUIERO HACER Y ES AQUÍ, ES DARLE COLOR AL ULTIMO CARACTER EN CASO DE SER CORTADO.
-                    for j, celda in enumerate(fila):
-                        """ 
-                        ■■■ PREPARA VALOR: ■■■ """
-                        # EN CASO DE QUE SEA MAYOR QUE EL ANCHO DE LA COLUMNA FIJA, ■CORTA■ EL VALOR HASTA EL ANCHO FIXED.
-                        if lst_formato_ancho_columna[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:                        
-                            if len(str(celda.valor)) > lst_ancho_columna[j]:                             
-                                # lst_valores_formato_print_x_fila.append( str(celda.valor)[:lst_ancho_columna[j]] )     
-                                valor_cortado_y_color = self.color_last_char(text=str(celda.valor)[:lst_ancho_columna[j]], color=Fore.RED)
-                                lst_valores_formato_print_x_fila.append( valor_cortado_y_color )                       
-                            else:
-                                lst_valores_formato_print_x_fila.append( celda.valor )
-                            pass
-                        """ 
-                        ■■■ PREPARA: BETWEEN ■■■ """
-                        if lst_formato_between[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            lst_valores_formato_print_x_fila.append( self.ESPACIO * sp_between )
-
-                    # PREPARA: RESTO HASTA EL FINAL | PAD_X | MARCO DERECHO
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * lst_resto_to_add[i] )  # AÑADE EL RESTO EN ESPACIOS
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
-                    lst_valores_formato_print_x_fila.append( self.char_marco )                     # AÑADE EL MARCO HORIZONTAL '█'
-                    
-                    # ██████ IMPRIME LOS VALORES DE LA FILA  
-                    print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-        except Exception as e:
-            print(f'{e}')
-            return None
-
-        print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
-        # ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■        
-        self.__imprimir_pie(maximo_franky = maximo_franky )
-
-    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ancho = 0     + LIST
-    # LISTA + MOSAICO ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ sp_between = 0/y
-    def imprimir_lista_mosaico(self, sp_between:int=0, ancho_columna:int = 0, lista:list = None, fila_from:int=0, fila_to:int=None):
-        """ IMPRIME CON UNA LISTA DE VALRES Y EL RESTO(SI LO HAY) MOSAICO.
-        PARA SER MOSAICO TIENE QUE SER  ancho_columna == 0 , lista == None
-
-        """        
-
-        # ██████ CREA LA CADENA DE FORMATO.
-        str_formato = self.get_str_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
-        if not str_formato:
-            print("Error Imprimir::: Error al formar str_formato ::: __imprimir_tablero_mosaico() ")
-            return None
-        try:
-            lista = [ int(item) for item in lista]
-        except Exception as e:
-            print(f'{e}')
-            return None
-
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■ FORMATOS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■[[[
-        # ■■ LISTA DE INT CON LA ULTIMA COLUMNA USADA POR FILA. ZERO NO IMPLICA QUE NO HAYA DATOS EN LA COLUMNA 0(A:0, B:0, ...)
-        lst_last_columna_used_x_fila:list = self.get_lst_last_columna_used_x_fila() 
-
-        # ■■ DESHAGO EL FORMATO CREADO ( MAXIMO ENTRE HEAD/BODY/PIE )
-        lst_formato_ancho_columna = self.__desempaqueta_str_formato(str_formato=str_formato, b_between=False)
-        lst_formato_between = self.__desempaqueta_str_formato(str_formato=str_formato, b_between=True)
-        
-        lst_formato_ultima_columna = []    
-        for i, last_columna_used_x_fila in enumerate(lst_last_columna_used_x_fila):
-            # CREO UN FORMATO DE COLUMNA AJUSTADA A LA ULTIMA COLUMNA USADA.
-            lst_formato_ancho_new   = [ formato_ancho       if ( j <= last_columna_used_x_fila ) or ( 0 <= j < len(lista) ) else '{:>0}' 
-                                                        for j , formato_ancho  in enumerate(lst_formato_ancho_columna) ]
-            # CREO UN FORMATO DE COLUMNA AJUSTADA A LA PEN-ULTIMA COLUMNA USADA -1
-            lst_formato_between_new = [ str_formato_between if ( j < last_columna_used_x_fila ) or ( 0 <= j < len(lista) ) else '{:>0}' 
-                                                        for j , str_formato_between in enumerate(lst_formato_between) ]
-            # GENERAR LA CADENA DE FORMATO INTERCALANDO ANCHO Y BETWEEN
-            formato_final = ''.join(a + b for a, b in zip(lst_formato_ancho_new, lst_formato_between_new))            
-            # AGREGAR EL FORMATO AJUSTADO A LA LISTA
-            lst_formato_ultima_columna.append(formato_final)
-
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■]]]
-        # ■■ LISTA DE LONGITUDES ORGANICA...para validar que aunque la ultima columna usada sea 0, esta celda tiene valor.
-        lst_len_valores_x_fila = self.get_lst_longitud_valores_x_fila()
-        
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■ VALORES Y SPBETWEEN ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■[[[
-        long_fixed = len(lista)
-        # LISTA DE ENTEROS DE LOS VALORES DEL FORMATO
-        lst_int_formato_ancho_columna = self.__from_lst_formato_to_lst_int(lst_formato = lst_formato_ancho_columna)
-        lst_int_formato_between = self.__from_lst_formato_to_lst_int(lst_formato = lst_formato_between)        
-        """ fixed """
-        lst_ancho_fixed     = lst_int_formato_ancho_columna[:long_fixed]
-        lst_between_fixed   = lst_int_formato_between[:long_fixed]
-
-        lst_fixed = [ancho_fixed + between_fixed for ancho_fixed, between_fixed in zip(lst_ancho_fixed, lst_between_fixed)]
-
-        lst_longitud_total_fixed = [sum(lst_fixed) for i in range(len(lst_len_valores_x_fila))]
-
-        """ mosaico """       
-        lst_espacios_ocupados_mosaico=[]
-        for i , fila in  enumerate(self.matriz):
-            lst_suma_fila = []
-            for j , celda in enumerate(fila):
-                if 0 <= j < long_fixed:
-                    lst_suma_fila.append(0)
-                else:
-                    if  j < lst_last_columna_used_x_fila[i] :
-                        lst_suma_fila.append(sp_between)
-                    else:
-                        lst_suma_fila.append(0)
+        # ■ansi■texto | ■texto■ansi■texto ►  Se mete tal cual 
+        elif (len_bruto == len_reset) and (len_reset != len_limpio):    
+            if family_impresion == 'MOSAICO':
+                valor_to_append = valor_bruto
                 pass
-            lst_espacios_ocupados_mosaico.append(sum(lst_suma_fila))
-
-        # LISTA DE SUMA DE LONGITUDES DE VALORES POR FILA
-        lst_len_new_values_mosaico = []        
-        for i , fila in  enumerate(self.matriz):
-            lst_suma_fila = []
-            for j , celda in enumerate(fila):
-                if 0 <= j < long_fixed:
-                    # lst_suma_fila.append(lista[j])    # ya estaría contabilizado en fixed
-                    lst_suma_fila.append(0)    # ya estaría contabilizado en fixed
-                    pass
+            elif family_impresion == 'FIX':
+                if len(valor_reset) > width_formato:
+                    valor_to_append = F_r_a_n_k_y.__truncate_colored_string(valor=valor_reset, max_width=width_formato)
                 else:
-                    lst_suma_fila.append(len(str(celda.valor)))
-
-            lst_len_new_values_mosaico.append(sum(lst_suma_fila))
-
-        # SUMO TODAS LAS LISTAS
-        lst_total_len =  [a + b + c  for a , b, c in zip(lst_longitud_total_fixed, lst_espacios_ocupados_mosaico, lst_len_new_values_mosaico)]
-
-        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■]]]
-
-        # ■■■■■ EL MAXIMO LEN ENTRE HEAD / BODY / PIE
-        maximo_head:int = self.head.get_max_filas() if self.head else 0                     
-        maximo_pie:int = self.pie.get_max_filas() if self.pie else 0
-        maximo_body = max(lst_total_len)
+                    valor_to_append = valor_reset
+            elif family_impresion == 'MAX':
+                valor_to_append = valor_reset
+                pass
         
-        # ██████ MAXIMO_FRANKY ( MAXIMO ENTRE HEAD/BODY/PIE )
-        maximo_franky = max(maximo_head, maximo_pie, maximo_body)
-
-        # ██████ LISTA CON LO QUE HAY QUE AÑADIR A CADA FILA PARA IGUALAR EL MARCO.
-        lst_resto_to_add = [maximo_franky - len_fila   for i , len_fila in enumerate(lst_total_len)]
-
-        # HEAD ■■■■■■■■■■■■■■■■■■■■■■■■■■
-        self.__imprimir_head( maximo_franky = maximo_franky )
+        # ■ansi■texto■ansi | ■ansi■texto■ansi■texto■ansi... ►
+        elif (len_bruto != len_reset)  and (len_reset != len_limpio):   
+            if family_impresion == 'MOSAICO':
+                valor_to_append = valor_reset
+                pass
+            elif family_impresion == 'FIX':
+                if len(valor_reset) > width_formato:
+                    valor_to_append = F_r_a_n_k_y.__truncate_colored_string(valor=valor_reset, max_width=width_formato)
+                else:
+                    valor_to_append = valor_reset
+            elif family_impresion == 'MAX':
+                valor_to_append = valor_reset   # puede tener longitud mayor que el max pero no imprimible.
+                pass
         
-        # BODY ■■■■■■■■■■■■■■■■■■■■■■■■■■
-        try:
-            print(f'{self.ESPACIO * self.margen}{self.char_up_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
-            """ ■■■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD """
-            lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
-                                "{:>" + str(len(self.char_marco)) + "}" +
-                                "{:<" + str(self.x_pad)+"}"             + 
-                                formato_organico                        + 
-                                "{:>" + str( lst_resto_to_add[i] )+"}"  +
-                                "{:>" + str(self.pad_x)+"}"             +
-                                "{:>" + str(len(self.char_marco))+"}"
+        # ■texto■ansi ► Raro. Limpiar
+        elif (len_bruto != len_reset)  and (len_reset == len_limpio):   
+            if family_impresion == 'MOSAICO':
+                valor_to_append =  valor_reset
+                pass
+            elif family_impresion == 'FIX':
+                if len(valor_reset) > width_formato:
+                    if width_formato == 0:
+                        valor_to_append = valor_reset                        
+                    else:
+                        valor_to_append = F_r_a_n_k_y.__truncate_colored_string(valor=valor_reset, max_width=width_formato)
+                else:
+                    valor_to_append = valor_reset
+                pass
+            elif family_impresion == 'MAX':
+                valor_to_append =  valor_reset
+                pass
+        pass 
+        # ■ Establece la diferencia por colorama. Se compara la longitud sin ansi-final(len_reset) con el ancho que debe tener        
+        if len(valor_reset) <= width_formato:                           # ■ Contenido Menor que Formato.
+            diferencia = len(valor_reset) - len(valor_limpio)           # ■■■ Negativo
+        else:                          # ■ Contenido Mayor que Formato 
+            diferencia = width_formato - len(valor_limpio)              # ■■■ Positivo
+        # ■ Retorno
+        return f'{valor_to_append}' , diferencia
 
-                            for i, formato_organico in enumerate(lst_formato_ultima_columna)
-                            ]
-
-            """ ■■■■ TRABAJAMOS SOBRE LOS VALORES x FILA E IMPRIMIMOS FILA A FILA """
-            for i, fila in enumerate(self.matriz):
-                if fila_from <= i <=fila_to:
-                    lst_valores_formato_print_x_fila=[]
-
-                    # # DESEMPAQUETA CADA FORMATO_BETWEEN DE CADA FILA. lst_formato_between[i] CORRESPONDE CON EL SP_BETWEEN DE LA FILA i.
-                    lst_formato_between = self.__desempaqueta_str_formato(str_formato=lst_formato_ultima_columna[i], b_between=True)
-                    
-                    # ■■■■■■ PREPARA LOS VALORES CREANDO LA LISTA X FILA ■■■■■■
-                    
-                    # PREPARA: MARGEN | MARCO IZQUIERDO | X_PAD
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.margen)
-                    lst_valores_formato_print_x_fila.append(self.char_marco)                
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.x_pad)                
-                    
-                    for j, celda in enumerate(fila):
-                        # PREPARA: VALORES 
-                        if 0 <= j < long_fixed:
-                            if len(str(celda.valor)) > int(lista[j]):                             
-                                # lst_valores_formato_print_x_fila.append( str(celda.valor)[:int(lista[j])] )
-                                valor_cortado_y_color = self.color_last_char(text=str(celda.valor)[:ancho_columna], color=Fore.RED)
-                                lst_valores_formato_print_x_fila.append( valor_cortado_y_color )                            
-                            else:
-                                lst_valores_formato_print_x_fila.append( celda.valor )
-                        else:
-                            lst_valores_formato_print_x_fila.append(celda.valor)
-
-                        # PREPARA:  SP_BETWEEN                
-                        if lst_formato_between[j] == '{:>0}':
-                            lst_valores_formato_print_x_fila.append('')                
-                        else:
-                            lst_valores_formato_print_x_fila.append(self.ESPACIO * sp_between )                
-                    
-                    # PREPARA: RESTO HASTA EL FINAL | PAD_X | MARCO DERECHO
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * lst_resto_to_add[i] )  # AÑADE EL RESTO EN ESPACIOS
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
-                    lst_valores_formato_print_x_fila.append( self.char_marco )                     # AÑADE EL MARCO HORIZONTAL █
-
-                    # ■■■■■■ IMPRIME LOS VALORES DE LA FILA  ■■■■■■
-                    print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-            # ■■■■
-            print(f'{self.ESPACIO * self.margen}{self.char_down_body * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
-        except Exception as e:
-            print(f'{e}')
-            return None
+    # IMPRIME UN HEAD EN FORMATO EXCEL, Que es con los nombres de las columnas
+    def __get_head_excel(self, family_impresion,  maximo_franky:int):
+        """ ■ Imprime el Head en formato Excel. No rompe el anterior. Este es otro Tablero distinto que se crea en el __init__ con el total de las columnasç de la matriz.
+        ■ Desarrollo: Desarmamos baseline y la transf en matriz(de int) opero con las matrices ancho y between para sacar el 'formato deseado' y vuelvo a montar.
+        ■ Hay que tener en cuenta que si el ancho = 0 y sp = 2 y no hay nada escrito en esa columna. la letra del formato va a ocupar un espacio y luego le seguirán 2 en blanco(sp_between)
+        Esto es un error IF family_impresion == 'MAX', y hay que controlarlo con self.get_list_maxlen_columna().
+        [family_impresion](str): familia de Impresion: 'MOSAICO', 'FIX' , 'MAX'       
+        [maximo_franky](int): el maximo entre el Head_Excel / Self(Body) / Pie
+        ■ RETORNO:   
+            ■ head_excel_F:
+                '{:<0}{:<1}{:<2}{:<8}{:<2}{:<8}{:<2}{:<8}{:<2}{:<8}{:<0}{:<0}{:<0}{:<0}{:<0}{:<21}{:<5}{:<1}'
+            ■ head_excel_V
+                ['', '█', '  ', '\x1b[0m\x1b[35mA       ', '  ', '\x1b[0mB       ', '  ', '\x1b[0m\x1b[35mC       ', '  ', '\x1b[0mD       ', ' ', '\x1b[0m\x1b[35mE', '', '\x1b[0mF', '\x1b[0m', '', '     ', '█']
+        ■ EJEMPLO:
+                >>> if self.b_excel == True:
+                >>>     head_excel_F , head_excel_V = self.__get_head_excel( family_impresion = 'MAX', maximo_franky = 95 )
+        """
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■■■■■■■■■ CACHO DATOS PRA TRABAJAR 
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        lista = self.dicc_print['body']['lista']         
+        ancho_columna = self.dicc_print['body']['ancho_columna'] 
+        sp_between = self.dicc_print['body']['sp_between']
+        # ■ ULTIMA COLUMNA Usada... del Body
+        lista_ultima_columna_used = self.get_lst_last_columna_used_xfila()                              # Lista con la última columna usada xfila  - [Rango]
+        ultima_columna_used = max(lista_ultima_columna_used) if lista_ultima_columna_used else 0        # ultima columna usada en la matriz.
+        columnas_to_FIN = self.total_columnas - ultima_columna_used - 1                                      
         
-        # PIE ■■■■■■■■■■■■■■■■■■■■■■■■■■        
-        self.__imprimir_pie( maximo_franky = maximo_franky )
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■■■■■■■■■ A PARTIR DE LA BASELINE, Transformo baseline en dos matrices de enteros para trabajar con números.
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # BASELINE FORMATO - Del Body   
+        baseline_format = self.get_baseline_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if not baseline_format: return None, None
+        # LISTA De Monomios FORMATO
+        lst_paquete_ancho = F_r_a_n_k_y.__desempaqueta_str_formato( str_formato=baseline_format, b_between=False)
+        lst_paquete_between = F_r_a_n_k_y.__desempaqueta_str_formato( str_formato=baseline_format, b_between=True )
+        # LISTA DE ENTEROS DE LOS VALORES DEL FORMATO. No se Incluye la última columna para que desde la última hasta el final queden ajustadas.
+        lst_F_ancho_columna = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j <= ultima_columna_used else 0 for j , m in enumerate(lst_paquete_ancho)]
+        lst_F_sp_between =    [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j < ultima_columna_used else 0 for j , m in enumerate(lst_paquete_between)]
+                
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■■■■■■■■■ DESARME Y TRANSF MATRICIAL... Las Head Excel no se rigen por los mismos pararametros del body. 
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-    # █████████████████████████████████████████████████████████████████████████████████████████████████
-    # MISCELANEA ██████████████████████████████████████████████████████████████████████████████████████
-    
-    # IMPRIME LITERAL
-    def __imprimir_tablero_literal(self, tablero , lst_resto_to_add, fila_from:int=0, fila_to:int=None):
-
-        sp_between = 0
-        if not isinstance(tablero, Tablero):
-            print('no Tablero.....')
+        # ■■■■■■■■■■■■ Diferencia entre un tablero normal y un head_excel.
+        if family_impresion == 'MOSAICO':
+            lst_F_ancho_final = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j < ultima_columna_used else 0 for j , m in enumerate(lst_paquete_ancho)]
+            lst_F_betwn_final = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j < ultima_columna_used else 0 for j , m in enumerate(lst_paquete_between)]
         
-        # ■■ DESDE FILA
+        elif family_impresion == 'FIX':
+            lst_F_ancho_final = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j <= ultima_columna_used else 0 for j , m in enumerate(lst_paquete_ancho)]
+            lst_F_betwn_final = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j < ultima_columna_used else 0 for j , m in enumerate(lst_paquete_between)]
+        
+        elif family_impresion == 'MAX':
+            lista_MAX_COL =  self.get_list_maxlen_columna()   # Tiene que ser self y no self.head_excel pq estamos tratando de sacar la regla del body para la disposición de las letras.
+            
+            lst_F_ancho_final = [ 0 if (max_col == 0 or j > ultima_columna_used ) else lst_F_ancho_columna[j] for j , max_col in enumerate(lista_MAX_COL) ]
+            lst_F_betwn_final = [ 0 if (max_col == 0 or j > ultima_columna_used ) else lst_F_sp_between[j]    for j , max_col in enumerate(lista_MAX_COL) ]
+        else:
+            return None, None
+        
+        # print(f'{Fore.RED}lst_F_ancho_final: \t{Fore.BLUE}{lst_F_ancho_final}')
+        # print(f'{Fore.LIGHTRED_EX}lst_F_betwn_final: \t{Fore.CYAN}{lst_F_betwn_final}')
+        
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■■■■■■■■■ FORMATO
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        if family_impresion == 'MOSAICO':
+            fila_F = ''.join( [ '{:<' + str(a) + '}' + '{:<' + str(1) + '}'  if j < ultima_columna_used 
+                                                                             else '{:<' + str(a) + '}' + '{:<' + str(0) + '}'
+                                                                             for j, a in  enumerate(lst_F_ancho_final)] )
+        elif family_impresion == 'FIX' or family_impresion == 'MAX':
+            fila_F = ''.join( [ '{:<' + str(a) + '}' + '{:<' + str(b) + '}'  
+                                            for a, b in zip( lst_F_ancho_final, lst_F_betwn_final )] )
+
+ 
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■■■■■■■■■■ VALORES
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        lista_excel_V = []    # lista  de Valores del Head.
+        for j, celda in enumerate(self.head_excel.matriz[0]):
+            LETRA_HEAD = f'{celda.valor}'
+            len_limpio = len(F_r_a_n_k_y.__texto_limpio( texto = LETRA_HEAD))     #
+            # ■■■■■■■■■■■■■■■■■■ 
+            if j < ultima_columna_used:         # ■■■■■ ► 0 <= j < Ultima Columna Usada 
+                if family_impresion == 'MAX':
+                    if lst_F_ancho_final[j] == 0:   # ■■■■■ ► Columna VACIA
+                        lista_excel_V.append(f'')                                                            # ■ ancho
+                        lista_excel_V.append(f'{LETRA_HEAD}{self.ESPACIO*(sp_between-len_limpio)}')          # ■ between: letra en el sp y de resto(sp_between-L_letra) relleno con espacios.                                               
+                    else:                           # ■■■■■ ► Columna CON DATOS
+                        lista_excel_V.append( f'{LETRA_HEAD}{self.ESPACIO * (lst_F_ancho_final[j]-len_limpio)}') # ■ ancho
+                        lista_excel_V.append(f'{lst_F_betwn_final[j]*self.ESPACIO}')                             # ■ between
+
+                elif family_impresion == 'FIX':
+                    lista_excel_V.append(f'{LETRA_HEAD}{self.ESPACIO * (lst_F_ancho_final[j] - len_limpio)}')    # ■ ancho
+                    lista_excel_V.append(f'{lst_F_betwn_final[j]*self.ESPACIO}')                                 # ■ between
+
+                elif family_impresion == 'MOSAICO':
+                    lista_excel_V.append(f'{LETRA_HEAD}')                                                        # ■ ancho
+                    lista_excel_V.append(f'•')                                                                   # ■ between(Alt+7)
+
+            elif j == ultima_columna_used:
+                lista_excel_V.append(f'{LETRA_HEAD}{self.ESPACIO * (lst_F_ancho_final[j] - len_limpio)}')        # ■ ancho
+                lista_excel_V.append(f'{self.ESPACIO}')                                                          # ■ between
+
+            else:
+                if j != self.total_columnas - 1 :   # ► La columna Es mayor que la ultima usada pero no es la ultima columna
+
+                    # ► Desde la ultima columna usada + 1. Sólo puede haber 4 letras como maximo(1 letra puede ser AX, 2 digitos.).
+                    b_letra = self.__cuatro_letras(columnas_to_FIN=columnas_to_FIN, actual_col=j, ultima_columna_used=ultima_columna_used)
+                    if b_letra == True:
+                        lista_excel_V.append(f'{LETRA_HEAD}')                                                    # ■ ancho
+                    elif b_letra == False:
+                        lista_excel_V.append(f'.')                                                               # ■ ...o ancho
+                    elif b_letra == None:
+                        lista_excel_V.append(f'')                                                                # ■ ...o ancho
+
+                    lista_excel_V.append(f'')                                                                    # ■ between           
+                else:
+                    lista_excel_V.append(f'{LETRA_HEAD}')                                                    # ■ ancho
+                    lista_excel_V.append(f'{Style.RESET_ALL}')                                                    # ■ ancho
+
+        pass
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■ MAXIMO HEAD, Para todos los formatos(max, fix, mosaico).
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        maximo_head_excel = sum( [ len(F_r_a_n_k_y.__texto_limpio( texto = a ) ) for  a in lista_excel_V ]  )
+
+        resto_to_max = maximo_franky - maximo_head_excel         
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■ ENVUELVE EL FORMATO Y LOS VALORES.
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        head_excel_F = self.__envuelve_fila_F( fila_F = fila_F , resto_to_max = resto_to_max)
+        head_excel_V = self.__envuelve_fila_V( lista_V = lista_excel_V )
+
+        # ■ RETORNO
+        return head_excel_F , head_excel_V
+        
+    def __cuatro_letras(self, columnas_to_FIN:int, actual_col:int, ultima_columna_used:int):
+        """ ■ Devuelve un booleano o None para saber si se tiene que imprimir la letra, el punto o nada en el head-excel.
+        ■ Llamada desde __get_maximo_head(), __get_head_excel()
+        [columnas_to_FIN]:int, cuantas columnas quedan desde la última columna(no incluida) hasta el fin de la matriz.
+        [actual_col]:int, cual es la columna actual. Estamos recorriendo head_excel.
+        [ultima_columna_used]:int, cual es la última columna usada en la matriz.
+        ► CALLED: self.__get_maximo_head() ■ self.__get_head_excel()
+        ■ EJEMPLO:
+            b_letra = self.__cuatro_letras(columnas_to_FIN=columnas_to_FIN, actual_col=j, ultima_columna_used=ultima_columna_used)
+            if b_letra == True:
+                lista_excel_V.append(f'{LETRA_HEAD}')                                                    # ■ ancho
+            elif b_letra == False:
+                lista_excel_V.append(f'.')                                                               # ■ ...o ancho
+            elif b_letra == None:
+                lista_excel_V.append(f'')                                                                # ■ ...o ancho
+        ■ RETORNO:
+            ► True(Letra) ► False[ punto('.') ] ► None(Imprime vacío),  dependiendo del lugar que ocupe la columna actual...                     
+        """
+        if columnas_to_FIN < 4:
+            return True
+        else:                   # A partir de 4 (incluido)
+            if actual_col == self.total_columnas - 1:   # FIN MATRIZ..... IF 'Z'
+                return True
+            elif actual_col == ultima_columna_used + 1: # (ultima_columna_used + 1) es La 1ª Letra después de la última usada ► PRIMERA LETRA.
+                return True
+            else:
+                if self.total_columnas - actual_col <= 3:
+                    return False
+                else:
+                    return None
+
+    def __envuelve_fila_V(self, lista_V: list, resto:int=0) -> list:
+        """ ■ llamada desde __get_head_excel()
+        [lista_V]:list, ['\x1b[0m\x1b[35mA                                  ', '  ', '\x1b[0mB   ', '  ', '\x1b[0m\x1b[35mC        ', '  ', '\x1b[0mD     ', ' ', '\x1b[0m\x1b[35mE', '', '\x1b[0mF', '\x1b[0m']
+        [resto]:int=0, 
+        ► CALLED: self.__get_head_excel()
+        ■ EJEMPLO:
+            head_excel_V = self.__envuelve_fila_V( lista_V = lista_excel_V )
+        ■ RETORNO:
+            ['', '█', '  ', '\x1b[0m\x1b[35mA                                  ', '  ', '\x1b[0mB   ', '  ', '\x1b[0m\x1b[35mC        ', '  ', '\x1b[0mD     ', ' ', '\x1b[0m\x1b[35mE', '', '\x1b[0mF', '\x1b[0m', '', '     ', '█']
+        """
+        # Envoltorio izquierdo (primeros 3 elementos)
+        envoltorio_izquierdo = [
+            f'{self.margen*self.ESPACIO}',  # margen
+            f'{self.char_marco}',            # marco
+            f'{self.x_pad*self.ESPACIO}'     # x_pad
+        ]
+        
+        # El centro es la lista_V que se pasa como parámetro
+        
+        # Envoltorio derecho (últimos 3 elementos)
+        envoltorio_derecho = [
+            f'{resto * self.ESPACIO}',          # RESTO (para el body)
+            f'{self.pad_x*self.ESPACIO}',       # pad_x
+            f'{self.char_marco}'                # marco
+        ]
+        
+        # Combinar los tres envoltorios en una sola lista
+        lista_resultado = envoltorio_izquierdo + lista_V + envoltorio_derecho
+        
+        return lista_resultado
+
+    def __get_maximo_head(self):
+        """ ■ Devuelve el int del LEN de los valores de toda la fila del HEAD-excel. Llamada desde __get_maximo_franky().
+        ■ Los datos de configuracion: lista, ancho_columna y sp_between, se cojen del body ya que el head es el reflejo del body en formato columnas excel ( A, B, C, ..., AZ )
+        Hay que crear la impresión con los datos de configuracion.
+        ■ EJEMPLO:
+            max_lista_L_head = self.__get_maximo_head()          # ■■ HEAD-Excel
+        ■ SALIDA:
+            int: 95 xejem, Que representa el valor maximo del head con el formato de impresion(family_impresion) de self('MOSAICO', 'FIX', 'MAX').
+        """
+        lista = self.dicc_print['body']['lista']         
+        ancho_columna = self.dicc_print['body']['ancho_columna'] 
+        sp_between = self.dicc_print['body']['sp_between']
+        
+        # BASELINE FORMATO - Del Body   
+        baseline_format = self.get_baseline_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if not baseline_format: return None, None
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # TIPO DE IMPRESION - [Rango]        
+        family_impresion = self.get_family_impresion(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if family_impresion is None or str(family_impresion).upper() not in self.lista_family : return None
+        
+        # ■ ULTIMA COLUMNA Usada... del Body
+        lista_ultima_columna_used = self.get_lst_last_columna_used_xfila()                              # Lista con la última columna usada xfila  - [Rango]
+        ultima_columna_used = max(lista_ultima_columna_used) if lista_ultima_columna_used else 0        # ultima columna usada en la matriz.
+        columnas_to_FIN = self.total_columnas - ultima_columna_used - 1                                      
+        # RESTO = 0                                                                                       # resto que tiene que haber en la linea de manera formal. aquí va a Zero
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■■■■■■■■■■■■ DESARME Y TRANSF MATRIZ ■■■■■■■■■■■■ 
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # LISTA De Monomios FORMATO
+        lst_paquete_ancho = F_r_a_n_k_y.__desempaqueta_str_formato( str_formato=baseline_format, b_between=False)
+        lst_paquete_between = F_r_a_n_k_y.__desempaqueta_str_formato( str_formato=baseline_format, b_between=True )
+        # LISTA DE ENTEROS DE LOS VALORES DEL FORMATO. No se Incluye la última columna para que desde la última hasta el final queden ajustadas.
+        lst_F_ancho_columna = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j <= ultima_columna_used else 0 for j , m in enumerate(lst_paquete_ancho)]
+        lst_F_sp_between =    [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j < ultima_columna_used else 0 for j , m in enumerate(lst_paquete_between)]
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # Diferencia entre un tablero normal y un head_excel.
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        if family_impresion == 'MOSAICO':
+            lst_F_ancho_final = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j < ultima_columna_used else 0 for j , m in enumerate(lst_paquete_ancho)]
+            lst_F_betwn_final = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j < ultima_columna_used else 0 for j , m in enumerate(lst_paquete_between)]
+        elif family_impresion == 'FIX':
+            lst_F_ancho_final = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j <= ultima_columna_used else 0 for j , m in enumerate(lst_paquete_ancho)]
+            lst_F_betwn_final = [F_r_a_n_k_y.__get_parte_entera_monomio_formato(m) if j < ultima_columna_used else 0 for j , m in enumerate(lst_paquete_between)]
+        elif family_impresion == 'MAX':
+            # Lista de las Longitudes maxima de cada columna        
+            lista_MAX_COL =  self.get_list_maxlen_columna()     # Tiene que ser self y no self.head_excel pq estamos tratando de sacar la regla del body para la disposición de las letras.
+            lst_F_ancho_final = [ 0 if (max_col == 0 or j > ultima_columna_used ) else lst_F_ancho_columna[j] for j , max_col in enumerate(lista_MAX_COL) ]
+            lst_F_betwn_final = [ 0 if (max_col == 0 or j > ultima_columna_used ) else lst_F_sp_between[j]    for j , max_col in enumerate(lista_MAX_COL) ]
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■ VALORES
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        lista_excel_V = []                                       # lista  de Valores del Head.
+        for j, celda in enumerate(self.head_excel.matriz[0]):
+            LETRA_HEAD = f'{celda.valor}'
+            len_limpio = len(F_r_a_n_k_y.__texto_limpio( texto = LETRA_HEAD ))     #
+            # ■■■■■■■■■■■■■■■■■■ 
+            if j < ultima_columna_used:         # ■■■■■ ► 0 <= j < Ultima Columna Usada 
+                if family_impresion == 'MAX':
+                    if lst_F_ancho_final[j] == 0:   # ■■■■■ ► Columna VACIA
+                        lista_excel_V.append(f'')                                                            # ■ ancho
+                        lista_excel_V.append(f'{LETRA_HEAD}{self.ESPACIO*(sp_between-len_limpio)}')          # ■ between: letra en el sp y de resto(sp_between-L_letra) relleno con espacios.                                               
+                    else:                           # ■■■■■ ► Columna CON DATOS
+                        lista_excel_V.append( f'{LETRA_HEAD}{self.ESPACIO * (lst_F_ancho_final[j]-len_limpio)}') # ■ ancho
+                        lista_excel_V.append(f'{lst_F_betwn_final[j]*self.ESPACIO}')                             # ■ between
+
+                elif family_impresion == 'FIX':
+                    lista_excel_V.append(f'{LETRA_HEAD}{self.ESPACIO * (lst_F_ancho_final[j] - len_limpio)}')    # ■ ancho
+                    lista_excel_V.append(f'{lst_F_betwn_final[j]*self.ESPACIO}')                                 # ■ between
+
+                elif family_impresion == 'MOSAICO':
+                    lista_excel_V.append(f'{LETRA_HEAD}')                                                        # ■ ancho
+                    lista_excel_V.append(f'•')                                                                   # ■ between(Alt+7)
+
+            elif j == ultima_columna_used:
+                lista_excel_V.append(f'{LETRA_HEAD}{self.ESPACIO * (lst_F_ancho_final[j] - len_limpio)}')        # ■ ancho
+                lista_excel_V.append(f'{self.ESPACIO}')                                                          # ■ between
+
+            else:
+                # ► Desde la ultima columna usada + 1. Sólo puede haber 4 letras como maximo(1 letra puede ser AX, 2 digitos.).
+                b_letra = self.__cuatro_letras(columnas_to_FIN=columnas_to_FIN, actual_col=j, ultima_columna_used=ultima_columna_used)
+                if b_letra == True:
+                    lista_excel_V.append(f'{LETRA_HEAD}')                                                    # ■ ancho
+                elif b_letra == False:
+                    lista_excel_V.append(f'.')                                                               # ■ ...o ancho
+                elif b_letra == None:
+                    lista_excel_V.append(f'')                                                                # ■ ...o ancho
+
+                lista_excel_V.append(f'')                                                                    # ■ between           
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # ■ MAXIMO HEAD, Para todos los formatos(max, fix, mosaico).
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        maximo_head_excel = sum( [ len(F_r_a_n_k_y.__texto_limpio( texto = a ) ) for  a in lista_excel_V ]  )
+
+        # ■ RETORNO
+        return maximo_head_excel
+
+    # ◘◘◘◘◘◘◘ Para imprimir un Tablero Head, Pie o Body
+    def __imprimir_franky(self, tablero, maximo_franky:int , up_line:bool=False, down_line:bool=False, fila_from:int=0, fila_to:int=None):
+        """ ■ Imprime Un tablero pasado como parámetro. Puede imprimir una linea superior y una linea inferior que dependen de maximo_franky.
+        [tablero] (Tablero): Tablero a imprimir. Puede ser self.head, self.pie o self.
+        [maximo_franky] (int): Ancho máximo de la impresión.
+        [up_line] (bool): Si True, imprime una línea horizontal arriba del tablero.
+        [down_line] (bool): Si True, imprime una línea horizontal abajo del tablero.
+        [fila_from] (int): Fila desde la que se empieza a imprimir. 0 byDef
+        [fila_to] (int): Fila hasta la que se imprime. None byDef, imprime hasta el final del tablero.
+        ► CALLED: self.imprimir()
+        ■ EJEMPLO:
+            >>> ► self.__imprimir_franky(tablero=self.head, maximo_franky=95 , up_line = True )                               # ■■ HEAD   
+            >>> ► self.__imprimir_franky(tablero=self, maximo_franky=95 , up_line = True , down_line = True , fila_from=1, fila_to=5)    # ■■ BODY
+        ■ SALIDA: None, realiza una impresion en pantalla.
+        """        
+        if not tablero or not isinstance(tablero, Tablero): return
+
+        # ■■■ DE MOMENTO FUERZO EL HEAD Y EL PIE DESDE LA FILA 0 HASTA LA ÚLTIMA FILA DEL TABLERO.
+        if tablero == self.head or tablero == self.pie or tablero == self.head_excel:
+            fila_from = 0
+            fila_to   = tablero.celda_fin.fila
+
+        # ■■■ CACHO LOS DATOS DEL TABLERO QUE TIENEN QUE VER CON EL TIPO DE IMPRESION:
+        if tablero == self.head:
+            lista           = self.dicc_print['head']['lista'] 
+            ancho_columna   = self.dicc_print['head']['ancho_columna'] 
+            sp_between      = self.dicc_print['head']['sp_between']
+        
+        elif tablero == self.pie:
+            lista           = self.dicc_print['pie']['lista']
+            ancho_columna   = self.dicc_print['pie']['ancho_columna']
+            sp_between      = self.dicc_print['pie']['sp_between']
+        
+        elif tablero == self:            
+            lista           = self.dicc_print['body']['lista']
+            ancho_columna   = self.dicc_print['body']['ancho_columna']
+            sp_between      = self.dicc_print['body']['sp_between']
+        
+        else:
+            print(f'Error: El tablero  no es ni Head ni Pie.')
+            return None            
+        pass
+        
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # TIPO DE IMPRESION - [Rango]        
+        family_impresion = tablero.get_family_impresion(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if family_impresion is None or str(family_impresion).upper() not in self.lista_family : return None
+        
+        if family_impresion == 'MOSAICO':
+            
+            matriz_F, matriz_V = self.__ruta_natural( tablero = tablero, family_impresion = family_impresion, maximo_franky = maximo_franky, 
+                                                      lista = lista, ancho_columna = ancho_columna, sp_between = sp_between )
+        
+        elif family_impresion == 'FIX' or family_impresion == 'MAX':
+            
+            matriz_F, matriz_V = self.__ruta_cuadrado( tablero = tablero, family_impresion = family_impresion, maximo_franky = maximo_franky, 
+                                                       lista = lista, ancho_columna = ancho_columna, sp_between = sp_between )
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # IMPRIMIR -
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                
+        # LINEA SUPERIOR
+        if up_line == True: print(self.__linea_horizontal(char=self.char_head, maximo_franky=maximo_franky))         
+        
+        for i, lista_V in enumerate(matriz_V):                                    
+            if fila_from <= i <= fila_to:
+                # ► CON CABECERA EXCEL.
+                if tablero == self and self.b_excel == True:   
+                    if i % 2 == 0:  # ► SI PAR ► COLOR
+                        print( matriz_F[i].format(*lista_V) + f'{self.ESPACIO}{self.color_excel}{i}{Style.RESET_ALL}' ) 
+                    else:            # ► SI IMPAR ► NO COLOR
+                        print( matriz_F[i].format(*lista_V) + f'{self.ESPACIO}{i}' ) 
+                else:
+                    print( matriz_F[i].format(*lista_V) ) 
+        
+        # LINEA INFERIOR
+        if down_line == True: print(self.__linea_horizontal(char=self.char_pie, maximo_franky=maximo_franky))        
+        pass
+        
+    # ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘
+    # ◘◘◘◘◘◘◘ BASE-SIN USO ◘◘◘◘◘◘◘
+    def __imprimir_matricial(self, sp_between:int=0, 
+                                 ancho_columna:int = None, 
+                                 lista:list = None, 
+                                 fila_from:int=0, 
+                                 fila_to:int=None , 
+                                 tablero = None):
+        """ ■ Imprime los Tableros Head / Body y Pie de forma matricial. 
+        Permite formato y colores en la matriz 
+        NO LA USO, ES LA BASE DE LA IMPRESION MODULAR DE LA CLASE, DE AQUÍ PARTE TODO. 
+
+        [sp_between] (int): Espacio entre columnas.
+        [ancho_columna] (int): Ancho de las columnas.
+        [lista] (list): Lista de columnas a imprimir. Si es None, imprime todas las columnas.
+        [fila_from] (int): Fila desde la que empezar a imprimir.
+        [fila_to] (int): Fila hasta la que imprimir. Si es None, imprime hasta el final.
+        [tablero] (Tablero): Instancia de Tablero. Si es None, usa self(body).
+        ■ SALIDA:
+            imprime por pantalla la el tablero pasado con la configuracion pasada(lista, ancho_columna, sp_between).
+        ■ EJEMPLO:
+            self.__imprimir_matricial(tablero = self, sp_between = 2 , ancho_columna = None , lista = None , fila_from = 0, fila_to = None )
+        """
+        
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # VALIDACION Parametros de entrada
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+       
+        # ■■ Valida el tablero
+        if tablero is None: tablero = self
+        
+        # ■■ Valida que exista matriz.
+        if  not tablero.matriz: return None
+
+        # ■ Valida fila_from
         if not isinstance(fila_from, int): return None
         fila_from = abs(fila_from)
         
-        # ■■ HASTA FILA
+        # Valida fila_to
         if fila_to == None:
-            fila_to = self.celda_fin.fila        
+            fila_to = tablero.celda_fin.fila        
         else:
             try:
                 fila_to=abs(int(fila_to))
                 # VALIDA LOS LIMITES DE LAS FILAS PASADAS
-                if not self.celda_inicio.fila <= fila_from <= fila_to <= self.celda_fin.fila:
-                    print('filas fuera de rango')
+                if not tablero.celda_inicio.fila <= fila_from <= fila_to <= tablero.celda_fin.fila:
+                    print(f'fila_from( {fila_from} ) ► fila_to( {fila_to} ) fuera de rango')
                     return None                
             except Exception as e:
                 print(f'{e}')
                 return None
-
-        """ ■■■■ CREA LA CADENA DE FORMATO. ■■■■ """
-        str_formato = self.get_str_format(sp_between = 0 , ancho_columna = 0 , lista = None)
-        if not str_formato:
-            print("Error Imprimir::: Error al formar str_formato ::: __imprimir_tablero_literal() ")
+        if fila_from > fila_to:
+            print(f'fila_from( {fila_from} ) > fila_to( {fila_to} ) fuera de rango')
             return None
-
-        """ ■■■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD """
-        lst_str_formato = [ "{:>"+str(self.margen)+"}"+"{:<" + str(self.x_pad)+"}"+ 
-                            str_formato + 
-                            "{:>"+str( resto_to_add )+"}"+"{:>"+str(self.pad_x)+"}"+"{:>"+str(len(self.char_marco))+"}"
-                        for resto_to_add in lst_resto_to_add
-                        ]
-        try:
-            # TRABAJAMOS SOBRE LOS VALORES.
-            for i, fila in enumerate(tablero.matriz):
-                if fila_from <= i <=fila_to:
-                    lst_valores_formato_print_x_fila=[]
-                    
-                    """ ■■■■ PREPARA LOS VALORES CREANDO LA LISTA X FILA ■■■■■■ """           
-                    # PREPARA: MARGEN | MARCO IZQUIERDO | X_PAD
-                    lst_valores_formato_print_x_fila.append(self.ESPACIO * self.margen)                     # ESPACIO ANTES DEL MARCO-IZQ
-                    lst_valores_formato_print_x_fila.append(self.char_marco + self.ESPACIO * self.x_pad)    # MARCO-IZQ(█) Y ESPACIO ANTES DE CONTENIDO
-                    # PREPARA: VALORES | SP_BETWEEN
-                    for celda in fila:
-                        lst_valores_formato_print_x_fila.append(celda.valor)                                # CONTENIDO
-                        lst_valores_formato_print_x_fila.append(self.ESPACIO*sp_between )                   # EL ESPACIO ENTRE LAS COLUMNAS     
-                    # PREPARA: RESTO HASTA EL FINAL | PAD_X | MARCO DERECHO
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * lst_resto_to_add[i] )           # AÑADE EL RESTO EN ESPACIOS
-                    lst_valores_formato_print_x_fila.append( self.ESPACIO * self.pad_x )                    # AÑADE PAD_X EN ESPACIOS      
-                    lst_valores_formato_print_x_fila.append( self.char_marco )                              # AÑADE EL MARCO HORIZONTAL █
-
-                    """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-                    ■■■■■■ IMPRIME LOS VALORES ■■■■■■ """
-                    # print(str_formato.format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-                    print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-
-        except Exception as e:
-            print(f'{e}')
-            return None
-    
-    # IMPRIME EL TABLERO HEAD EN FORMATO LITERAL
-    def __imprimir_head(self , maximo_franky:int ):        
-        """ Si Existe HEAD (!= NONE)  lo imprime de forma LITERAL(ancho 0 , sp_between=0, lista = None) 
-        [maximo_franky](int):   El valor maximo horizontal de la linea mas larga teniendo en cuenta su configuracion(ancho, sp_between, lista)
-                                Sirve para poner el caracter self.char_head 
-        """
-        if not self.head: return
-
-        try:
-            # ■ LISTA DEL LEN DE CADA FILA 
-            # lst_len_filas_head = self.head.get_lst_longitud_valores_x_fila()  if self.head else None                 
-            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-            # ■ LISTA DE LONGITUDES VISIBLES (sin códigos ANSI)
-            # lst_len_filas_head_ANSI2 = [self.len_without_ANSI(celda.valor) for fila in self.head.matriz for celda in fila]  
         
-            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-            lst_len_filas_head_ANSI = []
-            for fila in self.head.matriz:
-                longitud_total_fila=0
+        # Valida lista
+        if lista is not None:
+            if not isinstance(lista, list): return None # Valida que sea typo list.
+            if not lista: return None               # Valida que la lista no esté vacía
+            try:                                    # Valida que sea una lista de enteros positivos
+                lista = [int(i) for i in lista]
+                lista = [abs(i) for i in lista]     # Valida que sean enteros positivos
+            except Exception as e:
+                print(f'{e}')
+                return None            
+        
+        # Valida ancho_columna
+        if ancho_columna is not None:    # Si es None, es un valor admitido así que No lo trato.
+            try:                                   
+                ancho_columna = int(ancho_columna)
+                ancho_columna = abs(ancho_columna)
+            except Exception as e:
+                print(f'{e}')
+                return None
+
+        # ■■■■■■ Elimina los caracteres vacios por la derecha antes de nada(para evitar confusiones luego ;) UPDT: CUANDO SE CREA LA MATRIZ. 
+        try:
+            for fila in tablero.matriz:
                 for celda in fila:
-                    longitud_total_fila += self.len_without_ANSI(str(celda.valor))
-                pass            
-                lst_len_filas_head_ANSI.append(longitud_total_fila)    
-
-            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-
-            # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA 
-            # lst_resto_to_add_head = [ maximo_franky - len_fila for len_fila in lst_len_filas_head ]
-            lst_resto_to_add_head = [ maximo_franky - len_fila for len_fila in lst_len_filas_head_ANSI ]
-            # ■■■■■
-            print(f'{self.ESPACIO * self.margen}{self.char_head * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
-
-            self.__imprimir_tablero_literal(tablero = self.head ,  lst_resto_to_add = lst_resto_to_add_head) 
+                    if celda.valor != '' and isinstance(celda.valor, str):
+                        celda.valor = str(celda.valor).rstrip()
+                pass
         except Exception as e:
             print(f'{e}')
             return None
-
-    # def __imprimir_head(self, maximo_franky: int):        
-    #     """ Imprime HEAD en formato literal """
-    #     if not self.head:
-    #         return
-
-    #     # ■ LISTA DEL LEN DE CADA FILA 
-    #     lst_len_filas_head_VAL = self.head.get_lst_longitud_valores_x_fila()  if self.head else None                 
-    #     try:
-    #         # Aplicar len_without_ANSI a cada fila para eliminar los códigos ANSI
-    #         lst_len_filas_head = [
-    #             self.len_without_ANSI(str(fila)) for fila in lst_len_filas_head_VAL
-    #         ]
-
-    #         # Calcular los espacios adicionales que necesita cada fila
-    #         lst_resto_to_add_head = [maximo_franky - len_fila for len_fila in lst_len_filas_head]
-
-    #         # Imprimir el borde superior
-    #         ancho_total = maximo_franky + len(self.char_marco) * 2 + self.x_pad + self.pad_x
-    #         print(f'{self.ESPACIO * self.margen}{self.char_head * ancho_total}')  
-
-    #         # Imprimir el tablero ajustado
-    #         self.__imprimir_tablero_literal(tablero=self.head, lst_resto_to_add=lst_resto_to_add_head)
-
-    #     except Exception as e:
-    #         print(f'Error en __imprimir_head: {e}')
-    #         return None
-
-
-    # IMPRIME EL TABLERO PIE EN FORMATO LITERAL
-    def __imprimir_pie(self, maximo_franky):
-        """ ■■■■■■■■■■■■■ PIE ■■■■■■■■■■■■■ """        
-        if not self.pie: return
-
-        # ■ LISTA DEL LEN DE CADA FILA - get_lst_longitud_valores_x_fila 
-        # lst_len_filas_pie = self.pie.get_lst_longitud_valores_x_fila() if self.pie else None
         
-        # ■ LISTA DE LONGITUDES VISIBLES (sin códigos ANSI)
-        lst_len_filas_pie_ANSI = [self.len_without_ANSI(str(celda.valor)) for fila in self.pie.matriz for celda in fila]  
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        DATOS GENERALES 
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        ultima_columna_used = tablero.get_last_columna_used()      # Ultima columna usada en self.matriz    - [Rango]
+        lista_ultima_columna_used = tablero.get_lst_last_columna_used_xfila()  # Lista con la última columna usada xfila  - [Rango]
+
+        # ■■ Matriz, con el valor en bruto ■■ ...con chars ansii colorama(si lo hay) ... ( celda.valor )
+        matriz_V_bruto = [  [str(celda.valor) for celda in fila ] for fila in tablero.matriz ]             # matriz que se va a recorrer.
+
+        # ■■ Matriz de longitud de celda.valor de los caracteres imprimibles 
+        # ■■ Longitud del texto sin ANSI
+        matriz_L_limpio = [ [ len(F_r_a_n_k_y.__texto_limpio( texto = str(celda.valor) ))  
+                                for celda in fila ] for fila in tablero.matriz ]
+                                
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        BASELINE FORMATO - [Rango]
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        # ■ Baseline-Format ■ {:<41}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}
+        # ■ Es la linea base del formato que marca el ancho de columna y el espacio entre columnas. - [Rango]
+        # ■ ■ ■ Lo siguiete será transformar esta linea en una matriz de formato que se pueda imprimir.
+        baseline_format = tablero.get_baseline_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if not baseline_format: return None        
         
-        # ■ LIST CON LOS INT  QUE HAY QUE AÑADIR EN CADA FILA 
-        lst_resto_to_add_pie = [ maximo_franky - len_fila for len_fila in lst_len_filas_pie_ANSI ] if lst_len_filas_pie_ANSI else None
-        # ■■■■       
-        try:
-            if lst_resto_to_add_pie:                
-                self.__imprimir_tablero_literal(tablero = self.pie  , lst_resto_to_add = lst_resto_to_add_pie) 
-                print(f'{self.ESPACIO * self.margen}{self.char_pie * ( maximo_franky + len(self.char_marco) + self.x_pad + self.pad_x + len(self.char_marco) )}')             
-        except Exception as e:
-            print(f'{e}')
-            return None
-
-    # PONE UN FORMAT BASICO SOBRE LA ULTIMA COLUMNA USADA. SOLO SP_BETWEEN. LITERAL. ANCHO = 0, 
-    def __get_lst_formato_mosaico(self, str_formato:str, b_between:bool = True):
-        """
-        Genera una lista de formatos ajustados a la última columna utilizada en cada fila.
-
-        [str_formato] (str): Cadena base de formato.
-        [b_between] (bool): Indica si se usa lst_formato_between (True) o lst_formato_ancho_columna (False).
-
-        Retorna:
-            (list) Lista de formatos ajustados por fila.
-        """        
-
-        lst_last_columna_used_x_fila = self.get_lst_last_columna_used_x_fila() 
-
-        """ ███████ DESHAGO EL FORMATO CREADO ( MAXIMO ENTRE HEAD/BODY/PIE ) """
-        lst_formato_ancho_columna = self.__desempaqueta_str_formato(str_formato=str_formato, b_between=False)
-        lst_formato_between = self.__desempaqueta_str_formato(str_formato=str_formato, b_between=True)
-
-        lista_formato_final = []
-    
-        for last_columna_used in lst_last_columna_used_x_fila:
-            # CREO UN FORMATO DE COLUMNA AJUSTADA A LA ULTIMA COLUMNA USADA
-            lst_between_new = [ str_formato_between if j <= last_columna_used - 1  else '{:>0}'                 
-                                        for j , str_formato_between in enumerate(lst_formato_between) ]
-
-            # GENERAR LA CADENA DE FORMATO INTERCALANDO ANCHO Y BETWEEN
-            formato_final = ''.join(a + b for a, b in zip(lst_formato_ancho_columna, lst_between_new))
-            
-            # AGREGAR EL FORMATO AJUSTADO A LA LISTA
-            lista_formato_final.append(formato_final)
-
-        return lista_formato_final
-
-    # PONE UN FORMAT BASICO SOBRE LA ULTIMA COLUMNA USADA. ENTRE SP_BETWEEN Y ANCHO_COLUMNA
-    def __get_lst_formato_ultima_columna_organico(self, str_formato:str, sp_between:int):
-        """
-        Genera una lista de formatos ajustados a la última columna utilizada en cada fila.
-
-        [str_formato] (str): Cadena base de formato.
-        [b_between] (bool): Indica si se usa lst_formato_between (True) o lst_formato_ancho_columna (False).
-
-        Retorna:
-            (list) Lista de formatos ajustados por fila.
-        """        
-        # ■■ LISTA DE INT CON LA ULTIMA COLUMNA USADA POR FILA. ZERO NO IMPLICA QUE NO HAYA DATOS EN LA COLUMNA 0(A:0, B:0, ...)
-        lst_last_columna_used_x_fila:list = self.get_lst_last_columna_used_x_fila() 
-
-        # ■■ INT , ULTIMA COLUMNA USADA DE TODAS LAS FILAS
-        last_columna_used:int = max(lst_last_columna_used_x_fila)
-
-        # ■■ LISTA DE LONGITUDES ■ ORGANICA ■
-        lst_len_organico_xfila = self.__get_lst_len_organico_xfila(sp_between = sp_between) 
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        TIPO DE IMPRESION - [Rango]
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        # lista_family = ['MOSAICO', 'FIX', 'MAX']
+        family_impresion = tablero.get_family_impresion(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if family_impresion is None or family_impresion not in self.lista_family : return None
 
 
-
-        """ ███████ DESHAGO EL FORMATO CREADO ( MAXIMO ENTRE HEAD/BODY/PIE ) """
-        lst_formato_ancho_columna = self.__desempaqueta_str_formato(str_formato=str_formato, b_between=False)
-        lst_formato_between = self.__desempaqueta_str_formato(str_formato=str_formato, b_between=True)
-
-        """  """
-        lista_formato_final = []    
-        for last_columna_used in lst_last_columna_used_x_fila:
-            
-            # CREO UN FORMATO DE COLUMNA AJUSTADA A LA ULTIMA COLUMNA USADA.
-            lst_ancho_new   = [ formato_ancho       if ( j <= last_columna_used ) else '{:>0}' 
-                                                        for j , formato_ancho       in enumerate(lst_formato_ancho_columna) ]
-            
-            # CREO UN FORMATO DE COLUMNA AJUSTADA A LA PEN-ULTIMA COLUMNA USADA -1
-            lst_between_new = [ str_formato_between if ( j <= last_columna_used - 1 ) else '{:>0}' 
-                                                        for j , str_formato_between in enumerate(lst_formato_between) ]
-            
-            # GENERAR LA CADENA DE FORMATO INTERCALANDO ANCHO Y BETWEEN
-            formato_final = ''.join(a + b for a, b in zip(lst_ancho_new, lst_between_new))            
-            # AGREGAR EL FORMATO AJUSTADO A LA LISTA
-            lista_formato_final.append(formato_final)
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        MATRIZ BASE TYPE FORMATO IMPRESION ... Para sacar las matriz_(F) Formato - [Franky]
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        matriz_LIST_F_natural  = self.__get_lst_formato_natural( baseline_format = baseline_format, sp_between = sp_between , tablero = tablero)
+        matriz_LIST_F_cuadrado = self.__get_lst_formato_cuadrado(baseline_format = baseline_format, sp_between = sp_between , tablero = tablero )
         
-        # ■■ RETORNO
-        return lista_formato_final
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        MATRICES FORMATO - [Franky]
+         ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        matriz_F_ancho_natural     = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_natural, b_ancho_columna=True, b_sp_between=False)
+        matriz_F_between_natural   = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_natural, b_ancho_columna=False, b_sp_between=True)
 
-    # PONE UN FORMAT CUADRADO SOBRE LA ULTIMA COLUMNA USADA. ENTRE SP_BETWEEN Y ANCHO_COLUMNA
-    def __get_lst_str_formato_fixed(self, str_formato: str, sp_between:int = 0):
-        """
-        Genera una lista de formatos ajustados a la última columna utilizada en cada fila y ajustando todas las filas 
-        a la última columna utilizada en la fila más larga.
-
-        [str_formato] (str): Cadena base de formato. {:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}{:<3}{:<0}
-        [b_between] (bool): Indica si se usa lst_formato_between (True) o lst_formato_ancho_columna (False).
-
-        Retorna:
-            (list) Lista de formatos ajustados por fila.
-        """
-
-        # ■■ LISTA DE INT CON LA ULTIMA COLUMNA USADA POR FILA. ZERO NO IMPLICA QUE NO HAYA DATOS EN LA COLUMNA 0(A:0, B:0, ...)
-        lst_last_columna_used_x_fila:list = self.get_lst_last_columna_used_x_fila() 
-
-        # ■■ INT , ULTIMA COLUMNA USADA DE TODAS LAS FILAS
-        last_columna_used:int = max(lst_last_columna_used_x_fila)
-
-        # ■■ LISTA DE LONGITUDES ■ ORGANICA ■
-        lst_len_organico_xfila = self.__get_lst_len_organico_xfila(sp_between = sp_between)  
-
-        """ ███████ DESHAGO EL FORMATO CREADO ( MAXIMO ENTRE HEAD/BODY/PIE ) """
-        lst_formato_ancho_columna = self.__desempaqueta_str_formato(str_formato=str_formato, b_between=False)
-        lst_formato_between = self.__desempaqueta_str_formato(str_formato=str_formato, b_between=True)
-
-        """  """
-        lista_formato_final = []    
-        for i, last_columna_used in enumerate(lst_last_columna_used_x_fila):
+        matriz_F_ancho_cuadrado    = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_cuadrado, b_ancho_columna=True, b_sp_between=False)
+        matriz_F_between_cuadrado  = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_cuadrado, b_ancho_columna=False, b_sp_between=True)
             
-            # ███ CREO UN FORMATO DE COLUMNA AJUSTADA A LA ULTIMA COLUMNA USADA PARA EL ANCHO Y EL SP_BETWEEN ███
-            lst_ancho_new   = [ formato_ancho       if (j <= last_columna_used) and ( (last_columna_used != 0) or (lst_len_organico_xfila[i] != 0 ) )
-                                                    else '{:>0}' 
-                                                        for j , formato_ancho  in enumerate(lst_formato_ancho_columna) ]
-
-            lst_between_new = [ str_formato_between if (j <= last_columna_used - 1) and ( (last_columna_used != 0) or (lst_len_organico_xfila[i] != 0 ) )
-                                                    else '{:>0}' 
-                                                        for j , str_formato_between in enumerate(lst_formato_between) ]
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        MATRICES  - [Franky]
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        if family_impresion == 'MOSAICO':
+            # ■■■■■■■■ 
+            # ■ Suma Ancho + sp_between, celda a celda, en formato natural (hasta la ultima columna)
+            matriz_L_SUM_natural = [[a + b 
+                                for a, b in zip(fila_len_sin_ansi, fila_between_nat)]
+                                for fila_len_sin_ansi , fila_between_nat in zip(matriz_L_limpio, matriz_F_between_natural) ]
+            # ■ ■ ■  Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+            lista_L_SUM_natural  = [sum(fila) for fila in matriz_L_SUM_natural]         # ■mosaico 
+            pass
             
-            # ■■ GENERAR LA CADENA DE FORMATO INTERCALANDO ANCHO Y BETWEEN
-            formato_final = ''.join(a + b for a, b in zip(lst_ancho_new, lst_between_new))            
-            # ■■ AGREGAR EL FORMATO AJUSTADO A LA LISTA
-            lista_formato_final.append(formato_final)
-        
-        # ■■ RETORNO
-        return lista_formato_final if lista_formato_final else None
+            # ■■■■■■■■ 
+            # IF Lista + Mosaico
+            if lista is not None:
+                # ■ Mezcla dos Matrices a través de la longitud de lista. ■ Por si hace impresión 'FIX-MOSAICO'.
+                matriz_mezcla_natural =  [ [ fila_A[col] if col < len(lista) 
+                                                        else fila_B[col] 
+                                                for col in range(len(fila_A))]
+                                                for fila_A, fila_B in zip(matriz_F_ancho_natural , matriz_L_limpio) ]                                            
+                # ■ Matriz de la Suma de Ancho + sp_between. 
+                matriz_L_SUM_FIX_natural = [ [a + b 
+                                                for a, b in zip(fila_a, fila_b)]
+                                                for fila_a , fila_b in zip(matriz_mezcla_natural, matriz_F_between_natural) ]
 
-    def __get_lst_formato_max_columna(self, str_formato:str, sp_between:int = 0):
-        """ GENERA LA LISTA DE FORMATOS DE LA OPCION MAXIMA LONGITUD X COLUMNA.
-        """
-        # ████ RECONVIERTE EL STR_FORMATO A UNA LISTA CUADRADA AL MAYOR ANCHO DE COLUMNA
-        lst_str_formato_basic = [ str_formato for i in range (len(self.matriz)) ]
-        
-        # ULTIMA COLUMNA USADA
-        ultima_columna_used = self.last_columna_used()
-        if ultima_columna_used == None:
-            if  not self.matriz:
-                print('Error::: __get_lst_formato_max_columna() ::: last_columna_used()')
-                return None
+                # ■ ■ ■ Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+                lista_L_SUM_FIX_natural  = [sum(fila) for fila in matriz_L_SUM_FIX_natural]
+
+        elif (family_impresion == 'FIX') or (family_impresion == 'MAX'):                   
+            # ■■■■■■■■ 
+            # ■ Suma Ancho + sp_between, celda a celda, en formato cuadrado (hasta la ultima columna)
+            matriz_L_SUM_cuadrado = [ [a + b 
+                                for a, b in zip(fila_a, fila_b)]
+                                for fila_a, fila_b in zip(matriz_F_ancho_cuadrado, matriz_F_between_cuadrado) ]
+            # ■ ■ ■ Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+            lista_L_SUM_cuadrado = [sum(fila) for fila in matriz_L_SUM_cuadrado]        # ■fix ■max ■fix-fix ■fix-max
+            pass
+
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        SUMA DE LONGITUDES TOTAL(BIN) DE CADA FILA ... para calcular el ■maximo_franky y el ■resto_to_maxfranky.
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        if family_impresion == 'MOSAICO':
+            if lista is None:
+                lista_L_SUM = lista_L_SUM_natural         # ■ sin Lista.
             else:
-                ultima_columna_used = 0
-        ANCHO = 0
-        BETWEEN = 1
-        new_lst_formato = []
-        for i, str_formato in enumerate(lst_str_formato_basic):
-            binomios = re.findall(r'({:[<>^]\d+})({:[<>^]\d+})', str_formato)
-            if not binomios: 
-                return None
-            
-            new_lst_formato_fila = []
-            for m , monomio in enumerate(binomios):
-                if m >= ultima_columna_used:                    
-                    # EN LA ULTIMA COLUMNA NO INCLUIMOS EL SP_BETWEEN.
-                    if m == ultima_columna_used:
-                        new_lst_formato_fila.append(monomio[ANCHO])
-                        new_lst_formato_fila.append('{:>0}')
+                lista_L_SUM = lista_L_SUM_FIX_natural     # ■ con Lista
+
+        elif (family_impresion == 'FIX') or (family_impresion == 'MAX'):                   
+            lista_L_SUM = lista_L_SUM_cuadrado            # ■ con Lista ■ sin Lista
+        else:
+            return None
+
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        FORMATO SP-BETWEEN - MATRIZ F_BTWN ... Para calcular la matriz_valores_impresion
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        if family_impresion == 'MOSAICO':
+            matriz_F_BTWN = matriz_F_between_natural            # ■■ Formato_BTWN
+        elif family_impresion == 'FIX' or family_impresion == 'MAX':
+            matriz_F_BTWN = matriz_F_between_cuadrado           # ■ Formato_BTWN
+
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        MAXIMO FRANKY ( Max entre Head / Body / Pie ) 
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+        maximo_franky = self.__get_maximo_franky()
+
+        lst_resto_to_maxfranky = [ maximo_franky - L for L in lista_L_SUM ]         # ■ Lista de enteros con el resto a añadir a cada fila para que llegue al maximo_franky.   
+
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        ENVOLTORIO DEL BODY / MATRIZ LIST FORMATO_FINAL 
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """ 
+        if family_impresion == 'MOSAICO':
+            matriz_lst_formato_impresion = self.__get_matriz_F( lista_formato_contenido = matriz_LIST_F_natural, 
+                                                                              lista_enteros_resto     = lst_resto_to_maxfranky )
+        elif family_impresion == 'FIX' or family_impresion == 'MAX':
+            matriz_lst_formato_impresion = self.__get_matriz_F(lista_formato_contenido = matriz_LIST_F_cuadrado, 
+                                                                             lista_enteros_resto     = lst_resto_to_maxfranky )
+        # ■ Validation
+        if matriz_lst_formato_impresion is None: 
+            print(f'Error::: No se ha podido determinar el formato de impresión.')
+            return None
+        
+        """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        APPEND VALORES TO MATRIZ-IMPRESION 
+        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """        
+        matriz_valores_impresion:list = []              # Matriz REsultante del añadir los valores y between
+        
+        for i, fila in enumerate(matriz_V_bruto):
+
+            lista_print_xfila=[]                        # ...cada append es una columna del formato_final de impresion.
+            """ ■■■ Envoltorio Izquierdo """
+            lista_print_xfila.append(self.ESPACIO * self.margen)
+            lista_print_xfila.append(self.char_marco)                
+            lista_print_xfila.append(self.ESPACIO * self.x_pad)
+
+            """ 
+            ███ FILA-ROW APPEND VALORES (Dependiendo del tipo de impresión) ███ 
+                ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+            for j, valor_celda in enumerate(fila):      
+                
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+                # ■ Preparo el BETWEEN de la CELDA 
+                # ■ Style.RESET_ALL + sp_between ■ Despues de cada celda un RESET_ALL antes del espacio between.
+                RESET_between:str = f''
+                if family_impresion == 'MOSAICO':
+                    RESET_between  = f'{Style.RESET_ALL}' + ( self.valor_default if (matriz_F_BTWN[i][j] == 0) or (j >= lista_ultima_columna_used[i]) 
+                                                                                else self.ESPACIO * matriz_F_BTWN[i][j] )
+                elif family_impresion == 'FIX' or family_impresion == 'MAX': 
+                    RESET_between  = f'{Style.RESET_ALL}' + ( self.valor_default if (matriz_F_BTWN[i][j] == 0) or (j >= ultima_columna_used) 
+                                                                                else self.ESPACIO * matriz_F_BTWN[i][j] )
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # ■ Final de la Ultima Columna Usada?
+                # ■ ... no tiene porque ser el final de la matriz.                
+                if j > ultima_columna_used:                                 # ■ FROM la última columna Total es mas general
+                    lista_print_xfila.append( self.valor_default )
+                    lista_print_xfila.append( self.valor_default )
+                    continue
+                pass
+
+                # ■ ■ ■ ■ ■ ■ ■ ■ A partir de Aquí, ESTOY en el RANGO DE USO:
+                
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # ■ Celda Viene Vacía? 
+                if(valor_celda == self.valor_default):     
+                    lista_print_xfila.append( self.valor_default )
+                    lista_print_xfila.append(RESET_between)
+                    continue
+                pass                  
+
+                # ■ Preparo un booleano(b_lista) para pasarlo a la funcion self.__get_valor_diferencia(). 
+                # ■ Sirve para saber si width_formato será tratado como fixed(si b_lista == True) o como family_impresion (si b_lista == False)
+                b_lista = True if lista and 0 <= j < len(lista) else False
+                
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # VALOR y la DIFERENCIA 
+                # ■ ■ ■ ■ Valor de la celda y diferencia de tamaños por colorama 
+                valor_OK , diferencia = F_r_a_n_k_y.__get_valor_diferencia(valor_bruto=valor_celda, 
+                                                                     width_formato=matriz_F_ancho_cuadrado[i][j], 
+                                                                     family_impresion=family_impresion, 
+                                                                     b_lista=b_lista)
+
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # LISTA-FIX 
+                # ■■ Esta es al opcion de lista personalizada(lista == [7,7,5] xEj) 
+                # ■■ Se trata siempre como Fixed
+                if (lista is not None) and  (0 <= j < len(lista)):  
+                    # ■■■ APPEND VALOR LISTA-FIX ■■■ 
+                    if (matriz_L_limpio[i][j] > lista[j]) and (lista[j] != 0):                          # ■■ IF hay que CORTAR:
+                        valor_RED = f'{valor_OK[:-1]}{Fore.RED}{valor_OK[-1]}{Style.RESET_ALL}'   # ■■ Termina en caracter rojo.
+                        lista_print_xfila.append( valor_RED )    
+                    else:                                                                               # ■■ IF Not hay que CORTAR:
+                        lista_print_xfila.append( valor_OK )                                         # ■■ 
+                    
+                    # ■■■ APPEND SP_BETWEEN LISTA-FIX ■■■ 
+                    diferencia_RESET_between = self.ESPACIO * diferencia + RESET_between
+                    lista_print_xfila.append(diferencia_RESET_between)
+                    continue
+                pass    
+
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # APPEND DATOS 
+                if family_impresion == 'MOSAICO':  
+                    lista_print_xfila.append(valor_OK)        # ■ Literal / Mosaico add tal cual 
+                
+                elif family_impresion == 'FIX':    
+                    if (matriz_L_limpio[i][j] > matriz_F_ancho_cuadrado[i][j]) and (matriz_F_ancho_cuadrado[i][j] != 0):       # ■■ SI CORTAR:
+                        valor_RED = f'{valor_OK[:-1]}{Fore.RED}{valor_OK[-1]}{Style.RESET_ALL}'                   # Termina en caracter rojo.
+                        lista_print_xfila.append( valor_RED )    
+                    else:                                          # ■■ NO CORTAR(menor o igual)
+                        lista_print_xfila.append( valor_OK )    
+                
+                elif family_impresion == 'MAX':                    
+                    if diferencia < 0:
+                        lista_print_xfila.append( f'{valor_OK}{self.ESPACIO * diferencia.abs()}')
                     else:
-                        new_lst_formato_fila.append('{:>0}')
-                        new_lst_formato_fila.append('{:>0}')
-                else:
-                    new_lst_formato_fila.append(monomio[ANCHO])
-                    new_lst_formato_fila.append(monomio[BETWEEN])
-            
-            new_lst_formato.append(''.join(new_lst_formato_fila))
+                        lista_print_xfila.append( f'{valor_OK}')
+                pass
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # APPEND SP_BETWEEN
+                diferencia_RESET_between = self.ESPACIO * diferencia + RESET_between
+                lista_print_xfila.append(diferencia_RESET_between)
+            pass
+            """ ■■■ Envoltorio Derecho """
+            lista_print_xfila.append(self.ESPACIO * lst_resto_to_maxfranky[i] )  # AÑADE EL RESTO EN ESPACIOS
+            lista_print_xfila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
+            lista_print_xfila.append( Style.RESET_ALL + self.char_marco )                     # AÑADE EL MARCO HORIZONTAL █
+
+            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+            # ■■■■■■ Añade la Fila Completa a la Matriz de Impresión ■■■■■■
+            matriz_valores_impresion.append(lista_print_xfila)  
         pass
-        return new_lst_formato
+        # ■ ■ ■ ■ de aqui se sale con la matriz de valores de impresión completa.
 
-    # LISTA CON LA LONGITUD ORGANNICA DE LOS VALORES DE CADA FILA
-    def __get_lst_len_organico_xfila(self, sp_between:int = 0):        
-        """ Obtiene una Lista con las longitudes de los valores de cada fila + los espacios between hasta la última columna usada - 1
-        En caso de que haya valores en la fila, en caso contrario pone 0 en la fila(no cuenta los espacios between).
-        """
-        # ██ LISTA-INT CON LA LONGITUD DE LOS 'VALORES' DE CADA FILA         
-        lst_longitud_filas = self.get_lst_longitud_valores_x_fila()                            
-
-        # ■■■■■ LISTA-INT CON LA ULTIMA COLUMNA USADA DE CADA FILA ■ ... para calcular los sp_between
-        lst_last_columna_used_x_fila = self.get_lst_last_columna_used_x_fila()     
-
-        # ██ LISTA DE ESPACIOS USADOS HASTA LA PENULTIMA COLUMNA USADA [last_columna_used - 1] pero hay que sumar 1 pq A empieza en 0 y si no se suma se perdería con lo que queda last_columna_used
-        lst_sp_between_x_fila = [(last_columna_used ) * sp_between if (last_columna_used > 0) and (lst_longitud_filas[i] > 0) else 0
-                                    for i , last_columna_used in enumerate(lst_last_columna_used_x_fila) ]
-
-        # ■■■■■■■■■ SUMA LAS 2 LONGITUDES X FILA ::: VALORES + ESPACIOS BETWEEN
-        lst_lentotal_x_fila = [ len_fila + sp_between_x_fila 
-                                    for len_fila , sp_between_x_fila in zip(lst_longitud_filas, lst_sp_between_x_fila) ]
-        # RETORNO
-        return lst_lentotal_x_fila
+        """ ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ 
+        IMPRESION 
+        ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ """
         
-    # ESTRUCTURA DE IMPRESION PATRON. SIN USO.
-    def __imprimir_tablero( self, 
-                            tablero ,                       # TABLERO A IMPRIMIR(HEAD/BODY/PIE)
-                            lst_str_formato_basic:list,     # LISTA DE STR(FILAS) CON EL FORMATO DEFINITIVO 
-                            lst_resto_to_add:list,          # LISTA DE STR(FILAS) CON LA CANTIDAD DE ESPACIOS A IMPRIMIR XA IGUALAR EL MARCO.
-                            sp_between:int=0,               # ESPACIO ENTRE LAS COLUMNNAS
-                            ancho_columna:int=0,            # ANCHO DE COLUMNA: NONE, 0 , != 0
-                            lista:list=None ):              # LISTA de int: ANCHO PERSONALIZADO.
+        if self.head is not None:                                                                 
+            self.__imprimir_franky(tablero=self.head, maximo_franky=maximo_franky , up_line = True )                # ■■ HEAD 
 
-        """ IMPRIME EL TABLERO CON EL FORMATO DEL MARCO:
-        [tablero](Tablero): es un tablero a imprimir(head/self/pie)
-        [lst_str_formato_basic](list): Lista de las filas con el formato básico(sin caracteres franky)
-        [lst_resto_to_add](list): Lista de los espacios que faltan x fila  para colocar el marco a la misma distancia.
-        [sp_between](int): espacio entre las columnas.
-        [ancho_columna](int): Ancho de la columna.
-        [lista](list): Lista de los anchos de las columnas.        
-        """
+        print(self.__linea_horizontal(char=self.char_up_body, maximo_franky=maximo_franky))                         # ■■ Marco Superior 
+        for i, fila_impresion in enumerate(matriz_valores_impresion):                                                                           
+            if fila_from <= i <= fila_to:                                                                           # ■■ BODY
+                print(matriz_lst_formato_impresion[i].format(*fila_impresion)) 
+        print(self.__linea_horizontal(char=self.char_down_body, maximo_franky=maximo_franky))                       # ■■ Marco Inferior 
         
-        """ ■■■■ CREAR LISTA DE STR_FORMATO.... CADA FILA CON SU RESTO_TO_ADD """
-        lst_str_formato = [ "{:>" + str(self.margen)+"}"            +
-                            "{:>" + str(len(self.char_marco)) + "}" +
-                            "{:<" + str(self.x_pad)+"}"             + 
-                            formato_basic                           + 
-                            "{:>" + str( lst_resto_to_add[i] )+"}"  +
-                            "{:>" + str(self.pad_x)+"}"             +
-                            "{:>" + str(len(self.char_marco))+"}"
+        if self.pie is not None:                                                                 
+            self.__imprimir_franky(tablero = self.pie, maximo_franky = maximo_franky , down_line = True  )          # ■■ PIE  
+        # ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘
+        
+        return      # ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
 
-                        for i, formato_basic in enumerate(lst_str_formato_basic)
-                        ]
+    def __get_matrices_formato(self, tablero, sp_between:int=0, baseline_format:str=None, b_cuadrado:bool=True):
+        """ ■■ Obtiene las matrices de formato para el tablero especificado separadas en ancho y between y en formato-de-impresión ó cuadrado ó natural
+        El resultado es desde el formato hacia matrices de enteros para operar a través de baseline_format.
+        [tablero] (Tablero): Instancia de Tablero.
+        [sp_between] (int): Espacio entre columnas.
+        [b_cuadrado] (bool): Si es True, devuelve la matriz en formato cuadrado. Si es False, devuelve en formato natural.
 
-
-        """ ■■■■ TRABAJAMOS SOBRE LOS VALORES x FILA E IMPRIMIMOS FILA A FILA """
-        try:
-            for i, fila in enumerate(tablero.matriz):
-                lst_valores_formato_print_x_fila=[]
-
-                # DESEMPAQUETA CADA FORMATO_BETWEEN DE CADA FILA. lst_formato_between[i] CORRESPONDE CON EL SP_BETWEEN DE LA FILA i.
-                lst_formato_between = self.__desempaqueta_str_formato(str_formato=lst_str_formato_basic[i], b_between=True)
-                
-                # ■■■■■■ PREPARA LOS VALORES CREANDO LA LISTA X FILA ■■■■■■
-                
-                # PREPARA: MARGEN | MARCO IZQUIERDO | X_PAD
-                lst_valores_formato_print_x_fila.append(self.ESPACIO * self.margen)
-                lst_valores_formato_print_x_fila.append(self.char_marco)                
-                lst_valores_formato_print_x_fila.append(self.ESPACIO * self.x_pad)                
-                
-                # PREPARA: VALORES | SP_BETWEEN
-                for j, celda in enumerate(fila):
-                    lst_valores_formato_print_x_fila.append(celda.valor)
-
-                    if lst_formato_between[j] == '{:>0}':
-                        lst_valores_formato_print_x_fila.append('')                
-                    else:
-                        lst_valores_formato_print_x_fila.append(self.ESPACIO * sp_between )                
-                
-                # PREPARA: RESTO HASTA EL FINAL | PAD_X | MARCO DERECHO
-                lst_valores_formato_print_x_fila.append( self.ESPACIO * lst_resto_to_add[i] )  # AÑADE EL RESTO EN ESPACIOS
-                lst_valores_formato_print_x_fila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
-                lst_valores_formato_print_x_fila.append( self.char_marco )                     # AÑADE EL MARCO HORIZONTAL █
-
-                # ■■■■■■ IMPRIME LOS VALORES DE LA FILA  ■■■■■■
-                # print(str_formato.format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
-                print(lst_str_formato[i].format(*lst_valores_formato_print_x_fila))  # Cuando b_num_filas == False, no imprime los numeros de las Filas
+        [baseline_format] (str): Formato base para la matriz.  ►  '{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<2}{:<0}{:<2}{:<0}{:<2}'
+        ► CALLED: self.__get_lista_L_SUM()
+        ■ EJEMPLO:
+            ► matriz_F_ANCH_Q , matriz_F_BTWN_Q = self.__get_matrices_formato( tablero=self, sp_between=2, baseline_format=baseline_format, b_cuadrado=True)
+            ► matriz_F_ANCH_N , matriz_F_BTWN_N = self.__get_matrices_formato( tablero=self, sp_between=2, baseline_format=baseline_format, b_cuadrado=False)
             
+        ■ SALIDA:
+            Matrices de formato ancho y between o bien en formato cuadrado(fix, max) o bien en formato natural(mosaico)
+            ► return matriz_F_ancho_cuadrado, matriz_F_between_cuadrado 
+                matriz_F_ANCH_Q ► [[35, 4, 9, 6, 0, 0], [35, 4, 9, 6, 0, 0], [35, 4, 9, 6, 0, 0], [35, 4, 9, 6, 0, 0]]
+                matriz_F_BTWN_Q ► [[2, 2, 2, 0, 0, 0], [2, 2, 2, 0, 0, 0], [2, 2, 2, 0, 0, 0], [2, 2, 2, 0, 0, 0]]
+        
+            ► return matriz_F_ancho_natural, matriz_F_between_natural
+                matriz_F_ANCH_N ► [[35, 0, 0, 0, 0, 0], [35, 4, 9, 0, 0, 0], [35, 4, 9, 6, 0, 0], [35, 4, 9, 0, 0, 0]]
+                matriz_F_BTWN_N ► [[0, 0, 0, 0, 0, 0], [2, 2, 0, 0, 0, 0], [2, 2, 2, 0, 0, 0], [2, 2, 0, 0, 0, 0]]
+
+        """
+        if not tablero or not isinstance(tablero, Tablero): return
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # MATRIZ BASE TYPE FORMATO IMPRESION ... Para sacar las matriz_(F) Formato - [Franky]
+        matriz_LIST_F_natural  = self.__get_lst_formato_natural( baseline_format = baseline_format, sp_between = sp_between , tablero = tablero)
+        matriz_LIST_F_cuadrado = self.__get_lst_formato_cuadrado(baseline_format = baseline_format, sp_between = sp_between , tablero = tablero )
+        
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # MATRICES FORMATO - [Franky]
+        matriz_F_ancho_natural     = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_natural, b_ancho_columna=True, b_sp_between=False)
+        matriz_F_between_natural   = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_natural, b_ancho_columna=False, b_sp_between=True)
+
+        matriz_F_ancho_cuadrado    = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_cuadrado, b_ancho_columna=True, b_sp_between=False)
+        matriz_F_between_cuadrado  = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_cuadrado, b_ancho_columna=False, b_sp_between=True)
+
+        # ■■ Retorno
+        if b_cuadrado==True:
+            return matriz_F_ancho_cuadrado, matriz_F_between_cuadrado
+        else:
+            return matriz_F_ancho_natural, matriz_F_between_natural
+    
+    # ◘◘◘◘◘◘◘ Genera la matriz de Formato de impresion
+    def __get_matriz_F(self, lista_formato_contenido:list, lista_enteros_resto:list):
+        """ ■ Genera una lista de string_formato con el FORMATO Imprimible de cada Fila:
+        Lo que hace es crear el envoltorio de FORMATO para la matriz. añade el RESTO por fila.
+        ■ {:<'margen'}{:<'marco'}{:<'x_pad'} {:<'cont_1'}{:<'sp_between'}...{:<'cont_n'}{:<'sp_between'} {:<'resto'}{:<'pad_x'}{:<'marco'}
+        ■ {:<'0'}     {:<'█'}    {:<'3'}     {:<'7'}     {:<'1'}...         {:<'5'}     {:<'1'}          {:<'10'}   {:<'15'}   {:<'█'}
+
+        Llamada desde self.__ruta_natural() y desde self.__ruta_cuadrada()
+
+        [lista_formato_contenido]: lista de str_formatos de cada fila - ejemplo dimension 4x6
+            ['{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+            '{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+            '{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}', 
+            '{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}']
+
+        [lista_enteros_resto]: lista de enteros con el resto a añadir a cada fila ► [2, 2, 2, 2]
+        ■ EJEMPLO:
+            if family_impresion == 'MOSAICO': 
+                matriz_lst_formato_impresion = self.__get_matriz_F( lista_formato_contenido = matriz_LIST_F_natural, lista_enteros_resto = lst_resto_to_maxfranky )
+            elif family_impresion == 'FIX' or family_impresion == 'MAX':
+                matriz_lst_formato_impresion = self.__get_matriz_F(lista_formato_contenido = matriz_LIST_F_cuadrado, lista_enteros_resto = lst_resto_to_maxfranky )
+        
+        ■ SALIDA: una lista de str_formatos para cada fila.
+            ['{:<0}{:<1}{:<2}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<27}{:<5}{:<1}', 
+            '{:<0}{:<1}{:<2}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<50}{:<5}{:<1}', 
+            '{:<0}{:<1}{:<2}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<51}{:<5}{:<1}', 
+            '{:<0}{:<1}{:<2}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<48}{:<5}{:<1}']
+        """
+        try:
+            # TAMAÑO DEL CHAR MARCO(SE PUEDEN ELEGIR MAS DE UN CARACTER PARA EL MARCO) 
+            len_marco_limpio = Rango.len_limpio(texto = self.char_marco) if self.char_marco else 0
+
+            lst_FINAL_FORMAT = [ 
+                "{:<" + str(self.margen)+"}"                +
+                "{:<" + str(len_marco_limpio) + "}"         +
+                "{:<" + str(self.x_pad)+"}"                 + 
+                formato_contenido                           + 
+                "{:<" + str( resto )+"}"                    +
+                "{:<" + str(self.pad_x)+"}"                 +
+                "{:<" + str(len_marco_limpio)+"}"
+
+                    for formato_contenido, resto in zip(lista_formato_contenido, lista_enteros_resto)
+                ]
+
+            return lst_FINAL_FORMAT if lst_FINAL_FORMAT else None
+        except Exception as e:
+            print(f'{e}')
+            return None
+
+    def __envuelve_fila_F(self, fila_F:str, resto_to_max:int=0):
+        """  ■ Entra una fila en formato str {:<'7'}{:<'1'}{:<'5'}{:<'1'}
+        y le pone el envoltorio: margen, char_marco, x_pad ► izquierda  y  resto_to_max, pad_x, char_marco ► derecha.
+        ■ margen, char_marco, x_pad , pad_x Están configurados en set_style()
+        ► CALLED: self.__get_head_excel()
+        ■ EJEMPLO:
+            head_excel_F = self.__envuelve_fila_F( fila_F = '{:<'7'}{:<'1'}{:<'5'}{:<'1'}' , resto_to_max = 66)
+        ■ SALIDA:
+            {:<'0'}{:<'1'}{:<'3'}  ►  {:<'7'}{:<'1'}{:<'5'}{:<'1'}  ◄  {:<'66'}{:<'15'}{:<'1'}            
+        """
+        try:
+            # TAMAÑO DEL CHAR MARCO(SE PUEDEN ELEGIR MAS DE UN CARACTER PARA EL MARCO) 
+            len_marco_limpio = Rango.len_limpio(texto = self.char_marco) if self.char_marco else 0
+            fila_envuelta = (
+                "{:<" + str(self.margen)+"}" + "{:<" + str(len_marco_limpio) + "}" + "{:<" + str(self.x_pad)+"}" + 
+                fila_F                           + 
+                "{:<" + str( resto_to_max )+"}" + "{:<" + str(self.pad_x)+"}" + "{:<" + str(len_marco_limpio)+"}"
+                )
+            # RETORNO            
+            return fila_envuelta
         except Exception as e:
             print(f'{e}')
             return None
     
-    # APLICA COLOR AL ULTIMO CARACTER DE UN TEXTO
-    def color_last_char(self, text, color=Fore.RED):
-        return text[:-1] + color + text[-1] + Style.RESET_ALL   # Aplicar color al último carácter
-
-    # APLICA COLOR A UN TEXTO
-    def color_texto(self, texto, color=Fore.BLUE):
-        return color +  texto +  Style.RESET_ALL    
-    
-    # ENTRA UNA CADENA DE FOMATO Y LE DEVUELVO LAS CANTIDADES
-    def __sumar_numeros_de_formato(self, cadena):
-        """ IA :) para sumar los numeros de las cadenas de formato.
-         "{:>" + str(3) + "}" + "{:<" + str(5)  + "}"   ==>  3 + 5 ==>  8
+    # ◘◘◘◘◘◘◘
+    def __get_maximo_franky(self):
+        """ ■■ Obtiene el máximo de la matriz del tablero entre Head, body , pie.
+        ■ SALIDA:
+            int, Máximo de la matriz del tablero.
+            0 si no tiene head, body, pie
+        ■ EJEMPLO:
+            maximo_franky = self.__get_maximo_franky()
         """
-        numeros = map(int, re.findall(r'\d+', cadena))  # Extrae todos los números y los convierte a enteros
-        return sum(numeros)
-
-    # DESEMPAQUETA LA CADENA DE FORMATO EN POSICIONES PARES(ANCHO_COLUMNAS) O IMPARES(SP_BETWEEN)
-    def __desempaqueta_str_formato(self, str_formato:str, b_between:bool=False):
-        """ DEVUELVE UNA LISTA CON EL MONOMIO( {:<x} ) DE LA CADENA DE FORMATO COMPLETO, LAS POSICIONES PARES O IMPARES.
-        [str_formato](str): cadena de formato.{:<ANCHO}{:<BETWEEN} .... hay dos monomios que forman un binomio. que representa donde se 
-        situará una celda en la tabla. 
-        [b_between]
-        RETORNO:
-        """
-        # Expresión regular para capturar toda la estructura {:<X}, {:>X}, {:^X}
-        patrones = re.findall(r'{:[<>^]\d+}', str_formato)        
-        
-        if b_between == True:
-            return patrones[1::2]  # Elementos en posiciones impares - sp_between
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # PIE
+        if self.pie:
+            max_lista_L_pie = max(self.__get_lista_L_SUM(tablero = self.pie))
+            if max_lista_L_pie is None:  max_lista_L_pie = 0
         else:
-            return patrones[::2]  # Elementos en posiciones pares  - ancho columna
-
-    # DE UN MONOMIO DE FORMATO OBTIENE SU NUMERO 
-    def __get_int_from_item_formato(self, monomio_formato: str):
-        """ Devuelve el ancho de columna de una cadena de formato. 
-        [monomio_formato](str): cadena de formato.... '{:<x}'
-        RETORNO:
-            (int) Ancho de columna.
-        EJEMPO: self.get_int_from_item_formato('{:>7}') -> 7
-        """
-        match = re.search(r'{:[<>^](\d+)}', monomio_formato)
+            max_lista_L_pie = 0
         
-        # RETORNO ... devuelve el grupo 1 de la expresión regular(el primer parentesis de la expresión regular)        
-        return int(match.group(1)) if match else 0  # Devuelve 0 si no hay coincidencias
-
-    # DE LA LISTA DE FORMATO OBTENEMOS UNA LISTA DE INT
-    def __from_lst_formato_to_lst_int(self, lst_formato:list):
-        """ Convierte una lista de formato a una lista de enteros.
-        [lst_formato](list): Lista de formato.
-        RETORNO:
-            (list) Lista de enteros.
-        """
-        return [self.__get_int_from_item_formato(monomio_formato) for monomio_formato in lst_formato]
-
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # BODY
+        max_lista_L_body = max(self.__get_lista_L_SUM(tablero = self))
+        if max_lista_L_body is None: 
+            max_lista_L_body = 0
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        max_lista_L_head = 0
+        if self.b_excel == True:                            # ► HEAD DE EXCEL
+            max_lista_L_head = self.__get_maximo_head()          # ■■ HEAD-Excel
         
+        else:                                                    # ► HEAD DE USUARIO.
+            if self.head: 
+                max_lista_L_head = max(self.__get_lista_L_SUM(tablero = self.head))
+                if max_lista_L_head is None:  max_lista_L_head = 0
+            else:
+                max_lista_L_head = 0
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        return max(max_lista_L_head, max_lista_L_body, max_lista_L_pie)
+
+    def __ok_data(self, tablero, fila_from:int=0, fila_to:int=None , **kwargs):
+        """ ■■ Valida y devuelve los datos "buenos" de configuración.
+        [tablero] (Tablero): Instancia de Tablero.
+        [fila_from]:int=0,  fila desde a imprimir.
+        [fila_to]:int=None, fila hasta a imprimir.
+        [kwargs]
+            ► [lista] (list): Lista de columnas a imprimir. Si es None, imprime todas las columnas.
+            ► [ancho] (int): Ancho de las columnas. Si es None, usa el ancho por defecto.
+            ► [between] (int): Espacio entre columnas. Por defecto es 0.
+        ■ SALIDA: (sobre una dimension =  "4x6")
+            lista, ancho_columna, sp_between, fila_from, fila_to ►  [8,8] , None, 2 , 0, 3
+                                                                 ►  None, None, None, None, None
+        ■ EJEMPLO:
+            lista, ancho, sp_between, fila_from , fila_to = self.__ok_data(tablero = self.head, lista=None, ancho_columna=None, sp_between=2 )
+        """
+        # ■■ Valida el tablero
+        if tablero is None: tablero = self
+        if not isinstance(tablero, Tablero): return None, None, None, None, None
+
+
+        # ■■ Valida que exista matriz.
+        if  not tablero.matriz: return None, None, None, None, None
+
+        # ■ Se asignan Los valores de impresión según el tablero:
+        if tablero == self.head:
+            lista           = self.dicc_print['head']['lista'] 
+            ancho_columna   = self.dicc_print['head']['ancho_columna'] 
+            sp_between      = self.dicc_print['head']['sp_between']
+        elif tablero == self.pie:
+            lista           = self.dicc_print['pie']['lista']
+            ancho_columna   = self.dicc_print['pie']['ancho_columna']
+            sp_between      = self.dicc_print['pie']['sp_between']
+        elif tablero == self:            
+            lista = kwargs.get('lista', None)
+            ancho_columna = kwargs.get('ancho_columna', None)
+            sp_between = kwargs.get('sp_between', 0)
+        else:
+            print(f'Error::: El tablero debe ser  head o body o pie.')
+            return None, None, None, None, None
+
+        # ■ Valida fila_from
+        try:                                   
+            fila_from = int(fila_from)
+            fila_from = abs(fila_from)
+        except Exception as e:
+            print(f'{e}')
+            return None, None, None, None, None
+        
+        # Valida fila_to
+        if fila_to is None:
+            fila_to = tablero.celda_fin.fila        
+        else:
+            try:
+                fila_to=abs(int(fila_to))
+                # VALIDA LOS LIMITES DE LAS FILAS PASADAS
+                if not tablero.celda_inicio.fila <= fila_from <= fila_to <= tablero.celda_fin.fila:
+                    print(f'fila_from( {fila_from} ) ► fila_to( {fila_to} ) fuera de rango')
+                    return None, None, None, None, None
+            except Exception as e:
+                print(f'{e}')
+                return None, None, None, None, None
+
+        # Asegura que fila_from <= fila_to
+        if fila_from > fila_to:
+            fila_from, fila_to = fila_to, fila_from  
+        
+        # Valida lista
+        if lista is not None:
+            if not isinstance(lista, list): return None, None, None, None, None     # Valida que sea typo list.
+            if not lista: return None, None, None, None, None                       # Valida que la lista no esté vacía
+            try:                                    # Valida que sea una lista de enteros positivos
+                lista = [int(i) for i in lista]
+                lista = [abs(i) for i in lista]     # Valida que sean enteros positivos
+            except Exception as e:
+                print(f'{e}')
+                return None, None, None, None, None            
+        
+        # Valida ancho_columna
+        if ancho_columna is not None:    # Si es None, es un valor admitido así que No lo trato.
+            try:                                   
+                ancho_columna = int(ancho_columna)
+                ancho_columna = abs(ancho_columna)
+            except Exception as e:
+                print(f'{e}')
+                return None, None, None, None, None
+        
+        # Valida sp_between
+        try:                                   
+            sp_between = int(sp_between)
+            sp_between = abs(sp_between)
+        except Exception as e:
+            print(f'{e}')
+            return None, None, None, None, None
+        
+        # ■■■■■■ Elimina los caracteres vacios por la derecha antes de nada(para evitar confusiones luego ;) UPDT: CUANDO SE CREA LA MATRIZ. 
+        try:
+            for fila in tablero.matriz:
+                for celda in fila:
+                    if celda.valor != '' and isinstance(celda.valor, str):
+                        celda.valor = str(celda.valor).rstrip()
+                pass
+        except Exception as e:
+            print(f'{e}')
+            return None, None, None, None, None
+        
+        return lista, ancho_columna, sp_between, fila_from, fila_to
+
+    def __get_lista_L_SUM(self, tablero):
+        """ ■ Obtiene la lista de longitudes de las celdas en la fila de impresión.
+        [tablero] (Tablero): Instancia de Tablero.
+        ■ EJEMPLO:
+            ► max_lista_L_body = max(self.__get_lista_L_SUM(tablero = self))
+              if max_lista_L_body is None: max_lista_L_body = 0
+            ► max_lista_L_pie = max(self.__get_lista_L_SUM(tablero = self.pie))
+        ■ SALIDA: (dimension =  "4x6")
+            [60, 60, 60, 60]    ► 'FIX' , 'MAX'
+            [57, 15, 18, 6]     ► 'MOSAICO'
+        """        
+        if not tablero or not isinstance(tablero, Tablero): return
+
+        if tablero == self.head:
+            lista           = self.dicc_print['head']['lista'] 
+            ancho_columna   = self.dicc_print['head']['ancho_columna'] 
+            sp_between      = self.dicc_print['head']['sp_between']
+        elif tablero == self.pie:
+            lista           = self.dicc_print['pie']['lista']
+            ancho_columna   = self.dicc_print['pie']['ancho_columna']
+            sp_between      = self.dicc_print['pie']['sp_between']
+        elif ( tablero == self or 
+               tablero == self.head_excel ):            
+            lista           = self.dicc_print['body']['lista']
+            ancho_columna   = self.dicc_print['body']['ancho_columna']
+            sp_between      = self.dicc_print['body']['sp_between']
+        else:
+            return None            
+        pass
+
+        # ■■ Matriz de longitud de celda.valor de los caracteres imprimibles 
+        # ■■ Longitud del texto sin ANSI
+        matriz_L_limpio = [ [ len(F_r_a_n_k_y.__texto_limpio(texto = str(celda.valor)))  
+                                for celda in fila ] for fila in tablero.matriz ]
+                                
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # BASELINE FORMATO - [Rango]       
+        baseline_format = tablero.get_baseline_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if not baseline_format: return None        
+        
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # TIPO DE IMPRESION - [Rango]
+        # lista_family = ['MOSAICO', 'FIX', 'MAX']
+        family_impresion = tablero.get_family_impresion(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if family_impresion is None or family_impresion not in self.lista_family : return None
+        
+        # GET_MATRICES_FORMATO          ► matriz_F_cuadrado, matriz_F_natural
+        matriz_F_ANCH_Q , matriz_F_BTWN_Q = self.__get_matrices_formato( tablero=tablero, sp_between=sp_between, baseline_format=baseline_format, b_cuadrado=True)
+        matriz_F_ANCH_N , matriz_F_BTWN_N = self.__get_matrices_formato( tablero=tablero, sp_between=sp_between, baseline_format=baseline_format, b_cuadrado=False)
+
+        # GET_LISTA_SUM_L               ► maximo_franky ► lst_resto_to_franky
+        if family_impresion == 'MOSAICO':
+            lista_L_SUM = self.__get_lista_L_SUM_natural(lista=lista, matriz_L_limpio=matriz_L_limpio, matriz_F_ancho_natural=matriz_F_ANCH_N, matriz_F_between_natural=matriz_F_BTWN_N)
+        elif family_impresion == 'FIX' or family_impresion == 'MAX':
+            lista_L_SUM = self.__get_lista_L_SUM_cuadrado(matriz_F_ancho_cuadrado=matriz_F_ANCH_Q, matriz_F_between_cuadrado=matriz_F_BTWN_Q)
+
+        return lista_L_SUM if lista_L_SUM  else None
+
+    def __get_lista_L_SUM_natural(self, lista:list, matriz_L_limpio, matriz_F_ancho_natural , matriz_F_between_natural):
+        """ ■■ Obtiene el máximo de la matriz del tablero. Se usa en Formato de Impresión 'MOSAICO'. cuenta los valores y los espacios hasta
+        la última columna usada. 
+        [tablero] (Tablero): Instancia de Tablero.        
+        [len_lista_fix] (int): Longitud de la lista fija.
+        [matriz_L_limpio] (list): Matriz de longitudes(int) limpias de ANSII(color).
+        [matriz_F_ancho_natural] (list): Matriz de int de ancho en formato natural.
+        [matriz_F_between_natural] (list): Matriz de int de sp_between en formato natural.
+        ■ SALIDA:
+            ► [32, 60, 18, 15, 0 , 2] , para una matriz de 6 filas. 
+        ■ EJEMPLO:
+            lista_L_SUM = self.__get_lista_L_SUM_natural(lista=lista, matriz_L_limpio=matriz_L_limpio, matriz_F_ancho_natural=matriz_F_ANCH_N, matriz_F_between_natural=matriz_F_BTWN_N)
+        """        
+        # ■■■■■■■■ 
+        # ■ Suma Ancho + sp_between, celda a celda, en formato natural (hasta la ultima columna)
+        matriz_L_SUM_natural = [[a + b 
+                            for a, b in zip(fila_len_sin_ansi, fila_between_nat)]
+                            for fila_len_sin_ansi , fila_between_nat in zip(matriz_L_limpio, matriz_F_between_natural) ]
+        # ■ ■ ■  Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+        lista_L_SUM_natural  = [sum(fila) for fila in matriz_L_SUM_natural]         # ■mosaico 
+        pass
+        
+        # ■■■■■■■■ 
+        # IF Lista + Mosaico
+        if lista is not None:
+            # ■ Mezcla dos Matrices a través de la longitud de lista. ■ Por si hace impresión 'FIX-MOSAICO'.
+            matriz_mezcla_natural =  [ [ fila_A[col] if col < len(lista) 
+                                                    else fila_B[col] 
+                                            for col in range(len(fila_A))]
+                                            for fila_A, fila_B in zip(matriz_F_ancho_natural , matriz_L_limpio) ]                                            
+            # ■ Matriz de la Suma de Ancho + sp_between. 
+            matriz_L_SUM_FIX_natural = [ [a + b 
+                                            for a, b in zip(fila_a, fila_b)]
+                                            for fila_a , fila_b in zip(matriz_mezcla_natural, matriz_F_between_natural) ]
+
+            # ■ ■ ■ Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+            lista_L_SUM_FIX_natural  = [sum(fila) for fila in matriz_L_SUM_FIX_natural]
+
+        # ■■ Retorno:        
+        if lista is None:
+            return lista_L_SUM_natural         # ■ sin Lista.
+        else:
+            return lista_L_SUM_FIX_natural     # ■ con Lista
+
+    def __get_lista_L_SUM_cuadrado(self, matriz_F_ancho_cuadrado, matriz_F_between_cuadrado):
+        """ ■ Devuelve la lista de longitudes de los valores de una fila en formato cuadrado.
+         ■ LLamada desde __get_lista_L_SUM() 
+        [matriz_F_ancho_cuadrado]:list, Lista de enteros que representan el formato (F) del ancho del valor del Tablero. 
+        [matriz_F_between_cuadrado]:list, Lista de enteros que representan el formato (F) del espacios entre celda y celda del Tablero.
+        ■ SALIDA:
+            ► [62], xejem, en caso de head o pie.
+            ► [40, 40, 40, 40, 40, 40] devuelve la longitud de sp + sp_between de cada fila. para una matriz de 6 filas xejemp.
+        ■ EJEMPLO:
+            lista_L_SUM = self.__get_lista_L_SUM_cuadrado(matriz_F_ancho_cuadrado = matriz_F_ANCH_Q , matriz_F_between_cuadrado = matriz_F_BTWN_Q )
+        """
+        # ■■■■■■■■ 
+        # ■ Suma Ancho + sp_between, celda a celda, en formato cuadrado (hasta la ultima columna)
+        matriz_L_SUM_cuadrado = [ [a + b 
+                            for a, b in zip(fila_a, fila_b)]
+                            for fila_a, fila_b in zip(matriz_F_ancho_cuadrado, matriz_F_between_cuadrado) ]
+        # ■ ■ ■ Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+        lista_L_SUM_cuadrado = [sum(fila) for fila in matriz_L_SUM_cuadrado]        # ■fix ■max ■fix-fix ■fix-max
+        # ■■■■■■■■ RETORNO
+        return lista_L_SUM_cuadrado
+        
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    # ██████████████████████████████████████████████████
+    def __ruta_natural(self, tablero, family_impresion:str, maximo_franky:int, lista:list=None, ancho_columna:int=None, sp_between:int=0):
+        """ ■ Realiza todo el camino de impresion NATURAL (MOSAICO) y devuelve dos matrices (matriz_lst_formato_impresion, matriz_valores_impresion), con los datos de impresión.
+        [tablero], El objeto tablero que se quiere imprimir.
+        [family_impresion]:str, ('MOSAICO', 'FIX', 'MAX')
+        [maximo_franky]:int, El maximo del body de Head( ó Head-Excel ) , Body , Pie
+        [lista]:list de int, enteros de la lista personalizada de impresion. print_config
+        [ancho_columna]:int, Anchos de columna fijos.                        print_config
+        [sp_between]:int, Espacio entre columnas.                            print_config
+
+        SALIDA:  (matriz de dimension "4x6")
+            ■ matriz_lst_formato_impresion: Lista de str
+                ['{:<0}{:<1}{:<2}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<27}{:<5}{:<1}', 
+                '{:<0}{:<1}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<46}{:<5}{:<1}', 
+                '{:<0}{:<1}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<45}{:<5}{:<1}', 
+                '{:<0}{:<1}{:<2}{:<0}{:<2}{:<0}{:<2}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<0}{:<44}{:<5}{:<1}']
+            
+            ■ matriz_valores_impresion: list de list 
+                [['', '█', '  ', '\x1b[32mLoren\x1b[0m Ipsum que estas en los cielos', '\x1b[0m', '', '\x1b[0m', '', '\x1b[0m', '', '\x1b[0m', '', '', '', '', '                           ', '     ', '\x1b[0m█'], 
+                 ['', '█', '  ', 'False', '\x1b[0m  ', 'None', '\x1b[0m  ', 'Kun', '\x1b[0m', '', '\x1b[0m', '', '', '', '', '                                              ', '     ', '\x1b[0m█'],
+                 ['', '█', '  ', '\x1b[35m4', '\x1b[0m  ', '5.5', '\x1b[0m  ', '6', '\x1b[0m  ', '\x1b[36mEy\x1b[0m You', '\x1b[0m', '', '', '', '', '                                             ', '     ', '\x1b[0m█'], 
+                 ['', '█', '  ', '\x1b[34mTrue', '\x1b[0m  ', '1', '\x1b[0m  ', 'Vygostsky', '\x1b[0m', '', '\x1b[0m', '', '', '', '', '                                            ', '     ', '\x1b[0m█']
+                ]
+        EJEMPLO:
+            matriz_F, matriz_V = self.__ruta_natural( tablero = self, family_impresion = 'MAX', maximo_franky = 95, lista = None, ancho_columna = None, sp_between = 2 )
+        """
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # DATOS GENERALES     
+        # ► ultima_columna_used, lista_last_columna_used, matriz_V_bruto, matriz_L_limpio, base_line, family_format
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        
+        # BASELINE FORMATO - [Rango]       
+        baseline_format = tablero.get_baseline_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if not baseline_format: return None, None
+        
+        lista_ultima_columna_used = tablero.get_lst_last_columna_used_xfila()   # Lista con la última columna usada xfila  - [Rango]
+        ultima_columna_used = max(lista_ultima_columna_used) if lista_ultima_columna_used else 0  # 
+        
+        # ■■ Matriz, con el valor en bruto ■■ ...con chars ansii colorama(si lo hay) ... ( celda.valor )
+        matriz_V_bruto = [  [str(celda.valor) for celda in fila ] for fila in tablero.matriz ]             # matriz que se va a recorrer.
+
+        # ■■ Matriz de longitud de celda.■■ Longitud del texto sin ANSI 
+        matriz_L_limpio = [ [ len(F_r_a_n_k_y.__texto_limpio(texto = str(celda.valor)))  
+                                for celda in fila ] for fila in tablero.matriz ]
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # MATRIZ BASE TYPE FORMATO IMPRESION ... Para sacar las matriz_(F) Formato - [Franky]
+        matriz_LIST_F_natural  = self.__get_lst_formato_natural( baseline_format = baseline_format, sp_between = sp_between , tablero = tablero)
+        matriz_LIST_F_cuadrado = self.__get_lst_formato_cuadrado(baseline_format = baseline_format, sp_between = sp_between , tablero = tablero )
+
+        # """ ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        # MATRICES FORMATO - [Franky]"""
+
+        matriz_F_ancho_natural     = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_natural, b_ancho_columna=True , b_sp_between=False)
+        matriz_F_between_natural   = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_natural, b_ancho_columna=False, b_sp_between=True )
+        matriz_F_ancho_cuadrado    = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_cuadrado,b_ancho_columna=True,  b_sp_between=False)
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # MATRICES  - [Franky]       ■ Suma Ancho + sp_between, celda a celda, en formato natural (hasta la ultima columna)
+        matriz_L_SUM_natural = [[a + b 
+                            for a, b in zip(fila_len_sin_ansi, fila_between_nat)]
+                            for fila_len_sin_ansi , fila_between_nat in zip(matriz_L_limpio, matriz_F_between_natural) ]
+        
+        # ■ ■ ■  Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+        lista_L_SUM_natural  = [sum(fila) for fila in matriz_L_SUM_natural]         # ■mosaico 
+
+        # ■■■■■■■■ 
+        # IF Lista + Mosaico
+        if lista is not None:
+            # ■ Mezcla dos Matrices a través de la longitud de lista. ■ Por si hace impresión 'FIX-MOSAICO'.
+            matriz_mezcla_natural =  [ [ fila_A[col] if col < len(lista) 
+                                                    else fila_B[col] 
+                                            for col in range(len(fila_A))]
+                                            for fila_A, fila_B in zip(matriz_F_ancho_natural , matriz_L_limpio) ]    
+
+            # ■ Matriz de la Suma de Ancho + sp_between. 
+            matriz_L_SUM_FIX_natural = [ [a + b 
+                                            for a, b in zip(fila_a, fila_b)]
+                                            for fila_a , fila_b in zip(matriz_mezcla_natural, matriz_F_between_natural) ]
+
+            # ■ ■ ■ Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+            lista_L_SUM_FIX_natural  = [sum(fila) for fila in matriz_L_SUM_FIX_natural]
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # SUMA DE LONGITUDES TOTAL(BIN) DE CADA FILA ... para calcular el ■maximo_franky y el ■resto_to_maxfranky.
+        if lista is None:
+            lista_L_SUM = lista_L_SUM_natural         # ■ sin Lista.
+        else:
+            lista_L_SUM = lista_L_SUM_FIX_natural     # ■ con Lista
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # FORMATO SP-BETWEEN - MATRIZ F_BTWN ... Para calcular la matriz_valores_impresion
+        matriz_F_BTWN = matriz_F_between_natural            # ■■ Formato_BTWN
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # MAXIMO FRANKY ( Max entre Head / Body / Pie ) 
+        maximo_franky = self.__get_maximo_franky()
+        lst_resto_to_maxfranky = [ maximo_franky - L for L in lista_L_SUM ]         # ■ Lista de enteros con el resto a añadir a cada fila para que llegue al maximo_franky.   
+
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # ENVOLTORIO DEL BODY / MATRIZ LIST FORMATO_FINAL 
+        matriz_lst_formato_impresion = self.__get_matriz_F( lista_formato_contenido = matriz_LIST_F_natural, lista_enteros_resto = lst_resto_to_maxfranky )
+
+        # ■ Validation
+        if matriz_lst_formato_impresion is None: 
+            print(f'Error::: No se ha podido determinar el formato de impresión.')
+            return None, None
+        
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        # APPEND VALORES TO MATRIZ-IMPRESION 
+        matriz_valores_impresion:list = []              # Matriz REsultante del añadir los valores y between
+        for i, fila in enumerate(matriz_V_bruto):
+
+            lista_print_xfila=[]                        # ...cada append es una columna del formato_final de impresion.
+            """ ■■■ Envoltorio Izquierdo """
+            lista_print_xfila.append(self.ESPACIO * self.margen)
+            lista_print_xfila.append(self.char_marco)                
+            lista_print_xfila.append(self.ESPACIO * self.x_pad)
+
+            """ 
+            ███ FILA-ROW APPEND VALORES (Dependiendo del tipo de impresión) ███ 
+                ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ """
+            for j, valor_celda in enumerate(fila):      
+                
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+                # ■ Preparo el BETWEEN de la CELDA 
+                # ■ Style.RESET_ALL + sp_between ■ Despues de cada celda un RESET_ALL antes del espacio between.
+                RESET_between  = f'{Style.RESET_ALL}' + ( self.valor_default if (matriz_F_BTWN[i][j] == 0) or (j >= lista_ultima_columna_used[i]) 
+                                                                             else self.ESPACIO * matriz_F_BTWN[i][j] )
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # ■ Final de la Ultima Columna Usada?
+                # ■ ... no tiene porque ser el final de la matriz.                
+                if j > ultima_columna_used:                                 # ■ FROM la última columna Total es mas general
+                    lista_print_xfila.append( self.valor_default )
+                    lista_print_xfila.append( self.valor_default )
+                    continue
+                pass
+
+                # ■ ■ ■ ■ ■ ■ ■ ■ A partir de Aquí, ESTOY en el RANGO DE USO:
+                
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # ■ Celda Viene Vacía? 
+                if(valor_celda == self.valor_default):     
+                    lista_print_xfila.append( self.valor_default )
+                    lista_print_xfila.append(RESET_between)
+                    continue
+                pass                  
+
+                # ■ Preparo un booleano(b_lista) para pasarlo a la funcion self.__get_valor_diferencia(). 
+                # ■ Sirve para saber si width_formato será tratado como fixed o como family_impresion (si b_lista == False)
+                b_lista = True if lista and 0 <= j < len(lista) else False
+                
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # VALOR y la DIFERENCIA 
+                # ■ ■ ■ ■ Valor de la celda y diferencia de tamaños por colorama 
+                valor_OK , diferencia = F_r_a_n_k_y.__get_valor_diferencia(valor_bruto=valor_celda, 
+                                                                     width_formato=matriz_F_ancho_cuadrado[i][j], 
+                                                                     family_impresion=family_impresion, 
+                                                                     b_lista=b_lista)
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # LISTA-FIX 
+                # ■■ Esta es al opcion de lista personalizada(lista == [7,7,5] xEj) 
+                # ■■ Se trata siempre como Fixed
+                if (lista is not None) and  (0 <= j < len(lista)):  
+                    # ■■■ APPEND VALOR LISTA-FIX ■■■ 
+                    if (matriz_L_limpio[i][j] > lista[j]) and (lista[j] != 0):                          # ■■ IF hay que CORTAR:
+                        valor_RED = f'{valor_OK[:-1]}{Fore.RED}{valor_OK[-1]}{Style.RESET_ALL}'   # ■■ Termina en caracter rojo.
+                        lista_print_xfila.append( valor_RED )    
+                    else:                                                                               # ■■ IF Not hay que CORTAR:
+                        lista_print_xfila.append( valor_OK )                                         # ■■ 
+
+                    # ■■■ APPEND SP_BETWEEN LISTA-FIX ■■■ 
+                    lista_print_xfila.append(self.ESPACIO * diferencia + RESET_between)
+                    continue
+                pass    
+
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # APPEND CELDA
+                lista_print_xfila.append(valor_OK)        # ■ Literal / Mosaico add tal cual 
+                
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # APPEND SP_BETWEEN
+                lista_print_xfila.append(self.ESPACIO * diferencia + RESET_between)
+            pass
+            """ ■■■ Envoltorio Derecho """
+            lista_print_xfila.append(self.ESPACIO * lst_resto_to_maxfranky[i] )  # AÑADE EL RESTO EN ESPACIOS
+            lista_print_xfila.append( self.ESPACIO * self.pad_x )           # AÑADE PAD_X EN ESPACIOS      
+            lista_print_xfila.append( Style.RESET_ALL + self.char_marco )                     # AÑADE EL MARCO HORIZONTAL █
+
+            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+            # ■■■■■■ Añade la Fila Completa a la Matriz de Impresión ■■■■■■
+            matriz_valores_impresion.append(lista_print_xfila)  
+        pass
+        # ■ ■ ■ ■ de aqui se sale con la matriz de valores de impresión completa.
+        return matriz_lst_formato_impresion, matriz_valores_impresion
+
+    # ██████████████████████████████████████████████████
+    # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    def __ruta_cuadrado(self, tablero, family_impresion:str, maximo_franky:int, lista:list=None, ancho_columna:int=None, sp_between:int=0):
+        """ ■ Realiza todo el camino de impresion cuadrada (FIX y MAX) y devuelve dos matrices (matriz_lst_formato_impresion, matriz_valores_impresion), con los datos de impresión.
+        [tablero], 
+        [family_impresion]:str, ('MOSAICO', 'FIX', 'MAX')
+        [maximo_franky]:int, El maximo del body de Head( ó Head-Excel ) , Body , Pie
+        [lista]:list de int, enteros de la lista personalizada de impresion. print_config
+        [ancho_columna]:int, Anchos de columna fijos.                        print_config
+        [sp_between]:int, Espacio entre columnas.                            print_config
+
+        SALIDA: matriz de dimension "4x6"
+            ■ matriz_lst_formato_impresion: Le llamo matriz pq representa una matriz, pero en realidad es una lista de str. 
+                [
+                '{:<0}{:<1}{:<2}{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}{:<2}{:<5}{:<1}', 
+                '{:<0}{:<1}{:<2}{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}{:<2}{:<5}{:<1}', 
+                '{:<0}{:<1}{:<2}{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}{:<2}{:<5}{:<1}', 
+                '{:<0}{:<1}{:<2}{:<35}{:<2}{:<4}{:<2}{:<9}{:<2}{:<6}{:<0}{:<0}{:<0}{:<0}{:<0}{:<2}{:<5}{:<1}'
+                ]
+            ■ matriz_valores_impresion: Lista de listas de valores.
+                [
+                ['', '█', '  ', '\x1b[32mLoren\x1b[0m Ipsum que estas en los cielos', '\x1b[0m  ', '', '\x1b[0m  ', '', '\x1b[0m  ', '', '\x1b[0m', '', '', '', '', '  ', '     ', '\x1b[0m█'], 
+                ['', '█', '  ', 'False', '\x1b[0m  ', 'None', '\x1b[0m  ', 'Kun', '\x1b[0m  ', '', '\x1b[0m', '', '', '', '', '  ', '     ', '\x1b[0m█'], 
+                ['', '█', '  ', '\x1b[35m4', '     \x1b[0m  ', '5.5', '\x1b[0m  ', '6', '\x1b[0m  ', '\x1b[36mEy\x1b[0m You', '\x1b[0m', '', '', '', '', '  ', '     ', '\x1b[0m█'], 
+                ['', '█', '  ', '\x1b[34mTrue', '     \x1b[0m  ', '1', '\x1b[0m  ', 'Vygostsky', '\x1b[0m  ', '', '\x1b[0m', '', '', '', '', '  ', '     ', '\x1b[0m█']
+                ]
+        EJEMPLO:
+            matriz_F, matriz_V = self.__ruta_cuadrado( tablero = self.head, family_impresion = 'FIX', maximo_franky = 95, lista = [5,5,7], ancho_columna = 8, sp_between = 1 )
+        """
+        # BASELINE FORMATO - [Rango]       
+        baseline_format = tablero.get_baseline_format(sp_between = sp_between , ancho_columna = ancho_columna , lista = lista)
+        if not baseline_format: return None
+        
+        lista_ultima_columna_used = tablero.get_lst_last_columna_used_xfila()   # Lista con la última columna usada xfila  - [Rango]
+        ultima_columna_used = max(lista_ultima_columna_used) if lista_ultima_columna_used else 0  # 
+
+        # ■■ Matriz, con el valor en bruto ■■ ...con chars ansii colorama(si lo hay) ... ( celda.valor )
+        matriz_V_bruto = [  [str(celda.valor) for celda in fila ] for fila in tablero.matriz ]             # matriz que se va a recorrer.
+
+        # ■■ Matriz de longitud de celda.■■ Longitud del texto sin ANSI 
+        matriz_L_limpio = [ [ len(F_r_a_n_k_y.__texto_limpio(texto = str(celda.valor) ))  
+                                for celda in fila ] for fila in tablero.matriz ]
+        
+        # MATRIZ BASE TYPE FORMATO IMPRESION ... Para sacar las matriz_(F) Formato - [Franky]
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        matriz_LIST_F_cuadrado = self.__get_lst_formato_cuadrado(baseline_format = baseline_format, sp_between = sp_between , tablero = tablero )
+        
+        # MATRICES FORMATO - [Franky]
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        matriz_F_ancho_cuadrado    = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_cuadrado, b_ancho_columna=True, b_sp_between=False)
+        matriz_F_between_cuadrado  = F_r_a_n_k_y.__from_formato_to_matriz(lst_formato=matriz_LIST_F_cuadrado, b_ancho_columna=False, b_sp_between=True)
+            
+        # MATRICES  - [Franky]  ■■■■■■■■ Suma Ancho + sp_between, celda a celda, en formato cuadrado (hasta la ultima columna)
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        matriz_L_SUM_cuadrado = [ [a + b 
+                            for a, b in zip(fila_a, fila_b)]
+                            for fila_a, fila_b in zip(matriz_F_ancho_cuadrado, matriz_F_between_cuadrado) ]
+        # ■ ■ ■ Listas de longitudes totales de cada fila ... ■ Necesareos para maximo_franky
+        lista_L_SUM_cuadrado = [sum(fila) for fila in matriz_L_SUM_cuadrado]        # ■fix ■max ■fix-fix ■fix-max
+
+        # SUMA DE LONGITUDES TOTAL(BIN) DE CADA FILA ... para calcular el ■maximo_franky y el ■resto_to_maxfranky.
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        lista_L_SUM = lista_L_SUM_cuadrado            # ■ con Lista ■ sin Lista
+
+        # FORMATO SP-BETWEEN - MATRIZ F_BTWN ... Para calcular la matriz_valores_impresion
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        matriz_F_BTWN = matriz_F_between_cuadrado           # ■ Formato_BTWN
+
+        # MAXIMO FRANKY ( Max entre Head / Body / Pie ) 
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        maximo_franky = self.__get_maximo_franky()
+        lst_resto_to_maxfranky = [ maximo_franky - L for L in lista_L_SUM ]         # ■ Lista de enteros con el resto a añadir a cada fila para que llegue al maximo_franky.   
+
+        # ENVOLTORIO DEL BODY / MATRIZ LIST FORMATO_FINAL  
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        matriz_lst_formato_impresion = self.__get_matriz_F(lista_formato_contenido = matriz_LIST_F_cuadrado, 
+                                                            lista_enteros_resto     = lst_resto_to_maxfranky )
+        # ■ Validation
+        if matriz_lst_formato_impresion is None: 
+            print(f'Error::: No se ha podido determinar el formato de impresión.')
+            return None, None
+        
+        # APPEND VALORES TO MATRIZ-IMPRESION 
+        # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+        matriz_valores_impresion:list = []              # Matriz REsultante del añadir los valores y between
+        for i, fila in enumerate(matriz_V_bruto):
+            lista_print_xfila=[]                        # ...cada append es una columna del formato_final de impresion.
+            """ 
+            ■■■ Envoltorio Izquierdo """
+            lista_print_xfila.append(self.ESPACIO * self.margen)
+            lista_print_xfila.append(self.char_marco)                
+            lista_print_xfila.append(self.ESPACIO * self.x_pad)
+            
+            """ 
+            ■■■ CUERPO / Celda a Celda / Columna a Columna / Hasta completar una FILA """
+            for j, valor_celda in enumerate(fila):                      
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+                # ■ Preparo el BETWEEN de la CELDA ■ Style.RESET_ALL + sp_between ■ Despues de cada celda un RESET_ALL antes del espacio between.
+                RESET_between  = f'{Style.RESET_ALL}' + ( self.valor_default if (matriz_F_BTWN[i][j] == 0) or (j >= ultima_columna_used) 
+                                                                                else self.ESPACIO * matriz_F_BTWN[i][j] )
+                # ■ Final de la Ultima Columna Usada?    ■ ... no tiene porque ser el final de la matriz.                
+                if j > ultima_columna_used:                                 
+                    lista_print_xfila.append( self.valor_default )
+                    lista_print_xfila.append( self.valor_default )
+                    continue
+                pass
+                # ■ ■ ■ ■ ■ ■ ■ ■ A partir de Aquí, ESTOY en el RANGO DE USO:                
+                # ■ Celda Viene Vacía? 
+                if(valor_celda == self.valor_default):     
+                    lista_print_xfila.append( self.valor_default )
+                    lista_print_xfila.append(RESET_between)
+                    continue
+                pass                  
+
+                # ■ Preparo un booleano(b_lista) para pasarlo a la funcion self.__get_valor_diferencia(). 
+                # ■ Sirve para saber si width_formato será tratado como fixed(si b_lista == True) o como family_impresion (si b_lista == False)
+                b_lista = True if lista and 0 <= j < len(lista) else False
+                
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # VALOR y la DIFERENCIA 
+                # ■ ■ ■ ■ Valor de la celda y diferencia de tamaños por colorama 
+                valor_OK , diferencia = F_r_a_n_k_y.__get_valor_diferencia(valor_bruto=valor_celda, 
+                                                                     width_formato=matriz_F_ancho_cuadrado[i][j], 
+                                                                     family_impresion=family_impresion, 
+                                                                     b_lista=b_lista)
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # LISTA-FIX 
+                # ■ ■ ■ ■ Esta es al opcion de lista personalizada(lista == [7,7,5] xEj) 
+                if (lista is not None) and  (0 <= j < len(lista)):  
+                    # ■■■ APPEND VALOR LISTA-FIX ■■■ 
+                    if (matriz_L_limpio[i][j] > lista[j]) and (lista[j] != 0):                          # ► IF hay que CORTAR:
+                        valor_RED = f'{valor_OK[:-1]}{Fore.RED}{valor_OK[-1]}{Style.RESET_ALL}'         # ■■ Termina en caracter rojo.
+                        lista_print_xfila.append( valor_RED )    
+                    else:                                                                               # ► IF Not hay que CORTAR:
+                        lista_print_xfila.append( valor_OK )                                            # ■■ Tal cual.
+                    
+                    # ■■■ APPEND SP_BETWEEN LISTA-FIX ■■■ 
+                    diferencia_RESET_between = self.ESPACIO * diferencia + RESET_between
+                    lista_print_xfila.append(diferencia_RESET_between)
+                    continue
+                pass    
+
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # APPEND DATOS 
+                if family_impresion == 'FIX':    
+                    if (matriz_L_limpio[i][j] > matriz_F_ancho_cuadrado[i][j]) and (matriz_F_ancho_cuadrado[i][j] != 0):        # ► SI CORTAR:
+                        valor_RED = f'{valor_OK[:-1]}{Fore.RED}{valor_OK[-1]}{Style.RESET_ALL}'                                 # Termina en caracter rojo.
+                        lista_print_xfila.append( valor_RED )    
+                    else:                                                                                                       # ► NO CORTAR(menor o igual)
+                        lista_print_xfila.append( valor_OK )    
+                
+                elif family_impresion == 'MAX':                    
+                    if diferencia < 0:
+                        lista_print_xfila.append( f'{valor_OK}{self.ESPACIO * diferencia.abs()}')
+                    else:
+                        lista_print_xfila.append( f'{valor_OK}')
+                pass
+                # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+                # APPEND SP_BETWEEN
+                diferencia_RESET_between = self.ESPACIO * diferencia + RESET_between
+                lista_print_xfila.append(diferencia_RESET_between)
+            pass
+            """ 
+            ■■■ Envoltorio Derecho """
+            lista_print_xfila.append(self.ESPACIO * lst_resto_to_maxfranky[i] )     # AÑADE EL RESTO EN ESPACIOS
+            lista_print_xfila.append( self.ESPACIO * self.pad_x )                   # AÑADE PAD_X EN ESPACIOS      
+            lista_print_xfila.append( Style.RESET_ALL + self.char_marco )           # AÑADE EL MARCO HORIZONTAL █
+
+            # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+            # ■■■■■■ Añade la Fila Completa a la Matriz de Impresión ■■■■■■
+            matriz_valores_impresion.append(lista_print_xfila)
+        pass        
+        # ■ ■ ■ ■ de aqui se sale con la matriz de valores de impresión completa.
+        
+        # ■ Validation
+        if matriz_lst_formato_impresion is None: 
+            print(f'Error::: No se ha podido determinar el formato de impresión.')
+            return None, None
+        
+        # ► RETORNO
+        return matriz_lst_formato_impresion, matriz_valores_impresion
+
+
 # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     # •••••••••  By David Quesada Heredia davidquesadaheredia@gmail.com ••••••••••
