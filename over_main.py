@@ -2,23 +2,16 @@
 # from classXindeX import XindeX        # ■ XINDEX A PELO
 from classXindeX import Over_Main       # ■ PADRE DE XINDEX CON ■ COLOR EN HEAD Y PIE  ■ BEGIN ** ■ LANZAR DEMONIO << >> ■ LANZA BACKGROUND => 
 from Sdata import Sdata                 # ■ AYUDA PARA EL OVER-MAIN PARA PEDIR DATOS SEGUROS AL USUARIO
-
 from colorama import Fore, Style, init  # ■ COLORAMA PARA COLORES EN TERMINAL....por si se quiere usar colores para 'ayudas'
-
 # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 import os               # SISTEMA OPERATIVO(PARA LIMPIAR LA TERMINAL)
 # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-import tkinter as tk    # SOLO EN CASO DE NECESITARLO
-
 import multiprocessing
-
 # ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 # DEF: CREA UN INDICE MULTINIVEL CON GENETICA QUE EJECUTA LAS FUNCIONES ASOCIADAS A CADA MENU
 # ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 # ████████████████████████████████████████████ XINDEX ███████████████████████████████████████████████
 # ████████████████████████████████████████████ XINDEX ███████████████████████████████████████████████
-
-# The_X_Men = XindeX(head_datapush  = " XINDEX - OVER-MAIN ")
 
 # 1- INSTANCIO EL OBJETO ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 The_X_Men = Over_Main(tipo_index='a', b_mode_all=True, b_loop=True )
@@ -50,9 +43,7 @@ def main():
 
     # ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     # ■ 4- LLAMO A MYSTYCA PARA VISUALIZAR EL MENU ■■■■■■■■■■■                               
-    # retorno = The_X_Men.mystyca( titulo='sub-Xindex', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=5 )
-    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = " XINDEX - OVER-MAIN " , pad_x=5 )
-    # retorno = The_X_Men.mystyca( titulo='Menu1',  pad_x=30 )
+    retorno = The_X_Men.mystyca( titulo='Menu1', head_datapush  = "📄 XINDEX - OVER-MAIN " , pad_x=5 )
 
     # 5- RETORNO DE MYSTYCA ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
     print(f"::: T H E   E N D  en MAIN() ::: {retorno if retorno else 'no retorno'} ")
