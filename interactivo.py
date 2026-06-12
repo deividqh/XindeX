@@ -1,4 +1,4 @@
-from classXindeX import Over_Main
+from XindeX.classXindeX import Over_Main
 import os
 import multiprocessing
 
@@ -60,16 +60,8 @@ def main():
                                 ('Mod3', m3), 
                             ])
 
-    # ■ 2. SUBMENÚS CON LA GENÉTICA CONECTADA
-    # for i in range(1, NUM_MODULOS + 1):
-    #     nombre_modulo = f"Modulo {i}"        
-    #     items_sub = [(f"Ejercicio {j}", ejecutar_ejercicio) for j in range(1, EJERCICIOS_POR_MODULO + 1)]
-    #     The_X_Men.addX( titulo=f'Submenu_Mod_{i}', padre='Menu_Principal',  ipadre=nombre_modulo,    
-    #                     lst_items=items_sub)
-
     # ■ 3. LANZAR EL ENTORNO
     The_X_Men.mystyca( titulo='Menu_Principal', head_datapush="SELECCIONA UN MÓDULO", pad_x=5 )
-
 
 if __name__ == "__main__":
     multiprocessing.freeze_support()
