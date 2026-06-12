@@ -976,7 +976,6 @@ class XindeX(MenuDvd):
                 dicc_xavier['pos']       = None
                 xindex = self.get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
                 if  xindex is None:
-                    # print(f'{dicc_xavier['respuesta']} NOT FOUND :(')
                     continue
                 else:
                     dicc_xavier['xindex'] = xindex
@@ -1697,7 +1696,7 @@ class Over_Main(XindeX):
                 dicc_xavier['pos']       = None
                 xindex = self.get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
                 if  xindex is None:
-                    print(f'{dicc_xavier['respuesta']} NOT FOUND :(') if dicc_xavier['respuesta'] != '' else None
+                    print(f'{dicc_xavier['respuesta']} NOT FOUND ❌') if dicc_xavier['respuesta'] != '' else None
                     continue
                 else:
                     dicc_xavier['xindex'] = xindex
@@ -1815,8 +1814,7 @@ class Over_Main(XindeX):
                 self.F_RANK_Y_DEF.color_marco(color=sdata['S'])    
                 self.F_RANK_Y.imprimir()
                 print(f'::: Color Marco cambiado a {sdata["S"]} ::: ')
-
-            else:                                                           # NOT FOUND
+            else:                                                           
                 return False
 
         # █ █ █ █ █ █ RESPUESTA Directa 
@@ -1959,7 +1957,7 @@ class Over_Main(XindeX):
                 print(f'... Intentando Parar el Proceso {respuesta}')                
                 self.detener_proceso(proceso = str(respuesta).strip())
 
-        else:                                               # ■■■ NOT FOUND ■■■           
+        else:                                               
             print('■ NOT FOUND ❌')
             return False
 
@@ -2054,6 +2052,11 @@ class Over_Main(XindeX):
             self.detener_all_procesos()
         ■ SALIDA: 
         """
+        respuesta = Sdata.get_data(key_dict='S', tipo=str, msg_entrada='¿Estás seguro de que quieres detener todos los procesos? (s/n)', permite_nulo=False)
+        if respuesta['S'].lower() != 's':
+            print("Operación cancelada. No se detendrán los procesos.")
+            return
+
         print("\n🛑 Terminando todos los procesos...")
         for nombre_proceso, proceso in list(self.dicc_procesos.items()):
             self.detener_proceso(proceso = proceso.pid)
