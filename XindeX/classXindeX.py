@@ -1508,7 +1508,12 @@ class XindeX(MenuDvd):
 # █████████████████████████████████████████████████████████████████████████████████████████████████████████████
 import multiprocessing
 import time
-
+import sys
+import os
+import json
+import subprocess
+from collections import defaultdict
+from colorama import Fore, Style
 # ============================================================================================
 class Over_Main(XindeX):
     """ AMPLIA XindeX Añadiendo la ejecución en hilos separados .... 
@@ -1525,7 +1530,13 @@ class Over_Main(XindeX):
     # Inicializa colorama (necesario para Windows)
     FROM_TO = '-'           # CARACTER USADO (PARA EL PATRON RE) PARA IMPRIMIR ■ FROM - TO 
 
-    def __init__(self, tipo_index:str='a', b_mode_all:bool=False, b_loop=True ):                
+    def __init__(self,  dicc_funciones=None, 
+                        tipo_index:str='a', 
+                        b_mode_all:bool=False, 
+                        b_loop=True ,
+                        b_config=None, 
+                        ):                
+
         # ■■ LLAMADAA AL PADRE
         super().__init__(tipo_index=tipo_index, b_mode_all=b_mode_all, b_loop = b_loop )
 
@@ -1538,7 +1549,7 @@ class Over_Main(XindeX):
         self.dicc_procesos = {}
 
         self.RESP_ACCION_DIRECTA = ['<' , '?' , '??' , 'help', '<<<', '#' , '@', '$']
-        """ ■ DIRECTAS ... SOBRE ESCRITO DE INDEX PARA INCLUIR '►' (Alt+16, listar procesos) y '■' (Alt+254, parar procesos) """
+        """ ■ DIRECTAS ... SOBRE ESCRITO DE INDEX PARA INCLUIR 'list'( listar procesos) y 'kill'(parar procesos) """
         
         self.RESP_BEGINNERS = ['**', '=>', '=' ]
         """ ■ PREFIJO + RESPUESTA ... Se evalua cada uno:  """
@@ -1551,6 +1562,86 @@ class Over_Main(XindeX):
 
         self.RESP_PROCESOS = ['►', '■' , '■ ', 'list', 'stop', 'stop ', 'kill', 'listar']
         """ ■■ RESPUESTAS PARA CONTROL DE PROCESOS: '►' (Alt+16, listar procesos) y '■' (Alt+254, parar procesos) """
+
+        # Propiedades del Orquestador
+        self.archivo_config = "config_menu.json"
+        self.dicc_funciones = dicc_funciones if dicc_funciones else {}
+        
+        # PARSEO AUTOMÁTICO DE CONSOLA (Si b_config es None, miramos si el usuario escribió --config)
+        if b_config is None:
+            self.b_config = "--config" in sys.argv
+        else:
+            self.b_config = b_config
+            
+        # INICIAR FLUJO DE ESTADOS
+        self._gestionar_estados()
+
+    def _gestionar_estados(self):
+        """ Matriz de Estados A, B y C """
+        json_existe = os.path.exists(self.archivo_config)
+        
+        # Caso A (No existe, primera vez) o Caso C (Existe pero se forzó --config)
+        if not json_existe or self.b_config:
+            self._lanzar_configurador()
+            json_existe = os.path.exists(self.archivo_config) # Volver a mirar tras cerrar la web
+            
+        # Validación de Fallback (Cierre abrupto sin guardar la primera vez)
+        if not json_existe:
+            print(f"{Fore.RED}❌ Error crítico: No se encontró el archivo de configuración '{self.archivo_config}'. Saliendo...{Style.RESET_ALL}")
+            sys.exit(1)
+            
+        # Caso B (Uso diario) o Casos A/C guardados con éxito: Construimos el menú
+        self._construir_desde_json()
+        
+    def _lanzar_configurador(self):
+        """ Controla el subproceso web y el bloqueo de terminal """
+        print(f"{Fore.CYAN}⚙️  Abriendo el configurador visual en tu navegador...{Style.RESET_ALL}")
+        
+        # Lanzamos Streamlit en background
+        proc = subprocess.Popen(["streamlit", "run", "./XindeX/xindex_st.py"])
+        
+        # Defensa contra "Cierre a las bravas"
+        print(f"{Fore.YELLOW}► El programa está pausado esperando a que termines de configurar.")
+        input(f"► SI HAS CERRADO EL NAVEGADOR SIN GUARDAR, pulsa [ENTER] aquí para continuar/cancelar...{Style.RESET_ALL}\n")
+        
+        # Si el usuario pulsó ENTER, forzamos la muerte del servidor web por si quedó colgado
+        if proc.poll() is None:
+            proc.terminate()
+            proc.wait()
+            print(f"{Fore.MAGENTA}⚠️  Servidor web detenido por el usuario.{Style.RESET_ALL}")
+            
+    def _construir_desde_json(self):
+        """ Lee el JSON y lanza llamadas dinámicas a self.addX() """
+        with open(self.archivo_config, "r", encoding='utf-8') as f:
+            nodos = json.load(f)
+
+        padres_por_nivel = {}
+        items_por_padre = defaultdict(list)
+        info_submenus = {}
+
+        # Primer recorrido: Analizar indentaciones y mapear funciones
+        for nodo in nodos:
+            lvl = nodo.get('indentacion', 0)
+            txt = nodo.get('texto', 'Sin Título')
+            func_str = nodo.get('funcion')
+            
+            txt_padre = padres_por_nivel.get(lvl - 1) if lvl > 0 else None
+            func_real = self.dicc_funciones.get(func_str) if func_str else None
+            
+            items_por_padre[txt_padre].append((txt, func_real))
+            padres_por_nivel[lvl] = txt
+            info_submenus[txt] = {'padre': txt_padre, 'ipadre': txt}
+
+        # Segundo recorrido: Inyectar datos a las mecánicas genéticas de XindeX
+        for nombre_menu, lista_items in items_por_padre.items():
+            if nombre_menu is None:
+                # Raíz (Padre absoluto)
+                self.addX(titulo='MAIN_MENU', padre=None, ipadre=None, lst_items=lista_items)
+            else:
+                # Submenús
+                info = info_submenus[nombre_menu]
+                padre_real = info['padre'] if info['padre'] is not None else 'MAIN_MENU'
+                self.addX(titulo=nombre_menu, padre=padre_real, ipadre=info['ipadre'], lst_items=lista_items)
 
     # ██ SOBRE-ESCRIBE XAVIER de XindeX 
     def xavier_get_dicc_respuesta(self, menu_dvd, lista_m_i_l_a_n_p_i_f:list=None):
@@ -1671,7 +1762,6 @@ class Over_Main(XindeX):
                 # xindex = self.get_xindex(menu_dvd = menu_dvd , dicc_respuesta = dicc_xavier, lista_m_i_l_a_n_p_i_f = lista_m_i_l_a_n_p_i_f)
                 # dicc_xavier['xindex'] = xindex
                 return dicc_xavier
-                
                 continue
             
             # ██ FROM-TO : '1-5' pejem.

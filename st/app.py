@@ -20,7 +20,7 @@ st.markdown("---")
 
 # 2. CARGA DEL ARCHIVO HTML EXTERNO
 # Leemos el archivo index.html que está guardado en el mismo directorio
-with open("index.html", "r", encoding="utf-8") as file:
+with open("./st/index.html", "r", encoding="utf-8") as file:
     codigo_html = file.read()
 
 # 3. INTERFAZ INTERACTIVA (IFRAME)

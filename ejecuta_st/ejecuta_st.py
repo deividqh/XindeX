@@ -6,7 +6,7 @@ import json
 def ejecutar_streamlit(datos_compartidos):
     # Ejecutamos tu archivo de streamlit
     # Al ser un subproceso, se detiene aquí hasta que cierres Streamlit con os._exit(0)
-    subprocess.run(["streamlit", "run", "./ui_tk/ejecutado_st.py"])
+    subprocess.run(["streamlit", "run", "./ejecuta_st/ejecutado_st.py"])
     
     # Al cerrarse la app, buscamos el archivo temporal que generó Streamlit
     if os.path.exists("temp_data.json"):
