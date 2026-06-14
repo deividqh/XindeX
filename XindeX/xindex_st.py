@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import ast
 import json
 import os
 
@@ -7,12 +8,39 @@ st.set_page_config(page_title="Configurador XindeX", layout="centered")
 
 ARCHIVO_CONFIG = "config_menu.json"
 ARCHIVO_RETORNO = "temp_menu_resultado.json"
+ARCHIVO_FUNCIONES = os.path.join(os.path.dirname(__file__), "..", "over_main.py")
 
-# DEBE COINCIDIR EXACTAMENTE CON LAS CLAVES DEL DICCIONARIO EN over_main.py
-FUNCIONES_DISPONIBLES = [
-    "Ninguna", "version_web", "set_style", "from_to", 
-    "listar_procesos", "subprocess_os", "lanzar_proceso", "cambiar_estilo_marco"
-]
+FUNCION_SIN_ASIGNAR = "Ninguna"
+
+
+def obtener_funciones_disponibles():
+    """Devuelve las funciones configurables desde las claves de DICC_FUNCIONES."""
+    with open(ARCHIVO_FUNCIONES, "r", encoding="utf-8") as archivo:
+        arbol = ast.parse(archivo.read(), filename=ARCHIVO_FUNCIONES)
+
+    for nodo in arbol.body:
+        if not isinstance(nodo, ast.Assign):
+            continue
+
+        tiene_dicc_funciones = any(
+            isinstance(objetivo, ast.Name) and objetivo.id == "DICC_FUNCIONES"
+            for objetivo in nodo.targets
+        )
+        if not tiene_dicc_funciones or not isinstance(nodo.value, ast.Dict):
+            continue
+
+        funciones = [
+            clave.value
+            for clave in nodo.value.keys
+            if isinstance(clave, ast.Constant)
+        ]
+        return [
+            FUNCION_SIN_ASIGNAR,
+            *(funcion for funcion in funciones if funcion != FUNCION_SIN_ASIGNAR),
+        ]
+
+    return [FUNCION_SIN_ASIGNAR]
+
 
 def validar_nodos_config(nodos):
     """Devuelve una lista limpia de nodos o None si el JSON no sirve para el menú."""
@@ -32,7 +60,7 @@ def validar_nodos_config(nodos):
             return None
         if not isinstance(indentacion, int) or indentacion < 0:
             return None
-        if funcion is not None and funcion not in FUNCIONES_DISPONIBLES:
+        if funcion is not None and funcion not in obtener_funciones_disponibles():
             return None
 
         nodos_limpios.append({
@@ -42,6 +70,7 @@ def validar_nodos_config(nodos):
         })
 
     return nodos_limpios
+
 
 def cargar_config_guardada():
     if not os.path.exists(ARCHIVO_CONFIG):
@@ -76,7 +105,7 @@ arbol_componente = components.declare_component("arbol_interactivo", path=ruta_c
 estructura_actualizada = arbol_componente(
     key="mi_arbol",
     datos_arbol=st.session_state.datos_actuales,
-    funciones_disponibles=FUNCIONES_DISPONIBLES,
+    funciones_disponibles=obtener_funciones_disponibles(),
 )
 
 # 3. El componente ya integra el mapeo de funciones en cada fila del índice.
@@ -91,7 +120,7 @@ if estructura_actualizada is not None:
         {
             "texto": nodo["texto"],
             "indentacion": nodo["indentacion"],
-            "funcion": nodo.get("funcion") if nodo.get("funcion") != "Ninguna" else None,
+            "funcion": nodo.get("funcion") if nodo.get("funcion") != FUNCION_SIN_ASIGNAR else None,
         }
         for nodo in estructura_actualizada
         if isinstance(nodo, dict)
