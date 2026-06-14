@@ -1565,7 +1565,10 @@ class Over_Main(XindeX):
         
         # ████████████████████████████████
         # ■■■ Propiedades del Orquestador
+        # 🧠 Archivos simples para hablar con Streamlit: config estable + retorno de la última ejecución.
         self.archivo_config = "config_menu.json"
+        self.archivo_retorno_streamlit = "temp_menu_resultado.json"
+        self.datos_streamlit = None
         self.dicc_funciones = dicc_funciones if dicc_funciones else {}
         
         # PARSEO AUTOMÁTICO DE CONSOLA (Si b_config es None, miramos si el usuario escribió --config)
@@ -1578,11 +1581,12 @@ class Over_Main(XindeX):
         self._gestionar_estados()
 
     def _gestionar_estados(self):
+        # 🧠 Orquesta el flujo: si hace falta configurar, espera Streamlit y después usa sus datos.
         json_existe = os.path.exists(self.archivo_config)
         
         # Lanza la web si se fuerza configuración o si es la primera vez
         if not json_existe or self.b_config:
-            self._lanzar_configurador()
+            self.datos_streamlit = self._lanzar_configurador()
             json_existe = os.path.exists(self.archivo_config)
             
         if not json_existe:
@@ -1593,24 +1597,36 @@ class Over_Main(XindeX):
         self._construir_desde_json()
         
     def _lanzar_configurador(self):
+        # 🧠 Streamlit corre como subproceso; al guardar, la app escribe JSON y se cierra sola.
         print(f"{Fore.CYAN}⚙️  Abriendo el configurador visual en tu navegador...{Style.RESET_ALL}")
         
+        if os.path.exists(self.archivo_retorno_streamlit):
+            os.remove(self.archivo_retorno_streamlit)
+
         # Calculamos la ruta segura de Streamlit para lanzarlo
         ruta_st = os.path.join("XindeX", "xindex_st.py")
         proc = subprocess.Popen(["streamlit", "run", ruta_st])
         
-        # Pausa activa para que no pete la terminal
-        print(f"{Fore.YELLOW}► El programa está en pausa esperando la interfaz web.{Style.RESET_ALL}")
-        input(f"► SI HAS CERRADO EL NAVEGADOR SIN GUARDAR, pulsa [ENTER] aquí para continuar...{Style.RESET_ALL}\n")
-        
-        if proc.poll() is None:
-            proc.terminate()
-            proc.wait()
-            print(f"{Fore.MAGENTA}⚠️  Servidor web detenido localmente.{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}► El programa está esperando a que guardes o cierres Streamlit.{Style.RESET_ALL}")
+        proc.wait()
+
+        if os.path.exists(self.archivo_retorno_streamlit):
+            with open(self.archivo_retorno_streamlit, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+            os.remove(self.archivo_retorno_streamlit)
+            print(f"{Fore.GREEN}✅ Datos recibidos desde Streamlit.{Style.RESET_ALL}")
+            return datos
+
+        print(f"{Fore.YELLOW}⚠️  Streamlit terminó sin devolver datos nuevos.{Style.RESET_ALL}")
+        return None
             
     def _construir_desde_json(self):
-        with open(self.archivo_config, "r", encoding='utf-8') as f:
-            nodos = json.load(f)
+        # 🧠 Construye el árbol desde memoria si venimos de Streamlit; si no, desde el JSON guardado.
+        if self.datos_streamlit is not None:
+            nodos = self.datos_streamlit
+        else:
+            with open(self.archivo_config, "r", encoding='utf-8') as f:
+                nodos = json.load(f)
 
         padres_por_nivel = {}
         items_por_padre = defaultdict(list)

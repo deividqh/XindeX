@@ -6,6 +6,7 @@ import os
 st.set_page_config(page_title="Configurador XindeX", layout="centered")
 
 ARCHIVO_CONFIG = "config_menu.json"
+ARCHIVO_RETORNO = "temp_menu_resultado.json"
 
 # DEBE COINCIDIR EXACTAMENTE CON LAS CLAVES DEL DICCIONARIO EN over_main.py
 FUNCIONES_DISPONIBLES = [
@@ -62,9 +63,13 @@ if st.button("💾 Guardar y Ejecutar Índice", type="primary", use_container_wi
     if not datos_finales:
         st.warning("El índice no puede estar vacío.")
     else:
+        # 🧠 Guardamos dos copias: una persistente y otra de retorno para el Python que lanzó Streamlit.
         with open("temp_menu.json", "w", encoding='utf-8') as f:
-            json.dump(datos_finales, f, indent=4)
+            json.dump(datos_finales, f, ensure_ascii=False, indent=4)
         os.replace("temp_menu.json", ARCHIVO_CONFIG)
+
+        with open(ARCHIVO_RETORNO, "w", encoding='utf-8') as f:
+            json.dump(datos_finales, f, ensure_ascii=False, indent=4)
         
         st.success("✅ ¡Guardado! La terminal va a continuar.")
         os._exit(0)
