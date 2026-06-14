@@ -14,15 +14,56 @@ FUNCIONES_DISPONIBLES = [
     "listar_procesos", "subprocess_os", "lanzar_proceso", "cambiar_estilo_marco"
 ]
 
-if "datos_actuales" not in st.session_state:
-    # 🧠 KISS: --config fuerza empezar de cero; sin --config solo cargamos si existe JSON.
-    empezar_desde_cero = os.environ.get("XINDEX_CONFIG_DESDE_CERO") == "1"
+def validar_nodos_config(nodos):
+    """Devuelve una lista limpia de nodos o None si el JSON no sirve para el menú."""
+    if not isinstance(nodos, list):
+        return None
 
-    if os.path.exists(ARCHIVO_CONFIG) and not empezar_desde_cero:
-        with open(ARCHIVO_CONFIG, "r", encoding='utf-8') as f:
-            st.session_state.datos_actuales = json.load(f)
-    else:
-        st.session_state.datos_actuales = []
+    nodos_limpios = []
+    for nodo in nodos:
+        if not isinstance(nodo, dict):
+            return None
+
+        texto = nodo.get("texto")
+        indentacion = nodo.get("indentacion", 0)
+        funcion = nodo.get("funcion")
+
+        if not isinstance(texto, str) or not texto.strip():
+            return None
+        if not isinstance(indentacion, int) or indentacion < 0:
+            return None
+        if funcion is not None and funcion not in FUNCIONES_DISPONIBLES:
+            return None
+
+        nodos_limpios.append({
+            "texto": texto.strip(),
+            "indentacion": indentacion,
+            "funcion": funcion,
+        })
+
+    return nodos_limpios
+
+def cargar_config_guardada():
+    if not os.path.exists(ARCHIVO_CONFIG):
+        return []
+
+    try:
+        with open(ARCHIVO_CONFIG, "r", encoding="utf-8") as f:
+            nodos = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        st.warning("No se pudo leer config_menu.json. Se iniciará un menú nuevo.")
+        return []
+
+    nodos_validos = validar_nodos_config(nodos)
+    if nodos_validos is None:
+        st.warning("config_menu.json no tiene el formato esperado. Se iniciará un menú nuevo.")
+        return []
+
+    return nodos_validos
+
+if "datos_actuales" not in st.session_state:
+    # 🧠 Si config_menu.json existe y es válido, se carga para poder editarlo.
+    st.session_state.datos_actuales = cargar_config_guardada()
 
 # st.title("Configurador XindeX")
 # st.caption("Organiza la jerarquía arrastrando. Asigna las funciones a la derecha.")
@@ -58,8 +99,25 @@ if estructura_actualizada is not None:
     st.session_state.datos_actuales = datos_finales
 
 st.markdown("---")
+st.markdown(
+    """
+    <style>
+    div.stButton > button {
+        background-color: #198754;
+        border-color: #198754;
+        color: #ffffff;
+    }
+    div.stButton > button:hover {
+        background-color: #157347;
+        border-color: #146c43;
+        color: #ffffff;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 # 4. GUARDADO Y SALIDA LIMPIA
-if st.button("💾 Guardar y Ejecutar Índice", type="primary", use_container_width=True):
+if st.button("💾 Guardar y Ejecutar Índice", use_container_width=True):
     if not datos_finales:
         st.warning("El índice no puede estar vacío.")
     else:
