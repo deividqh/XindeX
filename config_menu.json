@@ -1,0 +1,17 @@
+[
+    {
+        "texto": "adios",
+        "indentacion": 0,
+        "funcion": "version_web"
+    },
+    {
+        "texto": "sub 1",
+        "indentacion": 1,
+        "funcion": "set_style"
+    },
+    {
+        "texto": "amigo",
+        "indentacion": 0,
+        "funcion": "listar_procesos"
+    }
+]
