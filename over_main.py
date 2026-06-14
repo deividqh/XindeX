@@ -1,15 +1,13 @@
 import os
 import sys
 import multiprocessing
-from colorama import init, Fore, Style
 
 # Importamos XindeX y las funciones (Asegúrate de que las rutas a tus carpetas son correctas)
 from XindeX.classXindeX import Over_Main
 import funciones_over_main as cmd
-from funciones_over_main import The_X_Men as txm
 
 # ■ EL MAPA DE ENRUTAMIENTO 
-DICCIONARIO_FUNCIONES = {
+DICC_FUNCIONES = {
     "version_web": cmd.version_web,
     "set_style": cmd.set_style,
     "from_to": cmd.from_to,
@@ -22,20 +20,15 @@ DICCIONARIO_FUNCIONES = {
 
 if __name__ == "__main__":
     multiprocessing.freeze_support()
-    init()
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    # La clase Over_Main se encarga automáticamente de detectar --config 
-    # y de lanzar el configurador si hace falta.
-    menu_xindex = Over_Main(
-        dicc_funciones=DICCIONARIO_FUNCIONES,
-        tipo_index='a', 
-        b_mode_all=True, 
-        b_loop=True
-    )
+    # La clase Over_Main se encarga automáticamente de detectar --config y lanzar el configurador si hace falta.
+    menu_xindex = Over_Main( dicc_funciones=DICC_FUNCIONES, tipo_index='a', b_mode_all=True, b_loop=True )
     
-    txm = menu_xindex  # Actualizamos la variable global en funciones_over_main.py
+    # ⚠️ Puente Opcional solo para este archivo. Borrar al replicar.
+    cmd.The_X_Men = menu_xindex  
 
     # ■ EJECUCIÓN
-    retorno = menu_xindex.mystyca(titulo='MAIN_MENU', head_datapush=" XINDEX CONFIGURADO ", pad_x=5)
-    print(f"\n{Fore.GREEN}::: T H E   E N D ::: {retorno}{Style.RESET_ALL}")
+    menu_xindex.mystyca(titulo='MAIN_MENU', head_datapush=" XINDEX CONFIGURADO ", pad_x=5)
+    # ■ SALIDA
+    print(f"\n::: T H E   E N D :::")

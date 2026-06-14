@@ -1548,11 +1548,11 @@ class Over_Main(XindeX):
         # ■■ DICCIONARIO PARA EL CONTROL DE HILOS CON LAS EJECUCIONES =>b2 (INDEPENDIENTE)(DEMONIO) Y <<b2>> (DEPENDIETE)
         self.dicc_procesos = {}
 
-        self.RESP_ACCION_DIRECTA = ['<' , '?' , '??' , 'help', '<<<', '#' , '@', '$']
+        self.RESP_ACCION_DIRECTA = ['<' , '?' , '??' , 'help', '<<<', '#' , '@', '$', "--config"]
         """ ■ DIRECTAS ... SOBRE ESCRITO DE INDEX PARA INCLUIR 'list'( listar procesos) y 'kill'(parar procesos) """
         
         self.RESP_BEGINNERS = ['**', '=>', '=' ]
-        """ ■ PREFIJO + RESPUESTA ... Se evalua cada uno:  """
+        """ ■ 2 partes: PREFIJO + RESPUESTA, por ejemplo: **a , =>a1 , =a1 ...  """
         
         self.RESP_BACKGROUND = ['[',']']        
         """ ■ ENVUELTAS... Se evalua la lista como una unidad, (pre y pos)(envoltorio) :  """
@@ -1581,54 +1581,101 @@ class Over_Main(XindeX):
         self._gestionar_estados()
 
     def _gestionar_estados(self):
-        # 🧠 Orquesta el flujo: si hace falta configurar, espera Streamlit y después usa sus datos.
-        json_existe = os.path.exists(self.archivo_config)
-        
-        # Lanza la web si se fuerza configuración o si es la primera vez
-        if not json_existe or self.b_config:
+        # 🧠 Orquesta el flujo: configura si se pide --config o si no hay JSON válido.
+        json_valido = self._config_guardada_valida()
+
+        if self.b_config or not json_valido:
             self.datos_streamlit = self._lanzar_configurador()
-            json_existe = os.path.exists(self.archivo_config)
-            
-        if not json_existe:
-            print(f"{Fore.RED}❌ Error crítico: No hay configuración de menú guardada. Abortando.{Style.RESET_ALL}")
+            json_valido = self._config_guardada_valida()
+
+        if not json_valido:
+            print(f"{Fore.RED}❌ No hay una configuración válida. El sistema se recuperó y salió sin construir el menú.{Style.RESET_ALL}")
             sys.exit(1)
-            
-        # Si llegamos aquí, el JSON existe y es seguro construir el menú
+
         self._construir_desde_json()
-        
+
+    def _validar_nodos_config(self, nodos):
+        if not isinstance(nodos, list):
+            return None
+
+        nodos_limpios = []
+        for nodo in nodos:
+            if not isinstance(nodo, dict):
+                return None
+
+            texto = nodo.get('texto')
+            indentacion = nodo.get('indentacion', 0)
+            funcion = nodo.get('funcion')
+
+            if not isinstance(texto, str) or not texto.strip():
+                return None
+            if not isinstance(indentacion, int) or indentacion < 0:
+                return None
+            if funcion is not None and funcion not in self.dicc_funciones:
+                return None
+
+            nodos_limpios.append({
+                'texto': texto.strip(),
+                'indentacion': indentacion,
+                'funcion': funcion,
+            })
+
+        return nodos_limpios
+
+    def _leer_config_guardada(self):
+        try:
+            with open(self.archivo_config, "r", encoding='utf-8') as f:
+                return self._validar_nodos_config(json.load(f))
+        except (OSError, json.JSONDecodeError):
+            return None
+
+    def _config_guardada_valida(self):
+        return os.path.exists(self.archivo_config) and self._leer_config_guardada() is not None
+
     def _lanzar_configurador(self):
         # 🧠 Streamlit corre como subproceso; al guardar, la app escribe JSON y se cierra sola.
-        print(f"{Fore.CYAN}⚙️  Abriendo el configurador visual en tu navegador...{Style.RESET_ALL}")
-        
+        print(f"{Fore.CYAN}⚙️ 1Abriendo el configurador visual en tu navegador...{Style.RESET_ALL}")
+
+
         if os.path.exists(self.archivo_retorno_streamlit):
             os.remove(self.archivo_retorno_streamlit)
 
-        # Calculamos la ruta segura de Streamlit para lanzarlo
         ruta_st = os.path.join("XindeX", "xindex_st.py")
-        entorno = os.environ.copy()
-        entorno["XINDEX_CONFIG_DESDE_CERO"] = "1" if self.b_config or not os.path.exists(self.archivo_config) else "0"
-        proc = subprocess.Popen(["streamlit", "run", ruta_st], env=entorno)
-        
-        print(f"{Fore.YELLOW}► El programa está esperando a que guardes o cierres Streamlit.{Style.RESET_ALL}")
-        proc.wait()
+        proc = subprocess.Popen(["streamlit", "run", ruta_st])
+
+        print(f"{Fore.YELLOW}► Me quedo a la espera de que configures y guardes o que cierres Streamlit.{Style.RESET_ALL}")
+        try:
+            proc.wait()
+        except KeyboardInterrupt:
+            proc.terminate()
+            proc.wait()
 
         if os.path.exists(self.archivo_retorno_streamlit):
             with open(self.archivo_retorno_streamlit, "r", encoding="utf-8") as f:
-                datos = json.load(f)
+                datos = self._validar_nodos_config(json.load(f))
             os.remove(self.archivo_retorno_streamlit)
-            print(f"{Fore.GREEN}✅ Datos recibidos desde Streamlit.{Style.RESET_ALL}")
-            return datos
+            if datos is not None:
+                print(f"{Fore.GREEN}✅ Datos recibidos desde Streamlit.{Style.RESET_ALL}")
+                return datos
 
-        print(f"{Fore.YELLOW}⚠️  Streamlit terminó sin devolver datos nuevos.{Style.RESET_ALL}")
+        datos_guardados = self._leer_config_guardada() if os.path.exists(self.archivo_config) else None
+        if datos_guardados is not None:
+            print(f"{Fore.YELLOW}⚠️  Streamlit terminó sin guardar. Se cargará config_menu.json.{Style.RESET_ALL}")
+            return datos_guardados
+
+        print(f"{Fore.RED}❌ Streamlit terminó sin guardar y no existe config_menu.json válido.{Style.RESET_ALL}")
         return None
-            
+
     def _construir_desde_json(self):
         # 🧠 Construye el árbol desde memoria si venimos de Streamlit; si no, desde el JSON guardado.
         if self.datos_streamlit is not None:
             nodos = self.datos_streamlit
         else:
-            with open(self.archivo_config, "r", encoding='utf-8') as f:
-                nodos = json.load(f)
+            nodos = self._leer_config_guardada()
+
+        if nodos is None:
+            print(f"{Fore.RED}❌ config_menu.json no se pudo leer o no tiene el formato esperado.{Style.RESET_ALL}")
+            sys.exit(1)
 
         padres_por_nivel = {}
         items_por_padre = defaultdict(list)
@@ -1916,6 +1963,10 @@ class Over_Main(XindeX):
                 self.F_RANK_Y_DEF.color_marco(color=sdata['S'])    
                 self.F_RANK_Y.imprimir()
                 print(f'::: Color Marco cambiado a {sdata["S"]} ::: ')
+            elif respuesta == "--config":
+                print('► Iniciar streamlit Set-up')
+                self.b_config = True
+                self._gestionar_estados()
             else:                                                           
                 return False
 
