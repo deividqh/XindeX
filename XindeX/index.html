@@ -14,6 +14,10 @@
         .item-arbol:hover { border-color: #0d6efd; background-color: #f8f9fa; }
         .numero-indice { color: #0d6efd; font-weight: 700; margin-right: 10px; font-family: monospace; }
         .item-arbol.arrastrando { opacity: 0.4; background-color: #e9ecef; border: 2px dashed #0d6efd; cursor: grabbing; transform: scale(0.98); }
+        .texto-nodo { flex: 1; min-width: 0; }
+        .selector-funcion { max-width: 210px; font-size: 0.8rem; }
+        .btn-eliminar-nodo { border: 0; background: transparent; color: #dc3545; font-size: 1.25rem; line-height: 1; padding: 0 0 0 10px; }
+        .btn-eliminar-nodo:hover { color: #a71d2a; }
     </style>
 </head>
 <body>
@@ -28,18 +32,7 @@
         <button id="btnAgregar" class="btn btn-primary" style="min-width: 150px;">Agregar al Índice</button>
     </div>
 
-    <div class="input-group mb-4 shadow-sm">
-        <select id="cmbElementos" class="form-select">
-            <option value="" selected disabled>Selecciona un elemento para eliminar...</option>
-        </select>
-        <button id="btnEliminar" class="btn btn-danger" style="min-width: 150px;">Eliminar Elemento</button>
-    </div>
-    
     <div id="arbol" class="contenedor-arbol"></div>
-
-    <div class="text-center mt-5">
-        <button id="btnFinalizar" class="btn btn-success btn-lg shadow">Finalizar y Guardar Datos</button>
-    </div>
 </div>
 
 <script>
@@ -49,8 +42,7 @@
     const contenedor = document.getElementById("arbol");
     const inputElemento = document.getElementById("txtElemento");
     const btnAgregar = document.getElementById("btnAgregar");
-    const cmbElementos = document.getElementById("cmbElementos");
-    const btnEliminar = document.getElementById("btnEliminar");
+    let funcionesDisponibles = ["Ninguna"];
 
     let elementoArrastrado = null;
     let xInicial = 0;
@@ -59,9 +51,8 @@
 
     btnAgregar.addEventListener("click", agregarNuevoNodo);
     inputElemento.addEventListener("keydown", function(event) { if (event.key === "Enter") agregarNuevoNodo(); });
-    btnEliminar.addEventListener("click", eliminarNodoSeleccionado);
 
-    function crearNodoDOM(texto, indentacion, dataValor = "") {
+    function crearNodoDOM(texto, indentacion, funcionValor = null) {
         const item = document.createElement("div");
         item.className = "item-arbol";
         item.draggable = true; 
@@ -74,20 +65,23 @@
         spanTexto.className = "texto-nodo";
         spanTexto.textContent = texto;
 
-        const inputData = document.createElement("input");
-        inputData.type = "text";
-        inputData.className = "form-control form-control-sm ms-auto";
-        inputData.style.maxWidth = "200px"; 
-        inputData.style.backgroundColor = "#e2e6ea";
-        inputData.style.fontSize = "0.7rem";
-        inputData.value = dataValor;
-        inputData.placeholder = "Escribe aquí...";
+        const selectorFuncion = crearSelectorFuncion(funcionValor);
+        const botonEliminar = document.createElement("button");
+        botonEliminar.type = "button";
+        botonEliminar.className = "btn-eliminar-nodo";
+        botonEliminar.title = `Eliminar ${texto}`;
+        botonEliminar.setAttribute("aria-label", `Eliminar ${texto}`);
+        botonEliminar.textContent = "×";
 
-        inputData.addEventListener("mousedown", (e) => e.stopPropagation());
+        selectorFuncion.addEventListener("mousedown", (e) => e.stopPropagation());
+        selectorFuncion.addEventListener("change", enviarDatosAStreamlit);
+        botonEliminar.addEventListener("mousedown", (e) => e.stopPropagation());
+        botonEliminar.addEventListener("click", () => eliminarNodo(item));
 
         item.appendChild(spanNumero);
         item.appendChild(spanTexto);
-        item.appendChild(inputData);
+        item.appendChild(selectorFuncion);
+        item.appendChild(botonEliminar);
 
         item.addEventListener("dragstart", (e) => {
             elementoArrastrado = item;
@@ -101,9 +95,25 @@
             if (elementoArrastrado) elementoArrastrado.classList.remove("arrastrando");
             elementoArrastrado = null;
             actualizarEstructuraArbol();
+            enviarDatosAStreamlit();
         });
 
         return item;
+    }
+
+    function crearSelectorFuncion(funcionValor) {
+        const selector = document.createElement("select");
+        selector.className = "form-select form-select-sm ms-3 selector-funcion";
+
+        funcionesDisponibles.forEach(funcion => {
+            const option = document.createElement("option");
+            option.value = funcion;
+            option.textContent = funcion;
+            selector.appendChild(option);
+        });
+
+        selector.value = funcionValor || "Ninguna";
+        return selector;
     }
 
     function agregarNuevoNodo() {
@@ -112,31 +122,16 @@
         const nodosExistentes = Array.from(contenedor.querySelectorAll(".texto-nodo"));
         if (nodosExistentes.some(span => span.textContent.toLowerCase() === valor.toLowerCase())) { alert(`El elemento ya existe.`); return; }
         
-        contenedor.appendChild(crearNodoDOM(valor, 0, ""));
+        contenedor.appendChild(crearNodoDOM(valor, 0, null));
         inputElemento.value = "";
         actualizarEstructuraArbol();
+        enviarDatosAStreamlit();
     }
 
-    function eliminarNodoSeleccionado() {
-        const indexSeleccionado = cmbElementos.value;
-        if (indexSeleccionado === "") return;
-        const items = contenedor.querySelectorAll(".item-arbol");
-        if (items[indexSeleccionado]) {
-            items[indexSeleccionado].remove();
-            actualizarEstructuraArbol();
-        }
-    }
-
-    function actualizarCombo() {
-        cmbElementos.innerHTML = '<option value="" selected disabled>Selecciona un elemento para eliminar...</option>';
-        contenedor.querySelectorAll(".item-arbol").forEach((item, index) => {
-            const texto = item.querySelector(".texto-nodo").textContent;
-            const numero = item.querySelector(".numero-indice").textContent;
-            const option = document.createElement("option");
-            option.value = index;
-            option.textContent = `${numero} ${texto}`;
-            cmbElementos.appendChild(option);
-        });
+    function eliminarNodo(item) {
+        item.remove();
+        actualizarEstructuraArbol();
+        enviarDatosAStreamlit();
     }
 
     actualizarEstructuraArbol();
@@ -175,8 +170,6 @@
             item.querySelector(".numero-indice").textContent = contadoresNivel.join(".") + ".";
             indentacionAnterior = indentacionActual;
         });
-        actualizarCombo();
-        
         // Avisar a Streamlit que recalcule el alto de la ventana
         ajustarAlturaStreamlit();
     }
@@ -214,48 +207,43 @@
     // 2. Escuchar cuando Streamlit pide renderizar
     window.addEventListener("message", function(event) {
         if (event.data.type === "streamlit:render") {
-            const datosArbol = event.data.args?.datos_arbol || [];
+            const args = event.data.args || {};
+            const datosArbol = args.datos_arbol || [];
+            funcionesDisponibles = Array.isArray(args.funciones_disponibles) ? args.funciones_disponibles : funcionesDisponibles;
 
             if (!arbolCargadoDesdeStreamlit && Array.isArray(datosArbol)) {
                 contenedor.innerHTML = "";
                 datosArbol.forEach(dato => {
-                    contenedor.appendChild(crearNodoDOM(dato.texto, dato.indentacion || 0, dato.data || ""));
+                    contenedor.appendChild(crearNodoDOM(dato.texto, dato.indentacion || 0, dato.funcion));
                 });
                 arbolCargadoDesdeStreamlit = true;
                 actualizarEstructuraArbol();
+                enviarDatosAStreamlit();
             }
 
             ajustarAlturaStreamlit();
         }
     });
 
-    // 3. Función del botón para recolectar datos y enviar
-    document.getElementById("btnFinalizar").addEventListener("click", () => {
-        const items = contenedor.querySelectorAll(".item-arbol");
-        const resultado_arbol = [];
-        
-        items.forEach(item => {
-            resultado_arbol.push({
+    // 3. Enviar el estado completo del índice a Streamlit.
+    function enviarDatosAStreamlit() {
+        const resultadoArbol = Array.from(contenedor.querySelectorAll(".item-arbol")).map(item => {
+            const funcion = item.querySelector(".selector-funcion").value;
+
+            return {
                 texto: item.querySelector(".texto-nodo").textContent,
                 indice: item.querySelector(".numero-indice").textContent,
                 indentacion: parseInt(item.dataset.indentacion, 10),
-                data: item.querySelector("input").value
-            });
+                funcion: funcion === "Ninguna" ? null : funcion
+            };
         });
 
-        // Cambiar diseño del botón
-        const btn = document.getElementById("btnFinalizar");
-        btn.innerText = "Enviando...";
-        btn.className = "btn btn-secondary btn-lg shadow";
-        btn.disabled = true;
-
-        // Enviar a Python
         window.parent.postMessage({
             isStreamlitMessage: true,
             type: "streamlit:setComponentValue",
-            value: resultado_arbol
+            value: resultadoArbol
         }, "*");
-    });
+    }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

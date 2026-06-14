@@ -32,35 +32,30 @@ ruta_componente = os.path.join(os.path.dirname(__file__), "./")
 arbol_componente = components.declare_component("arbol_interactivo", path=ruta_componente)
 
 # 2. RENDERIZAMOS Y RECIBIMOS LA LISTA ITERABLE DE PYTHON
-estructura_actualizada = arbol_componente(key="mi_arbol", datos_arbol=st.session_state.datos_actuales)
+estructura_actualizada = arbol_componente(
+    key="mi_arbol",
+    datos_arbol=st.session_state.datos_actuales,
+    funciones_disponibles=FUNCIONES_DISPONIBLES,
+)
 
-# 3. PINTAMOS LOS SELECTBOX DE FUNCIONES
-st.markdown("### 🔌 Mapeo de Funciones")
-datos_finales = []
+# 3. El componente ya integra el mapeo de funciones en cada fila del índice.
+datos_finales = st.session_state.datos_actuales
 
-if estructura_actualizada:
-    # 🧠 El componente debe devolver una lista; si llega un dict viejo, usamos su lista interna.
+if estructura_actualizada is not None:
+    # 🧠 Compatibilidad: si llega un dict viejo, usamos su lista interna.
     if isinstance(estructura_actualizada, dict):
         estructura_actualizada = estructura_actualizada.get("arbol_jerarquico", [])
 
-    dic_previo = {d["texto"]: d.get("funcion") for d in st.session_state.datos_actuales}
-    
-    for i, nodo in enumerate(estructura_actualizada):
-        if not isinstance(nodo, dict):
-            continue
-        col1, col2 = st.columns([2, 1])
-        with col1:
-            st.markdown(f"<div style='margin-top:5px; margin-left:{nodo['indentacion']*25}px;'>👉 <b>{nodo['texto']}</b></div>", unsafe_allow_html=True)
-        with col2:
-            func_actual = dic_previo.get(nodo['texto'])
-            idx_defecto = FUNCIONES_DISPONIBLES.index(func_actual) if func_actual in FUNCIONES_DISPONIBLES else 0
-            func_sel = st.selectbox("Función", FUNCIONES_DISPONIBLES, index=idx_defecto, key=f"sel_{i}_{nodo['texto']}", label_visibility="collapsed")
-            
-        datos_finales.append({
+    datos_finales = [
+        {
             "texto": nodo["texto"],
             "indentacion": nodo["indentacion"],
-            "funcion": func_sel if func_sel != "Ninguna" else None
-        })
+            "funcion": nodo.get("funcion") if nodo.get("funcion") != "Ninguna" else None,
+        }
+        for nodo in estructura_actualizada
+        if isinstance(nodo, dict)
+    ]
+    st.session_state.datos_actuales = datos_finales
 
 st.markdown("---")
 # 4. GUARDADO Y SALIDA LIMPIA
