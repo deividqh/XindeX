@@ -3,12 +3,11 @@ import sys
 import multiprocessing
 from colorama import init, Fore, Style
 
-# Importamos XindeX y nuestras funciones
+# Importamos XindeX y las funciones (Asegúrate de que las rutas a tus carpetas son correctas)
 from XindeX.classXindeX import Over_Main
 import funciones_over_main as cmd
 
-# ■ EL MAPA DE FUNCIONES (El Enrutador)
-# Aquí asocias los nombres(str) que aparecerán en la web con tus funciones reales
+# ■ EL MAPA DE ENRUTAMIENTO 
 DICCIONARIO_FUNCIONES = {
     "version_web": cmd.version_web,
     "set_style": cmd.set_style,
@@ -22,19 +21,18 @@ DICCIONARIO_FUNCIONES = {
 
 if __name__ == "__main__":
     multiprocessing.freeze_support()
-    init() # Inicializa Colorama
+    init()
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    # ■ LA MAGIA: La clase Over_Main se encarga de TODO
-    # Detectará automáticamente si has puesto 'python over_main.py --config'
+    # La clase Over_Main se encarga automáticamente de detectar --config 
+    # y de lanzar el configurador si hace falta.
     The_X_Men = Over_Main(
         dicc_funciones=DICCIONARIO_FUNCIONES,
         tipo_index='a', 
         b_mode_all=True, 
-        b_loop=True, 
-        # b_config=True,
+        b_loop=True
     )
     
-    # ■ ARRANCAMOS XINDEX
+    # ■ EJECUCIÓN
     retorno = The_X_Men.mystyca(titulo='MAIN_MENU', head_datapush=" XINDEX CONFIGURADO ", pad_x=5)
     print(f"\n{Fore.GREEN}::: T H E   E N D ::: {retorno}{Style.RESET_ALL}")
