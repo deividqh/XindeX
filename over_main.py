@@ -6,7 +6,7 @@ import multiprocessing
 from XindeX.classXindeX import Over_Main
 import funciones_over_main as cmd
 
-# ■ EL MAPA DE ENRUTAMIENTO 
+# ■ EL MAPA DE EJECUCIÓN(Cambiar segun necesidad) 
 DICC_FUNCIONES = {
     "version_web": cmd.version_web,
     "set_style": cmd.set_style,
@@ -29,6 +29,6 @@ if __name__ == "__main__":
     cmd.The_X_Men = menu_xindex  
 
     # ■ EJECUCIÓN
-    menu_xindex.mystyca(titulo='MAIN_MENU', head_datapush=" XINDEX CONFIGURADO ", pad_x=5)
+    menu_xindex.mystyca(titulo='MAIN_MENU', head_datapush=" Configuración del Menú XindeX ", pad_x=5)
     # ■ SALIDA
     print(f"\n::: T H E   E N D :::")

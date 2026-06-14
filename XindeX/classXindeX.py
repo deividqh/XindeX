@@ -2394,6 +2394,8 @@ class Over_Main(XindeX):
             'kill' : f'{Fore.GREEN}kill{Fore.RESET}',
             'stop' : f'{Fore.GREEN}stop{Fore.RESET}',
             'ERR' : f'{Fore.RED}ERROR :::: {Fore.RESET}',
+            'config' : f"{Fore.GREEN}--config{Fore.RESET} ",
+            
         }
         print(Sdata.big_text(texto=f'Ayuda   X i n d e X', color=Fore.CYAN))
         ENE = '\n'
@@ -2426,12 +2428,14 @@ class Over_Main(XindeX):
         txt += ENE + f'\t Cuando el PPal Acaba, el demonio acaba abruptamente tb.'  
         txt += ENE + f'{d['[a]']}\t {d['ERR']}No Se ejecuta pq [a] es PADRE (DIRECTORY) SI b_mode_all=False. '  
         txt += ENE + f'\t Sin embargo si b_mode_all=True, y tiene asignada una funcion, se ejecuta como {Fore.CYAN}Demonio{Fore.RESET}.'  
-        # txt += ENE + f'{Fore.GREEN}►{Fore.RESET}\t (Alt+16) IMPRIME LA {Fore.CYAN}LISTA DE PROCESOS{Fore.RESET} (con PID)'  
         txt += ENE + f'\n{d['list']}\t Imprime la LISTA DE PROCESOS (con PID)'  
-        txt += ENE + f'{d['listar']}\t Imprime la LISTA DE PROCESOS (con PID)'  
-        # txt += ENE + f'{Fore.GREEN}■ 886{Fore.RESET}\t (Alt+254) {Fore.CYAN}Detiene el Proceso{Fore.RESET} ( ■ 886 ) Si Existe'  
-        txt += ENE + f'{d['kill']} 886\tDetiene el Proceso ( ■ 886 ) Si Existe'  
-        txt += ENE + f'{d['stop']} 886\tDetiene el Proceso ( ■ 886 ) Si Existe'  
+        txt += ENE + f'{d['listar']}\t Imprime la LISTA DE PROCESOS (con PID)'
+        txt += ENE + f'{d['kill']} 886\tDetiene el Proceso 886  Si Existe'  
+        txt += ENE + f'{d['stop']} 886\tDetiene el Proceso 886  Si Existe'  
+        txt += ENE + f'{d['stop']} \tDetiene Todos los procesos lanzados (pide confirmacion).'  
+        txt += ENE 
+        txt += ENE + f'{d['config']}\tConfiguración Dinamica con Streamlit del menú. '
+        txt += ENE + f'\t\tCrea un archivo de configuración(config_menu.json).'
 
         print(f'{txt}')
     
