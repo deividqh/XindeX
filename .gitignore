@@ -1,0 +1,37 @@
+# --- Entornos Virtuales y Dependencias ---
+.venv/
+venv/
+env/
+ENV/
+bin/
+lib/
+include/
+share/
+node_modules/
+
+# --- Caché de Python y Streamlit ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+.streamlit/config.toml
+!.streamlit/config.toml
+
+# --- Archivos del Entorno / Secretos (NUNCA SUBIR) ---
+.env
+.env.local
+.env.*.local
+secrets.toml
+.streamlit/secrets.toml
+
+# --- Archivos del Sistema Operativo ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Datos o Bases de Datos Locales (Opcional) ---
+*.db
+*.sqlite3
+data/
+outputs/
