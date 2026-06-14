@@ -15,6 +15,11 @@
         "funcion": null
     },
     {
+        "texto": "Parametros",
+        "indentacion": 1,
+        "funcion": null
+    },
+    {
         "texto": "Estilo",
         "indentacion": 0,
         "funcion": null
@@ -22,7 +27,7 @@
     {
         "texto": "Color Marco",
         "indentacion": 1,
-        "funcion": "set_style"
+        "funcion": null
     },
     {
         "texto": "Bordes Marco",
@@ -37,7 +42,7 @@
     {
         "texto": "Modo Diretory/All",
         "indentacion": 1,
-        "funcion": null
+        "funcion": "set_style"
     },
     {
         "texto": "Ejecutar Procesos",
@@ -57,16 +62,6 @@
     {
         "texto": "Matar Procesos",
         "indentacion": 2,
-        "funcion": null
-    },
-    {
-        "texto": "pureba",
-        "indentacion": 0,
-        "funcion": null
-    },
-    {
-        "texto": "otra prueba",
-        "indentacion": 0,
         "funcion": null
     }
 ]
