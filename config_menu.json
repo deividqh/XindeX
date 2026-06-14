@@ -1,22 +1,27 @@
 [
     {
-        "texto": "iniciamos",
+        "texto": "almirantazgo",
         "indentacion": 0,
-        "funcion": "version_web"
+        "funcion": "cambiar_estilo_marco"
     },
     {
-        "texto": "el",
-        "indentacion": 0,
+        "texto": "capitania",
+        "indentacion": 1,
+        "funcion": null
+    },
+    {
+        "texto": "oficinas",
+        "indentacion": 1,
+        "funcion": null
+    },
+    {
+        "texto": "b",
+        "indentacion": 2,
         "funcion": "from_to"
     },
     {
-        "texto": "formulario",
-        "indentacion": 0,
-        "funcion": "subprocess_os"
-    },
-    {
-        "texto": "de prueba",
-        "indentacion": 0,
-        "funcion": null
+        "texto": "c",
+        "indentacion": 2,
+        "funcion": "cambiar_estilo_marco"
     }
 ]

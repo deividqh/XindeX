@@ -6,7 +6,6 @@ from colorama import init, Fore, Style
 # Importamos XindeX y las funciones (Asegúrate de que las rutas a tus carpetas son correctas)
 from XindeX.classXindeX import Over_Main
 import funciones_over_main as cmd
-from funciones_over_main import The_X_Men as txm
 
 # ■ EL MAPA DE ENRUTAMIENTO 
 DICCIONARIO_FUNCIONES = {
@@ -34,7 +33,7 @@ if __name__ == "__main__":
         b_loop=True
     )
     
-    txm = menu_xindex  # Actualizamos la variable global en funciones_over_main.py
+    cmd.The_X_Men = menu_xindex  # Actualizamos la variable global en funciones_over_main.py
 
     # ■ EJECUCIÓN
     retorno = menu_xindex.mystyca(titulo='MAIN_MENU', head_datapush=" XINDEX CONFIGURADO ", pad_x=5)

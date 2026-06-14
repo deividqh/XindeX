@@ -1642,7 +1642,7 @@ class Over_Main(XindeX):
         ruta_st = os.path.join("XindeX", "xindex_st.py")
         proc = subprocess.Popen(["streamlit", "run", ruta_st])
 
-        print(f"{Fore.YELLOW}► El programa está esperando a que guardes o cierres Streamlit.{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}► Me quedo esperando a que configures y Guardes o cierres Streamlit.{Style.RESET_ALL}")
         try:
             proc.wait()
         except KeyboardInterrupt:
