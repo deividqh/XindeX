@@ -1548,11 +1548,11 @@ class Over_Main(XindeX):
         # ■■ DICCIONARIO PARA EL CONTROL DE HILOS CON LAS EJECUCIONES =>b2 (INDEPENDIENTE)(DEMONIO) Y <<b2>> (DEPENDIETE)
         self.dicc_procesos = {}
 
-        self.RESP_ACCION_DIRECTA = ['<' , '?' , '??' , 'help', '<<<', '#' , '@', '$']
+        self.RESP_ACCION_DIRECTA = ['<' , '?' , '??' , 'help', '<<<', '#' , '@', '$', "--config"]
         """ ■ DIRECTAS ... SOBRE ESCRITO DE INDEX PARA INCLUIR 'list'( listar procesos) y 'kill'(parar procesos) """
         
         self.RESP_BEGINNERS = ['**', '=>', '=' ]
-        """ ■ PREFIJO + RESPUESTA ... Se evalua cada uno:  """
+        """ ■ 2 partes: PREFIJO + RESPUESTA, por ejemplo: **a , =>a1 , =a1 ...  """
         
         self.RESP_BACKGROUND = ['[',']']        
         """ ■ ENVUELTAS... Se evalua la lista como una unidad, (pre y pos)(envoltorio) :  """
@@ -1634,7 +1634,8 @@ class Over_Main(XindeX):
 
     def _lanzar_configurador(self):
         # 🧠 Streamlit corre como subproceso; al guardar, la app escribe JSON y se cierra sola.
-        print(f"{Fore.CYAN}⚙️  Abriendo el configurador visual en tu navegador...{Style.RESET_ALL}")
+        print(f"{Fore.CYAN}⚙️ 1Abriendo el configurador visual en tu navegador...{Style.RESET_ALL}")
+
 
         if os.path.exists(self.archivo_retorno_streamlit):
             os.remove(self.archivo_retorno_streamlit)
@@ -1642,7 +1643,7 @@ class Over_Main(XindeX):
         ruta_st = os.path.join("XindeX", "xindex_st.py")
         proc = subprocess.Popen(["streamlit", "run", ruta_st])
 
-        print(f"{Fore.YELLOW}► Me quedo esperando a que configures y Guardes o cierres Streamlit.{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}► Me quedo a la espera de que configures y guardes o que cierres Streamlit.{Style.RESET_ALL}")
         try:
             proc.wait()
         except KeyboardInterrupt:
@@ -1962,6 +1963,10 @@ class Over_Main(XindeX):
                 self.F_RANK_Y_DEF.color_marco(color=sdata['S'])    
                 self.F_RANK_Y.imprimir()
                 print(f'::: Color Marco cambiado a {sdata["S"]} ::: ')
+            elif respuesta == "--config":
+                print('► Iniciar streamlit Set-up')
+                self.b_config = True
+                self._gestionar_estados()
             else:                                                           
                 return False
 
