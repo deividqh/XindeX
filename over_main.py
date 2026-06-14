@@ -6,6 +6,7 @@ from colorama import init, Fore, Style
 # Importamos XindeX y las funciones (Asegúrate de que las rutas a tus carpetas son correctas)
 from XindeX.classXindeX import Over_Main
 import funciones_over_main as cmd
+from funciones_over_main import The_X_Men as txm
 
 # ■ EL MAPA DE ENRUTAMIENTO 
 DICCIONARIO_FUNCIONES = {
@@ -26,13 +27,15 @@ if __name__ == "__main__":
 
     # La clase Over_Main se encarga automáticamente de detectar --config 
     # y de lanzar el configurador si hace falta.
-    The_X_Men = Over_Main(
+    menu_xindex = Over_Main(
         dicc_funciones=DICCIONARIO_FUNCIONES,
         tipo_index='a', 
         b_mode_all=True, 
         b_loop=True
     )
     
+    txm = menu_xindex  # Actualizamos la variable global en funciones_over_main.py
+
     # ■ EJECUCIÓN
-    retorno = The_X_Men.mystyca(titulo='MAIN_MENU', head_datapush=" XINDEX CONFIGURADO ", pad_x=5)
+    retorno = menu_xindex.mystyca(titulo='MAIN_MENU', head_datapush=" XINDEX CONFIGURADO ", pad_x=5)
     print(f"\n{Fore.GREEN}::: T H E   E N D ::: {retorno}{Style.RESET_ALL}")
