@@ -1605,7 +1605,9 @@ class Over_Main(XindeX):
 
         # Calculamos la ruta segura de Streamlit para lanzarlo
         ruta_st = os.path.join("XindeX", "xindex_st.py")
-        proc = subprocess.Popen(["streamlit", "run", ruta_st])
+        entorno = os.environ.copy()
+        entorno["XINDEX_CONFIG_DESDE_CERO"] = "1" if self.b_config or not os.path.exists(self.archivo_config) else "0"
+        proc = subprocess.Popen(["streamlit", "run", ruta_st], env=entorno)
         
         print(f"{Fore.YELLOW}► El programa está esperando a que guardes o cierres Streamlit.{Style.RESET_ALL}")
         proc.wait()

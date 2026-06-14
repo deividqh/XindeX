@@ -43,14 +43,8 @@
 </div>
 
 <script>
-    // --- TU CÓDIGO ORIGINAL (Ligeramente adaptado para el componente) ---
-    const datosIniciales = [
-        { texto: "Ciencia de Datos", indentacion: 0, data: "" },
-        { texto: "Machine Learning", indentacion: 1, data: "" },
-        { texto: "EDA", indentacion: 0, data: "" },
-        { texto: "Configuracion Algoritmo", indentacion: 0, data: "" },
-        { texto: "Entrenamiento", indentacion: 0, data: "" }
-    ];
+    // 🧠 El índice empieza vacío; Streamlit solo inyecta datos si existe configuración guardada.
+    let arbolCargadoDesdeStreamlit = false;
 
     const contenedor = document.getElementById("arbol");
     const inputElemento = document.getElementById("txtElemento");
@@ -145,7 +139,6 @@
         });
     }
 
-    datosIniciales.forEach(dato => contenedor.appendChild(crearNodoDOM(dato.texto, dato.indentacion, dato.data)));
     actualizarEstructuraArbol();
 
     contenedor.addEventListener("dragover", (e) => {
@@ -221,6 +214,17 @@
     // 2. Escuchar cuando Streamlit pide renderizar
     window.addEventListener("message", function(event) {
         if (event.data.type === "streamlit:render") {
+            const datosArbol = event.data.args?.datos_arbol || [];
+
+            if (!arbolCargadoDesdeStreamlit && Array.isArray(datosArbol)) {
+                contenedor.innerHTML = "";
+                datosArbol.forEach(dato => {
+                    contenedor.appendChild(crearNodoDOM(dato.texto, dato.indentacion || 0, dato.data || ""));
+                });
+                arbolCargadoDesdeStreamlit = true;
+                actualizarEstructuraArbol();
+            }
+
             ajustarAlturaStreamlit();
         }
     });
@@ -239,14 +243,6 @@
             });
         });
 
-        // Este es el diccionario exacto que recibirá Python (y luego temp_data.json)
-        // He incluido 'texto_usuario' para que tu ejecuta_st.py no falle en el print final
-        const diccionario_final = {
-            "texto_usuario": "Árbol configurado desde Interfaz Gráfica", 
-            "estado": "completado",
-            "arbol_jerarquico": resultado_arbol
-        };
-
         // Cambiar diseño del botón
         const btn = document.getElementById("btnFinalizar");
         btn.innerText = "Enviando...";
@@ -257,7 +253,7 @@
         window.parent.postMessage({
             isStreamlitMessage: true,
             type: "streamlit:setComponentValue",
-            value: diccionario_final
+            value: resultado_arbol
         }, "*");
     });
 </script>

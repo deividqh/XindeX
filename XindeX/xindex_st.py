@@ -15,15 +15,14 @@ FUNCIONES_DISPONIBLES = [
 ]
 
 if "datos_actuales" not in st.session_state:
-    if os.path.exists(ARCHIVO_CONFIG):
+    # 🧠 KISS: --config fuerza empezar de cero; sin --config solo cargamos si existe JSON.
+    empezar_desde_cero = os.environ.get("XINDEX_CONFIG_DESDE_CERO") == "1"
+
+    if os.path.exists(ARCHIVO_CONFIG) and not empezar_desde_cero:
         with open(ARCHIVO_CONFIG, "r", encoding='utf-8') as f:
             st.session_state.datos_actuales = json.load(f)
     else:
-        st.session_state.datos_actuales = [
-            {"texto": "Menú Principal", "indentacion": 0, "funcion": None},
-            {"texto": "Configuración", "indentacion": 1, "funcion": None},
-            {"texto": "Ver Procesos", "indentacion": 2, "funcion": "listar_procesos"}
-        ]
+        st.session_state.datos_actuales = []
 
 # st.title("Configurador XindeX")
 # st.caption("Organiza la jerarquía arrastrando. Asigna las funciones a la derecha.")
@@ -40,9 +39,15 @@ st.markdown("### 🔌 Mapeo de Funciones")
 datos_finales = []
 
 if estructura_actualizada:
+    # 🧠 El componente debe devolver una lista; si llega un dict viejo, usamos su lista interna.
+    if isinstance(estructura_actualizada, dict):
+        estructura_actualizada = estructura_actualizada.get("arbol_jerarquico", [])
+
     dic_previo = {d["texto"]: d.get("funcion") for d in st.session_state.datos_actuales}
     
     for i, nodo in enumerate(estructura_actualizada):
+        if not isinstance(nodo, dict):
+            continue
         col1, col2 = st.columns([2, 1])
         with col1:
             st.markdown(f"<div style='margin-top:5px; margin-left:{nodo['indentacion']*25}px;'>👉 <b>{nodo['texto']}</b></div>", unsafe_allow_html=True)
