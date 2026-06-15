@@ -2,7 +2,7 @@
 
 XindeX es una librería en Python diseñada para generar, gestionar y ejecutar menús interactivos y jerárquicos directamente desde la terminal. En esta rama (`with_st`), XindeX integra un configurador visual usando **Streamlit**, lo que permite diseñar la estructura de los menús (hijos, padres e ítems) y asignar sus funciones correspondientes desde una interfaz web intuitiva, para luego ser ejecutados en la consola mediante la clase maestra `Over_Main`.
 
-**... Y para que sirve?** Yo lo uso para documentación de clases que genero en python.
+... Y para que sirve? Yo lo uso para documentación de clases que genero en python.
 Aunque también cuando hago algún curso y quiero organizar mis ejercicios.
 Simplemente te permite ejecutar cosas desde un índice así que puede valer para lo que se te ocurra:
 por ejemplo cuando quise programar un cliente y servidor... desde XindeX fué genial, 
