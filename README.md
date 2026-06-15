@@ -1,7 +1,13 @@
 # XindeX - Sistema de Menús Interactivos por Terminal (Rama `with_st`)
 
-XindeX es una potente librería en Python diseñada para generar, gestionar y ejecutar menús interactivos y jerárquicos directamente desde la terminal. En esta rama (`with_st`), XindeX integra un configurador visual usando **Streamlit**, lo que permite diseñar la estructura de los menús (hijos, padres e ítems) y asignar sus funciones correspondientes desde una interfaz web intuitiva, para luego ser ejecutados en la consola mediante la clase maestra `Over_Main`.
+XindeX es una librería en Python diseñada para generar, gestionar y ejecutar menús interactivos y jerárquicos directamente desde la terminal. En esta rama (`with_st`), XindeX integra un configurador visual usando **Streamlit**, lo que permite diseñar la estructura de los menús (hijos, padres e ítems) y asignar sus funciones correspondientes desde una interfaz web intuitiva, para luego ser ejecutados en la consola mediante la clase maestra `Over_Main`.
 
+**... Y para que sirve?** Yo lo uso para documentación de clases que genero en python.
+Aunque también cuando hago algún curso y quiero organizar mis ejercicios.
+Simplemente te permite ejecutar cosas desde un índice así que puede valer para lo que se te ocurra:
+por ejemplo cuando quise programar un cliente y servidor... desde XindeX fué genial, 
+o cuando quería probar ventanas de Tkinter y no ceder el control del XindeX las lanzaba como demonios y listo.
+También lancé un servidor e hice modificaciones a una base de datos que estaban trabajando clientes web en caliente todo como pruebas de unas clases con lo que todo queda super bien organizado. son unas Memorias Vivas.
 ---
 
 ## 🚀 Guía de Inicio Rápido
@@ -121,3 +127,32 @@ if __name__ == "__main__":
 2. Regístralas en el `DICC_FUNCIONES` de `over_main.py` asignándoles una clave de texto (ej. `"accion_saludar"`).
 3. Abre el configurador web (`python over_main.py --config`), diseña tu menú y asigna al botón la clave exacta `"accion_saludar"`.
 4. Ejecuta el menú (`python over_main.py`) y comprueba que todo funciona en la terminal.
+
+## ... a partir de aquí entramos en las cosas que podemos hacer con el XindeX:
+1. Parámetros Ayuda:
+    * '??'      Muestra la ayuda de parametros que se pueden usar en XindeX.
+    * 'help'    Muestra una ayuda de como configurar XindeX para copiar / pegar.
+2. Parámetros Sobre el Menú:
+    * '<<<' Salir de XindeX
+    * '<'   Repite el menu limpiando la pantalla. (muy usado)
+    * '--config'    Abre Streamlit con el menú de config_menu.json(menu actual) para editarlo y retornar a la terminal.
+    * '?'   Muestra la funcion que se ejecuta en cada linea del XindeX. (muy usado)
+            También muestra en la Cabecera si se ejecuta en modo Directorio o Se ejecuta Todo.
+3. Parámetros Sobre la Visualizacion del Contenido:
+    * '=b'  Muestra el directorio b si existe. No persiste, es solo visual. 
+    * '**b'  Muestra sólo el directorio b pero es un menu independiente y se sale con '<<<'.
+    * '1-5'  Muestra de la linea 1 a la 5 del XindeX ambas incluidas.
+    * "par"  Muestra todas las lineas del XindeX que contengan el string 'par'
+4. Parámetros Sobre el Estyle:
+    * '@'   Cambia el estilo del marco. da una lista para elegir... vacío.
+    * '#'   Cambia el modo de Directorio a Ejecutar Todo y viceversa.
+    * '$'   Cambia el color del marco. Da una lista para elegir color.
+5. Parámetros Sobre la Ejecución:
+    * '[b1]'    Lanza un proceso en background
+    * '=>b1'    Lanza un proceso demonio
+    * 'list/listar'    Lista los procesos lanzados como demonio o background
+    * 'kill/stop 1783'    Termina el proceso 1783 si existe.
+    * 'kill/stop'    Termina todos los procesos lanzados(pregunta confirmación).
+
+
+
