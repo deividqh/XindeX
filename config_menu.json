@@ -63,5 +63,10 @@
         "texto": "Matar Procesos",
         "indentacion": 2,
         "funcion": "version_webbb"
+    },
+    {
+        "texto": "prueba",
+        "indentacion": 0,
+        "funcion": "set_style"
     }
 ]
