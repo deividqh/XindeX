@@ -1568,6 +1568,8 @@ class Over_Main(XindeX):
         # 🧠 Archivos simples para hablar con Streamlit: config estable + retorno de la última ejecución.
         self.archivo_config = "config_menu.json"
         self.archivo_retorno_streamlit = "temp_menu_resultado.json"
+        self.archivo_funciones_streamlit = "temp_funciones_disponibles.json"
+        self.str_funcion_nula = "Ninguna"
         self.datos_streamlit = None
         self.dicc_funciones = dicc_funciones if dicc_funciones else {}
         
@@ -1670,10 +1672,21 @@ class Over_Main(XindeX):
     def _config_guardada_valida(self):
         return os.path.exists(self.archivo_config) and self._leer_config_guardada() is not None
 
+    def _escribir_funciones_streamlit(self):
+        """Escribe el puente mínimo que necesita Streamlit para listar funciones."""
+        datos_puente = {
+            "NULL_FUNC": self.str_funcion_nula,
+            "FUNCIONES_USUARIO": list(self.dicc_funciones.keys()),
+        }
+
+        with open(self.archivo_funciones_streamlit, "w", encoding="utf-8") as f:
+            json.dump(datos_puente, f, ensure_ascii=False, indent=4)
+
     def _lanzar_configurador(self):
         # 🧠 Streamlit corre como subproceso; al guardar, la app escribe JSON y se cierra sola.
         print(f"{Fore.CYAN}⚙️ 1Abriendo el configurador visual en tu navegador...{Style.RESET_ALL}")
 
+        self._escribir_funciones_streamlit()
 
         if os.path.exists(self.archivo_retorno_streamlit):
             os.remove(self.archivo_retorno_streamlit)
