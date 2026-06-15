@@ -5,7 +5,7 @@ import os
 
 st.set_page_config(page_title="Configurador XindeX", layout="centered")
 
-ARCHIVO_CONFIG = "config_menu.json"
+ARCHIVO_CONFIG  = "config_menu.json"
 ARCHIVO_RETORNO = "temp_menu_resultado.json"
 
 # DEBE COINCIDIR EXACTAMENTE CON LAS CLAVES DEL DICCIONARIO EN over_main.py

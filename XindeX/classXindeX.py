@@ -1594,6 +1594,44 @@ class Over_Main(XindeX):
 
         self._construir_desde_json()
 
+    def _limpiar_menu_dinamico(self):
+        """Deja vacío el árbol de menús para reconstruirlo desde el JSON actual."""
+        self.lst_menuXX = []
+        self.lst_titulosXX = []
+        self.lst_keys = []
+        self.lst__men_itm_lev_ape_name_padr_ipadr_func = []
+        self.dicc_xgenx = {}
+        self.matriz_opt_ok = []
+        self.matriz_impresion_xindex = []
+        self.lst_idx_NUMERIC = []
+        self.lst_idx_ALF_MAX = []
+        self.lst_idx_ALF_MIN = []
+        self.lst_idx_MIXTO = []
+        self.lst_opts_ok = None
+        self.menu_dvd = None
+
+    def _refrescar_menu_activo(self, titulo_preferido='MAIN_MENU'):
+        """Recarga genética e impresión para que el bucle use el menú recién reconstruido."""
+        titulo_menu = titulo_preferido if titulo_preferido in self.lst_titulosXX else 'MAIN_MENU'
+        menu_dvd = self.get_menudvd(titulo=titulo_menu)
+        if not menu_dvd:
+            print(f"{Fore.RED}❌ No se pudo refrescar el menú dinámico.{Style.RESET_ALL}")
+            return False
+
+        self.menu_dvd = menu_dvd
+        self.load_modulo_gentico_x(titulo=titulo_menu)
+        if not self.lst__men_itm_lev_ape_name_padr_ipadr_func or not self.lst_keys or not self.lst_opts_ok:
+            print(f"{Fore.RED}❌ El menú dinámico no tiene una genética válida.{Style.RESET_ALL}")
+            return False
+
+        self.load_modulo_impresion_x(
+            menu_dvd=self.menu_dvd,
+            lista_m_i_l_a_n_p_i_f=self.lst__men_itm_lev_ape_name_padr_ipadr_func,
+            lst_keys=self.lst_keys,
+            lst_opts_ok=self.lst_opts_ok,
+        )
+        return True
+
     def _validar_nodos_config(self, nodos):
         if not isinstance(nodos, list):
             return None
@@ -1668,6 +1706,8 @@ class Over_Main(XindeX):
 
     def _construir_desde_json(self):
         # 🧠 Construye el árbol desde memoria si venimos de Streamlit; si no, desde el JSON guardado.
+        self._limpiar_menu_dinamico()
+
         if self.datos_streamlit is not None:
             nodos = self.datos_streamlit
         else:
@@ -1965,8 +2005,11 @@ class Over_Main(XindeX):
                 print(f'::: Color Marco cambiado a {sdata["S"]} ::: ')
             elif respuesta == "--config":
                 print('► Iniciar streamlit Set-up')
+                titulo_actual = self.menu_dvd.titulo if self.menu_dvd else 'MAIN_MENU'
                 self.b_config = True
                 self._gestionar_estados()
+                self.b_config = False
+                self._refrescar_menu_activo(titulo_preferido=titulo_actual)
             else:                                                           
                 return False
 
@@ -2351,6 +2394,8 @@ class Over_Main(XindeX):
             'kill' : f'{Fore.GREEN}kill{Fore.RESET}',
             'stop' : f'{Fore.GREEN}stop{Fore.RESET}',
             'ERR' : f'{Fore.RED}ERROR :::: {Fore.RESET}',
+            'config' : f"{Fore.GREEN}--config{Fore.RESET} ",
+            
         }
         print(Sdata.big_text(texto=f'Ayuda   X i n d e X', color=Fore.CYAN))
         ENE = '\n'
@@ -2383,12 +2428,14 @@ class Over_Main(XindeX):
         txt += ENE + f'\t Cuando el PPal Acaba, el demonio acaba abruptamente tb.'  
         txt += ENE + f'{d['[a]']}\t {d['ERR']}No Se ejecuta pq [a] es PADRE (DIRECTORY) SI b_mode_all=False. '  
         txt += ENE + f'\t Sin embargo si b_mode_all=True, y tiene asignada una funcion, se ejecuta como {Fore.CYAN}Demonio{Fore.RESET}.'  
-        # txt += ENE + f'{Fore.GREEN}►{Fore.RESET}\t (Alt+16) IMPRIME LA {Fore.CYAN}LISTA DE PROCESOS{Fore.RESET} (con PID)'  
         txt += ENE + f'\n{d['list']}\t Imprime la LISTA DE PROCESOS (con PID)'  
-        txt += ENE + f'{d['listar']}\t Imprime la LISTA DE PROCESOS (con PID)'  
-        # txt += ENE + f'{Fore.GREEN}■ 886{Fore.RESET}\t (Alt+254) {Fore.CYAN}Detiene el Proceso{Fore.RESET} ( ■ 886 ) Si Existe'  
-        txt += ENE + f'{d['kill']} 886\tDetiene el Proceso ( ■ 886 ) Si Existe'  
-        txt += ENE + f'{d['stop']} 886\tDetiene el Proceso ( ■ 886 ) Si Existe'  
+        txt += ENE + f'{d['listar']}\t Imprime la LISTA DE PROCESOS (con PID)'
+        txt += ENE + f'{d['kill']} 886\tDetiene el Proceso 886  Si Existe'  
+        txt += ENE + f'{d['stop']} 886\tDetiene el Proceso 886  Si Existe'  
+        txt += ENE + f'{d['stop']} \tDetiene Todos los procesos lanzados (pide confirmacion).'  
+        txt += ENE 
+        txt += ENE + f'{d['config']}\tConfiguración Dinamica con Streamlit del menú. '
+        txt += ENE + f'\t\tCrea un archivo de configuración(config_menu.json).'
 
         print(f'{txt}')
     
@@ -2500,4 +2547,3 @@ The_X_Men.addX( titulo='fam', padre='menu_principal'   , ipadre='Tema 2' ,
 
 
         print(txt)
-
