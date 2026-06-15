@@ -8,7 +8,7 @@ import funciones_over_main as cmd
 
 # ■ EL MAPA DE EJECUCIÓN(Cambiar segun necesidad) 
 DICC_FUNCIONES = {
-    "version_web": cmd.version_web,
+    "version_webbb": cmd.version_web,
     "set_style": cmd.set_style,
     "from_to": cmd.from_to,
     "listar_procesos": cmd.listar_procesos,

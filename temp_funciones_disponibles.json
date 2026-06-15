@@ -1,0 +1,12 @@
+{
+    "NULL_FUNC": "Ninguna",
+    "FUNCIONES_USUARIO": [
+        "version_webbb",
+        "set_style",
+        "from_to",
+        "listar_procesos",
+        "subprocess_os",
+        "lanzar_proceso",
+        "cambiar_estilo_marco"
+    ]
+}
