@@ -42,7 +42,8 @@
     const contenedor = document.getElementById("arbol");
     const inputElemento = document.getElementById("txtElemento");
     const btnAgregar = document.getElementById("btnAgregar");
-    let funcionesDisponibles = ["Ninguna"];
+    let FUNCION_NULA = "Ninguna";
+    let funcionesDisponibles = [FUNCION_NULA];
 
     let elementoArrastrado = null;
     let xInicial = 0;
@@ -112,7 +113,7 @@
             selector.appendChild(option);
         });
 
-        selector.value = funcionValor || "Ninguna";
+        selector.value = funcionValor || FUNCION_NULA;
         return selector;
     }
 
@@ -209,6 +210,9 @@
         if (event.data.type === "streamlit:render") {
             const args = event.data.args || {};
             const datosArbol = args.datos_arbol || [];
+            if (typeof args.null_func === "string" && args.null_func.trim() !== "") {
+                FUNCION_NULA = args.null_func;
+            }
             funcionesDisponibles = Array.isArray(args.funciones_disponibles) ? args.funciones_disponibles : funcionesDisponibles;
 
             if (!arbolCargadoDesdeStreamlit && Array.isArray(datosArbol)) {
@@ -234,7 +238,7 @@
                 texto: item.querySelector(".texto-nodo").textContent,
                 indice: item.querySelector(".numero-indice").textContent,
                 indentacion: parseInt(item.dataset.indentacion, 10),
-                funcion: funcion === "Ninguna" ? null : funcion
+                funcion: funcion === FUNCION_NULA ? null : funcion
             };
         });
 

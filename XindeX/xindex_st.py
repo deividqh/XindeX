@@ -7,12 +7,34 @@ st.set_page_config(page_title="Configurador XindeX", layout="centered")
 
 ARCHIVO_CONFIG  = "config_menu.json"
 ARCHIVO_RETORNO = "temp_menu_resultado.json"
+ARCHIVO_PUENTE_FUNCIONES = "temp_funciones_disponibles.json"
+STR_NULL_FUNC = "Ninguna"
 
-# DEBE COINCIDIR EXACTAMENTE CON LAS CLAVES DEL DICCIONARIO EN over_main.py
-FUNCIONES_DISPONIBLES = [
-    "Ninguna", "version_web", "set_style", "from_to", 
-    "listar_procesos", "subprocess_os", "lanzar_proceso", "cambiar_estilo_marco"
-]
+def cargar_funciones_disponibles():
+    """Carga las funciones que el usuario registró en Over_Main."""
+    if not os.path.exists(ARCHIVO_PUENTE_FUNCIONES):
+        return [STR_NULL_FUNC]
+
+    try:
+        with open(ARCHIVO_PUENTE_FUNCIONES, "r", encoding="utf-8") as f:
+            datos_puente = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        st.warning("No se pudo leer la lista de funciones. Solo estará disponible la opción vacía.")
+        return [STR_NULL_FUNC]
+
+    funcion_nula = datos_puente.get("NULL_FUNC", STR_NULL_FUNC)
+    funciones_usuario = datos_puente.get("FUNCIONES_USUARIO", [])
+
+    if not isinstance(funcion_nula, str) or not funcion_nula.strip():
+        funcion_nula = STR_NULL_FUNC
+    if not isinstance(funciones_usuario, list):
+        funciones_usuario = []
+
+    funciones_limpias = [funcion for funcion in funciones_usuario if isinstance(funcion, str) and funcion != funcion_nula]
+    return [funcion_nula] + funciones_limpias
+
+FUNCIONES_DISPONIBLES = cargar_funciones_disponibles()
+STR_NULL_FUNC = FUNCIONES_DISPONIBLES[0]
 
 def validar_nodos_config(nodos):
     """Devuelve una lista limpia de nodos o None si el JSON no sirve para el menú."""
@@ -32,6 +54,8 @@ def validar_nodos_config(nodos):
             return None
         if not isinstance(indentacion, int) or indentacion < 0:
             return None
+        if funcion == STR_NULL_FUNC:
+            funcion = None
         if funcion is not None and funcion not in FUNCIONES_DISPONIBLES:
             return None
 
@@ -77,6 +101,7 @@ estructura_actualizada = arbol_componente(
     key="mi_arbol",
     datos_arbol=st.session_state.datos_actuales,
     funciones_disponibles=FUNCIONES_DISPONIBLES,
+    null_func=STR_NULL_FUNC,
 )
 
 # 3. El componente ya integra el mapeo de funciones en cada fila del índice.
@@ -91,7 +116,7 @@ if estructura_actualizada is not None:
         {
             "texto": nodo["texto"],
             "indentacion": nodo["indentacion"],
-            "funcion": nodo.get("funcion") if nodo.get("funcion") != "Ninguna" else None,
+            "funcion": nodo.get("funcion") if nodo.get("funcion") != STR_NULL_FUNC else None,
         }
         for nodo in estructura_actualizada
         if isinstance(nodo, dict)

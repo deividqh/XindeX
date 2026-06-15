@@ -14,8 +14,7 @@ DICC_FUNCIONES = {
     "listar_procesos": cmd.listar_procesos,
     "subprocess_os": cmd.subprocess_os,
     "lanzar_proceso": cmd.lanzar_proceso,
-    "cambiar_estilo_marco": cmd.cambiar_estilo_marco,
-    "Ninguna": None
+    "cambiar_estilo_marco": cmd.cambiar_estilo_marco
 }
 
 if __name__ == "__main__":
