@@ -1692,7 +1692,8 @@ class Over_Main(XindeX):
             os.remove(self.archivo_retorno_streamlit)
 
         ruta_st = os.path.join("XindeX", "xindex_st.py")
-        proc = subprocess.Popen(["streamlit", "run", ruta_st])
+        # proc = subprocess.Popen(["streamlit", "run", ruta_st])
+        proc = subprocess.Popen([sys.executable, "-m", "streamlit", "run", ruta_st])
 
         print(f"{Fore.YELLOW}► Me quedo a la espera de que configures y guardes o que cierres Streamlit.{Style.RESET_ALL}")
         try:

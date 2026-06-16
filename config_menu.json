@@ -5,11 +5,6 @@
         "funcion": null
     },
     {
-        "texto": "Dentro de XindeX",
-        "indentacion": 1,
-        "funcion": null
-    },
-    {
         "texto": "la Clase",
         "indentacion": 1,
         "funcion": null
@@ -17,6 +12,11 @@
     {
         "texto": "Parametros",
         "indentacion": 1,
+        "funcion": null
+    },
+    {
+        "texto": "Dentro de XindeX",
+        "indentacion": 2,
         "funcion": null
     },
     {
@@ -63,10 +63,5 @@
         "texto": "Matar Procesos",
         "indentacion": 2,
         "funcion": "version_webbb"
-    },
-    {
-        "texto": "prueba",
-        "indentacion": 0,
-        "funcion": "set_style"
     }
 ]
